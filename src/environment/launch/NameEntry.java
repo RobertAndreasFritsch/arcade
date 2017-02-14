@@ -390,16 +390,27 @@ class waiter implements Updateable {
 				| players[3] & !(a[3] != null ? a[3].isReady : true)) {
 			ready = false;
 		}
+		
 		if (ready) {
-			e.setRunning(false);
-			Seat.P3.setPlaying(players[0]);
-			Seat.P3.setName(a[0] != null ? a[0].getCurrent() : "");
-			Seat.P4.setPlaying(players[1]);
-			Seat.P4.setName(a[1] != null ? a[1].getCurrent() : "");
-			Seat.P1.setPlaying(players[2]);
-			Seat.P1.setName(a[2] != null ? a[2].getCurrent() : "");
-			Seat.P2.setPlaying(players[3]);
-			Seat.P3.setName(a[3] != null ? a[3].getCurrent() : "");
+			new Thread(){
+				public void run(){
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+					
+					e.setRunning(false);
+					Seat.P3.setPlaying(players[0]);
+					Seat.P3.setName(a[0] != null ? a[0].getCurrent() : "");
+					Seat.P4.setPlaying(players[1]);
+					Seat.P4.setName(a[1] != null ? a[1].getCurrent() : "");
+					Seat.P1.setPlaying(players[2]);
+					Seat.P1.setName(a[2] != null ? a[2].getCurrent() : "");
+					Seat.P2.setPlaying(players[3]);
+					Seat.P3.setName(a[3] != null ? a[3].getCurrent() : "");
+				}
+			}.start();
 		}
 	}
 }
