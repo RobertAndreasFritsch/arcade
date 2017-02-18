@@ -86,6 +86,7 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 		if (len > g.getR() & !dying) {
 			dying = true;
 			lastKickedBy.getSeat().setScore(lastKickedBy.getSeat().getScore() + 50);
+			Sounds.falling.play();
 			new Thread() {
 				public void run() {
 					while (scale > 0) {
@@ -97,6 +98,7 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 						}
 					}
 					dead = true;
+					game.add(new waterSplash(game, (int) x-25, (int) y-25));
 				}
 			}.start();
 		}
@@ -177,6 +179,7 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 				p2.setAccelerationX((float) (p2.getAccelerationX() + 0.25 * impx));
 				p2.setAccelerationY((float) (p2.getAccelerationY() + 0.25 * impy));
 			}
+			Sounds.pling.play();
 		}
 
 		p1.setLastKickedBy(p2);
