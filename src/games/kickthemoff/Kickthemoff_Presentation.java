@@ -10,7 +10,7 @@ public class Kickthemoff_Presentation implements Presentation{
 
 	@Override
 	public Game getGame(JPanel panel, KeyRequest KEYS) {
-		return new Kickthemoff(panel,KEYS);
+		return new KickThemOff(panel,KEYS);
 	}
 
 }

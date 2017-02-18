@@ -5,9 +5,9 @@ import java.awt.event.KeyEvent;
 import environment.model.gameobject.ProceedsInput;
 
 public class Exit implements ProceedsInput{
-	private Kickthemoff game;
+	private KickThemOff game;
 	
-	public Exit(Kickthemoff game){
+	public Exit(KickThemOff game){
 		this.game = game;
 	}
 

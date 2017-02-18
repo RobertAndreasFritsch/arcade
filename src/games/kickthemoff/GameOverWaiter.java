@@ -3,9 +3,9 @@ package games.kickthemoff;
 import environment.model.gameobject.Updateable;
 
 public class GameOverWaiter implements Updateable {
-	private Kickthemoff game;
+	private KickThemOff game;
 
-	public GameOverWaiter(Kickthemoff game) {
+	public GameOverWaiter(KickThemOff game) {
 		this.game = game;
 	}
 
