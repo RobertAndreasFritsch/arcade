@@ -5,6 +5,7 @@ import java.util.List;
 
 import games.bomberman.Bomberman_Presesentation;
 import games.dotsAndWarriors.DAW_Presentation;
+import games.kickthemoff.Kickthemoff_Presentation;
 import games.knutzzz.Knutzzz_Presentation;
 import games.pong.Pong_Presentation;
 import games.tank.TankPresentation;
@@ -21,6 +22,7 @@ public abstract class Presentations {
 		presentations.add(new Knutzzz_Presentation());
 		presentations.add(new Pong_Presentation());
 		presentations.add(new Tron_Presentation());
+		presentations.add(new Kickthemoff_Presentation());
 
 		return presentations;
 	}
