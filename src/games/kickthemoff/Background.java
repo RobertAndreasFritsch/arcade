@@ -8,7 +8,7 @@ import java.awt.Toolkit;
 import environment.model.gameobject.Drawable;
 
 public class Background implements Drawable{
-	private static Image tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/ground.png");
+	private static Image tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/background.png");
 
 	@Override
 	public void draw(Graphics2D g) {

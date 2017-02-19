@@ -105,7 +105,7 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 		}
 
 		for (Player p : game.getPlayers()) {
-			if (p != this) {
+			if (p != this & !isDead() & !isDying() & !p.isDead() & !p.isDying()) {
 				doCollision(this, p);
 			}
 		}
@@ -137,6 +137,10 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 
 	public boolean isDead() {
 		return dead;
+	}
+
+	public boolean isDying() {
+		return dying;
 	}
 
 	public Seat getSeat() {
