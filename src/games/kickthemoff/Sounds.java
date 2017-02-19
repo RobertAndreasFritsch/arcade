@@ -18,7 +18,7 @@ public enum Sounds {
 	falling("res/games/kickthemoff/falling.wav");
 
 	private String filename;
-	private LinkedList<Clip> sfxs = new LinkedList<Clip>();
+	private Clip sfx;
 
 	Sounds(String f) {
 		this.filename = f;
@@ -42,22 +42,7 @@ public enum Sounds {
 
 		if (sfx != null) {
 			sfx.start();
-			final Clip c = sfx;
-			sfx.addLineListener(new LineListener() {
-				@Override
-				public void update(LineEvent event) {
-					if(event.getFramePosition() > c.getFrameLength()){
-						stop();
-					}
-				}
-			});
 		}
-		this.sfxs.add(sfx);
-	}
-	
-	void stop(){
-		this.sfxs.getFirst().stop();
-		this.sfxs.removeFirst();
 	}
 
 }

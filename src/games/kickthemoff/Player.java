@@ -98,7 +98,8 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 						}
 					}
 					dead = true;
-					game.add(new waterSplash(game, (int) x-25, (int) y-25));
+					waterSplash w = new waterSplash(game, (int) x - 25, (int) y - 25);
+					game.getDRAWABLES().add(1, w);
 				}
 			}.start();
 		}

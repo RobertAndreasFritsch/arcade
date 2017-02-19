@@ -20,7 +20,6 @@ public class waterSplash implements Drawable, Updateable {
 		this.y = y;
 		this.game = game;
 		Sounds.water_splash0.play();
-		Sounds.falling.stop();
 	}
 
 	@Override
