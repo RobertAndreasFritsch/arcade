@@ -22,6 +22,7 @@ public class GameOverWaiter implements Updateable {
 		if (alive == 1) {
 			game.setRunning(false);
 			winner.getSeat().setScore(winner.getSeat().getScore() + 100);
+			winner.setWins(winner.getWins() + 1);
 		}
 	}
 

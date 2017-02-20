@@ -11,42 +11,6 @@ import environment.model.gameobject.Updateable;
 public class Player implements Drawable, ProceedsInput, Updateable {
 	private static final float SPEED_INCREASE_PER_PRESS = 0.05f;
 	private static final float SPEED_DECREASE_PER_SECOND = 2f;
-
-	public static void doCollision(Player p1, Player p2) {
-		// Normale
-		float nx = p2.getX() - p1.getX();
-		float ny = p2.getY() - p1.getY();
-		if (nx * nx + ny * ny < 2500) {
-			// Normalengeschwindigkeit
-			double rvx = p2.getAccelerationX() - p1.getAccelerationX();
-			double rvy = p2.getAccelerationY() - p1.getAccelerationY();
-			// Normale normieren
-			double absn = Math.sqrt(nx * nx + ny * ny);
-			nx /= absn;
-			ny /= absn;
-
-			double vn = rvx * nx + rvy * ny;
-			if (vn < 0) {
-				// Kollisionspartner bewegen sich aufeinander zu
-				// Elastizitaet e=1
-				double e = 1;
-				double j = -(1 + e) * vn;
-				// Massen Player m=4, Ball m=1
-				j = j * 2;
-				// Impuls
-				double impx = j * nx;
-				double impy = j * ny;
-				p1.setAccelerationX((float) (p1.getAccelerationX() - 0.25 * impx));
-				p1.setAccelerationY((float) (p1.getAccelerationY() - 0.25 * impy));
-				p2.setAccelerationX((float) (p2.getAccelerationX() + 0.25 * impx));
-				p2.setAccelerationY((float) (p2.getAccelerationY() + 0.25 * impy));
-			}
-			Sounds.pling.play();
-		}
-
-		p1.setLastKickedBy(p2);
-		p2.setLastKickedBy(p1);
-	}
 	private Seat s;
 	private float x, y;
 	private float accelerationX, accelerationY;
@@ -54,20 +18,18 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 	private boolean dead = false, dying = false;
 	private float scale = 1;
 	private Ground g;
-	private Player[] otherPlayers;
 	private KickThemOff game;
 
 	private Player lastKickedBy = this;
 
-	public Player(KickThemOff game, Seat s, int x, int y, KeyRequest keys, Ground g, Player... otherPlayers) {
+	public Player(KickThemOff game, Seat s, int x, int y, Ground g) {
 		this.s = s;
 		this.x = x;
 		this.y = y;
 		accelerationX = 0;
 		accelerationY = 0;
-		this.keys = keys;
+		this.keys = game.getKEYS();
 		this.g = g;
-		this.otherPlayers = otherPlayers;
 		this.game = game;
 	}
 
@@ -112,6 +74,14 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 		return dying;
 	}
 
+	public int getWins() {
+		return (int) ((float) s.getScore() * 0.0001);
+	}
+
+	public void setWins(int wins) {
+		s.setScore((int) (((float) s.getScore() * 0.00001 + wins) * 10000));
+	}
+
 	@Override
 	public void processInput() {
 		if (dead | dying) {
@@ -141,6 +111,11 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 
 	public void setLastKickedBy(Player lastKickedBy) {
 		this.lastKickedBy = lastKickedBy;
+	}
+
+	public void revive() {
+		dead = false;
+		dying = false;
 	}
 
 	@Override
@@ -190,5 +165,41 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 				doCollision(this, p);
 			}
 		}
+	}
+
+	public static void doCollision(Player p1, Player p2) {
+		// Normale
+		float nx = p2.getX() - p1.getX();
+		float ny = p2.getY() - p1.getY();
+		if (nx * nx + ny * ny < 2500) {
+			// Normalengeschwindigkeit
+			double rvx = p2.getAccelerationX() - p1.getAccelerationX();
+			double rvy = p2.getAccelerationY() - p1.getAccelerationY();
+			// Normale normieren
+			double absn = Math.sqrt(nx * nx + ny * ny);
+			nx /= absn;
+			ny /= absn;
+
+			double vn = rvx * nx + rvy * ny;
+			if (vn < 0) {
+				// Kollisionspartner bewegen sich aufeinander zu
+				// Elastizitaet e=1
+				double e = 1;
+				double j = -(1 + e) * vn;
+				// Massen Player m=4, Ball m=1
+				j = j * 2;
+				// Impuls
+				double impx = j * nx;
+				double impy = j * ny;
+				p1.setAccelerationX((float) (p1.getAccelerationX() - 0.25 * impx));
+				p1.setAccelerationY((float) (p1.getAccelerationY() - 0.25 * impy));
+				p2.setAccelerationX((float) (p2.getAccelerationX() + 0.25 * impx));
+				p2.setAccelerationY((float) (p2.getAccelerationY() + 0.25 * impy));
+			}
+			Sounds.pling.play();
+		}
+
+		p1.setLastKickedBy(p2);
+		p2.setLastKickedBy(p1);
 	}
 }

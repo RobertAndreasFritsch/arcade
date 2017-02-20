@@ -2,6 +2,7 @@ package environment.implementation;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,6 +134,7 @@ public class MyGame implements Game {
 
 		img = this.getPANEL().createImage(MyWindow.getInstance().getWidth(), MyWindow.getInstance().getHeight());
 		g = (Graphics2D) img.getGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		for (Drawable d : new ArrayList<Drawable>(this.DRAWABLES)) {
 			d.draw(g);
