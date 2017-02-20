@@ -1,21 +1,16 @@
 package games.kickthemoff;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
 
 public enum Sounds {
-	water_splash0("res/games/kickthemoff/water_splash.wav"),
-	pling("res/games/kickthemoff/pling.wav"),
-	falling("res/games/kickthemoff/falling.wav");
+	water_splash0("res/games/kickthemoff/water_splash.wav"), pling("res/games/kickthemoff/pling.wav"), falling(
+			"res/games/kickthemoff/falling.wav");
 
 	private String filename;
 	private Clip sfx;

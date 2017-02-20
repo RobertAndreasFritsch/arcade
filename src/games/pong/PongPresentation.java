@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.swing.JPanel;
 
 import environment.model.Game;
+import environment.model.KeyRequest;
 import environment.model.Window;
 
 /**
@@ -13,7 +14,7 @@ import environment.model.Window;
  */
 public final class PongPresentation {
 	public static Game getGame(JPanel jPanel, Window window) {
-		return new Pong(jPanel, window);
+		return new Pong(jPanel, (KeyRequest) window);
 	}
 
 	/**

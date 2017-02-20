@@ -1,8 +1,8 @@
 package games.pong.Tiles;
 
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 
+import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Seat;
 
@@ -26,7 +26,7 @@ public class West extends Tile {
 
 	@Override
 	public void actionRight() {
-		if (rect.y + 300 <= Toolkit.getDefaultToolkit().getScreenSize().height && getTor() != 0) {
+		if (rect.y + 300 <= MyWindow.getInstance().getSize().height && getTor() != 0) {
 			rect.y += SPEED;
 		}
 
@@ -34,7 +34,7 @@ public class West extends Tile {
 
 	@Override
 	protected void init() {
-		int y = (int) (Toolkit.getDefaultToolkit().getScreenSize().height * .5 - getheight() * .5);
+		int y = (int) (MyWindow.getInstance().getSize().height * .5 - getheight() * .5);
 		int x = 0;
 
 		rect = new Rectangle(x, y, getwidth(), getheight());

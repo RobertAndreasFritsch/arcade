@@ -1,12 +1,12 @@
 package games.pong;
 
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
+import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Seat;
 import games.pong.controll.Controll;
@@ -50,12 +50,10 @@ public final class Pong extends MyGame {
 		int b = 100, h = 100;
 
 		PongGameObjekt_Blocker B1 = new PongGameObjekt_Blocker(0, 0, b, h);
-		PongGameObjekt_Blocker B2 = new PongGameObjekt_Blocker(Toolkit.getDefaultToolkit().getScreenSize().width - b, 0,
-				b, h);
-		PongGameObjekt_Blocker B3 = new PongGameObjekt_Blocker(0,
-				Toolkit.getDefaultToolkit().getScreenSize().height - h, b, h);
-		PongGameObjekt_Blocker B4 = new PongGameObjekt_Blocker(Toolkit.getDefaultToolkit().getScreenSize().width - b,
-				Toolkit.getDefaultToolkit().getScreenSize().height - h, b, h);
+		PongGameObjekt_Blocker B2 = new PongGameObjekt_Blocker(MyWindow.getInstance().getSize().width - b, 0, b, h);
+		PongGameObjekt_Blocker B3 = new PongGameObjekt_Blocker(0, MyWindow.getInstance().getSize().height - h, b, h);
+		PongGameObjekt_Blocker B4 = new PongGameObjekt_Blocker(MyWindow.getInstance().getSize().width - b,
+				MyWindow.getInstance().getSize().height - h, b, h);
 
 		this.add(B1);
 		this.add(B2);

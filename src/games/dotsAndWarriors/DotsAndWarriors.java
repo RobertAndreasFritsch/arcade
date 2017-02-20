@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
+import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Seat;
 import games.dotsAndWarriors.actors.GameSubject;
@@ -20,12 +21,12 @@ public class DotsAndWarriors extends MyGame {
 	private final List<GameSubject> warriors = new ArrayList<GameSubject>();
 	private final List<GameSubject> bosses = new ArrayList<GameSubject>();
 
-	private final int halfWidth = (int) (Toolkit.getDefaultToolkit().getScreenSize().width * .5);
-	private final int halfHeight = (int) (Toolkit.getDefaultToolkit().getScreenSize().height * .5);
+	private final int halfWidth = (int) (MyWindow.getInstance().getSize().width * .5);
+	private final int halfHeight = (int) (MyWindow.getInstance().getSize().height * .5);
 
 	private final int top = (int) (Warrior.startSize * .5);
-	private final int right = Toolkit.getDefaultToolkit().getScreenSize().width - (int) (Warrior.startSize * .5);
-	private final int bottom = Toolkit.getDefaultToolkit().getScreenSize().height - (int) (Warrior.startSize * .5);
+	private final int right = MyWindow.getInstance().getSize().width - (int) (Warrior.startSize * .5);
+	private final int bottom = MyWindow.getInstance().getSize().height - (int) (Warrior.startSize * .5);
 	private final int left = (int) (Warrior.startSize * .5);
 
 	public DotsAndWarriors(JPanel PANEL, KeyRequest KEYS) {

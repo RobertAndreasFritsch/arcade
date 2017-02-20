@@ -3,7 +3,6 @@ package environment.launch;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.io.File;
 import java.util.Arrays;
 import java.util.TreeMap;
@@ -11,6 +10,7 @@ import java.util.TreeMap;
 import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
+import environment.implementation.MyWindow;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
@@ -21,9 +21,8 @@ class Bg implements Drawable {
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width,
-				Toolkit.getDefaultToolkit().getScreenSize().height);
-		g.translate(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 512, 0);
+		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
+		g.translate(MyWindow.getInstance().getSize().width / 2 - 512, 0);
 	}
 
 }

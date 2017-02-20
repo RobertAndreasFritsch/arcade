@@ -16,15 +16,15 @@ public class Dot extends GameSubject implements Drawable, Updateable {
 	}
 
 	@Override
-	public void update(long elapsed) {
-
-	}
-
-	@Override
 	public void draw(Graphics2D g) {
 		g.drawOval((int) (getX() - getHalfSize()), (int) (getY() - getHalfSize()), getSize(), getSize());
 		g.fillOval((int) ((getX() - getHalfSize()) * .5), (int) ((getY() - getHalfSize()) * .5), (int) (getSize() * .5),
 				(int) (getSize() * .5));
+	}
+
+	@Override
+	public void update(long elapsed) {
+
 	}
 
 }

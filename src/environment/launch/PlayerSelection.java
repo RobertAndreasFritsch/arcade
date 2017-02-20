@@ -4,12 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.Shape;
-import java.awt.Toolkit;
 import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
+import environment.implementation.MyWindow;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
@@ -46,7 +46,7 @@ public class PlayerSelection extends MyGame {
 
 class ProgressAnimation implements Drawable, ProceedsInput {
 	boolean[] players = new boolean[4];
-	int leftOffset = Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 512;
+	int leftOffset = MyWindow.getInstance().getSize().width / 2 - 512;
 	float progress = 0;
 	long timeout = 5000;
 	private float angle = 0;
@@ -75,8 +75,7 @@ class ProgressAnimation implements Drawable, ProceedsInput {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width,
-				Toolkit.getDefaultToolkit().getScreenSize().height);
+		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
 		g.translate(0, 0);
 
 		if (players[0]) {

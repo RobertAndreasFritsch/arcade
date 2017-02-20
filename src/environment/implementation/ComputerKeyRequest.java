@@ -9,11 +9,15 @@ public class ComputerKeyRequest implements KeyListener, KeyRequest {
 
 	public static final ComputerKeyRequest INSTANCE = new ComputerKeyRequest();
 
+	private static final int KEYSLENGHT = 128;
+
+	public static ComputerKeyRequest getInstance() {
+		return INSTANCE;
+	}
+	private boolean[] keys = new boolean[KEYSLENGHT];
+
 	private ComputerKeyRequest() {
 	}
-
-	private static final int KEYSLENGHT = 128;
-	private boolean[] keys = new boolean[KEYSLENGHT];
 
 	@Override
 	public boolean isPressed(int keyCode) {
@@ -42,9 +46,5 @@ public class ComputerKeyRequest implements KeyListener, KeyRequest {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Empty
-	}
-
-	public static ComputerKeyRequest getInstance() {
-		return INSTANCE;
 	}
 }

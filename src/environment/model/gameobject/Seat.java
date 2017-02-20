@@ -17,12 +17,15 @@ public enum Seat {
 	//
 	P1_PlayerView(KeyEvent.VK_5, KeyEvent.VK_6, KeyEvent.VK_8, KeyEvent.VK_4, KeyEvent.VK_7, KeyEvent.VK_9,
 			Color.GREEN),
-	//
-	P2_PlayerView(KeyEvent.VK_D, KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_Q, KeyEvent.VK_E, Color.BLUE),
-	//
-	P4_PlayerView(KeyEvent.VK_F, KeyEvent.VK_G, KeyEvent.VK_H, KeyEvent.VK_T, KeyEvent.VK_R, KeyEvent.VK_Y, Color.YELLOW),
-	//
-	P3_PlayerView(KeyEvent.VK_I, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, KeyEvent.VK_U, KeyEvent.VK_O, Color.RED);
+			//
+			P2_PlayerView(KeyEvent.VK_D, KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_Q, KeyEvent.VK_E,
+					Color.BLUE),
+					//
+					P4_PlayerView(KeyEvent.VK_F, KeyEvent.VK_G, KeyEvent.VK_H, KeyEvent.VK_T, KeyEvent.VK_R,
+							KeyEvent.VK_Y, Color.YELLOW),
+							//
+							P3_PlayerView(KeyEvent.VK_I, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, KeyEvent.VK_U,
+									KeyEvent.VK_O, Color.RED);
 
 	public final int UP, LEFT, DOWN, RIGHT;
 

@@ -11,17 +11,17 @@ import environment.model.Window;
 
 public class Launch {
 
-	public static final boolean debugMode = false;
+	public static final boolean debugMode = true;
 
 	public static void main(String[] args) {
-		
+
 		final Window window = MyWindow.getInstance();
 		final KeyRequest keys = debugMode ? ComputerKeyRequest.getInstance() : MicroControllerKeyRequest.getInstance();
-		
+
 		window.addKeyListener((KeyListener) keys);
 
 		final Menu menu = new Menu(window.getJPanel(), keys);
-		
+
 		new MyGameLoop(menu);
 	}
 }

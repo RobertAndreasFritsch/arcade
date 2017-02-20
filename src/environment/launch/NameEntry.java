@@ -4,13 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
+import environment.implementation.MyWindow;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
@@ -22,8 +22,7 @@ class Background implements Drawable {
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width,
-				Toolkit.getDefaultToolkit().getScreenSize().height);
+		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
 		g.translate(0, 0);
 	}
 }
@@ -390,16 +389,17 @@ class waiter implements Updateable {
 				| players[3] & !(a[3] != null ? a[3].isReady : true)) {
 			ready = false;
 		}
-		
+
 		if (ready) {
-			new Thread(){
-				public void run(){
+			new Thread() {
+				@Override
+				public void run() {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e1) {
 						e1.printStackTrace();
 					}
-					
+
 					e.setRunning(false);
 					Seat.P3.setPlaying(players[0]);
 					Seat.P3.setName(a[0] != null ? a[0].getCurrent() : "");
@@ -409,6 +409,15 @@ class waiter implements Updateable {
 					Seat.P1.setName(a[2] != null ? a[2].getCurrent() : "");
 					Seat.P2.setPlaying(players[3]);
 					Seat.P3.setName(a[3] != null ? a[3].getCurrent() : "");
+					
+					Seat.P3_PlayerView.setPlaying(players[0]);
+					Seat.P3_PlayerView.setName(a[0] != null ? a[0].getCurrent() : "");
+					Seat.P4_PlayerView.setPlaying(players[1]);
+					Seat.P4_PlayerView.setName(a[1] != null ? a[1].getCurrent() : "");
+					Seat.P1_PlayerView.setPlaying(players[2]);
+					Seat.P1_PlayerView.setName(a[2] != null ? a[2].getCurrent() : "");
+					Seat.P2_PlayerView.setPlaying(players[3]);
+					Seat.P3_PlayerView.setName(a[3] != null ? a[3].getCurrent() : "");
 				}
 			}.start();
 		}

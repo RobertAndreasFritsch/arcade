@@ -11,21 +11,18 @@ import javax.swing.JPanel;
  *
  */
 public interface Window {
-	
+
 	/**
 	 * @return
 	 */
-	public JPanel getJPanel();
-	
-	/**
-	 * delegation method for JPanels getWidth()
-	 * 
-	 * @return
-	 */
-	default int getWidth() {
-		return getJPanel().getWidth();
+	public static Window getInstance() {
+		return null;
 	}
-	
+
+	default void addKeyListener(KeyListener keyListener) {
+		this.getJFrame().addKeyListener(keyListener);
+	}
+
 	/**
 	 * delegation method for JPanels getHeight()
 	 * 
@@ -34,7 +31,17 @@ public interface Window {
 	default int getHeight() {
 		return getJPanel().getHeight();
 	}
-	
+
+	/**
+	 * @return
+	 */
+	public Component getJFrame();
+
+	/**
+	 * @return
+	 */
+	public JPanel getJPanel();
+
 	/**
 	 * delegation method for JPanels getSize()
 	 * 
@@ -43,13 +50,13 @@ public interface Window {
 	default Dimension getSize() {
 		return getJPanel().getSize();
 	}
-	
-	default void addKeyListener(KeyListener keyListener) {
-		this.getJFrame().addKeyListener(keyListener);
-	}
 
 	/**
+	 * delegation method for JPanels getWidth()
+	 * 
 	 * @return
 	 */
-	public Component getJFrame();
+	default int getWidth() {
+		return getJPanel().getWidth();
+	}
 }
