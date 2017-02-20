@@ -9,47 +9,45 @@ public final class Updates {
 
 	public static final void update() {
 		try {
-			boolean done = false;
-			BufferedReader r = new BufferedReader(
-					new InputStreamReader(Runtime.getRuntime().exec(new String[] { "ls", "/dev" }).getInputStream()));
+			BufferedReader r = new BufferedReader(new InputStreamReader(
+					Runtime.getRuntime().exec(new String[] { "find", "/dev/sd??" }).getInputStream()));
 
 			ArrayList<String> res = new ArrayList<String>();
 			String line = null;
 			while ((line = r.readLine()) != null) {
-				if (line.contains("sd") && line.endsWith("1")) {
-					res.add(line);
-				}
+				res.add(line);
 			}
 
 			for (String s : res) {
-				Runtime.getRuntime().exec(new String[] { "pmount", s });
-			}
-
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
+				Runtime.getRuntime().exec(new String[] { "pmount", s }).waitFor();
 			}
 
 			for (File f : new File("/media").listFiles()) {
 				for (File f2 : f.listFiles()) {
-					if (f2.getName().equals("Tisch") && new File(f2.getAbsolutePath() + "/Tisch.jar").exists()) {
-						Runtime.getRuntime().exec(new String[] { "rm", "-r", "/home/tisch/Tisch" }).waitFor();
-						Runtime.getRuntime().exec(new String[] { "mv", f2.getAbsolutePath(), "/home/tisch" }).waitFor();
-						Runtime.getRuntime().exec(new String[] { "rm", "-r", f2.getAbsolutePath() }).waitFor();
-						Runtime.getRuntime().exec("reboot");
-						done = true;
+					boolean copiedSomething = false;
+					if (f2.getName().equals("Tisch.jar")) {
+						Runtime.getRuntime().exec(new String[] { "rm", "/home/tisch/Tisch.jar" }).waitFor();
+						Runtime.getRuntime()
+								.exec(new String[] { "cp", f2.getAbsoluteFile().toString(), "/home/tisch/Tisch.jar" })
+								.waitFor();
+						copiedSomething = true;
+					}
+					if (f2.getName().equals("res")) {
+						Runtime.getRuntime().exec(new String[] { "rm", "-r", "/home/tisch/res" }).waitFor();
+						Runtime.getRuntime()
+								.exec(new String[] { "cp", "-R", f2.getAbsoluteFile().toString(), "/home/tisch/res" })
+								.waitFor();
+						copiedSomething = true;
+					}
+
+					if (copiedSomething) {
+						Runtime.getRuntime().exec(new String[] { "shutdown", "now" });
 					}
 				}
 			}
 
 			for (String s : res) {
 				Runtime.getRuntime().exec(new String[] { "pumount", s });
-			}
-
-			if (done) {
-				// Runtime.getRuntime().exec(new String[] { "reboot" });
-				System.out.println("moved");
-				System.exit(0);
 			}
 
 		} catch (Exception e) {
