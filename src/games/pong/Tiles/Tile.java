@@ -15,12 +15,12 @@ public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 
 	public static final int SPEED = 30; // TODO hard coded
 
+	static int i = 0;
 	public final Seat player;
 	private int Tor;
 	private int width;
 	private int height;
 	private int Pkt;
-	static int i = 0;
 	/**
 	 * 
 	 */
@@ -68,6 +68,14 @@ public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 		GRAPHICS.setColor(Color.BLACK);
 	}
 
+	public int getheight() {
+		return height;
+	}
+
+	public int getPkt() {
+		return Pkt;
+	}
+
 	/**
 	 * @return
 	 */
@@ -80,6 +88,14 @@ public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 	 */
 	public boolean getstateRight() {
 		return stateRight;
+	}
+
+	public int getTor() {
+		return Tor;
+	}
+
+	public int getwidth() {
+		return width;
 	}
 
 	/**
@@ -116,6 +132,26 @@ public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 
 	}
 
+	public void setheight(int height) {
+		this.height = height;
+	}
+
+	public void seti() {
+		i = 0;
+	}
+
+	public void setPkt() {
+		Pkt = Pkt + 100;
+	}
+
+	public void setTor(int Tor) {
+		this.Tor = Tor;
+	}
+
+	public void setwidth(int width) {
+		this.width = width;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -137,41 +173,5 @@ public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 			actionRight();
 			stateRight = false;
 		}
-	}
-
-	public void setTor(int Tor) {
-		this.Tor = Tor;
-	}
-
-	public int getTor() {
-		return Tor;
-	}
-
-	public void setwidth(int width) {
-		this.width = width;
-	}
-
-	public int getwidth() {
-		return width;
-	}
-
-	public void setheight(int height) {
-		this.height = height;
-	}
-
-	public int getheight() {
-		return height;
-	}
-
-	public void seti() {
-		i = 0;
-	}
-
-	public void setPkt() {
-		Pkt = Pkt + 100;
-	}
-
-	public int getPkt() {
-		return Pkt;
 	}
 }

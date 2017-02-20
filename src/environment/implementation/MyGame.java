@@ -57,11 +57,9 @@ public class MyGame implements Game {
 		}
 	}
 
-	@Override
-	public void removeAll(List<?> gameObjects) {
-		for (Object o : gameObjects) {
-			remove(o);
-		}
+	public void exitGame() {
+		setNextGame(HighScoreProcessor::new);
+		setRunning(false);
 	}
 
 	public List<Drawable> getDRAWABLES() {
@@ -70,15 +68,6 @@ public class MyGame implements Game {
 
 	public KeyRequest getKEYS() {
 		return KEYS;
-	}
-
-	public void exitGame() {
-		setNextGame(HighScoreProcessor::new);
-		setRunning(false);
-	}
-
-	private void setNextGame(MyGameConstructor nextGame) {
-		this.nextGame = nextGame;
 	}
 
 	@Override
@@ -117,13 +106,24 @@ public class MyGame implements Game {
 	}
 
 	@Override
+	public void removeAll(List<?> gameObjects) {
+		for (Object o : gameObjects) {
+			remove(o);
+		}
+	}
+
+	private void setNextGame(MyGameConstructor nextGame) {
+		this.nextGame = nextGame;
+	}
+
+	@Override
 	public void setRunning(boolean running) {
 		this.running = running;
 	}
 
 	@Override
 	public void tick(long elapsed) {
-		
+
 		for (ProceedsInput i : new ArrayList<ProceedsInput>(this.PROCEEDINGINPUTS)) {
 			i.processInput();
 		}

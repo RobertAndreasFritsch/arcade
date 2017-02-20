@@ -8,18 +8,18 @@ import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Updateable;
 
 public class Controll implements Updateable, ProceedsInput {
-
+	
 	private KeyRequest KEYS;
 	private Game game;
 
-	public Controll(Game game, KeyRequest KEYS) {
+	public Controll (Game game, KeyRequest KEYS) {
 		this.game = game;
 		this.KEYS = KEYS;
 	}
 
 	@Override
 	public void processInput() {
-		if (KEYS.isPressed(KeyEvent.VK_M))
+		if (KEYS.isPressed(KeyEvent.VK_ESCAPE))
 			game.setRunning(false);
 	}
 

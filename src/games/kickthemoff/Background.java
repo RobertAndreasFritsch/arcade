@@ -1,13 +1,12 @@
 package games.kickthemoff;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 
 import environment.model.gameobject.Drawable;
 
-public class Background implements Drawable{
+public class Background implements Drawable {
 	private static Image tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/background.png");
 
 	@Override

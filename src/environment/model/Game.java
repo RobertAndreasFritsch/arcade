@@ -14,6 +14,11 @@ public interface Game {
 	public void add(Object gameObject);
 
 	/**
+	 * @param gameObjects
+	 */
+	void addAll(List<?> gameObjects);
+
+	/**
 	 * gibt das Game zurück was im anschluss gelauncht wird
 	 * 
 	 * @return
@@ -31,6 +36,11 @@ public interface Game {
 	public void remove(Object gameObject);
 
 	/**
+	 * @param gameObjects
+	 */
+	void removeAll(List<?> gameObjects);
+
+	/**
 	 * @param running
 	 */
 	public void setRunning(boolean running);
@@ -39,15 +49,5 @@ public interface Game {
 	 * @param elapsed
 	 */
 	public void tick(long elapsed);
-
-	/**
-	 * @param gameObjects
-	 */
-	void addAll(List<?> gameObjects);
-
-	/**
-	 * @param gameObjects
-	 */
-	void removeAll(List<?> gameObjects);
 
 }

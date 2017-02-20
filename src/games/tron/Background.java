@@ -12,7 +12,7 @@ public class Background implements Drawable {
 	Image floorImage;
 
 	public Background() {
-		floorImage = Toolkit.getDefaultToolkit().getImage("res/games/tron/tile().png");
+		floorImage = Toolkit.getDefaultToolkit().getImage("res/games/tron/tile().png");	// wird momentan nihct genutz
 	}
 
 	@Override

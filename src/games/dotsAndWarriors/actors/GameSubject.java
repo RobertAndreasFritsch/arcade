@@ -3,10 +3,10 @@ package games.dotsAndWarriors.actors;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.util.List;
 
+import environment.implementation.MyWindow;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.Updateable;
 
@@ -125,20 +125,24 @@ public abstract class GameSubject implements Updateable, Drawable {
 		g.setTransform(origXform);
 	}
 
-	public double getHitAngle() {
-		return hitAngle;
-	}
-
-	public void setHitAngle(double hitAngle) {
-		this.hitAngle = hitAngle;
-	}
-
 	public double getAngle() {
 		return angle;
 	}
 
+	public long getBlocking() {
+		return blocking;
+	}
+
 	public Image getDeathImage() {
 		return deathImage;
+	}
+
+	public List<GameSubject> getEnemies() {
+		return enemies;
+	}
+
+	public List<GameSubject> getFriends() {
+		return friends;
 	}
 
 	public double getHalfSize() {
@@ -147,6 +151,10 @@ public abstract class GameSubject implements Updateable, Drawable {
 
 	public int getHealth() {
 		return health;
+	}
+
+	public double getHitAngle() {
+		return hitAngle;
 	}
 
 	public Image getImage() {
@@ -175,6 +183,10 @@ public abstract class GameSubject implements Updateable, Drawable {
 
 	public int getSpeed() {
 		return speed;
+	}
+
+	public List<GameSubject> getSubjects() {
+		return subjects;
 	}
 
 	public int getTurningSpeed() {
@@ -213,6 +225,41 @@ public abstract class GameSubject implements Updateable, Drawable {
 		return turningRight;
 	}
 
+	public void runBackward() {
+		x -= Math.cos(Math.toRadians(angle)) * speed;
+		y -= Math.sin(Math.toRadians(angle)) * speed;
+
+		for (GameSubject g : getSubjects()) {
+			if (g != this && !g.isDead()) {
+				if (GameSubjects.distance(this, g) < (this.getSize() + g.getSize()) >> 1) {
+					x += Math.cos(Math.toRadians(angle)) * speed;
+					y += Math.sin(Math.toRadians(angle)) * speed;
+					break;
+
+				}
+			}
+		}
+
+		setRunningBackward(false);
+	}
+
+	public void runForward() {
+		x += Math.cos(Math.toRadians(angle)) * speed;
+		y += Math.sin(Math.toRadians(angle)) * speed;
+
+		for (GameSubject g : getSubjects()) {
+			if (g != this && !g.isDead()) {
+				if (GameSubjects.distance(this, g) < (this.getSize() + g.getSize()) >> 1) {
+					x -= Math.cos(Math.toRadians(angle)) * speed;
+					y -= Math.sin(Math.toRadians(angle)) * speed;
+					break;
+				}
+			}
+		}
+
+		setRunningForward(false);
+	}
+
 	public void setAngle(double angle) {
 		if (angle < 0)
 			angle += 360;
@@ -226,20 +273,16 @@ public abstract class GameSubject implements Updateable, Drawable {
 		this.attacking = attacking;
 	}
 
+	public void setBlocking(long blocking) {
+		this.blocking = blocking;
+	}
+
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}
 
 	public void setDeathImage(Image deathImage) {
 		this.deathImage = deathImage;
-	}
-
-	public long getBlocking() {
-		return blocking;
-	}
-
-	public void setBlocking(long blocking) {
-		this.blocking = blocking;
 	}
 
 	public void setHealth(int health) {
@@ -254,6 +297,10 @@ public abstract class GameSubject implements Updateable, Drawable {
 		} else if (this.health > this.getMaxHealth()) {
 			this.health = this.getMaxHealth();
 		}
+	}
+
+	public void setHitAngle(double hitAngle) {
+		this.hitAngle = hitAngle;
 	}
 
 	public void setImage(Image image) {
@@ -312,16 +359,14 @@ public abstract class GameSubject implements Updateable, Drawable {
 		this.y = y;
 	}
 
-	public List<GameSubject> getEnemies() {
-		return enemies;
+	public void turnLeft() {
+		setAngle(getAngle() - getTurningSpeed());
+		setTurningLeft(false);
 	}
 
-	public List<GameSubject> getFriends() {
-		return friends;
-	}
-
-	public List<GameSubject> getSubjects() {
-		return subjects;
+	public void turnRight() {
+		setAngle(getAngle() + getTurningSpeed());
+		setTurningRight(false);
 	}
 
 	@Override
@@ -348,64 +393,19 @@ public abstract class GameSubject implements Updateable, Drawable {
 			// checking side collision
 			if (x < size * .5) {
 				x = size * .5;
-			} else if (x > Toolkit.getDefaultToolkit().getScreenSize().width - (int) (size * .5)) {
-				x = Toolkit.getDefaultToolkit().getScreenSize().width - (int) (size * .5);
+			} else if (x > MyWindow.getInstance().getSize().width - (int) (size * .5)) {
+				x = MyWindow.getInstance().getSize().width - (int) (size * .5);
 			}
 
 			if (y < size * .5) {
 				y = size * .5;
-			} else if (y > Toolkit.getDefaultToolkit().getScreenSize().height - (int) (size * .5)) {
-				y = Toolkit.getDefaultToolkit().getScreenSize().height - (int) (size * .5);
+			} else if (y > MyWindow.getInstance().getSize().height - (int) (size * .5)) {
+				y = MyWindow.getInstance().getSize().height - (int) (size * .5);
 			}
 		}
 
 		// manage Effects:
 
 		setBlocking(getBlocking() - elapsed < 0 ? 0 : getBlocking() - elapsed);
-	}
-
-	public void runForward() {
-		x += Math.cos(Math.toRadians(angle)) * speed;
-		y += Math.sin(Math.toRadians(angle)) * speed;
-
-		for (GameSubject g : getSubjects()) {
-			if (g != this && !g.isDead()) {
-				if (GameSubjects.distance(this, g) < (this.getSize() + g.getSize()) >> 1) {
-					x -= Math.cos(Math.toRadians(angle)) * speed;
-					y -= Math.sin(Math.toRadians(angle)) * speed;
-					break;
-				}
-			}
-		}
-
-		setRunningForward(false);
-	}
-
-	public void runBackward() {
-		x -= Math.cos(Math.toRadians(angle)) * speed;
-		y -= Math.sin(Math.toRadians(angle)) * speed;
-
-		for (GameSubject g : getSubjects()) {
-			if (g != this && !g.isDead()) {
-				if (GameSubjects.distance(this, g) < (this.getSize() + g.getSize()) >> 1) {
-					x += Math.cos(Math.toRadians(angle)) * speed;
-					y += Math.sin(Math.toRadians(angle)) * speed;
-					break;
-
-				}
-			}
-		}
-
-		setRunningBackward(false);
-	}
-
-	public void turnLeft() {
-		setAngle(getAngle() - getTurningSpeed());
-		setTurningLeft(false);
-	}
-
-	public void turnRight() {
-		setAngle(getAngle() + getTurningSpeed());
-		setTurningRight(false);
 	}
 }

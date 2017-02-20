@@ -38,14 +38,14 @@ public class KickThemOff extends MyGame {
 		add(new Exit(this));
 		add(new GameOverWaiter(this));
 	}
-	
+
 	@Override
-	public Game getNextGame(){
-		if(--roundsToGo <= 0){
+	public Game getNextGame() {
+		if (--roundsToGo <= 0) {
 			roundsToGo = 5;
 			return super.getNextGame();
 		}
-		return new KickThemOff(getPANEL(),getKEYS());
+		return new KickThemOff(getPANEL(), getKEYS());
 	}
 
 	public ArrayList<Player> getPlayers() {

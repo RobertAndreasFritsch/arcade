@@ -19,13 +19,13 @@ public final class Tron_Presentation implements Presentation {
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.drawImage(img, 0, 0, Toolkit.getDefaultToolkit().getScreenSize().width,
-				Toolkit.getDefaultToolkit().getScreenSize().height, null);
+	public Game getGame(JPanel panel, KeyRequest KEYS) {
+		return new Tron(panel, KEYS);
 	}
 
 	@Override
-	public Game getGame(JPanel panel, KeyRequest KEYS) {
-		return new Tron(panel, KEYS);
+	public void draw(Graphics2D g) {
+		g.drawImage(img, 0, 0, Toolkit.getDefaultToolkit().getScreenSize().width,
+				Toolkit.getDefaultToolkit().getScreenSize().height, null);
 	}
 }

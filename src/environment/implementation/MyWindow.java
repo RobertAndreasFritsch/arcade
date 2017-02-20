@@ -15,11 +15,14 @@ public class MyWindow implements Window {
 
 	private static final Window INSTANCE = new MyWindow();
 
+	public static Window getInstance() {
+		return INSTANCE;
+	}
 	protected final JFrame FRAME = new JFrame();
+
 	protected final JPanel PANEL = new JPanel();
 
 	private MyWindow() {
-
 		this.FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.FRAME.setUndecorated(true);
 		this.FRAME.setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -44,17 +47,12 @@ public class MyWindow implements Window {
 	}
 
 	@Override
-	public JPanel getJPanel() {
-		return this.PANEL;
-	}
-
-	public static Window getInstance() {
-		return INSTANCE;
-	}
-
-	@Override
 	public Component getJFrame() {
 		return this.FRAME;
 	}
 
+	@Override
+	public JPanel getJPanel() {
+		return this.PANEL;
+	}
 }

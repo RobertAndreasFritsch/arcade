@@ -6,11 +6,11 @@ import environment.launch.Presentation;
 import environment.model.Game;
 import environment.model.KeyRequest;
 
-public class Kickthemoff_Presentation implements Presentation{
+public class Kickthemoff_Presentation implements Presentation {
 
 	@Override
 	public Game getGame(JPanel panel, KeyRequest KEYS) {
-		return new KickThemOff(panel,KEYS);
+		return new KickThemOff(panel, KEYS);
 	}
 
 }

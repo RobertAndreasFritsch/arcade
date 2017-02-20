@@ -1,5 +1,6 @@
 package games.tron;
 
+//import java.awt.Color;
 import java.awt.Graphics2D;
 
 import environment.model.KeyRequest;
@@ -40,14 +41,6 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 
 	// ---------------------------------------------------------------------------------------------------------------------------
 	//
-	@Override
-	public void draw(Graphics2D g) {
-		g.setColor(player.getColor());
-		g.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-	}
-
-	// ---------------------------------------------------------------------------------------------------------------------------
-	//
 	public int getX() { // rueckgabe wert ist vom typ int
 		return x;
 	}
@@ -56,50 +49,20 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 		return y;
 	}
 
-	// ---------------------------------------------------------------------------------------------------------------------------
-	// Key uebergabe (oben, unten, rechts, links) | verhindern von eigen toetung
-	// und ob man noch lebt
-	@Override
-	public void processInput() {
-		if (KEYS.isPressed(player.UP))
-			if (!dead && dy == 0) { // boolean abfrage ob spieler Tot ist
-				dx = 0;
-				dy = -1;
-			}
-
-		if (KEYS.isPressed(player.DOWN))
-			if (!dead && dy == 0) { // abfrage ob er sich selbt toetet
-				dx = 0;
-				dy = 1;
-			}
-
-		if (KEYS.isPressed(player.LEFT))
-			if (!dead && dx == 0) {
-				dx = -1;
-				dy = 0;
-			}
-
-		if (KEYS.isPressed(player.RIGHT))
-			if (!dead && dx == 0) {
-				dx = 1;
-				dy = 0;
-			}
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public void setX(int x) {
 		this.x = x;
 	}
 
-	public void setY(int y) {
-		this.y = y;
-	}
-
 	// ---------------------------------------------------------------------------------------------------------------------------
 	// schleife zum gehen | abfrage ob feld belegt/ zu ende/ zusammenstoss mit
 	// anderem spieler
-	@Override
 	public void update(long elapsed) {
-		if (dead) { // nur noch einer Lebt -> brich ab
+		if (dead | !player.isPlaying()) { // nur noch einer Lebt -> brich ab
+			dead = true;
 			return;
 		}
 
@@ -159,5 +122,45 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 				}
 			}
 		}
+	}
+
+	// ---------------------------------------------------------------------------------------------------------------------------
+	//
+	@Override
+	public void draw(Graphics2D g) {
+		g.setColor(player.getColor());
+		g.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+	}
+
+	// ---------------------------------------------------------------------------------------------------------------------------
+	// Key uebergabe (oben, unten, rechts, links) | verhindern von eigen toetung
+	// und ob man noch lebt
+	@Override
+	public void processInput() {
+		if (KEYS.isPressed(player.UP))
+			if (!dead && dy == 0 && player.isPlaying()) { // boolean abfrage ob
+															// spieler Tot ist
+				dx = 0;
+				dy = -1;
+			}
+
+		if (KEYS.isPressed(player.DOWN))
+			if (!dead && dy == 0 && player.isPlaying()) { // abfrage ob er sich
+															// selbt toetet
+				dx = 0;
+				dy = 1;
+			}
+
+		if (KEYS.isPressed(player.LEFT))
+			if (!dead && dx == 0 && player.isPlaying()) {
+				dx = -1;
+				dy = 0;
+			}
+
+		if (KEYS.isPressed(player.RIGHT))
+			if (!dead && dx == 0 && player.isPlaying()) {
+				dx = 1;
+				dy = 0;
+			}
 	}
 }

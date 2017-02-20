@@ -22,6 +22,11 @@ public class DotGenerator extends GameSubject implements Drawable, Updateable {
 	}
 
 	@Override
+	public void draw(Graphics2D g) {
+
+	}
+
+	@Override
 	public void update(long elapsed) {
 		lag += elapsed;
 
@@ -29,11 +34,6 @@ public class DotGenerator extends GameSubject implements Drawable, Updateable {
 
 			lag -= spawnTime;
 		}
-
-	}
-
-	@Override
-	public void draw(Graphics2D g) {
 
 	}
 

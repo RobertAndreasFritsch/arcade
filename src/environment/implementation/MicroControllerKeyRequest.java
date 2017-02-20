@@ -10,7 +10,11 @@ public class MicroControllerKeyRequest implements KeyListener, KeyRequest {
 	private static final MicroControllerKeyRequest INSTANCE = new MicroControllerKeyRequest();
 
 	private static final int KEYSLENGHT = 128;
+	public static MicroControllerKeyRequest getInstance() {
+		return INSTANCE;
+	}
 	private boolean[] keys = new boolean[KEYSLENGHT];
+
 	private boolean[] keysBuffer = new boolean[KEYSLENGHT];
 
 	@Override
@@ -48,9 +52,5 @@ public class MicroControllerKeyRequest implements KeyListener, KeyRequest {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// Empty
-	}
-
-	public static MicroControllerKeyRequest getInstance() {
-		return INSTANCE;
 	}
 }

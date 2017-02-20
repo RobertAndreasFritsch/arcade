@@ -2,7 +2,6 @@ package games.pong;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
+import environment.implementation.MyWindow;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
@@ -36,6 +36,17 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 	static int d = 0;
 	static int p = 5; // TODO hard coded
 
+	static void Playsound(File Sound) {
+		try {
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(Sound));
+			clip.start();
+			Thread.sleep(clip.getMicrosecondLength() / 100000);
+		} catch (Exception e) {
+
+		}
+	}
+
 	/**
 	 * <h1>not documented yet</h1>
 	 * 
@@ -43,7 +54,6 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 	 * 
 	 */
 	double x = 910;
-
 	/**
 	 * 
 	 */
@@ -52,11 +62,11 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 	 * 
 	 */
 	Rectangle rect = new Rectangle((int) x, (int) y, 30, 30);
+
 	/**
 	 * 
 	 */
 	ArrayList<Object> tiles = new ArrayList<Object>();
-
 	// PongGameObjekt_Blocker A = new PongGameObjekt_Blocker();
 	/**
 	 * <h1>not documented yet</h1>
@@ -65,11 +75,11 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 	 * 
 	 */
 	boolean state1, state2, state3, state4, state5, stateX, stateY;
+
 	/**
 	 * 
 	 */
 	final int VK_Button3, VK_Button4, VK_Button5, VK_Button6, VK_Button7, VK_Button8;
-
 	/**
 	 * 
 	 */
@@ -77,13 +87,16 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 	 * 
 	 */
 	double dx, dy;
+
 	/**
 	 * 
 	 */
 	PongGameObjekt_Blocker[] blockers;
-
 	private KeyRequest KEYS;
+
 	private Game game;
+
+	long startBuffer = 20000;
 
 	/**
 	 * @param keyCode3
@@ -121,7 +134,20 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 		GRAPHICS.fillRoundRect((int) x, (int) y, 20, 20, 100, 100);
 	}
 
-	long startBuffer = 20000;
+	public void Pkterhalten(int pkt, Tile playerEast, Tile playerNorth, Tile playerSouth, Tile playerWest) {
+		if (pkt == 1) {
+			playerNorth.setPkt();
+		}
+		if (pkt == 2) {
+			playerEast.setPkt();
+		}
+		if (pkt == 3) {
+			playerSouth.setPkt();
+		}
+		if (pkt == 4) {
+			playerWest.setPkt();
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -172,7 +198,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 				playerNorth.seti();
 			} else {
 				playerNorth.setTor(0);
-				playerNorth.setwidth(Toolkit.getDefaultToolkit().getScreenSize().width);
+				playerNorth.setwidth(MyWindow.getInstance().getSize().width);
 				playerNorth.setheight(l);
 				playerNorth.seti();
 				state4 = true;
@@ -185,7 +211,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 				playerEast.seti();
 			} else {
 				playerEast.setTor(0);
-				playerEast.setheight(Toolkit.getDefaultToolkit().getScreenSize().height);
+				playerEast.setheight(MyWindow.getInstance().getSize().height);
 				playerEast.setwidth(b);
 				playerEast.seti();
 				state1 = true;
@@ -197,7 +223,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 				playerSouth.setwidth(tb);
 			} else {
 				playerSouth.setTor(0);
-				playerSouth.setwidth(Toolkit.getDefaultToolkit().getScreenSize().width);
+				playerSouth.setwidth(MyWindow.getInstance().getSize().width);
 				playerSouth.setheight(l);
 				playerSouth.seti();
 				state3 = true;
@@ -209,7 +235,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 				playerWest.setwidth(th);
 			} else {
 				playerWest.setTor(0);
-				playerWest.setheight(Toolkit.getDefaultToolkit().getScreenSize().height);
+				playerWest.setheight(MyWindow.getInstance().getSize().height);
 				playerWest.setwidth(b);
 				playerWest.seti();
 				state2 = true;
@@ -223,14 +249,14 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 
 		}
 		// Feldgrenze bzw. Torlinien
-		if (rect.x > Toolkit.getDefaultToolkit().getScreenSize().width) {
+		if (rect.x > MyWindow.getInstance().getSize().width) {
 			if (playerEast.getTor() != 0) {
 				playerEast.setTor(playerEast.getTor() - 1);
 				if (pkt != 2) {
 					Pkterhalten(pkt, playerEast, playerNorth, playerSouth, playerWest);
 				}
 				if (playerEast.getTor() == 0) {
-					playerEast.setheight(Toolkit.getDefaultToolkit().getScreenSize().height);
+					playerEast.setheight(MyWindow.getInstance().getSize().height);
 					playerEast.setwidth(b);
 					playerEast.seti();
 					state1 = true;
@@ -246,7 +272,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 					Pkterhalten(pkt, playerEast, playerNorth, playerSouth, playerWest);
 				}
 				if (playerWest.getTor() == 0) {
-					playerWest.setheight(Toolkit.getDefaultToolkit().getScreenSize().height);
+					playerWest.setheight(MyWindow.getInstance().getSize().height);
 					playerWest.setwidth(b);
 					playerWest.seti();
 					state2 = true;
@@ -255,14 +281,14 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 				state5 = true;
 			}
 		}
-		if (rect.y > Toolkit.getDefaultToolkit().getScreenSize().height) {
+		if (rect.y > MyWindow.getInstance().getSize().height) {
 			if (playerSouth.getTor() != 0) {
 				playerSouth.setTor(playerSouth.getTor() - 1);
 				if (pkt != 3) {
 					Pkterhalten(pkt, playerEast, playerNorth, playerSouth, playerWest);
 				}
 				if (playerSouth.getTor() == 0) {
-					playerSouth.setwidth(Toolkit.getDefaultToolkit().getScreenSize().width);
+					playerSouth.setwidth(MyWindow.getInstance().getSize().width);
 					playerSouth.setheight(l);
 					playerSouth.seti();
 					state3 = true;
@@ -278,7 +304,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 					Pkterhalten(pkt, playerEast, playerNorth, playerSouth, playerWest);
 				}
 				if (playerNorth.getTor() == 0) {
-					playerNorth.setwidth(Toolkit.getDefaultToolkit().getScreenSize().width);
+					playerNorth.setwidth(MyWindow.getInstance().getSize().width);
 					playerNorth.setheight(l);
 					playerNorth.seti();
 					state4 = true;
@@ -485,8 +511,8 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 			rect.x = 910;
 			rect.y = 490;
 			state5 = false;
-			x = Toolkit.getDefaultToolkit().getScreenSize().width * .5;
-			y = Toolkit.getDefaultToolkit().getScreenSize().height * .5;
+			x = MyWindow.getInstance().getSize().width * .5;
+			y = MyWindow.getInstance().getSize().height * .5;
 			// x = 60;
 			// y = 470;
 			if (stateX == false) {
@@ -495,32 +521,6 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 			if (stateY == false) {
 				dy = 20;
 			}
-		}
-	}
-
-	static void Playsound(File Sound) {
-		try {
-			Clip clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(Sound));
-			clip.start();
-			Thread.sleep(clip.getMicrosecondLength() / 100000);
-		} catch (Exception e) {
-
-		}
-	}
-
-	public void Pkterhalten(int pkt, Tile playerEast, Tile playerNorth, Tile playerSouth, Tile playerWest) {
-		if (pkt == 1) {
-			playerNorth.setPkt();
-		}
-		if (pkt == 2) {
-			playerEast.setPkt();
-		}
-		if (pkt == 3) {
-			playerSouth.setPkt();
-		}
-		if (pkt == 4) {
-			playerWest.setPkt();
 		}
 	}
 
