@@ -83,7 +83,7 @@ public class XMLGameScore {
 	}
 
 	public void writeFile(File f) throws FileNotFoundException {
-		new File(f.getParent());
+		new File(f.getParent()).mkdirs();
 		PrintStream p = new PrintStream(f);
 		p.print(this);
 		p.close();

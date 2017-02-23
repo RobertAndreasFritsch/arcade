@@ -21,8 +21,7 @@ class Bg implements Drawable {
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
-		g.translate(MyWindow.getInstance().getSize().width / 2 - 512, 0);
+		g.fillRect(0, 0, 1024, 1024);
 	}
 
 }

@@ -48,7 +48,7 @@ public interface Window {
 	 * @return
 	 */
 	default Dimension getSize() {
-		return getJPanel().getSize();
+		return new Dimension(1024,1024);
 	}
 
 	/**

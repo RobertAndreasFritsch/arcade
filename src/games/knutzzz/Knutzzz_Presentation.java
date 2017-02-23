@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
-import environment.implementation.MyWindow;
 import environment.launch.Presentation;
 import environment.model.Game;
 import environment.model.KeyRequest;
@@ -29,7 +28,7 @@ public final class Knutzzz_Presentation implements Presentation {
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage(img, 0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height, null);
+		g.drawImage(img, 0, 0, 1024,1024, null);
 	}
 
 	@Override
