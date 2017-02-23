@@ -26,7 +26,7 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 		this.parent = parent;
 		ballImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/ball.png");
 		sound = new Sound();
-		sound.load("res/games/knutzzz/sfx/thud.wav");
+//		sound.load("res/games/knutzzz/sfx/thud.wav");
 		init();
 	}
 
@@ -94,13 +94,14 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 		x += vx;
 		y += vy;
 
+		// Ball abbremsen (Reibung)
 		vx *= 0.99;
 		vy *= 0.99;
-
-		if (vx < 0.5 && vx > -0.5)
-			vx = 0.0;
-		if (vy < 0.5 && vy > -0.5)
-			vy = 0.0;
+		
+		// Ball stoppen, wenn er zu langsam ist
+		if (vx*vx+vy*vy<0.01) {
+			vx=0; vy=0;
+		}
 
 		// Maximale Geschwindigkeit begrenzen
 		double rootv = Math.sqrt(vx * vx + vy * vy);
@@ -114,7 +115,8 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (y < 440 || y > 582) {
 				x = 40;
 				vx = -vx;
-				sound.play();
+//				sound.play();
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (y < 448 || y > 574)
 				vy = -vy;
 		}
@@ -123,7 +125,8 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (x < 440 || x > 582) {
 				y = 40;
 				vy = -vy;
-				sound.play();
+//				sound.play();
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (x < 448 || x > 574)
 				vx = -vx;
 
@@ -133,7 +136,8 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (y < 440 || y > 582) {
 				x = 984;
 				vx = -vx;
-				sound.play();
+//				sound.play();
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (y < 448 || y > 574)
 				vy = -vy;
 		}
@@ -143,17 +147,15 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (x < 440 || x > 582) {
 				y = 984;
 				vy = -vy;
-				sound.play();
+//				sound.play();
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (x < 448 || x > 574) {
 				vx = -vx;
 			}
 		}
 
-		if (/* state == GAME && */(x < 20 || y < 20 || x > 1004 || y > 1004)) {
-			// state = GOAL;
+		if (!goal && (x < 20 || y < 20 || x > 1004 || y > 1004)) {
 			goal = true;
-			// parent.state=GOAL;
-			// parent.step=0;
 			sound.instantPlay("res/games/knutzzz/sfx/horn.wav");
 
 			// Punkte vergeben:

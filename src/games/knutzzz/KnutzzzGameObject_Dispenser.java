@@ -35,10 +35,10 @@ public class KnutzzzGameObject_Dispenser implements Updateable, Drawable {
 		loadImages();
 
 		sound = new Sound();
-		sound.load("res/games/knutzzz/sfx/dispense.wav");
+//		sound.load("res/games/knutzzz/sfx/dispense.wav");
 
 		soundSiren = new Sound();
-		soundSiren.load("res/games/knutzzz/sfx/siren.wav");
+//		soundSiren.load("res/games/knutzzz/sfx/siren.wav");
 	}
 
 	@Override
@@ -111,11 +111,13 @@ public class KnutzzzGameObject_Dispenser implements Updateable, Drawable {
 
 		if (step == 256) {
 			// Sound abspielen - Ballausgabe
-			sound.play();
+//			sound.play();
+			sound.instantPlay("res/games/knutzzz/sfx/dispense.wav");
 		}
 		if (step == 144) {
 			// Sound abspielen - Startsirene
-			soundSiren.play();
+//			soundSiren.play();
+			soundSiren.instantPlay("res/games/knutzzz/sfx/siren.wav");
 		}
 
 		createBall = (step == 256);

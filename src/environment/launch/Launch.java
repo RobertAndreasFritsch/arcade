@@ -14,7 +14,6 @@ public class Launch {
 	public static final boolean debugMode = true;
 
 	public static void main(String[] args) {
-		Updates.update();
 
 		final Window window = MyWindow.getInstance();
 		final KeyRequest keys = debugMode ? ComputerKeyRequest.getInstance() : MicroControllerKeyRequest.getInstance();

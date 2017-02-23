@@ -25,7 +25,6 @@ public final class Tron_Presentation implements Presentation {
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.drawImage(img, 0, 0, Toolkit.getDefaultToolkit().getScreenSize().width,
-				Toolkit.getDefaultToolkit().getScreenSize().height, null);
+		g.drawImage(img, 0, 0, 1024,1024, null);
 	}
 }

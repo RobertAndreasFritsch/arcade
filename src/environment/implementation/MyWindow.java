@@ -31,12 +31,8 @@ public class MyWindow implements Window {
 		int offsetX, offsetY;
 		int width, height;
 
-		offsetX = ((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1024) >> 1);
-		offsetY = ((int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 1024) >> 1);
-
 		width = height = 1024;
 
-		PANEL.setBounds(offsetX, offsetY, width, height);
 		this.FRAME.getContentPane().add(PANEL);
 
 		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);

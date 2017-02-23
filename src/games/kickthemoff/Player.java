@@ -8,8 +8,8 @@ import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
 
-public class Player implements Drawable, ProceedsInput, Updateable {
-	private static final float SPEED_INCREASE_PER_PRESS = 0.05f;
+public class Player implements Drawable, Updateable {
+	private static final float SPEED_INCREASE_PER_PRESS = 7.5f;
 	private static final float SPEED_DECREASE_PER_SECOND = 2f;
 	private Seat s;
 	private float x, y;
@@ -82,25 +82,6 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 		s.setScore((int) (((float) s.getScore() * 0.00001 + wins) * 10000));
 	}
 
-	@Override
-	public void processInput() {
-		if (dead | dying) {
-			return;
-		}
-		if (keys.isPressed(s.UP)) {
-			accelerationY -= SPEED_INCREASE_PER_PRESS;
-		}
-		if (keys.isPressed(s.DOWN)) {
-			accelerationY += SPEED_INCREASE_PER_PRESS;
-		}
-		if (keys.isPressed(s.LEFT)) {
-			accelerationX -= SPEED_INCREASE_PER_PRESS;
-		}
-		if (keys.isPressed(s.RIGHT)) {
-			accelerationX += SPEED_INCREASE_PER_PRESS;
-		}
-	}
-
 	public void setAccelerationX(float accelerationX) {
 		this.accelerationX = accelerationX;
 	}
@@ -123,16 +104,31 @@ public class Player implements Drawable, ProceedsInput, Updateable {
 		if (dead) {
 			return;
 		}
+		float timefactor = ((float) elapsed / 1000);
+		
+		if (keys.isPressed(s.UP) & !dying) {
+			accelerationY -= SPEED_INCREASE_PER_PRESS * timefactor;
+		}
+		if (keys.isPressed(s.DOWN) & !dying) {
+			accelerationY += SPEED_INCREASE_PER_PRESS * timefactor;
+		}
+		if (keys.isPressed(s.LEFT) & !dying) {
+			accelerationX -= SPEED_INCREASE_PER_PRESS * timefactor;
+		}
+		if (keys.isPressed(s.RIGHT) & !dying) {
+			accelerationX += SPEED_INCREASE_PER_PRESS * timefactor;
+		}
+		
 		x += accelerationX;
 		y += accelerationY;
 
 		accelerationX -= Math.abs(accelerationX) > 0
-				? accelerationX > 0 ? SPEED_DECREASE_PER_SECOND * ((float) elapsed / 1000)
-						: -SPEED_DECREASE_PER_SECOND * ((float) elapsed / 1000)
+				? accelerationX > 0 ? SPEED_DECREASE_PER_SECOND * timefactor
+						: -SPEED_DECREASE_PER_SECOND * timefactor
 				: 0;
 		accelerationY -= Math.abs(accelerationY) > 0
-				? accelerationY > 0 ? SPEED_DECREASE_PER_SECOND * ((float) elapsed / 1000)
-						: -SPEED_DECREASE_PER_SECOND * ((float) elapsed / 1000)
+				? accelerationY > 0 ? SPEED_DECREASE_PER_SECOND * timefactor
+						: -SPEED_DECREASE_PER_SECOND * timefactor
 				: 0;
 
 		float dx = x - g.getX();
