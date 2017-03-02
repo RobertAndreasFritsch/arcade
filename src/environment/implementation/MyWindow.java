@@ -28,11 +28,6 @@ public class MyWindow implements Window {
 		this.FRAME.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		this.FRAME.setVisible(true);
 
-		int offsetX, offsetY;
-		int width, height;
-
-		width = height = 1024;
-
 		this.FRAME.getContentPane().add(PANEL);
 
 		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);

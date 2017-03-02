@@ -2,6 +2,7 @@ package environment.launch;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
@@ -15,6 +16,7 @@ import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Seat;
+import environment.model.gameobject.Updateable;
 
 public class PlayerSelection extends MyGame {
 	private ProgressAnimation anim;
@@ -44,39 +46,36 @@ public class PlayerSelection extends MyGame {
 
 }
 
-class ProgressAnimation implements Drawable, ProceedsInput {
-	boolean[] players = new boolean[4];
-	int leftOffset = MyWindow.getInstance().getSize().width / 2 - 512;
-	float progress = 0;
-	long timeout = 5000;
-	private float angle = 0;
+class ProgressAnimation implements Drawable, ProceedsInput,Updateable {
+	boolean[] players = new boolean[4]; 
+	private long progress = 0;
+	private long timeout = 5000;
+	private double angle = 0;
 	private KeyRequest Keys;
-
+	private Game game;
+	int blub=0;
+	
 	public ProgressAnimation(KeyRequest Keys, final Game game) {
 		this.Keys = Keys;
-		new Thread() {
-			@Override
-			public void run() {
-				while (progress <= 100) {
-					progress += 0.25;
-					try {
-						Thread.sleep((long) (timeout / (100 / .25)));
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-				game.setRunning(false);
-			}
-		}.start();
+		this.game = game;
+	}
+	
+
+	@Override
+	public void update(long elapsed) {
+		progress += elapsed;
+		if(progress >= timeout){
+			progress = timeout;
+			
+			game.setRunning(false);
+		}
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
-		g.translate(0, 0);
+		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);		
 
 		if (players[0]) {
 			g.setColor(Color.GREEN);
@@ -120,13 +119,15 @@ class ProgressAnimation implements Drawable, ProceedsInput {
 		x5 = (int) (tx5 * Math.cos(Math.toRadians(angle)) - ty5 * Math.sin(Math.toRadians(angle)));
 		y5 = (int) (tx5 * Math.sin(Math.toRadians(angle)) + ty5 * Math.cos(Math.toRadians(angle)));
 
-		angle = progress / 100 * 360;
+		angle = (double) ( progress ) / timeout * 360;
 
 		Shape oval = new Ellipse2D.Double(-70, -70, 140, 140);
 
 		g.translate(512, 512);
 		g.setClip(oval);
 		g.fillPolygon(new int[] { x1, x2, x3, x4, x5, 0 }, new int[] { y1, y2, y3, y4, y5, 0 }, 6);
+		g.translate(-512, -512);
+		g.setClip(new Rectangle(0,0,1024,1024));
 	}
 
 	@Override
@@ -144,5 +145,4 @@ class ProgressAnimation implements Drawable, ProceedsInput {
 			players[3] = true;
 		}
 	}
-
 }

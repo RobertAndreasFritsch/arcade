@@ -5,7 +5,7 @@ import environment.model.GameLoop;
 
 public class MyGameLoop implements GameLoop {
 
-	public static final long MSPF = 10; // TODO hard coded
+	public static final long MSPF = 15; // TODO hard coded
 	protected Game activeGame;
 
 	public MyGameLoop(Game game) {
@@ -19,29 +19,33 @@ public class MyGameLoop implements GameLoop {
 
 	@Override
 	public void run() {
-
+		
 		long now = System.currentTimeMillis();
-		long next = 0;
+		long next;
+
 		long elapsed = 0;
 
-		while (activeGame.isRunning()) {
+		while (this.activeGame.isRunning()) {
 
 			next = System.currentTimeMillis();
 			elapsed = next - now;
 			now = next;
 
-			this.activeGame.tick(elapsed);
+			if (elapsed < MyGameLoop.MSPF) {
 
-			try {
-				Thread.sleep(MSPF - (elapsed > MSPF ? MSPF : elapsed)); // prognose
-																		// für
-																		// den
-																		// nächsten
-																		// wait
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+				now -= elapsed;
+
+				try {
+					Thread.sleep(MyGameLoop.MSPF - elapsed);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
+			} else {
+				this.activeGame.tick(elapsed);
 			}
 		}
+		
 		this.setActiveGame(activeGame.getNextGame());
 	}
 

@@ -11,7 +11,7 @@ import environment.model.Window;
 
 public class Launch {
 
-	public static final boolean debugMode = true;
+	public static final boolean debugMode = false;
 
 	public static void main(String[] args) {
 
