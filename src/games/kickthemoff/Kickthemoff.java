@@ -9,12 +9,12 @@ import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Seat;
 
-public class KickThemOff extends MyGame {
+public class Kickthemoff extends MyGame {
 	private static final int WINS_NEEDED = 3;
 
 	private ArrayList<Player> players = new ArrayList<Player>();
 
-	public KickThemOff(JPanel PANEL, KeyRequest KEYS) {
+	public Kickthemoff(JPanel PANEL, KeyRequest KEYS) {
 		super(PANEL, KEYS);
 
 		Ground g = new Ground(512, 512, 450);
@@ -58,7 +58,7 @@ public class KickThemOff extends MyGame {
 			}
 		}
 
-		return new KickThemOff(getPANEL(), getKEYS());
+		return new Kickthemoff(getPANEL(), getKEYS());
 	}
 
 	public ArrayList<Player> getPlayers() {

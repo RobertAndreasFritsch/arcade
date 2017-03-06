@@ -44,17 +44,6 @@ public class MyGame implements Game {
 		
 		this.offsetX = ((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1024) >> 1);
 		this.offsetY = ((int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 1024) >> 1);
-		
-		img = this.getPANEL().createImage(MyWindow.getInstance().getWidth(), MyWindow.getInstance().getHeight());
-		g = (Graphics2D) img.getGraphics();
-		
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-				(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-		g.translate(offsetX, offsetY);
 	}
 
 	@Override
@@ -150,6 +139,17 @@ public class MyGame implements Game {
 		for (Updateable u : new ArrayList<Updateable>(this.UPDATEABLES)) {
 			u.update(elapsed);
 		}
+		
+		img = this.getPANEL().createImage(MyWindow.getInstance().getWidth(), MyWindow.getInstance().getHeight());
+		g = (Graphics2D) img.getGraphics();
+		
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+				(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+		g.translate(offsetX, offsetY);
 		
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 1024, 1024);

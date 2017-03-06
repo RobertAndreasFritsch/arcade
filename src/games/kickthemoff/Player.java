@@ -9,7 +9,7 @@ import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
 
 public class Player implements Drawable, Updateable {
-	private static final float SPEED_INCREASE_PER_PRESS = 7.5f;
+	private static final float SPEED_INCREASE_PER_PRESS = 10f;
 	private static final float SPEED_DECREASE_PER_SECOND = 2f;
 	private Seat s;
 	private float x, y;
@@ -18,11 +18,11 @@ public class Player implements Drawable, Updateable {
 	private boolean dead = false, dying = false;
 	private float scale = 1;
 	private Ground g;
-	private KickThemOff game;
+	private Kickthemoff game;
 
 	private Player lastKickedBy = this;
 
-	public Player(KickThemOff game, Seat s, int x, int y, Ground g) {
+	public Player(Kickthemoff game, Seat s, int x, int y, Ground g) {
 		this.s = s;
 		this.x = x;
 		this.y = y;

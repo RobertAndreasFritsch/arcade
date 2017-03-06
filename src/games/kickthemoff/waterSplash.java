@@ -11,9 +11,9 @@ public class waterSplash implements Drawable, Updateable {
 	private Image tex;
 	private int x, y;
 	private long timeout = 1000;
-	private KickThemOff game;
+	private Kickthemoff game;
 
-	public waterSplash(KickThemOff game, int x, int y) {
+	public waterSplash(Kickthemoff game, int x, int y) {
 		tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/water_splash.gif");
 		this.x = x;
 		this.y = y;

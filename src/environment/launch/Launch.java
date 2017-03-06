@@ -8,10 +8,11 @@ import environment.implementation.MyGameLoop;
 import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
 import environment.model.Window;
+import environment.model.gameobject.Seat;
 
 public class Launch {
 
-	public static final boolean debugMode = false;
+	public static final boolean debugMode = true;
 
 	public static void main(String[] args) {
 
