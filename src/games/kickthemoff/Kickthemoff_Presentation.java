@@ -19,6 +19,18 @@ public class Kickthemoff_Presentation implements Presentation {
 		img = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/kickthemoff_presentation.png");
 	}
 
+<<<<<<< Updated upstream
+=======
+=======
+	Image img;
+
+	/**
+	 * @throws IOException
+	 */
+	public Kickthemoff_Presentation() {
+		img = Toolkit.getDefaultToolkit().getImage("res/games/kickthemoff/kickthemoff_Presentation.png");
+	}
+>>>>>>> Stashed changes
 
 	@Override
 	public void draw(Graphics2D g) {

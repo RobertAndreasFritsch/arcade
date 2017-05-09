@@ -19,7 +19,7 @@
 //	 * @throws IOException
 //	 */
 //	public TankPresentation() {
-//		img = Toolkit.getDefaultToolkit().getImage("res/games/tank/img/tank_Presesentation.png");
+//		img = Toolkit.getDefaultToolkit().getImage("res/games/tank/img/tank_Presentation.png");
 //	}
 //
 //	@Override

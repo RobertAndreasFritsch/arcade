@@ -19,7 +19,7 @@ public class Bomberman_Presesentation implements Presentation {
 	 * @throws IOException
 	 */
 	public Bomberman_Presesentation() {
-		img = Toolkit.getDefaultToolkit().getImage("res/games/bomberman/bomberman_Presesentation.png");
+		img = Toolkit.getDefaultToolkit().getImage("res/games/bomberman/bomberman_Presentation.png");
 	}
 
 	@Override
