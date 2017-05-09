@@ -60,6 +60,7 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	// ---------------------------------------------------------------------------------------------------------------------------
 	// schleife zum gehen | abfrage ob feld belegt/ zu ende/ zusammenstoss mit
 	// anderem spieler
+	@Override
 	public void update(long elapsed) {
 		if (dead | !player.isPlaying()) { // nur noch einer Lebt -> brich ab
 			dead = true;

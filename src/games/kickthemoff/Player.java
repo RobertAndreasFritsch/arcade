@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
 
@@ -75,11 +74,11 @@ public class Player implements Drawable, Updateable {
 	}
 
 	public int getWins() {
-		return (int) ((float) s.getScore() * 0.0001);
+		return (int) (s.getScore() * 0.0001);
 	}
 
 	public void setWins(int wins) {
-		s.setScore((int) (((float) s.getScore() * 0.00001 + wins) * 10000));
+		s.setScore((int) ((s.getScore() * 0.00001 + wins) * 10000));
 	}
 
 	public void setAccelerationX(float accelerationX) {

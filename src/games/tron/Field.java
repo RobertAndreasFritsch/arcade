@@ -3,8 +3,6 @@ package games.tron;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
-import java.awt.geom.AffineTransform;
-
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.Seat;
 
@@ -36,7 +34,7 @@ public class Field implements Drawable {
 	public void draw(Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height); 
-		Graphics2D g2 = (Graphics2D) g;
+		Graphics2D g2 = g;
 		
 		// Male Boden
 		for (int y = 0; y < (height); y++) {

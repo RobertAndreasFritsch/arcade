@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import environment.launch.Presentation;
 import environment.model.Game;
 import environment.model.KeyRequest;
-import games.knutzzz.Knutzzz;
 
 public class Bomberman_Presesentation implements Presentation {
 

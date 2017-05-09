@@ -2,8 +2,6 @@ package games.pong;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.ArrayList;
 

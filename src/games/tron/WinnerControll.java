@@ -69,10 +69,11 @@ public class WinnerControll implements Updateable, Drawable {
 	private int Grad = 0, fontSize = 10;;
 	private Thread rotator = new Thread() { // zaehler fuer rotation der end
 		// sequefnz
+		@Override
 		public void run() {
 			while (true) {
 				try {
-					Thread.sleep((long) 8); // warte zeit | schnellichkeit der
+					Thread.sleep(8); // warte zeit | schnellichkeit der
 					// rutation
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -176,6 +177,7 @@ public class WinnerControll implements Updateable, Drawable {
 	public void end() {		
 		if (!fertig) {
 			new Thread() {
+				@Override
 				public void run(){
 					try {
 						Thread.sleep(5000);                 // 5 sec. Pause

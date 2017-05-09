@@ -8,7 +8,6 @@ import environment.implementation.MyGameLoop;
 import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
 import environment.model.Window;
-import environment.model.gameobject.Seat;
 
 public class Launch {
 

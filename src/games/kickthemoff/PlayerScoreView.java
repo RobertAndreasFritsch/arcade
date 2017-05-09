@@ -21,7 +21,7 @@ public class PlayerScoreView implements Drawable {
 
 	@Override
 	public void draw(Graphics2D g) {
-		Graphics2D g2 = (Graphics2D) g;
+		Graphics2D g2 = g;
 
 		g2.translate(x, y);
 		g2.rotate(Math.toRadians(rotation));

@@ -10,7 +10,6 @@ import java.util.TreeMap;
 import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
-import environment.implementation.MyWindow;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
