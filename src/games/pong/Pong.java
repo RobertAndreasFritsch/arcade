@@ -62,7 +62,6 @@ public final class Pong extends MyGame {
 
 		PongGameObjekt_Blocker[] blockers = { B1, B2, B3, B4 };
 
-		this.add(new PongGameObjekt_Ball(this, KEYS, KeyEvent.VK_1, KeyEvent.VK_2, KeyEvent.VK_5, KeyEvent.VK_3,
-				KeyEvent.VK_4, KeyEvent.VK_R, tiles, blockers));
+		this.add(new PongGameObjekt_Ball(this, KEYS, tiles, blockers));
 	}
 }

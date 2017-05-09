@@ -56,12 +56,18 @@ public class PongGameObjekt_Blocker implements Drawable {
 	public int getb() {
 		return b1;
 	}
+	public void setb(int b){
+		b1=b;
+	}
 
 	/**
 	 * @return
 	 */
 	public int geth() {
 		return h1;
+	}
+	public void seth(int h){
+		b1=h;
 	}
 
 	/**
@@ -84,12 +90,13 @@ public class PongGameObjekt_Blocker implements Drawable {
 	 * @param b
 	 * @param h
 	 */
-	public void setKor(int x, int y, int b, int h) {
-		rect.x = x;
-		x1 = x;
-		rect.y = y;
-		y1 = y;
-		rect.width = b;
-		rect.height = h;
-	}
+//	public void setKor(int x, int y, int b, int h) {
+//		rect.x = x;
+//		x1 = x;
+//		rect.y = y;
+//		y1 = y;
+//		rect.width = b;
+//		rect.height = h;
+//		System.out.println("HI");
+//	}
 }

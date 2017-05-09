@@ -104,12 +104,18 @@ public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 	public int getX() {
 		return rect.x;
 	}
+	public void setX(int x){
+		rect.x = x;
+	}
 
 	/**
 	 * @return
 	 */
 	public int getY() {
 		return rect.y;
+	}
+	public void setY(int y){
+		rect.y=y;
 	}
 
 	protected abstract void init();

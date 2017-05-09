@@ -53,19 +53,6 @@ public class Bomberman extends MyGame {
 			add(Player4);
 		}
 
-		if (Seat.P3.isPlaying()) {
-			add(new ScoreBar(this, 512 - 125, 900, 250, 15, 0));
-		}
-		if (Seat.P4.isPlaying()) {
-			add(new ScoreBar(this, 100 + 15, 512 - 125, 250, 15, 90));
-		}
-		if (Seat.P1.isPlaying()) {
-			add(new ScoreBar(this, 512 + 125, 100 + 15, 250, 15, 180));
-		}
-		if (Seat.P2.isPlaying()) {
-			add(new ScoreBar(this, 900, 512 + 125, 250, 15, 270));
-		}
-
 		add(new GameOverWaiter(this, KEYS));
 
 	}
