@@ -19,7 +19,7 @@ public class Pong_Presentation implements Presentation {
 	 * @throws IOException
 	 */
 	public Pong_Presentation() {
-		img = Toolkit.getDefaultToolkit().getImage("res/games/pong/unnamed_Presentation.png");
+		img = Toolkit.getDefaultToolkit().getImage("res/games/pong/pong_Presentation.png");
 	}
 
 	@Override
