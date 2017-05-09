@@ -31,12 +31,11 @@ public enum Sounds {
 			stream.read(audio, 0, size);
 			sfx = (Clip) AudioSystem.getLine(info);
 			sfx.open(format, audio, 0, size);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 
-		if (sfx != null) {
-			sfx.start();
+			if (sfx != null) {
+				sfx.start();
+			}
+		} catch (Exception e) {
 		}
 	}
 
