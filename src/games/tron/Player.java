@@ -163,5 +163,27 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 				dx = 1;
 				dy = 0;
 			}
+		
+		if(KEYS.isPressed(player.BTN1))
+			if (!dead && dx == 0 && player.isPlaying()) {
+				if(dx == 0){
+					dx = dy;
+					dy = 0;
+				} else {
+					dy = -dx;
+					dx = 0;
+				}
+			}
+			
+		if (KEYS.isPressed(player.BTN2))
+			if (!dead && dx == 0 && player.isPlaying()) {
+				if(dx == 0){
+					dx = -dy;
+					dy = 0;
+				} else {
+					dy = dx;
+					dx = 0;
+				}
+			}
 	}
 }
