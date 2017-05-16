@@ -3,6 +3,8 @@ package games.tron;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+
+import environment.implementation.MyWindow;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.Seat;
 
@@ -32,8 +34,10 @@ public class Field implements Drawable {
 //	Bild Zentralisiern | wuemer malen mit schweif 
 	@Override
 	public void draw(Graphics2D g) {
+		g.setColor(Color.WHITE);
+		g.drawRect(0, 0, 1024, 1024);
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, Toolkit.getDefaultToolkit().getScreenSize().width, Toolkit.getDefaultToolkit().getScreenSize().height); 
+		g.fillRect(1, 1, 1023, 1023); 
 		Graphics2D g2 = g;
 		
 		// Male Boden
