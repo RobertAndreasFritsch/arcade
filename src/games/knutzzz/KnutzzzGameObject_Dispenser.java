@@ -15,6 +15,8 @@ import environment.model.gameobject.Updateable;
 
 public class KnutzzzGameObject_Dispenser implements Updateable, Drawable {
 	int step = 0;
+	private int STARTTIME = 512;
+
 	Image images[];
 	// Image toadstoolImage;
 	Image lighthouseImage;
@@ -22,6 +24,8 @@ public class KnutzzzGameObject_Dispenser implements Updateable, Drawable {
 	Knutzzz parent;
 	Sound sound;
 	Sound soundSiren;
+	Sound music;
+	int mode = 0;
 
 	public boolean createBall = false;
 	public boolean showToadstool = false;
@@ -35,10 +39,11 @@ public class KnutzzzGameObject_Dispenser implements Updateable, Drawable {
 		loadImages();
 
 		sound = new Sound();
-//		sound.load("res/games/knutzzz/sfx/dispense.wav");
+		// sound.load("res/games/knutzzz/sfx/dispense.wav");
 
 		soundSiren = new Sound();
-//		soundSiren.load("res/games/knutzzz/sfx/siren.wav");
+		music = new Sound();
+		// soundSiren.load("res/games/knutzzz/sfx/siren.wav");
 	}
 
 	@Override
@@ -88,40 +93,61 @@ public class KnutzzzGameObject_Dispenser implements Updateable, Drawable {
 
 	@Override
 	public void update(long elapsed) {
-		if (step < 300)
-			step++;
+		if (mode == 0) {
+			if (step < STARTTIME + 172)
+				step++;
+			else
+				STARTTIME = 256;
 
-		if (step < 128) {
-			// Warten
-		} else if (step < 144) {
-			// Dispenser drehen
-			actImage = step - 128;
-		} else if (step < 256) {
-			// Warten/Lichtstrahl anzeigen
-			actImage = 16;
-		} else if (step < 272) {
-			// Ball auswerfen
-		} else if (step < 288) {
-			// Dispenser drehen
-			actImage = 288 - step;
+			if (step < STARTTIME) {
+				// Warten
+			} else if (step < STARTTIME + 16) {
+				// Dispenser drehen
+				actImage = step - STARTTIME;
+			} else if (step < STARTTIME + 128) {
+				// Warten/Lichtstrahl anzeigen
+				actImage = 16;
+			} else if (step < STARTTIME + 144) {
+				// Ball auswerfen
+			} else if (step < STARTTIME + 160) {
+				// Dispenser drehen
+				actImage = STARTTIME + 160 - step;
+			} else {
+				// Dispenser ruht
+				actImage = 0;
+			}
+
+			if (step == 1 && STARTTIME > 256) {
+				music.instantPlay("res/games/knutzzz/sfx/intro.wav");
+			}
+			if (step == STARTTIME + 128) {
+				// Sound abspielen - Ballausgabe
+				sound.instantPlay("res/games/knutzzz/sfx/dispense.wav");
+			}
+			if (step == STARTTIME + 16) {
+				// Sound abspielen - Startsirene
+				soundSiren.instantPlay("res/games/knutzzz/sfx/siren.wav");
+			}
+
+			createBall = (step == STARTTIME + 128);
+			showToadstool = (actImage == 16);
+			showLighthouse = (step > (STARTTIME + 16) && step < (STARTTIME + 128));
 		} else {
-			// Dispenser ruht
-			actImage = 0;
+			// Spielende (21 Baelle)
+			step++;
+			if (step == 128) {
+				// Finalmusik
+				music.instantPlay("res/games/knutzzz/sfx/extro.wav");
+			}
+			if (step == 512) {
+				// Spielende
+				parent.setRunning(false);
+			}
 		}
+	}
 
-		if (step == 256) {
-			// Sound abspielen - Ballausgabe
-//			sound.play();
-			sound.instantPlay("res/games/knutzzz/sfx/dispense.wav");
-		}
-		if (step == 144) {
-			// Sound abspielen - Startsirene
-//			soundSiren.play();
-			soundSiren.instantPlay("res/games/knutzzz/sfx/siren.wav");
-		}
-
-		createBall = (step == 256);
-		showToadstool = (actImage == 16);
-		showLighthouse = (step > 144 && step < 256);
+	public void setGameEnd() {
+		mode = 1;
+		step = 0;
 	}
 }

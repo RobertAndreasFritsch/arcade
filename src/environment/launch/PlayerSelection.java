@@ -40,7 +40,16 @@ public class PlayerSelection extends MyGame {
 		if (counter < 1) {
 			return new Menu(PANEL, KEYS);
 		}
-		return new NameEntry(PANEL, KEYS, anim.players, presentation);
+		Seat.P3.setPlaying(anim.players[0]);
+		Seat.P4.setPlaying(anim.players[1]);
+		Seat.P1.setPlaying(anim.players[2]);
+		Seat.P2.setPlaying(anim.players[3]);
+		
+		Seat.P3_PlayerView.setPlaying(anim.players[0]);
+		Seat.P4_PlayerView.setPlaying(anim.players[1]);
+		Seat.P1_PlayerView.setPlaying(anim.players[2]);
+		Seat.P2_PlayerView.setPlaying(anim.players[3]);
+		return presentation.getGame(PANEL, KEYS);
 	}
 
 }

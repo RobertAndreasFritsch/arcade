@@ -26,52 +26,54 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 		this.parent = parent;
 		ballImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/ball.png");
 		sound = new Sound();
-//		sound.load("res/games/knutzzz/sfx/thud.wav");
+		// sound.load("res/games/knutzzz/sfx/thud.wav");
 		init();
 	}
 
 	public void collide(KnutzzzGameObject_Ball ball, KnutzzzGameObject_Bumper player) {
-		double nx = ball.x - player.x;
-		double ny = ball.y - player.y;
-		if (nx * nx + ny * ny < 576) {
-			// Ball und Player auf richtigen Abstand bringen
-			// double
-			// inset=24-Math.sqrt((ball.x-player.x)*(ball.x-player.x)+(ball.y-player.y)*(ball.y-player.y));
-			// double
-			// k=inset/(Math.sqrt(ball.vx*ball.vx+ball.vy*ball.vy)+Math.sqrt(player.vx*player.vx+player.vy*player.vy));
-			// ball.vx-=k*ball.vx;
-			// ball.vx-=k*ball.vy;
-			// player.vx-=k*player.vx;
-			// player.vx-=k*player.vy;
+		if (player.visible) {
+			double nx = ball.x - player.x;
+			double ny = ball.y - player.y;
+			if (nx * nx + ny * ny < 576) {
+				// Ball und Player auf richtigen Abstand bringen
+				// double
+				// inset=24-Math.sqrt((ball.x-player.x)*(ball.x-player.x)+(ball.y-player.y)*(ball.y-player.y));
+				// double
+				// k=inset/(Math.sqrt(ball.vx*ball.vx+ball.vy*ball.vy)+Math.sqrt(player.vx*player.vx+player.vy*player.vy));
+				// ball.vx-=k*ball.vx;
+				// ball.vx-=k*ball.vy;
+				// player.vx-=k*player.vx;
+				// player.vx-=k*player.vy;
 
-			// Normalengeschwindigkeit
-			double rvx = ball.vx - player.vx;
-			double rvy = ball.vy - player.vy;
-			// Normale normieren
-			double absn = Math.sqrt(nx * nx + ny * ny);
-			nx /= absn;
-			ny /= absn;
+				// Normalengeschwindigkeit
+				double rvx = ball.vx - player.vx;
+				double rvy = ball.vy - player.vy;
+				// Normale normieren
+				double absn = Math.sqrt(nx * nx + ny * ny);
+				nx /= absn;
+				ny /= absn;
 
-			double vn = rvx * nx + rvy * ny;
-			if (vn < 0) {
-				// Kollisionspartner bewegen sich aufeinander zu
-				// Elastizitaet e=1
-				double e = 1;
-				double j = -(1 + e) * vn;
-				// Massen Player m=4, Ball m=1
-				j = j / (1 / 4 + 1 / 1);
-				// Impuls
-				double impx = j * nx;
-				double impy = j * ny;
-				player.vx -= 1 / 4 * impx;
-				player.vy -= 1 / 4 * impy;
-				ball.vx += impx;
-				ball.vy += impy;
+				double vn = rvx * nx + rvy * ny;
+				if (vn < 0) {
+					// Kollisionspartner bewegen sich aufeinander zu
+					// Elastizitaet e=1
+					double e = 1;
+					double j = -(1 + e) * vn;
+					// Massen Player m=4, Ball m=1
+					j = j / (1 / 4 + 1 / 1);
+					// Impuls
+					double impx = j * nx;
+					double impy = j * ny;
+					player.vx -= 1 / 4 * impx;
+					player.vy -= 1 / 4 * impy;
+					ball.vx += impx;
+					ball.vy += impy;
+				}
+
+				// for (int i=0; i<4; i++)
+				// if (players.get(i)==player)
+				lastTouch = player.ID;
 			}
-
-			// for (int i=0; i<4; i++)
-			// if (players.get(i)==player)
-			lastTouch = player.ID;
 		}
 	}
 
@@ -97,10 +99,11 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 		// Ball abbremsen (Reibung)
 		vx *= 0.99;
 		vy *= 0.99;
-		
+
 		// Ball stoppen, wenn er zu langsam ist
-		if (vx*vx+vy*vy<0.01) {
-			vx=0; vy=0;
+		if (vx * vx + vy * vy < 0.01) {
+			vx = 0;
+			vy = 0;
 		}
 
 		// Maximale Geschwindigkeit begrenzen
@@ -115,7 +118,7 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (y < 440 || y > 582) {
 				x = 40;
 				vx = -vx;
-//				sound.play();
+				// sound.play();
 				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (y < 448 || y > 574)
 				vy = -vy;
@@ -125,7 +128,7 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (x < 440 || x > 582) {
 				y = 40;
 				vy = -vy;
-//				sound.play();
+				// sound.play();
 				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (x < 448 || x > 574)
 				vx = -vx;
@@ -136,7 +139,7 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (y < 440 || y > 582) {
 				x = 984;
 				vx = -vx;
-//				sound.play();
+				// sound.play();
 				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (y < 448 || y > 574)
 				vy = -vy;
@@ -147,7 +150,7 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 			if (x < 440 || x > 582) {
 				y = 984;
 				vy = -vy;
-//				sound.play();
+				// sound.play();
 				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
 			} else if (x < 448 || x > 574) {
 				vx = -vx;

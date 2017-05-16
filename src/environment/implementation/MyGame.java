@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import environment.launch.HighScoreProcessor;
+import environment.launch.Menu;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
@@ -19,7 +20,7 @@ import environment.model.gameobject.Updateable;
 
 public class MyGame implements Game {
 
-	public static final MyGameConstructor DefaultGame = HighScoreProcessor::new;
+	public static final MyGameConstructor DefaultGame = Menu::new;
 
 	protected final List<Drawable> DRAWABLES = new ArrayList<Drawable>();
 	protected final List<Updateable> UPDATEABLES = new ArrayList<Updateable>();
@@ -67,7 +68,7 @@ public class MyGame implements Game {
 	}
 
 	public void exitGame() {
-		setNextGame(HighScoreProcessor::new);
+		setNextGame(Menu::new);
 		setRunning(false);
 	}
 
@@ -159,5 +160,6 @@ public class MyGame implements Game {
 		}
 		
 		this.getPANEL().getGraphics().drawImage(img, 0, 0, null);
+		Toolkit.getDefaultToolkit().sync();
 	}
 }

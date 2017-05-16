@@ -15,6 +15,7 @@ public class Dispenser implements Drawable, Updateable {
 	Image toadStoolImage;
 	KnutzzzGameObject_Dispenser dispenser;
 	private Knutzzz parent;
+	int ballCount = 0;
 
 	public Dispenser(Knutzzz parent, KnutzzzGameObject_Dispenser dispenser) {
 		this.parent = parent;
@@ -32,6 +33,7 @@ public class Dispenser implements Drawable, Updateable {
 	@Override
 	public void update(long elapsed) {
 		if (dispenser.createBall) {
+			// Dispenser gibt einen Ball aus -> Ballobjekt erzeugen
 			int angle = (int) (Math.random() * 360);
 			KnutzzzGameObject_Ball ball = new KnutzzzGameObject_Ball(parent);
 			ball.vx = Math.cos(Math.toRadians(angle)) * 4;
@@ -40,14 +42,23 @@ public class Dispenser implements Drawable, Updateable {
 			parent.ball = ball;
 			parent.setGameRunning(true);
 			parent.step = 0;
+			ballCount++;
 		}
 
 		if (parent.ball != null && parent.ball.goal) {
+			// Ball ist im Tor -> Ballobjekt vernichten
 			parent.remove(parent.ball);
 			parent.ball = null;
-			dispenser.reset();
+
+			if (ballCount >= 21) {
+				// Max. Anzahl Baelle -> Spielende
+				dispenser.setGameEnd();
+			} else {
+				dispenser.reset();
+			}
 			parent.setGameRunning(false);
 		}
+
 	}
 
 }

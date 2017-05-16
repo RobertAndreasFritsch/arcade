@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
 import environment.model.KeyRequest;
+import environment.model.gameobject.Seat;
 import games.knutzzz.control.WinnerControl;
 import games.knutzzz.graphics.Dispenser;
 import games.knutzzz.graphics.Floor;
@@ -48,10 +49,10 @@ public class Knutzzz extends MyGame {
 		add(scoreDisplays[2]);
 		add(scoreDisplays[3]);
 
-		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_4, KeyEvent.VK_6, KeyEvent.VK_7, 0, KEYS));
-		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_Q, 1, KEYS));
-		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_J, KeyEvent.VK_L, KeyEvent.VK_U, 2, KEYS));
-		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_R, 3, KEYS));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_4, KeyEvent.VK_6, KeyEvent.VK_7, 0, KEYS, Seat.P1.isPlaying()));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_Q, 1, KEYS, Seat.P2.isPlaying()));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_J, KeyEvent.VK_L, KeyEvent.VK_U, 2, KEYS, Seat.P3.isPlaying()));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_R, 3, KEYS, Seat.P4.isPlaying()));
 
 		add(new Dispenser(this, dispenser));
 		add(new Goal());
