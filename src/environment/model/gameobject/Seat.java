@@ -10,9 +10,9 @@ public enum Seat {
 	//
 	P2(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_Q, KeyEvent.VK_E, Color.BLUE, "Blue"),
 	//
-	P4(KeyEvent.VK_T, KeyEvent.VK_F, KeyEvent.VK_G, KeyEvent.VK_H, KeyEvent.VK_R, KeyEvent.VK_Y, Color.YELLOW, "Yellow"),
+	P4(KeyEvent.VK_T, KeyEvent.VK_F, KeyEvent.VK_G, KeyEvent.VK_H, KeyEvent.VK_R, KeyEvent.VK_Y, new Color(0,128,0), "Green"),
 	//
-	P3(KeyEvent.VK_I, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, KeyEvent.VK_U, KeyEvent.VK_O, new Color(0,128,0), "Green"),
+	P3(KeyEvent.VK_I, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, KeyEvent.VK_U, KeyEvent.VK_O, Color.YELLOW, "Yellow"),
 
 	//
 	P1_PlayerView(KeyEvent.VK_5, KeyEvent.VK_6, KeyEvent.VK_8, KeyEvent.VK_4, KeyEvent.VK_7, KeyEvent.VK_9,
@@ -22,10 +22,10 @@ public enum Seat {
 					Color.BLUE, "Blue"),
 					//
 					P4_PlayerView(KeyEvent.VK_F, KeyEvent.VK_G, KeyEvent.VK_H, KeyEvent.VK_T, KeyEvent.VK_R,
-							KeyEvent.VK_Y, Color.YELLOW, "Yellow"),
+							KeyEvent.VK_Y, new Color(0,128,0), "Green"),
 							//
 							P3_PlayerView(KeyEvent.VK_I, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, KeyEvent.VK_U,
-									KeyEvent.VK_O, Color.GREEN, "Green");
+									KeyEvent.VK_O, Color.YELLOW, "YELLOW");
 
 	public final int UP, LEFT, DOWN, RIGHT;
 

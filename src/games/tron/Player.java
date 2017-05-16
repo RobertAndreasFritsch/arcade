@@ -14,6 +14,7 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	int dx, dy; // Gewuenschte Richtung
 	int floor[][]; // Aktuelle position P
 	int spielerID = 0;
+	
 	boolean dead = false;
 	private int tileSize;
 	private final int width;
@@ -21,6 +22,9 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	private KeyRequest KEYS;
 	public Seat player;
 	Sound sound = new Sound();
+	
+	private long timeBuffer = 200;
+	private long currentTime = 0;
 
 	public Player(KeyRequest KEYS, int x, int y, int dx, int dy, int floor[][], int spielerID, int tileSize, int width,
 			int height, Seat player) {
@@ -62,6 +66,9 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	// anderem spieler
 	@Override
 	public void update(long elapsed) {
+		
+		currentTime += elapsed;
+		
 		if (dead | !player.isPlaying()) { // nur noch einer Lebt -> brich ab
 			dead = true;
 			return;
@@ -138,6 +145,11 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	// und ob man noch lebt
 	@Override
 	public void processInput() {
+		
+		if (currentTime < timeBuffer){
+			return;
+		}
+		
 		if (KEYS.isPressed(player.UP))
 			if (!dead && dy == 0 && player.isPlaying()) { // boolean abfrage ob
 															// spieler Tot ist
@@ -165,7 +177,7 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 			}
 		
 		if(KEYS.isPressed(player.BTN1))
-			if (!dead && dx == 0 && player.isPlaying()) {
+			if (!dead && player.isPlaying()) {
 				if(dx == 0){
 					dx = dy;
 					dy = 0;
@@ -173,10 +185,11 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 					dy = -dx;
 					dx = 0;
 				}
+				currentTime = 0;
 			}
 			
 		if (KEYS.isPressed(player.BTN2))
-			if (!dead && dx == 0 && player.isPlaying()) {
+			if (!dead && player.isPlaying()) {
 				if(dx == 0){
 					dx = -dy;
 					dy = 0;
@@ -184,6 +197,7 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 					dy = dx;
 					dx = 0;
 				}
+				currentTime = 0;
 			}
 	}
 }

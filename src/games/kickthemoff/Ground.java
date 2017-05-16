@@ -9,6 +9,7 @@ import environment.model.gameobject.Drawable;
 public class Ground implements Drawable {
 	private Image tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/platform.png");
 	private int x, y, r;
+	private float size = 100;
 
 	public Ground(int x, int y, int r) {
 		this.x = x;
@@ -21,6 +22,10 @@ public class Ground implements Drawable {
 		g.drawImage(tex, x - r, y - r, x + r, y + r, 0, 0, tex.getWidth(null), tex.getHeight(null), null);
 	}
 
+	public float getSize(){
+		return size;
+	}
+	
 	public int getR() {
 		return r;
 	}
