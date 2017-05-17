@@ -17,7 +17,7 @@ public class Kickthemoff extends MyGame {
 	public Kickthemoff(JPanel PANEL, KeyRequest KEYS) {
 		super(PANEL, KEYS);
 
-		Ground g = new Ground(512, 512, 450);
+		Ground g = new Ground(512, 512, 425);
 
 		add(new Background());
 		add(g);
