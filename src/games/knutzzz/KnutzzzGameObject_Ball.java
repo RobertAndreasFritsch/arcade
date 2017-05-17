@@ -31,49 +31,47 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 	}
 
 	public void collide(KnutzzzGameObject_Ball ball, KnutzzzGameObject_Bumper player) {
-		if (player.visible) {
-			double nx = ball.x - player.x;
-			double ny = ball.y - player.y;
-			if (nx * nx + ny * ny < 576) {
-				// Ball und Player auf richtigen Abstand bringen
-				// double
-				// inset=24-Math.sqrt((ball.x-player.x)*(ball.x-player.x)+(ball.y-player.y)*(ball.y-player.y));
-				// double
-				// k=inset/(Math.sqrt(ball.vx*ball.vx+ball.vy*ball.vy)+Math.sqrt(player.vx*player.vx+player.vy*player.vy));
-				// ball.vx-=k*ball.vx;
-				// ball.vx-=k*ball.vy;
-				// player.vx-=k*player.vx;
-				// player.vx-=k*player.vy;
+		double nx = ball.x - player.x;
+		double ny = ball.y - player.y;
+		if (nx * nx + ny * ny < 576) {
+			// Ball und Player auf richtigen Abstand bringen
+			// double
+			// inset=24-Math.sqrt((ball.x-player.x)*(ball.x-player.x)+(ball.y-player.y)*(ball.y-player.y));
+			// double
+			// k=inset/(Math.sqrt(ball.vx*ball.vx+ball.vy*ball.vy)+Math.sqrt(player.vx*player.vx+player.vy*player.vy));
+			// ball.vx-=k*ball.vx;
+			// ball.vx-=k*ball.vy;
+			// player.vx-=k*player.vx;
+			// player.vx-=k*player.vy;
 
-				// Normalengeschwindigkeit
-				double rvx = ball.vx - player.vx;
-				double rvy = ball.vy - player.vy;
-				// Normale normieren
-				double absn = Math.sqrt(nx * nx + ny * ny);
-				nx /= absn;
-				ny /= absn;
+			// Normalengeschwindigkeit
+			double rvx = ball.vx - player.vx;
+			double rvy = ball.vy - player.vy;
+			// Normale normieren
+			double absn = Math.sqrt(nx * nx + ny * ny);
+			nx /= absn;
+			ny /= absn;
 
-				double vn = rvx * nx + rvy * ny;
-				if (vn < 0) {
-					// Kollisionspartner bewegen sich aufeinander zu
-					// Elastizitaet e=1
-					double e = 1;
-					double j = -(1 + e) * vn;
-					// Massen Player m=4, Ball m=1
-					j = j / (1 / 4 + 1 / 1);
-					// Impuls
-					double impx = j * nx;
-					double impy = j * ny;
-					player.vx -= 1 / 4 * impx;
-					player.vy -= 1 / 4 * impy;
-					ball.vx += impx;
-					ball.vy += impy;
-				}
-
-				// for (int i=0; i<4; i++)
-				// if (players.get(i)==player)
-				lastTouch = player.ID;
+			double vn = rvx * nx + rvy * ny;
+			if (vn < 0) {
+				// Kollisionspartner bewegen sich aufeinander zu
+				// Elastizitaet e=1
+				double e = 1;
+				double j = -(1 + e) * vn;
+				// Massen Player m=4, Ball m=1
+				j = j / (1 / 4 + 1 / 1);
+				// Impuls
+				double impx = j * nx;
+				double impy = j * ny;
+				player.vx -= 1 / 4 * impx;
+				player.vy -= 1 / 4 * impy;
+				ball.vx += impx;
+				ball.vy += impy;
 			}
+
+			// for (int i=0; i<4; i++)
+			// if (players.get(i)==player)
+			lastTouch = player.ID;
 		}
 	}
 
