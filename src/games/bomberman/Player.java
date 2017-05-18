@@ -128,7 +128,8 @@ public class Player implements Drawable, ProceedsInput {
 		}
 		if (canDropBomb) {
 			if (keys.isPressed(s.BTN1) & canDropBomb) {
-				game.getDrawables().add(2, new Bomb(game, s.getColor(), this, x, y, 3, BOMB_TIMEOUT));
+//				game.getDrawables().add();
+				game.add(new Bomb(game, s.getColor(), this, x, y, 3, BOMB_TIMEOUT));
 				bombDropped();
 			}
 		}

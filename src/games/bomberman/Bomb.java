@@ -5,11 +5,13 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import environment.model.gameobject.Drawable;
+import environment.model.gameobject.Updateable;
 
-public class Bomb implements Drawable {
+public class Bomb implements Drawable, Updateable {
 	public static ArrayList<Bomb> bombs = new ArrayList<Bomb>();
 
 	private long TIMEOUT = 500;
+	private long tilExplosion;
 	private Color c;
 	private int x, y, width;
 	private Player Dropper;
@@ -23,20 +25,9 @@ public class Bomb implements Drawable {
 		this.y = y;
 		this.width = width;
 		this.game = game;
+		this.tilExplosion = timeout;
 
 		bombs.add(this);
-
-		new Thread() {
-			@Override
-			public void run() {
-				try {
-					Thread.sleep(timeout);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				explode();
-			}
-		}.start();
 	}
 
 	@Override
@@ -106,6 +97,14 @@ public class Bomb implements Drawable {
 
 	public int getY() {
 		return y;
+	}
+
+	@Override
+	public void update(long elapsed) {
+		tilExplosion -= elapsed;
+		if(tilExplosion <= 0){
+			explode();
+		}
 	}
 
 }

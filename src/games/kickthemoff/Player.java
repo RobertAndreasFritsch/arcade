@@ -8,7 +8,7 @@ import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
 
 public class Player implements Drawable, Updateable {
-	private static final float SPEED_INCREASE_PER_PRESS = 10f;
+	private static final float SPEED_INCREASE_PER_PRESS = 12f;
 	private static final float SPEED_DECREASE_PER_SECOND = 2f;
 	private Seat s;
 	private float x, y;
@@ -121,14 +121,16 @@ public class Player implements Drawable, Updateable {
 		x += accelerationX;
 		y += accelerationY;
 
-		accelerationX -= Math.abs(accelerationX) > 0
-				? accelerationX > 0 ? SPEED_DECREASE_PER_SECOND * timefactor
-						: -SPEED_DECREASE_PER_SECOND * timefactor
-				: 0;
-		accelerationY -= Math.abs(accelerationY) > 0
-				? accelerationY > 0 ? SPEED_DECREASE_PER_SECOND * timefactor
-						: -SPEED_DECREASE_PER_SECOND * timefactor
-				: 0;
+		
+		accelerationX -= Math.abs(accelerationX) > 0 ? accelerationX > 0 ? SPEED_DECREASE_PER_SECOND * timefactor : -SPEED_DECREASE_PER_SECOND * timefactor : 0;
+		accelerationY -= Math.abs(accelerationY) > 0 ? accelerationY > 0 ? SPEED_DECREASE_PER_SECOND * timefactor : -SPEED_DECREASE_PER_SECOND * timefactor : 0;
+		
+		if(Math.abs(accelerationX) < 0.01f){
+			accelerationX = 0;
+		}
+		if(Math.abs(accelerationY) < 0.01f){
+			accelerationY = 0;
+		}
 
 		float dx = x - g.getX();
 		float dy = y - g.getY();
