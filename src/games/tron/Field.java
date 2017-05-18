@@ -2,9 +2,6 @@ package games.tron;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
-
-import environment.implementation.MyWindow;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.Seat;
 

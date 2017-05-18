@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import environment.launch.HighScoreProcessor;
 import environment.launch.Menu;
 import environment.model.Game;
 import environment.model.KeyRequest;
