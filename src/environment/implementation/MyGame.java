@@ -19,35 +19,35 @@ import environment.model.gameobject.Updateable;
 
 public class MyGame implements Game {
 
-	public static final MyGameConstructor DefaultGame = Menu::new;
+	public static final MyGameConstructor	DefaultGame			= Menu::new;
 
-	protected final List<Drawable> DRAWABLES = new ArrayList<Drawable>();
-	protected final List<Updateable> UPDATEABLES = new ArrayList<Updateable>();
-	protected final List<ProceedsInput> PROCEEDINGINPUTS = new ArrayList<ProceedsInput>();
+	protected final List<Drawable>			DRAWABLES			= new ArrayList<>();
+	protected final List<Updateable>			UPDATEABLES			= new ArrayList<>();
+	protected final List<ProceedsInput>		PROCEEDINGINPUTS	= new ArrayList<>();
 
-	protected final JPanel PANEL;
-	protected final KeyRequest KEYS;
+	protected final JPanel						PANEL;
+	protected final KeyRequest					KEYS;
 
-	private boolean running = false;
+	private boolean								running				= false;
 
-	Image img;
+	Image												img;
 
-	Graphics2D g;
-	private MyGameConstructor nextGame = DefaultGame;
+	Graphics2D										g;
+	private MyGameConstructor					nextGame				= MyGame.DefaultGame;
 
-	private int offsetX;
-	private int offsetY;
+	private final int								offsetX;
+	private final int								offsetY;
 
-	public MyGame(final JPanel PANEL, final KeyRequest KEYS, String... args) {
+	public MyGame(final JPanel PANEL, final KeyRequest KEYS, final String... args) {
 		this.PANEL = PANEL;
 		this.KEYS = KEYS;
-		
-		this.offsetX = ((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1024) >> 1);
-		this.offsetY = ((int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 1024) >> 1);
+
+		this.offsetX = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1024) >> 1;
+		this.offsetY = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 1024) >> 1;
 	}
 
 	@Override
-	public void add(Object gameObject) {
+	public void add(final Object gameObject) {
 		if (gameObject instanceof ProceedsInput) {
 			this.PROCEEDINGINPUTS.add((ProceedsInput) gameObject);
 		}
@@ -60,40 +60,40 @@ public class MyGame implements Game {
 	}
 
 	@Override
-	public void addAll(List<?> gameObjects) {
-		for (Object o : gameObjects) {
-			add(o);
+	public void addAll(final List<?> gameObjects) {
+		for (final Object o : gameObjects) {
+			this.add(o);
 		}
 	}
 
 	public void exitGame() {
-		setNextGame(Menu::new);
-		setRunning(false);
+		this.setNextGame(Menu::new);
+		this.setRunning(false);
 	}
 
 	public List<Drawable> getDRAWABLES() {
-		return DRAWABLES;
+		return this.DRAWABLES;
 	}
 
 	public KeyRequest getKEYS() {
-		return KEYS;
+		return this.KEYS;
 	}
 
 	@Override
 	public Game getNextGame() {
-		return nextGame.MyGame(PANEL, KEYS, this.getClass().getSimpleName());
+		return this.nextGame.MyGame(this.PANEL, this.KEYS, this.getClass().getSimpleName());
 	}
 
 	public JPanel getPANEL() {
-		return PANEL;
+		return this.PANEL;
 	}
 
 	public List<ProceedsInput> getPROCEEDINGINPUTS() {
-		return PROCEEDINGINPUTS;
+		return this.PROCEEDINGINPUTS;
 	}
 
 	public List<Updateable> getUPDATEABLES() {
-		return UPDATEABLES;
+		return this.UPDATEABLES;
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class MyGame implements Game {
 	}
 
 	@Override
-	public void remove(Object gameObject) {
+	public void remove(final Object gameObject) {
 		if (gameObject instanceof ProceedsInput) {
 			this.PROCEEDINGINPUTS.remove(gameObject);
 		}
@@ -115,50 +115,49 @@ public class MyGame implements Game {
 	}
 
 	@Override
-	public void removeAll(List<?> gameObjects) {
-		for (Object o : gameObjects) {
-			remove(o);
+	public void removeAll(final List<?> gameObjects) {
+		for (final Object o : gameObjects) {
+			this.remove(o);
 		}
 	}
 
-	private void setNextGame(MyGameConstructor nextGame) {
+	private void setNextGame(final MyGameConstructor nextGame) {
 		this.nextGame = nextGame;
 	}
 
 	@Override
-	public void setRunning(boolean running) {
+	public void setRunning(final boolean running) {
 		this.running = running;
 	}
 
 	@Override
-	public void tick(long elapsed) {
+	public void tick(final long elapsed) {
 
-		for (ProceedsInput i : new ArrayList<ProceedsInput>(this.PROCEEDINGINPUTS)) {
+		for (final ProceedsInput i : new ArrayList<>(this.PROCEEDINGINPUTS)) {
 			i.processInput();
 		}
-		for (Updateable u : new ArrayList<Updateable>(this.UPDATEABLES)) {
+		for (final Updateable u : new ArrayList<>(this.UPDATEABLES)) {
 			u.update(elapsed);
 		}
-		
-		img = this.getPANEL().createImage(MyWindow.getInstance().getWidth(), MyWindow.getInstance().getHeight());
-		g = (Graphics2D) img.getGraphics();
-		
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-				(int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-		g.translate(offsetX, offsetY);
-		
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, 1024, 1024);
+		this.img = this.getPANEL().createImage(MyWindow.getInstance().getWidth(), MyWindow.getInstance().getHeight());
+		this.g = (Graphics2D) this.img.getGraphics();
 
-		for (Drawable d : new ArrayList<Drawable>(this.DRAWABLES)) {
-			d.draw(g);
+		this.g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		this.g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
+		this.g.setColor(Color.BLACK);
+		this.g.fillRect(0, 0, (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(), (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+		this.g.translate(this.offsetX, this.offsetY);
+
+		this.g.setColor(Color.WHITE);
+		this.g.fillRect(0, 0, 1024, 1024);
+
+		for (final Drawable d : new ArrayList<>(this.DRAWABLES)) {
+			d.draw(this.g);
 		}
-		
-		this.getPANEL().getGraphics().drawImage(img, 0, 0, null);
+
+		this.getPANEL().getGraphics().drawImage(this.img, 0, 0, null);
 		Toolkit.getDefaultToolkit().sync();
 	}
 }

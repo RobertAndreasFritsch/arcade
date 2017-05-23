@@ -19,17 +19,17 @@ public interface Window {
 		return null;
 	}
 
-	default void addKeyListener(KeyListener keyListener) {
+	default void addKeyListener(final KeyListener keyListener) {
 		this.getJFrame().addKeyListener(keyListener);
 	}
 
 	/**
 	 * delegation method for JPanels getHeight()
-	 * 
+	 *
 	 * @return
 	 */
 	default int getHeight() {
-		return getJPanel().getHeight();
+		return this.getJPanel().getHeight();
 	}
 
 	/**
@@ -44,19 +44,19 @@ public interface Window {
 
 	/**
 	 * delegation method for JPanels getSize()
-	 * 
+	 *
 	 * @return
 	 */
 	default Dimension getSize() {
-		return new Dimension(1024,1024);
+		return new Dimension(1024, 1024);
 	}
 
 	/**
 	 * delegation method for JPanels getWidth()
-	 * 
+	 *
 	 * @return
 	 */
 	default int getWidth() {
-		return getJPanel().getWidth();
+		return this.getJPanel().getWidth();
 	}
 }
