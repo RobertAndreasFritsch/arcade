@@ -7,15 +7,15 @@ import environment.model.KeyRequest;
 
 public class PlayerSelection_Presentation implements Presentation {
 
-	private Presentation presentation;
+	private final Presentation presentation;
 
-	public PlayerSelection_Presentation(Presentation presentation) {
+	public PlayerSelection_Presentation(final Presentation presentation) {
 
 		this.presentation = presentation;
 	}
 
 	@Override
-	public Game getGame(JPanel panel, KeyRequest KEYS) {
-		return new PlayerSelection(panel, KEYS, presentation);
+	public Game getGame(final JPanel panel, final KeyRequest KEYS) {
+		return new PlayerSelection(panel, KEYS, this.presentation);
 	}
 }

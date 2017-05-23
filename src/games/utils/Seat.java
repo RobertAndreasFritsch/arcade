@@ -3,8 +3,7 @@ package games.utils;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-public enum Seat
-{
+public enum Seat {
 
    //
 	P1(KeyEvent.VK_8, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6, KeyEvent.VK_7, KeyEvent.VK_9, Color.RED, "Red"),
@@ -34,8 +33,7 @@ public enum Seat
 
 	private final Color	color;
 
-	private Seat(int UP, int LEFT, int DOWN, int RIGHT, int BTN1, int BTN2, Color color, String name)
-	{
+	private Seat(final int UP, final int LEFT, final int DOWN, final int RIGHT, final int BTN1, final int BTN2, final Color color, final String name) {
 		this.UP = UP;
 		this.LEFT = LEFT;
 		this.DOWN = DOWN;
@@ -46,38 +44,31 @@ public enum Seat
 		this.name = name;
 	}
 
-	public Color getColor()
-	{
-		return color;
+	public Color getColor() {
+		return this.color;
 	}
 
-	public String getName()
-	{
-		return name;
+	public String getName() {
+		return this.name;
 	}
 
-	public int getScore()
-	{
-		return score;
+	public int getScore() {
+		return this.score;
 	}
 
-	public boolean isPlaying()
-	{
-		return playing;
+	public boolean isPlaying() {
+		return this.playing;
 	}
 
-	public void setName(String name)
-	{
+	public void setName(final String name) {
 		this.name = name;
 	}
 
-	public void setPlaying(boolean playing)
-	{
+	public void setPlaying(final boolean playing) {
 		this.playing = playing;
 	}
 
-	public void setScore(int score)
-	{
+	public void setScore(final int score) {
 		this.score = score;
 	}
 

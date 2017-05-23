@@ -18,7 +18,7 @@ import games.utils.Seat;
 class Bg implements Drawable {
 
 	@Override
-	public void draw(Graphics2D g) {
+	public void draw(final Graphics2D g) {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, 1024, 1024);
 	}
@@ -27,22 +27,22 @@ class Bg implements Drawable {
 
 public class HighScoreProcessor extends MyGame {
 
-	public static TreeMap<String, Integer> sortByValue(TreeMap<String, Integer> map) {
-		TreeMap<String, Integer> result = new TreeMap<String, Integer>();
+	public static TreeMap<String, Integer> sortByValue(final TreeMap<String, Integer> map) {
+		final TreeMap<String, Integer> result = new TreeMap<>();
 
-		String[] l = map.keySet().toArray(new String[] {});
+		final String[] l = map.keySet().toArray(new String[] {});
 		Arrays.sort(l, (s1, s2) -> map.get(s1) > map.get(s2) ? 1 : -1);
-		for (String s : l) {
+		for (final String s : l) {
 			result.put(s, map.get(s));
 		}
 
 		return result;
 	}
 
-	public HighScoreProcessor(JPanel PANEL, KeyRequest KEYS, String... gameName) {
+	public HighScoreProcessor(final JPanel PANEL, final KeyRequest KEYS, final String... gameName) {
 		super(PANEL, KEYS);
 
-		TreeMap<String, Integer> map = new TreeMap<String, Integer>();
+		TreeMap<String, Integer> map = new TreeMap<>();
 
 		if (Seat.P1.isPlaying()) {
 			map.put(Seat.P1.getName(), Seat.P1.getScore());
@@ -57,12 +57,12 @@ public class HighScoreProcessor extends MyGame {
 			map.put(Seat.P4.getName(), Seat.P4.getScore());
 		}
 
-		XMLGameScore g = new XMLGameScore(new File("res/scores/" + gameName[0] + ".xml"));
-		map = sortByValue(map);
-		String[][] table = new String[2][map.keySet().size()];
+		final XMLGameScore g = new XMLGameScore(new File("res/scores/" + gameName[0] + ".xml"));
+		map = HighScoreProcessor.sortByValue(map);
+		final String[][] table = new String[2][map.keySet().size()];
 
 		int counter = 0;
-		for (String s : map.keySet()) {
+		for (final String s : map.keySet()) {
 			table[0][counter] = s;
 			table[1][counter] = Integer.toString(map.get(s));
 			counter++;
@@ -70,19 +70,20 @@ public class HighScoreProcessor extends MyGame {
 		}
 		g.save();
 
-		add(new Bg());
-		add(new Table("letzte Runde", table, new Font("Courier", Font.BOLD, 20), 100, 100));
-		add(new Table("Alle Runden", g.getAsTable(), new Font("Courier", Font.BOLD, 20), 100, 200));
+		this.add(new Bg());
+		this.add(new Table("letzte Runde", table, new Font("Courier", Font.BOLD, 20), 100, 100));
+		this.add(new Table("Alle Runden", g.getAsTable(), new Font("Courier", Font.BOLD, 20), 100, 200));
 
 		new Thread() {
 			@Override
 			public void run() {
 				try {
 					Thread.sleep(5000);
-				} catch (InterruptedException e) {
+				}
+				catch (final InterruptedException e) {
 					e.printStackTrace();
 				}
-				setRunning(false);
+				HighScoreProcessor.this.setRunning(false);
 			}
 		}.start();
 
@@ -94,18 +95,18 @@ public class HighScoreProcessor extends MyGame {
 
 	@Override
 	public Game getNextGame() {
-		return new Menu(PANEL, KEYS);
+		return new Menu(this.PANEL, this.KEYS);
 	}
 
 }
 
 class Table implements Drawable {
-	private String[][] values;
-	private Font f;
-	private int x, y;
-	private String title;
+	private final String[][]	values;
+	private final Font			f;
+	private final int				x, y;
+	private final String			title;
 
-	public Table(String title, String[][] values, Font f, int x, int y) {
+	public Table(final String title, final String[][] values, final Font f, final int x, final int y) {
 		this.values = values;
 		this.f = f;
 		this.x = x;
@@ -114,35 +115,34 @@ class Table implements Drawable {
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		int xCursor = x, yCursor = y;
+	public void draw(final Graphics2D g) {
+		int xCursor = this.x, yCursor = this.y;
 		g.setColor(Color.WHITE);
-		g.setFont(new Font(f.getName(), Font.BOLD, f.getSize() + 2));
+		g.setFont(new Font(this.f.getName(), Font.BOLD, this.f.getSize() + 2));
 
-		g.drawString(title, xCursor, yCursor);
+		g.drawString(this.title, xCursor, yCursor);
 		yCursor += g.getFont().getSize() + 3;
 
-		g.setFont(f);
-		for (int x = 0; x < values.length; x++) {
+		g.setFont(this.f);
+		for (int x = 0; x < this.values.length; x++) {
 			String longest = "";
-			for (int y = 0; y < values[x].length; y++) {
-				if (g.getFontMetrics().stringWidth(values[x][y] + " ") > g.getFontMetrics().stringWidth(longest)) {
-					longest = values[x][y] + " ";
+			for (int y = 0; y < this.values[x].length; y++) {
+				if (g.getFontMetrics().stringWidth(this.values[x][y] + " ") > g.getFontMetrics().stringWidth(longest)) {
+					longest = this.values[x][y] + " ";
 				}
 			}
 
-			for (int y = 0; y < values[x].length; y++) {
-				g.drawString(values[x][y], xCursor, yCursor);
+			for (int y = 0; y < this.values[x].length; y++) {
+				g.drawString(this.values[x][y], xCursor, yCursor);
 				yCursor += g.getFont().getSize();
 
 			}
 
-			if (x != values.length - 1) {
-				g.drawLine(xCursor + g.getFontMetrics().stringWidth(longest), this.y + 5,
-						xCursor + g.getFontMetrics().stringWidth(longest), yCursor - g.getFont().getSize());
+			if (x != this.values.length - 1) {
+				g.drawLine(xCursor + g.getFontMetrics().stringWidth(longest), this.y + 5, xCursor + g.getFontMetrics().stringWidth(longest), yCursor - g.getFont().getSize());
 			}
 			xCursor += g.getFontMetrics().stringWidth(longest + " ");
-			yCursor = this.y + f.getSize() + 5;
+			yCursor = this.y + this.f.getSize() + 5;
 		}
 	}
 

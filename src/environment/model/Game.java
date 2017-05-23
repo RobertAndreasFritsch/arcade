@@ -20,7 +20,7 @@ public interface Game {
 
 	/**
 	 * gibt das Game zurück was im anschluss gelauncht wird
-	 * 
+	 *
 	 * @return
 	 */
 	public Game getNextGame();

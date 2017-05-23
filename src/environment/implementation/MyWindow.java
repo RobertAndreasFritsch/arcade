@@ -16,11 +16,12 @@ public class MyWindow implements Window {
 	private static final Window INSTANCE = new MyWindow();
 
 	public static Window getInstance() {
-		return INSTANCE;
+		return MyWindow.INSTANCE;
 	}
-	protected final JFrame FRAME = new JFrame();
 
-	protected final JPanel PANEL = new JPanel();
+	protected final JFrame	FRAME	= new JFrame();
+
+	protected final JPanel	PANEL	= new JPanel();
 
 	private MyWindow() {
 		this.FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,10 +29,10 @@ public class MyWindow implements Window {
 		this.FRAME.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		this.FRAME.setVisible(true);
 
-		this.FRAME.getContentPane().add(PANEL);
+		this.FRAME.getContentPane().add(this.PANEL);
 
-		BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
-		Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
+		final BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+		final Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImg, new Point(0, 0), "blank cursor");
 		this.FRAME.getContentPane().setCursor(blankCursor);
 
 		this.FRAME.revalidate();

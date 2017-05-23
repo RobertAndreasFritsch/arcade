@@ -12,45 +12,49 @@ import javazoom.jl.player.Player;
 
 public class MusicPlayer implements Runnable {
 
-	static void Playsound(File Sound) {
+	static void Playsound(final File Sound) {
 		try {
-			Clip clip = AudioSystem.getClip();
+			final Clip clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(Sound));
 			clip.start();
 			Thread.sleep(clip.getMicrosecondLength() / 100000);
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 
 		}
 	}
 
-	String play;
-	Thread timerPlayer;
+	String	play;
+	Thread	timerPlayer;
 
-	File Shoot = new File("res/games/tank/sounds/Samples/shoot.wav");
+	File		Shoot	= new File("res/games/tank/sounds/Samples/shoot.wav");
 
 	public MusicPlayer() {
 		// Titel
-		play = "res/games/tank/music/Classic/Soundtrack.mp3";
+		this.play = "res/games/tank/music/Classic/Soundtrack.mp3";
 
-		timerPlayer = new Thread(this);
-		timerPlayer.start();
+		this.timerPlayer = new Thread(this);
+		this.timerPlayer.start();
 	}
 
 	@Override
 	public void run() {
-		while (timerPlayer != null) {
+		while (this.timerPlayer != null) {
 			try {
-				FileInputStream in = new FileInputStream(play);
-				Player p1 = new Player(in);
+				final FileInputStream in = new FileInputStream(this.play);
+				final Player p1 = new Player(in);
 				p1.play();
-			} catch (JavaLayerException jle) {
+			}
+			catch (final JavaLayerException jle) {
 				jle.printStackTrace();
-			} catch (FileNotFoundException fnf) {
+			}
+			catch (final FileNotFoundException fnf) {
 				fnf.printStackTrace();
 
 				try {
 					Thread.sleep(30);
-				} catch (InterruptedException e) {
+				}
+				catch (final InterruptedException e) {
 				}
 
 			}

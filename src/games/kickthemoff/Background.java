@@ -10,8 +10,8 @@ public class Background implements Drawable {
 	private static Image tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/background.png");
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.drawImage(tex, 0, 0, 1024, 1024, 0, 0, tex.getWidth(null), tex.getHeight(null), null);
+	public void draw(final Graphics2D g) {
+		g.drawImage(Background.tex, 0, 0, 1024, 1024, 0, 0, Background.tex.getWidth(null), Background.tex.getHeight(null), null);
 	}
 
 }

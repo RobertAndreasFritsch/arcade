@@ -23,16 +23,16 @@ public final class Knutzzz_Presentation implements Presentation {
 	 * @throws IOException
 	 */
 	public Knutzzz_Presentation() {
-		img = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/knutzzzwallpaper.png");
+		this.img = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/knutzzzwallpaper.png");
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.drawImage(img, 0, 0, 1024,1024, null);
+	public void draw(final Graphics2D g) {
+		g.drawImage(this.img, 0, 0, 1024, 1024, null);
 	}
 
 	@Override
-	public Game getGame(JPanel panel, KeyRequest KEYS) {
+	public Game getGame(final JPanel panel, final KeyRequest KEYS) {
 		return new Knutzzz(panel, KEYS);
 	}
 }

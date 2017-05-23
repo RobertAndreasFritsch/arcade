@@ -10,24 +10,24 @@ import environment.model.gameobject.Updateable;
 import games.utils.Seat;
 
 public class Player implements Drawable, Updateable, ProceedsInput {
-	int x, y; // Aktuelle Position
-	int dx, dy; // Gewuenschte Richtung
-	int floor[][]; // Aktuelle position P
-	int spielerID = 0;
-	
-	boolean dead = false;
-	private int tileSize;
-	private final int width;
-	private final int height;
-	private KeyRequest KEYS;
-	public Seat player;
-	Sound sound = new Sound();
-	
-	private long timeBuffer = 200;
-	private long currentTime = 0;
+	int								x, y;								// Aktuelle Position
+	int								dx, dy;							// Gewuenschte Richtung
+	int								floor[][];						// Aktuelle position P
+	int								spielerID	= 0;
 
-	public Player(KeyRequest KEYS, int x, int y, int dx, int dy, int floor[][], int spielerID, int tileSize, int width,
-			int height, Seat player) {
+	boolean							dead			= false;
+	private final int				tileSize;
+	private final int				width;
+	private final int				height;
+	private final KeyRequest	KEYS;
+	public Seat						player;
+	Sound								sound			= new Sound();
+
+	private final long			timeBuffer	= 200;
+	private long					currentTime	= 0;
+
+	public Player(final KeyRequest KEYS, final int x, final int y, final int dx, final int dy, final int floor[][], final int spielerID, final int tileSize, final int width,
+	      final int height, final Seat player) {
 
 		this.player = player;
 		this.KEYS = KEYS;
@@ -46,18 +46,18 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	// ---------------------------------------------------------------------------------------------------------------------------
 	//
 	public int getX() { // rueckgabe wert ist vom typ int
-		return x;
+		return this.x;
 	}
 
 	public int getY() {
-		return y;
+		return this.y;
 	}
 
-	public void setY(int y) {
+	public void setY(final int y) {
 		this.y = y;
 	}
 
-	public void setX(int x) {
+	public void setX(final int x) {
 		this.x = x;
 	}
 
@@ -65,66 +65,71 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	// schleife zum gehen | abfrage ob feld belegt/ zu ende/ zusammenstoss mit
 	// anderem spieler
 	@Override
-	public void update(long elapsed) {
-		
-		currentTime += elapsed;
-		
-		if (dead | !player.isPlaying()) { // nur noch einer Lebt -> brich ab
-			dead = true;
+	public void update(final long elapsed) {
+
+		this.currentTime += elapsed;
+
+		if (this.dead | !this.player.isPlaying()) { // nur noch einer Lebt ->
+		                                            // brich ab
+			this.dead = true;
 			return;
 		}
 
-		player.setScore(player.getScore() + 1); // pro zurueckgelektes feld
-												// einen punkt
+		this.player.setScore(this.player.getScore() + 1); // pro zurueckgelektes
+		                                                  // feld
+		// einen punkt
 
-		x = x + dx;
-		y = y + dy;
+		this.x = this.x + this.dx;
+		this.y = this.y + this.dy;
 
-		if (x < 0 || y < 0 || x > (width) || y > (height)) {
+		if (this.x < 0 || this.y < 0 || this.x > this.width || this.y > this.height) {
 			// Spieler ausserhalb des Spielfeldes? -> Tod!
-			for (int y = 0; y < (width); y++) {
-				for (int x = 0; x < (height); x++) {
-					if (floor[x][y] == spielerID) {
-						floor[x][y] = 5;
+			for (int y = 0; y < this.width; y++) {
+				for (int x = 0; x < this.height; x++) {
+					if (this.floor[x][y] == this.spielerID) {
+						this.floor[x][y] = 5;
 					}
 				}
 			}
-			dead = true;
-			sound.play("res/games/tron/LaserBoom.wav");
-		} else {
+			this.dead = true;
+			this.sound.play("res/games/tron/LaserBoom.wav");
+		}
+		else {
 			// Kachel schon belegt? -> Tod!
 			try {
-				if (floor[x][y] == 0)
+				if (this.floor[this.x][this.y] == 0) {
 					;
-			} catch (Exception e) {
-				dx = 0;
-				dy = 0;
-				dead = true;
-				sound.play("res/games/tron/LaserBoom.wav");
+				}
+			}
+			catch (final Exception e) {
+				this.dx = 0;
+				this.dy = 0;
+				this.dead = true;
+				this.sound.play("res/games/tron/LaserBoom.wav");
 
-				for (int y = 0; y < (width); y++) {
-					for (int x = 0; x < (height); x++) {
-						if (floor[x][y] == spielerID) {
-							floor[x][y] = 5;
+				for (int y = 0; y < this.width; y++) {
+					for (int x = 0; x < this.height; x++) {
+						if (this.floor[x][y] == this.spielerID) {
+							this.floor[x][y] = 5;
 						}
 					}
 				}
 				return;
 			}
-			if (floor[x][y] == 0)
-				floor[x][y] = spielerID;
-
+			if (this.floor[this.x][this.y] == 0) {
+				this.floor[this.x][this.y] = this.spielerID;
+			}
 			else {
 				// Crash
-				dx = 0;
-				dy = 0;
-				dead = true;
-				sound.play("res/games/tron/LaserBoom.wav");
+				this.dx = 0;
+				this.dy = 0;
+				this.dead = true;
+				this.sound.play("res/games/tron/LaserBoom.wav");
 
-				for (int y = 0; y < (width); y++) {
-					for (int x = 0; x < (height); x++) {
-						if (floor[x][y] == spielerID) {
-							floor[x][y] = 5;
+				for (int y = 0; y < this.width; y++) {
+					for (int x = 0; x < this.height; x++) {
+						if (this.floor[x][y] == this.spielerID) {
+							this.floor[x][y] = 5;
 						}
 					}
 				}
@@ -135,9 +140,9 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	// ---------------------------------------------------------------------------------------------------------------------------
 	//
 	@Override
-	public void draw(Graphics2D g) {
-		g.setColor(player.getColor());
-		g.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+	public void draw(final Graphics2D g) {
+		g.setColor(this.player.getColor());
+		g.fillRect(this.x * this.tileSize, this.y * this.tileSize, this.tileSize, this.tileSize);
 	}
 
 	// ---------------------------------------------------------------------------------------------------------------------------
@@ -145,61 +150,73 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 	// und ob man noch lebt
 	@Override
 	public void processInput() {
-		
-		if (currentTime < timeBuffer){
-			return;
+
+		if (this.currentTime < this.timeBuffer) { return; }
+
+		// Pfeiltasten Controlle
+		if (this.KEYS.isPressed(this.player.UP)) {
+			if (!this.dead && this.dy == 0 && this.player.isPlaying()) { // boolean
+			                                                             // abfrage
+			                                                             // ob
+			                                                             // spieler
+			                                                             // Tot ist
+				this.dx = 0;
+				this.dy = -1;
+			}
 		}
-		
-		// Pfeiltasten Controlle 
-		if (KEYS.isPressed(player.UP))
-			if (!dead && dy == 0 && player.isPlaying()) { // boolean abfrage ob
-															// spieler Tot ist
-				dx = 0;
-				dy = -1;
-			}
 
-		if (KEYS.isPressed(player.DOWN))
-			if (!dead && dy == 0 && player.isPlaying()) { // abfrage ob er sich
-															// selbt toetet
-				dx = 0;
-				dy = 1;
+		if (this.KEYS.isPressed(this.player.DOWN)) {
+			if (!this.dead && this.dy == 0 && this.player.isPlaying()) { // abfrage
+			                                                             // ob er
+			                                                             // sich
+			                                                             // selbt
+			                                                             // toetet
+				this.dx = 0;
+				this.dy = 1;
 			}
+		}
 
-		if (KEYS.isPressed(player.LEFT))
-			if (!dead && dx == 0 && player.isPlaying()) {
-				dx = -1;
-				dy = 0;
+		if (this.KEYS.isPressed(this.player.LEFT)) {
+			if (!this.dead && this.dx == 0 && this.player.isPlaying()) {
+				this.dx = -1;
+				this.dy = 0;
 			}
+		}
 
-		if (KEYS.isPressed(player.RIGHT))
-			if (!dead && dx == 0 && player.isPlaying()) {
-				dx = 1;
-				dy = 0;
+		if (this.KEYS.isPressed(this.player.RIGHT)) {
+			if (!this.dead && this.dx == 0 && this.player.isPlaying()) {
+				this.dx = 1;
+				this.dy = 0;
 			}
-		
+		}
+
 		// Button Controll (Steren der bewegung durch die zwei BTN)
-		if(KEYS.isPressed(player.BTN1))
-			if (!dead && player.isPlaying()) {
-				if(dx == 0){
-					dx = dy;
-					dy = 0;
-				} else {
-					dy = -dx;
-					dx = 0;
+		if (this.KEYS.isPressed(this.player.BTN1)) {
+			if (!this.dead && this.player.isPlaying()) {
+				if (this.dx == 0) {
+					this.dx = this.dy;
+					this.dy = 0;
 				}
-				currentTime = 0;
-			}
-			
-		if (KEYS.isPressed(player.BTN2))
-			if (!dead && player.isPlaying()) {
-				if(dx == 0){
-					dx = -dy;
-					dy = 0;
-				} else {
-					dy = dx;
-					dx = 0;
+				else {
+					this.dy = -this.dx;
+					this.dx = 0;
 				}
-				currentTime = 0;
+				this.currentTime = 0;
 			}
+		}
+
+		if (this.KEYS.isPressed(this.player.BTN2)) {
+			if (!this.dead && this.player.isPlaying()) {
+				if (this.dx == 0) {
+					this.dx = -this.dy;
+					this.dy = 0;
+				}
+				else {
+					this.dy = this.dx;
+					this.dx = 0;
+				}
+				this.currentTime = 0;
+			}
+		}
 	}
 }

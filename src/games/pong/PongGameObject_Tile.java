@@ -5,8 +5,8 @@ package games.pong;
 //import model.Game.VK;
 
 /**
- * 
- * 
+ *
+ *
  * @author default
  *
  */

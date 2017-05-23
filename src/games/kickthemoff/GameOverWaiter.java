@@ -3,24 +3,24 @@ package games.kickthemoff;
 import environment.model.gameobject.Updateable;
 
 public class GameOverWaiter implements Updateable {
-	private Kickthemoff game;
+	private final Kickthemoff game;
 
-	public GameOverWaiter(Kickthemoff game) {
+	public GameOverWaiter(final Kickthemoff game) {
 		this.game = game;
 	}
 
 	@Override
-	public void update(long elapsed) {
+	public void update(final long elapsed) {
 		int alive = 0;
 		Player winner = null;
-		for (Player p : game.getPlayers()) {
+		for (final Player p : this.game.getPlayers()) {
 			if (!p.isDead()) {
 				alive++;
 				winner = p;
 			}
 		}
 		if (alive == 1) {
-			game.setRunning(false);
+			this.game.setRunning(false);
 			winner.getSeat().setScore(winner.getSeat().getScore() + 100);
 			winner.setWins(winner.getWins() + 1);
 		}

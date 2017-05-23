@@ -11,11 +11,11 @@ public class Goal implements Drawable {
 	Image goalImage;
 
 	public Goal() {
-		goalImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/goal.png");
+		this.goalImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/goal.png");
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.drawImage(goalImage, 0, 0, null);
+	public void draw(final Graphics2D g) {
+		g.drawImage(this.goalImage, 0, 0, null);
 	}
 }

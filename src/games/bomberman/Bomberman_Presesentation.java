@@ -19,16 +19,16 @@ public class Bomberman_Presesentation implements Presentation {
 	 * @throws IOException
 	 */
 	public Bomberman_Presesentation() {
-		img = Toolkit.getDefaultToolkit().getImage("res/games/bomberman/bomberman_Presentation.png");
+		this.img = Toolkit.getDefaultToolkit().getImage("res/games/bomberman/bomberman_Presentation.png");
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.drawImage(img, 0, 0, 1024,1024, null);
+	public void draw(final Graphics2D g) {
+		g.drawImage(this.img, 0, 0, 1024, 1024, null);
 	}
 
 	@Override
-	public Game getGame(JPanel panel, KeyRequest KEYS) {
+	public Game getGame(final JPanel panel, final KeyRequest KEYS) {
 		return new Bomberman(panel, KEYS);
 	}
 

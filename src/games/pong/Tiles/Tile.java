@@ -13,171 +13,173 @@ import games.utils.Seat;
 
 public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 
-	public static final int SPEED = 30; // TODO hard coded
+	public static final int		SPEED	= 30;					// TODO hard coded
 
-	static int i = 0;
-	public final Seat player;
-	private int Tor;
-	private int width;
-	private int height;
-	private int Pkt;
+	static int						i		= 0;
+	public final Seat				player;
+	private int						Tor;
+	private int						width;
+	private int						height;
+	private int						Pkt;
 	/**
-	 * 
+	 *
 	 */
-	Rectangle rect;
+	Rectangle						rect;
 
 	/**
-	 * 
+	 *
 	 */
-	boolean stateLeft, stateRight;
+	boolean							stateLeft, stateRight;
 
-	private KeyRequest KEYS;
+	private final KeyRequest	KEYS;
 
 	/**
 	 * @param keyCode1
 	 * @param keyCode2
 	 * @throws Exception
 	 */
-	public Tile(Seat player, KeyRequest KEYS) {
+	public Tile(final Seat player, final KeyRequest KEYS) {
 		this.player = player;
 		this.KEYS = KEYS;
-		init();
+		this.init();
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	public abstract void actionLeft();
 
 	/**
-	 * 
+	 *
 	 */
 	public abstract void actionRight();
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see gamelibrary.GameObject#paint(java.awt.Graphics2D)
 	 */
 	@Override
-	public void draw(Graphics2D GRAPHICS) {
-		GRAPHICS.setColor(player.getColor());
-		GRAPHICS.fill(rect);
+	public void draw(final Graphics2D GRAPHICS) {
+		GRAPHICS.setColor(this.player.getColor());
+		GRAPHICS.fill(this.rect);
 		GRAPHICS.setFont(new Font("Courier", Font.PLAIN, 20));
-		GRAPHICS.drawString(Integer.toString(getTor()), getX(), getY());
+		GRAPHICS.drawString(Integer.toString(this.getTor()), this.getX(), this.getY());
 		GRAPHICS.setColor(Color.BLACK);
 	}
 
 	public int getheight() {
-		return height;
+		return this.height;
 	}
 
 	public int getPkt() {
-		return Pkt;
+		return this.Pkt;
 	}
 
 	/**
 	 * @return
 	 */
 	public boolean getstateLeft() {
-		return stateLeft;
+		return this.stateLeft;
 	}
 
 	/**
 	 * @return
 	 */
 	public boolean getstateRight() {
-		return stateRight;
+		return this.stateRight;
 	}
 
 	public int getTor() {
-		return Tor;
+		return this.Tor;
 	}
 
 	public int getwidth() {
-		return width;
+		return this.width;
 	}
 
 	/**
 	 * @return
 	 */
 	public int getX() {
-		return rect.x;
+		return this.rect.x;
 	}
-	public void setX(int x){
-		rect.x = x;
+
+	public void setX(final int x) {
+		this.rect.x = x;
 	}
 
 	/**
 	 * @return
 	 */
 	public int getY() {
-		return rect.y;
+		return this.rect.y;
 	}
-	public void setY(int y){
-		rect.y=y;
+
+	public void setY(final int y) {
+		this.rect.y = y;
 	}
 
 	protected abstract void init();
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see gamelibrary.GameObject#processInput(gamelibrary.FrameBasedGame)
 	 */
 	@Override
 	public void processInput() {
-		if (KEYS.isPressed(player.LEFT)) {
+		if (this.KEYS.isPressed(this.player.LEFT)) {
 
-			stateLeft = true;
+			this.stateLeft = true;
 
 		}
-		if (KEYS.isPressed(player.RIGHT)) {
-			stateRight = true;
+		if (this.KEYS.isPressed(this.player.RIGHT)) {
+			this.stateRight = true;
 		}
 
 	}
 
-	public void setheight(int height) {
+	public void setheight(final int height) {
 		this.height = height;
 	}
 
 	public void seti() {
-		i = 0;
+		Tile.i = 0;
 	}
 
 	public void setPkt() {
-		Pkt = Pkt + 100;
+		this.Pkt = this.Pkt + 100;
 	}
 
-	public void setTor(int Tor) {
+	public void setTor(final int Tor) {
 		this.Tor = Tor;
 	}
 
-	public void setwidth(int width) {
+	public void setwidth(final int width) {
 		this.width = width;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see gamelibrary.GameObject#update(java.util.List)
 	 */
 	@Override
 
-	public void update(long elapsed) {
+	public void update(final long elapsed) {
 
-		if (i <= 3) {
-			init();
-			i++;
+		if (Tile.i <= 3) {
+			this.init();
+			Tile.i++;
 		}
-		if (stateLeft) {
-			actionLeft();
-			stateLeft = false;
+		if (this.stateLeft) {
+			this.actionLeft();
+			this.stateLeft = false;
 		}
-		if (stateRight) {
-			actionRight();
-			stateRight = false;
+		if (this.stateRight) {
+			this.actionRight();
+			this.stateRight = false;
 		}
 	}
 }

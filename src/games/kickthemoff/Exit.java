@@ -5,16 +5,16 @@ import java.awt.event.KeyEvent;
 import environment.model.gameobject.ProceedsInput;
 
 public class Exit implements ProceedsInput {
-	private Kickthemoff game;
+	private final Kickthemoff game;
 
-	public Exit(Kickthemoff game) {
+	public Exit(final Kickthemoff game) {
 		this.game = game;
 	}
 
 	@Override
 	public void processInput() {
-		if (game.getKEYS().isPressed(KeyEvent.VK_M)) {
-			game.setRunning(false);
+		if (this.game.getKEYS().isPressed(KeyEvent.VK_M)) {
+			this.game.setRunning(false);
 		}
 	}
 

@@ -1,11 +1,9 @@
 package games.utils;
 
-public enum Direction
-{
+public enum Direction {
 	NORTH(1, 0, -1), EAST(2, 1, 0), SOUTH(4, 0, 1), WEST(8, -1, 0);
 
-	static
-	{
+	static {
 		Direction.NORTH.opposite = Direction.SOUTH;
 		Direction.NORTH.right = Direction.EAST;
 		Direction.NORTH.left = Direction.WEST;
@@ -31,40 +29,33 @@ public enum Direction
 	private int			x;
 	private int			y;
 
-	Direction(final int bitmask, final int x, final int y)
-	{
+	Direction(final int bitmask, final int x, final int y) {
 		this.bitmask = bitmask;
 		this.x = x;
 		this.y = y;
 	}
 
-	public Direction getOpposite()
-	{
+	public Direction getOpposite() {
 		return this.opposite;
 	}
 
-	public Direction getLeft()
-	{
+	public Direction getLeft() {
 		return this.left;
 	}
 
-	public Direction getRight()
-	{
+	public Direction getRight() {
 		return this.right;
 	}
 
-	public int getBitmask()
-	{
+	public int getBitmask() {
 		return this.bitmask;
 	}
 
-	public int getX()
-	{
+	public int getX() {
 		return this.x;
 	}
 
-	public int getY()
-	{
+	public int getY() {
 		return this.y;
 	}
 }

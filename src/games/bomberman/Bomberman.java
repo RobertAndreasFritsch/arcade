@@ -13,56 +13,56 @@ import games.utils.Seat;
 //Luca war auch hier 1.2.2017
 
 public class Bomberman extends MyGame {
-	public static final int BLOCK_DESTROY_SCORE = 1;
-	public static final int PLAYER_KILL_SCORE = 5;
-	public static final int PLAYER_SUICIDE_SCORE = -1;
+	public static final int	BLOCK_DESTROY_SCORE	= 1;
+	public static final int	PLAYER_KILL_SCORE		= 5;
+	public static final int	PLAYER_SUICIDE_SCORE	= -1;
 
-	private Field f;
-	public Player Player1, Player2, Player3, Player4;
+	private final Field		f;
+	public Player				Player1, Player2, Player3, Player4;
 
-	public Bomberman(JPanel PANEL, KeyRequest KEYS) {
+	public Bomberman(final JPanel PANEL, final KeyRequest KEYS) {
 		super(PANEL, KEYS);
 
-		f = new Field();
+		this.f = new Field();
 
 		if (Seat.P3.isPlaying()) {
-			Player3 = new Player(this, KEYS, Seat.P3_PlayerView, f, 512, 768);
+			this.Player3 = new Player(this, KEYS, Seat.P3_PlayerView, this.f, 512, 768);
 		}
 		if (Seat.P4.isPlaying()) {
-			Player4 = new Player(this, KEYS, Seat.P4_PlayerView, f, 256, 512);
+			this.Player4 = new Player(this, KEYS, Seat.P4_PlayerView, this.f, 256, 512);
 		}
 		if (Seat.P1.isPlaying()) {
-			Player1 = new Player(this, KEYS, Seat.P1_PlayerView, f, 512, 256);
+			this.Player1 = new Player(this, KEYS, Seat.P1_PlayerView, this.f, 512, 256);
 		}
 		if (Seat.P2.isPlaying()) {
-			Player2 = new Player(this, KEYS, Seat.P2_PlayerView, f, 768, 512);
+			this.Player2 = new Player(this, KEYS, Seat.P2_PlayerView, this.f, 768, 512);
 		}
 
-		add(new Background());
-		add(f);
+		this.add(new Background());
+		this.add(this.f);
 		if (Seat.P1.isPlaying()) {
-			add(Player1);
+			this.add(this.Player1);
 		}
 		if (Seat.P2.isPlaying()) {
-			add(Player2);
+			this.add(this.Player2);
 		}
 		if (Seat.P3.isPlaying()) {
-			add(Player3);
+			this.add(this.Player3);
 		}
 		if (Seat.P4.isPlaying()) {
-			add(Player4);
+			this.add(this.Player4);
 		}
 
-		add(new GameOverWaiter(this, KEYS));
+		this.add(new GameOverWaiter(this, KEYS));
 
 	}
 
 	public ArrayList<Drawable> getDrawables() {
-		return (ArrayList<Drawable>) DRAWABLES;
+		return (ArrayList<Drawable>) this.DRAWABLES;
 	}
 
 	public Field getField() {
-		return f;
+		return this.f;
 	}
 
 }

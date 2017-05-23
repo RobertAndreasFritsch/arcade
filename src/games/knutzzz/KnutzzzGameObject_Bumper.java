@@ -16,56 +16,58 @@ import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Updateable;
 
 public class KnutzzzGameObject_Bumper implements Drawable, Updateable, ProceedsInput {
-	final int VK_ButtonLeft, VK_ButtonRight, VK_ButtonThrust;
+	final int						VK_ButtonLeft, VK_ButtonRight, VK_ButtonThrust;
 
-	double x, y;
-	double vx, vy;
-	double ax, ay;
-	int angle;
-	Image image;
-	Image carImage, driverImage, spotlightImage;
-	boolean throttle = false;
-	int turn = 0;
-	Knutzzz parent;
-	Sound sound;
-	int startx, starty, startangle;
-	int ID = 0;
+	double							x, y;
+	double							vx, vy;
+	double							ax, ay;
+	int								angle;
+	Image								image;
+	Image								carImage, driverImage, spotlightImage;
+	boolean							throttle	= false;
+	int								turn		= 0;
+	Knutzzz							parent;
+	Sound								sound;
+	int								startx, starty, startangle;
+	int								ID			= 0;
 
-	private KeyRequest KEYS;
-	boolean visible = true; // Sichtbarkeit des Bumpers
+	private final KeyRequest	KEYS;
+	boolean							visible	= true;											// Sichtbarkeit
+	                                                                           // des
+	                                                                           // Bumpers
 
-	KnutzzzGameObject_Bumper(Knutzzz parent, int keyCodeLeft, int keyCodeRight, int keyCodeThrust, int ID,
-			KeyRequest KEYS, boolean visible) {
+	KnutzzzGameObject_Bumper(final Knutzzz parent, final int keyCodeLeft, final int keyCodeRight, final int keyCodeThrust, final int ID, final KeyRequest KEYS,
+	      final boolean visible) {
 		this.parent = parent;
 		this.KEYS = KEYS;
 		this.visible = visible;
 
-		VK_ButtonLeft = keyCodeLeft;
-		VK_ButtonRight = keyCodeRight;
-		VK_ButtonThrust = keyCodeThrust;
+		this.VK_ButtonLeft = keyCodeLeft;
+		this.VK_ButtonRight = keyCodeRight;
+		this.VK_ButtonThrust = keyCodeThrust;
 		this.ID = ID;
 
 		switch (ID) {
 		case 0:
-			init(512, 128, 90);
+			this.init(512, 128, 90);
 			break;
 		case 1:
-			init(896, 512, 180);
+			this.init(896, 512, 180);
 			break;
 		case 2:
-			init(512, 896, 270);
+			this.init(512, 896, 270);
 			break;
 		default:
-			init(128, 512, 0);
+			this.init(128, 512, 0);
 		}
-		spotlightImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/spotlight.png");
-		loadImages(ID);
+		this.spotlightImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/spotlight.png");
+		this.loadImages(ID);
 
-		sound = new Sound();
-		sound.load("res/games/knutzzz/sfx/pling.wav");
+		this.sound = new Sound();
+		this.sound.load("res/games/knutzzz/sfx/pling.wav");
 	}
 
-	public void collide(KnutzzzGameObject_Bumper player, KnutzzzGameObject_Bumper player2) {
+	public void collide(final KnutzzzGameObject_Bumper player, final KnutzzzGameObject_Bumper player2) {
 		if (player.visible && player2.visible) {
 			// Normale
 			double nx = player2.x - player.x;
@@ -83,154 +85,163 @@ public class KnutzzzGameObject_Bumper implements Drawable, Updateable, ProceedsI
 				// player.vx-=k*player.vy;
 
 				// Normalengeschwindigkeit
-				double rvx = player2.vx - player.vx;
-				double rvy = player2.vy - player.vy;
+				final double rvx = player2.vx - player.vx;
+				final double rvy = player2.vy - player.vy;
 				// Normale normieren
-				double absn = Math.sqrt(nx * nx + ny * ny);
+				final double absn = Math.sqrt(nx * nx + ny * ny);
 				nx /= absn;
 				ny /= absn;
 
-				double vn = rvx * nx + rvy * ny;
+				final double vn = rvx * nx + rvy * ny;
 				if (vn < 0) {
 					// Kollisionspartner bewegen sich aufeinander zu
 					// Elastizitaet e=1
-					double e = 1;
+					final double e = 1;
 					double j = -(1 + e) * vn;
 					// Massen Player m=4, Ball m=1
 					j = j * 2;
 					// Impuls
-					double impx = j * nx;
-					double impy = j * ny;
+					final double impx = j * nx;
+					final double impy = j * ny;
 					player.vx -= 0.25 * impx;
 					player.vy -= 0.25 * impy;
 					player2.vx += 0.25 * impx;
 					player2.vy += 0.25 * impy;
-					sound.play();
+					this.sound.play();
 				}
 			}
 		}
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		if (visible) {
+	public void draw(final Graphics2D g) {
+		if (this.visible) {
 			// Bilder drehen
-			AffineTransform origXform = g.getTransform();
-			AffineTransform newXform = (AffineTransform) (origXform.clone());
+			final AffineTransform origXform = g.getTransform();
+			final AffineTransform newXform = (AffineTransform) origXform.clone();
 
 			// Rotationsmittelpunkt
-			double currentAngle = Math.toRadians(angle);
-			newXform.rotate(currentAngle, x, y);
+			final double currentAngle = Math.toRadians(this.angle);
+			newXform.rotate(currentAngle, this.x, this.y);
 			g.setTransform(newXform);
 
 			// Bild zeichnen
-			g.drawImage(driverImage, (int) x - 16, (int) y - 16, null);
-			g.drawImage(spotlightImage, (int) x - 16, (int) y - 16, null);
+			g.drawImage(this.driverImage, (int) this.x - 16, (int) this.y - 16, null);
+			g.drawImage(this.spotlightImage, (int) this.x - 16, (int) this.y - 16, null);
 			g.setTransform(origXform);
 		}
 	}
 
-	public void init(int x, int y, int angle) {
+	public void init(final int x, final int y, final int angle) {
 		this.x = x;
 		this.y = y;
 		this.angle = angle;
 
-		startx = x;
-		starty = y;
-		startangle = angle;
+		this.startx = x;
+		this.starty = y;
+		this.startangle = angle;
 	}
 
-	private void loadImages(int playerID) {
+	private void loadImages(final int playerID) {
 		// Bilder fuer Animation laden
 		BufferedImage shapes = null;
 		try {
 			shapes = ImageIO.read(new File("res/games/knutzzz/img/bumpershapes.png"));
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 		}
 		// Laedt die Bilder für die Animation in das Array
-		carImage = shapes.getSubimage(playerID * 32, 0, 32, 32);
-		driverImage = shapes.getSubimage(playerID * 32, 32, 32, 32);
+		this.carImage = shapes.getSubimage(playerID * 32, 0, 32, 32);
+		this.driverImage = shapes.getSubimage(playerID * 32, 32, 32, 32);
 	}
 
 	@Override
 	public void processInput() {
-		if (visible) {
-			if (parent.isGameRunning()) {
+		if (this.visible) {
+			if (this.parent.isGameRunning()) {
 				// Tastaturabfrage: Left/Right - Drehung, Button1 - Gas geben
-				if (KEYS.isPressed(VK_ButtonLeft)) {
-					turn = -4;
-				} else if (KEYS.isPressed(VK_ButtonRight)) {
-					turn = 4;
-				} else {
-					turn = 0;
+				if (this.KEYS.isPressed(this.VK_ButtonLeft)) {
+					this.turn = -4;
 				}
-				throttle = KEYS.isPressed(VK_ButtonThrust);
-			} else {
-				throttle = false;
-				turn = 0;
+				else
+					if (this.KEYS.isPressed(this.VK_ButtonRight)) {
+						this.turn = 4;
+					}
+					else {
+						this.turn = 0;
+					}
+				this.throttle = this.KEYS.isPressed(this.VK_ButtonThrust);
+			}
+			else {
+				this.throttle = false;
+				this.turn = 0;
 			}
 		}
 	}
 
 	public void reset() {
-		x = startx;
-		y = starty;
-		angle = startangle;
+		this.x = this.startx;
+		this.y = this.starty;
+		this.angle = this.startangle;
 	}
 
 	@Override
-	public void update(long elapsed) {
-		if (visible) {
-			angle += turn;
-			if (angle < 0)
-				angle += 360;
-			if (angle >= 360)
-				angle -= 360;
+	public void update(final long elapsed) {
+		if (this.visible) {
+			this.angle += this.turn;
+			if (this.angle < 0) {
+				this.angle += 360;
+			}
+			if (this.angle >= 360) {
+				this.angle -= 360;
+			}
 
-			if (throttle) {
-				ax = Math.cos(Math.toRadians(angle)) * 0.25;
-				ay = Math.sin(Math.toRadians(angle)) * 0.25;
+			if (this.throttle) {
+				this.ax = Math.cos(Math.toRadians(this.angle)) * 0.25;
+				this.ay = Math.sin(Math.toRadians(this.angle)) * 0.25;
 
 				// Geschwindigkeit aendern
-				vx += ax;
-				vy += ay;
+				this.vx += this.ax;
+				this.vy += this.ay;
 			}
-			vx *= 0.95;
-			vy *= 0.95;
+			this.vx *= 0.95;
+			this.vy *= 0.95;
 
-			if (vx < 0.1 && vx > -0.1)
-				vx = 0.0;
-			if (vy < 0.1 && vy > -0.1)
-				vy = 0.0;
+			if (this.vx < 0.1 && this.vx > -0.1) {
+				this.vx = 0.0;
+			}
+			if (this.vy < 0.1 && this.vy > -0.1) {
+				this.vy = 0.0;
+			}
 
 			// Position aendern
-			x += vx;
-			y += vy;
+			this.x += this.vx;
+			this.y += this.vy;
 
-			if (x < 48) {
-				x = 48;
-				vx = -vx;
-				sound.play();
+			if (this.x < 48) {
+				this.x = 48;
+				this.vx = -this.vx;
+				this.sound.play();
 			}
-			if (y < 48) {
-				y = 48;
-				vy = -vy;
-				sound.play();
+			if (this.y < 48) {
+				this.y = 48;
+				this.vy = -this.vy;
+				this.sound.play();
 			}
-			if (x > 976) {
-				x = 976;
-				vx = -vx;
-				sound.play();
+			if (this.x > 976) {
+				this.x = 976;
+				this.vx = -this.vx;
+				this.sound.play();
 			}
-			if (y > 976) {
-				y = 976;
-				vy = -vy;
-				sound.play();
+			if (this.y > 976) {
+				this.y = 976;
+				this.vy = -this.vy;
+				this.sound.play();
 			}
 
-			for (Object go : parent.getPROCEEDINGINPUTS()) {
+			for (final Object go : this.parent.getPROCEEDINGINPUTS()) {
 				if (go instanceof KnutzzzGameObject_Bumper && go != this) {
-					collide(this, (KnutzzzGameObject_Bumper) go);
+					this.collide(this, (KnutzzzGameObject_Bumper) go);
 				}
 			}
 		}

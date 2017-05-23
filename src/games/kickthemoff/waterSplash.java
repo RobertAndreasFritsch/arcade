@@ -8,13 +8,13 @@ import environment.model.gameobject.Drawable;
 import environment.model.gameobject.Updateable;
 
 public class waterSplash implements Drawable, Updateable {
-	private Image tex;
-	private int x, y;
-	private long timeout = 1000;
-	private Kickthemoff game;
+	private final Image			tex;
+	private final int				x, y;
+	private long					timeout	= 1000;
+	private final Kickthemoff	game;
 
-	public waterSplash(Kickthemoff game, int x, int y) {
-		tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/water_splash.gif");
+	public waterSplash(final Kickthemoff game, final int x, final int y) {
+		this.tex = Toolkit.getDefaultToolkit().createImage("res/games/kickthemoff/water_splash.gif");
 		this.x = x;
 		this.y = y;
 		this.game = game;
@@ -22,15 +22,15 @@ public class waterSplash implements Drawable, Updateable {
 	}
 
 	@Override
-	public void draw(Graphics2D g) {
-		g.drawImage(tex, x, y, null);
+	public void draw(final Graphics2D g) {
+		g.drawImage(this.tex, this.x, this.y, null);
 	}
 
 	@Override
-	public void update(long elapsed) {
-		timeout -= elapsed;
-		if (timeout <= 0) {
-			game.remove(this);
+	public void update(final long elapsed) {
+		this.timeout -= elapsed;
+		if (this.timeout <= 0) {
+			this.game.remove(this);
 		}
 	}
 

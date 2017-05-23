@@ -8,18 +8,18 @@ import environment.model.gameobject.ProceedsInput;
 
 public class Controll implements ProceedsInput {
 
-	private Game parent;
-	private KeyRequest KEYS;
+	private final Game			parent;
+	private final KeyRequest	KEYS;
 
-	public Controll(Game parent, KeyRequest KEYS) {
+	public Controll(final Game parent, final KeyRequest KEYS) {
 		this.parent = parent;
 		this.KEYS = KEYS;
 	}
 
 	@Override
 	public void processInput() {
-		if (KEYS.isPressed(KeyEvent.VK_ESCAPE)) {
-			parent.setRunning(false);
+		if (this.KEYS.isPressed(KeyEvent.VK_ESCAPE)) {
+			this.parent.setRunning(false);
 		}
 	}
 
