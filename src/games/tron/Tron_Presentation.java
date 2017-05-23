@@ -14,6 +14,7 @@ public final class Tron_Presentation implements Presentation {
 
 	private final Image img;
 
+	// Anfangsbild 
 	public Tron_Presentation() {
 		img = Toolkit.getDefaultToolkit().createImage("res/games/tron/tronbild.png");
 	}

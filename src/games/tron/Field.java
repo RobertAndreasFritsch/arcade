@@ -31,8 +31,8 @@ public class Field implements Drawable {
 //	Bild Zentralisiern | wuemer malen mit schweif 
 	@Override
 	public void draw(Graphics2D g) {
-		g.setColor(Color.WHITE);
-		g.drawRect(0, 0, 1024, 1024);
+		g.setColor(Color.WHITE);		// für den Weißen ramen
+		g.drawRect(0, 0, 1024, 1024);	// Position es ramens 
 		g.setColor(Color.BLACK);
 		g.fillRect(1, 1, 1023, 1023); 
 		Graphics2D g2 = g;

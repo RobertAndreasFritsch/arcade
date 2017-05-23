@@ -150,6 +150,7 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 			return;
 		}
 		
+		// Pfeiltasten Controlle 
 		if (KEYS.isPressed(player.UP))
 			if (!dead && dy == 0 && player.isPlaying()) { // boolean abfrage ob
 															// spieler Tot ist
@@ -176,6 +177,7 @@ public class Player implements Drawable, Updateable, ProceedsInput {
 				dy = 0;
 			}
 		
+		// Button Controll (Steren der bewegung durch die zwei BTN)
 		if(KEYS.isPressed(player.BTN1))
 			if (!dead && player.isPlaying()) {
 				if(dx == 0){
