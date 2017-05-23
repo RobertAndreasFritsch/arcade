@@ -1,7 +1,7 @@
 package games.tank;
 
 public class Feld {
-	int	typ;
-	int	textur;
+	int typ;
+	int textur;
 
 }

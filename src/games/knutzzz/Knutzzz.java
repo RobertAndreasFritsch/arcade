@@ -13,7 +13,7 @@ import games.knutzzz.graphics.Goal;
 import games.utils.Seat;
 
 /**
- *
+ * 
  * @author Joerg (Yogi) Kuhle
  * @version 1.1
  *
@@ -21,51 +21,51 @@ import games.utils.Seat;
 
 public class Knutzzz extends MyGame {
 
-	public int								step			= 0;
-	KnutzzzGameObject_Dispenser		dispenser;
-	public KnutzzzGameObject_Ball		ball;
-	Sound										sound			= new Sound();
-	KnutzzzGameObject_ScoreDisplay	scoreDisplays[];
+	public int step = 0;
+	KnutzzzGameObject_Dispenser dispenser;
+	public KnutzzzGameObject_Ball ball;
+	Sound sound = new Sound();
+	KnutzzzGameObject_ScoreDisplay scoreDisplays[];
 
-	private boolean						gameRunning	= false;
+	private boolean gameRunning = false;
 
 	// private static Knutzzz instance;
 
-	public Knutzzz(final JPanel panel, final KeyRequest KEYS) {
+	public Knutzzz(JPanel panel, KeyRequest KEYS) {
 		super(panel, KEYS);
 
-		this.add(new Floor());
+		add(new Floor());
 
 		// instance = this;
-		this.dispenser = new KnutzzzGameObject_Dispenser(this);
-		this.add(this.dispenser);
-		this.scoreDisplays = new KnutzzzGameObject_ScoreDisplay[4];
-		this.scoreDisplays[0] = new KnutzzzGameObject_ScoreDisplay(this, 0); // oben
-		this.scoreDisplays[1] = new KnutzzzGameObject_ScoreDisplay(this, 1); // rechts
-		this.scoreDisplays[2] = new KnutzzzGameObject_ScoreDisplay(this, 2); // unten
-		this.scoreDisplays[3] = new KnutzzzGameObject_ScoreDisplay(this, 3); // links
-		this.add(this.scoreDisplays[0]);
-		this.add(this.scoreDisplays[1]);
-		this.add(this.scoreDisplays[2]);
-		this.add(this.scoreDisplays[3]);
+		dispenser = new KnutzzzGameObject_Dispenser(this);
+		add(dispenser);
+		scoreDisplays = new KnutzzzGameObject_ScoreDisplay[4];
+		scoreDisplays[0] = new KnutzzzGameObject_ScoreDisplay(this, 0); // oben
+		scoreDisplays[1] = new KnutzzzGameObject_ScoreDisplay(this, 1); // rechts
+		scoreDisplays[2] = new KnutzzzGameObject_ScoreDisplay(this, 2); // unten
+		scoreDisplays[3] = new KnutzzzGameObject_ScoreDisplay(this, 3); // links
+		add(scoreDisplays[0]);
+		add(scoreDisplays[1]);
+		add(scoreDisplays[2]);
+		add(scoreDisplays[3]);
 
-		this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_4, KeyEvent.VK_6, KeyEvent.VK_7, 0, KEYS, Seat.P1.isPlaying()));
-		this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_Q, 1, KEYS, Seat.P2.isPlaying()));
-		this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_J, KeyEvent.VK_L, KeyEvent.VK_U, 2, KEYS, Seat.P3.isPlaying()));
-		this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_R, 3, KEYS, Seat.P4.isPlaying()));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_4, KeyEvent.VK_6, KeyEvent.VK_7, 0, KEYS, Seat.P1.isPlaying()));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_Q, 1, KEYS, Seat.P2.isPlaying()));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_J, KeyEvent.VK_L, KeyEvent.VK_U, 2, KEYS, Seat.P3.isPlaying()));
+		add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_R, 3, KEYS, Seat.P4.isPlaying()));
 
-		this.add(new Dispenser(this, this.dispenser));
-		this.add(new Goal());
+		add(new Dispenser(this, dispenser));
+		add(new Goal());
 
-		this.add(new WinnerControl(this, KEYS));
+		add(new WinnerControl(this, KEYS));
 
 	}
 
 	public boolean isGameRunning() {
-		return this.gameRunning;
+		return gameRunning;
 	}
 
-	public void setGameRunning(final boolean gameRunning) {
+	public void setGameRunning(boolean gameRunning) {
 		this.gameRunning = gameRunning;
 	}
 

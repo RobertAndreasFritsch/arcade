@@ -13,7 +13,7 @@ import environment.model.Window;
  *
  */
 public final class PongPresentation {
-	public static Game getGame(final JPanel jPanel, final Window window) {
+	public static Game getGame(JPanel jPanel, Window window) {
 		return new Pong(jPanel, (KeyRequest) window);
 	}
 

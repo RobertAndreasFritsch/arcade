@@ -11,7 +11,7 @@ import environment.model.gameobject.Drawable;
 
 public interface Presentation extends Drawable {
 	@Override
-	default void draw(final Graphics2D g) {
+	default void draw(Graphics2D g) {
 		g.setFont(new Font("Arial", Font.PLAIN, 30));
 		g.drawString(this.getClass().getName(), 45, 75);
 	}

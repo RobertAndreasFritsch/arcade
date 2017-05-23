@@ -9,7 +9,7 @@ import environment.model.gameobject.Drawable;
 public class Background implements Drawable {
 
 	@Override
-	public void draw(final Graphics2D g) {
+	public void draw(Graphics2D g) {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
 	}

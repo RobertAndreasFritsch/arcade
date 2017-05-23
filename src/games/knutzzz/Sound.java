@@ -11,52 +11,50 @@ import javax.sound.sampled.DataLine;
 public class Sound {
 	Clip sfx = null;
 
-	public void instantPlay(final String filename) {
+	public void instantPlay(String filename) {
 		// Soundeffekt laden und abspielen
-		final File file = new File(filename);
+		File file = new File(filename);
 		try {
-			final AudioInputStream stream = AudioSystem.getAudioInputStream(file);
-			final AudioFormat format = stream.getFormat();
-			final int size = (int) (format.getFrameSize() * stream.getFrameLength());
-			final byte[] audio = new byte[size];
-			final DataLine.Info info = new DataLine.Info(Clip.class, format, size); // Line
+			AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+			AudioFormat format = stream.getFormat();
+			int size = (int) (format.getFrameSize() * stream.getFrameLength());
+			byte[] audio = new byte[size];
+			DataLine.Info info = new DataLine.Info(Clip.class, format, size); // Line
 			// beschaffen
 			stream.read(audio, 0, size);
-			this.sfx = (Clip) AudioSystem.getLine(info);
-			this.sfx.open(format, audio, 0, size); // reserviert Ressourcen,
-		}
-		catch (final Exception e) {
+			sfx = (Clip) AudioSystem.getLine(info);
+			sfx.open(format, audio, 0, size); // reserviert Ressourcen,
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		if (this.sfx != null) {
-			this.sfx.start(); // Clip wird einmal abgespielt
+		if (sfx != null) {
+			sfx.start(); // Clip wird einmal abgespielt
 		}
 	}
 
-	public void load(final String filename) {
+	public void load(String filename) {
 		// Soundeffekt laden
-		final File file = new File(filename);
+		File file = new File(filename);
 		try {
-			final AudioInputStream stream = AudioSystem.getAudioInputStream(file);
-			final AudioFormat format = stream.getFormat();
-			final int size = (int) (format.getFrameSize() * stream.getFrameLength());
-			final byte[] audio = new byte[size];
-			final DataLine.Info info = new DataLine.Info(Clip.class, format, size); // Line
+			AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+			AudioFormat format = stream.getFormat();
+			int size = (int) (format.getFrameSize() * stream.getFrameLength());
+			byte[] audio = new byte[size];
+			DataLine.Info info = new DataLine.Info(Clip.class, format, size); // Line
 			// beschaffen
 			stream.read(audio, 0, size);
-			this.sfx = (Clip) AudioSystem.getLine(info);
-			this.sfx.open(format, audio, 0, size); // reserviert Ressourcen,
-		}
-		catch (final Exception e) {
+			sfx = (Clip) AudioSystem.getLine(info);
+			sfx.open(format, audio, 0, size); // reserviert Ressourcen,
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void play() {
-		if (this.sfx != null) {
-			this.sfx.setFramePosition(0);
-			this.sfx.start(); // Clip wird einmal abgespielt
+		if (sfx != null) {
+			sfx.setFramePosition(0);
+			sfx.start(); // Clip wird einmal abgespielt
 		}
 	}
 }

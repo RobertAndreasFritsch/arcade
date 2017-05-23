@@ -11,13 +11,13 @@ public class Floor implements Drawable {
 	Image floorImage;
 
 	public Floor() {
-		this.floorImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/backdrop.png");
+		floorImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/backdrop.png");
 	}
 
 	@Override
-	public void draw(final Graphics2D g) {
+	public void draw(Graphics2D g) {
 
-		g.drawImage(this.floorImage, 0, 0, null);
+		g.drawImage(floorImage, 0, 0, null);
 
 	}
 

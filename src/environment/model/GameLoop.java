@@ -8,9 +8,9 @@ public interface GameLoop extends Runnable {
 
 	/**
 	 * <h1>getActiveGame()</h1>
-	 *
+	 * 
 	 * some discr
-	 *
+	 * 
 	 * @author r.fritsch2511
 	 * @return
 	 */
@@ -22,7 +22,7 @@ public interface GameLoop extends Runnable {
 	public void setActiveGame(Game activeGame);
 
 	/**
-	 *
+	 * 
 	 */
 	public void start();
 

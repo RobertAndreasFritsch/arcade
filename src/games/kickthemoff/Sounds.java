@@ -9,23 +9,25 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
 public enum Sounds {
-	water_splash0("res/games/kickthemoff/water_splash.wav"), pling("res/games/kickthemoff/pling.wav"), falling("res/games/kickthemoff/falling.wav");
+	water_splash0("res/games/kickthemoff/water_splash.wav"), pling("res/games/kickthemoff/pling.wav"), falling(
+			"res/games/kickthemoff/falling.wav");
 
 	private String filename;
+	private Clip sfx;
 
-	Sounds(final String f) {
+	Sounds(String f) {
 		this.filename = f;
 	}
 
 	void play() {
 		Clip sfx = null;
-		final File file = new File(this.filename);
+		File file = new File(filename);
 		try {
-			final AudioInputStream stream = AudioSystem.getAudioInputStream(file);
-			final AudioFormat format = stream.getFormat();
-			final int size = (int) (format.getFrameSize() * stream.getFrameLength());
-			final byte[] audio = new byte[size];
-			final DataLine.Info info = new DataLine.Info(Clip.class, format, size);
+			AudioInputStream stream = AudioSystem.getAudioInputStream(file);
+			AudioFormat format = stream.getFormat();
+			int size = (int) (format.getFrameSize() * stream.getFrameLength());
+			byte[] audio = new byte[size];
+			DataLine.Info info = new DataLine.Info(Clip.class, format, size);
 			stream.read(audio, 0, size);
 			sfx = (Clip) AudioSystem.getLine(info);
 			sfx.open(format, audio, 0, size);
@@ -33,8 +35,7 @@ public enum Sounds {
 			if (sfx != null) {
 				sfx.start();
 			}
-		}
-		catch (final Exception e) {
+		} catch (Exception e) {
 		}
 	}
 

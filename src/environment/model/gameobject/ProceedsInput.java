@@ -7,7 +7,7 @@ package environment.model.gameobject;
 public interface ProceedsInput {
 
 	/**
-	 *
+	 * 
 	 */
 	public void processInput();
 }

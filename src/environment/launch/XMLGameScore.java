@@ -14,39 +14,36 @@ import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 
 public class XMLGameScore {
-	private Document			doc;
-	private final Element	root;
-	private final File		f;
+	private Document doc;
+	private Element root;
+	private File f;
 
-	public XMLGameScore(final File f) {
+	public XMLGameScore(File f) {
 		this.f = f;
-		this.doc = new Document("");
-		this.doc.appendElement("Game");
+		doc = new Document("");
+		doc.appendElement("Game");
 		try {
-			this.doc = Jsoup.parse(this.readFile(f), "", Parser.xmlParser());
+			doc = Jsoup.parse(readFile(f), "", Parser.xmlParser());
+		} catch (IOException e) {
 		}
-		catch (final IOException e) {
-		}
-		this.root = this.doc.getElementsByTag("Game").get(0);
+		root = doc.getElementsByTag("Game").get(0);
 	}
 
-	public void addEntry(final String name, final int value) {
-		if (this.root.getElementsByAttributeValue("name", name).size() == 0) {
-			this.root.appendElement("entry");
-			this.root.children().last().attr("name", name);
-			this.root.children().last().attr("score", Integer.toString(value));
+	public void addEntry(String name, int value) {
+		if (root.getElementsByAttributeValue("name", name).size() == 0) {
+			root.appendElement("entry");
+			root.children().last().attr("name", name);
+			root.children().last().attr("score", Integer.toString(value));
+		} else if (value > Integer.parseInt(root.getElementsByAttributeValue("name", name).attr("score"))) {
+			root.getElementsByAttributeValue("name", name).attr("score", Integer.toString(value));
 		}
-		else
-			if (value > Integer.parseInt(this.root.getElementsByAttributeValue("name", name).attr("score"))) {
-				this.root.getElementsByAttributeValue("name", name).attr("score", Integer.toString(value));
-			}
 	}
 
 	public String[][] getAsTable() {
-		final String[][] res = new String[2][this.root.children().size() > 5 ? 5 : this.root.children().size()];
+		String[][] res = new String[2][root.children().size() > 5 ? 5 : root.children().size()];
 
 		int counter = 0;
-		for (final Element e : this.root.children()) {
+		for (Element e : root.children()) {
 			if (counter == 5) {
 				break;
 			}
@@ -59,10 +56,10 @@ public class XMLGameScore {
 		return res;
 	}
 
-	public String readFile(final File f) throws IOException {
+	public String readFile(File f) throws IOException {
 		String res = "";
 
-		final BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+		BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
 		String line = null;
 		while ((line = r.readLine()) != null) {
 			res += line;
@@ -74,21 +71,20 @@ public class XMLGameScore {
 
 	public void save() {
 		try {
-			this.writeFile(this.f);
-		}
-		catch (final IOException e) {
+			writeFile(f);
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public String toString() {
-		return this.doc.html();
+		return doc.html();
 	}
 
-	public void writeFile(final File f) throws FileNotFoundException {
+	public void writeFile(File f) throws FileNotFoundException {
 		new File(f.getParent()).mkdirs();
-		final PrintStream p = new PrintStream(f);
+		PrintStream p = new PrintStream(f);
 		p.print(this);
 		p.close();
 	}

@@ -8,29 +8,29 @@ import environment.model.gameobject.Drawable;
 import environment.model.gameobject.Updateable;
 
 public class KnutzzzGameObject_Ball implements Updateable, Drawable {
-	static final int	START			= 0;
-	static final int	GAME			= 1;
-	static final int	GOAL			= 2;
+	static final int START = 0;
+	static final int GAME = 1;
+	static final int GOAL = 2;
 
-	double				x, y;
-	public double		vx;
-	public double		vy;
-	Image					ballImage;
-	Sound					sound;
+	double x, y;
+	public double vx;
+	public double vy;
+	Image ballImage;
+	Sound sound;
 	// int state = GAME;
-	public boolean		goal			= false;
-	Knutzzz				parent;
-	int					lastTouch	= 0;
+	public boolean goal = false;
+	Knutzzz parent;
+	int lastTouch = 0;
 
-	public KnutzzzGameObject_Ball(final Knutzzz parent) {
+	public KnutzzzGameObject_Ball(Knutzzz parent) {
 		this.parent = parent;
-		this.ballImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/ball.png");
-		this.sound = new Sound();
+		ballImage = Toolkit.getDefaultToolkit().getImage("res/games/knutzzz/img/ball.png");
+		sound = new Sound();
 		// sound.load("res/games/knutzzz/sfx/thud.wav");
-		this.init();
+		init();
 	}
 
-	public void collide(final KnutzzzGameObject_Ball ball, final KnutzzzGameObject_Bumper player) {
+	public void collide(KnutzzzGameObject_Ball ball, KnutzzzGameObject_Bumper player) {
 		if (player.visible) {
 			double nx = ball.x - player.x;
 			double ny = ball.y - player.y;
@@ -46,24 +46,24 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 				// player.vx-=k*player.vy;
 
 				// Normalengeschwindigkeit
-				final double rvx = ball.vx - player.vx;
-				final double rvy = ball.vy - player.vy;
+				double rvx = ball.vx - player.vx;
+				double rvy = ball.vy - player.vy;
 				// Normale normieren
-				final double absn = Math.sqrt(nx * nx + ny * ny);
+				double absn = Math.sqrt(nx * nx + ny * ny);
 				nx /= absn;
 				ny /= absn;
 
-				final double vn = rvx * nx + rvy * ny;
+				double vn = rvx * nx + rvy * ny;
 				if (vn < 0) {
 					// Kollisionspartner bewegen sich aufeinander zu
 					// Elastizitaet e=1
-					final double e = 1;
+					double e = 1;
 					double j = -(1 + e) * vn;
 					// Massen Player m=4, Ball m=1
 					j = j / (1 / 4 + 1 / 1);
 					// Impuls
-					final double impx = j * nx;
-					final double impy = j * ny;
+					double impx = j * nx;
+					double impy = j * ny;
 					player.vx -= 1 / 4 * impx;
 					player.vy -= 1 / 4 * impy;
 					ball.vx += impx;
@@ -72,159 +72,136 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable {
 
 				// for (int i=0; i<4; i++)
 				// if (players.get(i)==player)
-				this.lastTouch = player.ID;
+				lastTouch = player.ID;
 			}
 		}
 	}
 
 	@Override
-	public void draw(final Graphics2D g) {
-		g.drawImage(this.ballImage, (int) this.x - 8, (int) this.y - 8, null);
+	public void draw(Graphics2D g) {
+		g.drawImage(ballImage, (int) x - 8, (int) y - 8, null);
 	}
 
 	public void init() {
-		this.x = 512;
-		this.y = 512;
-		this.vx = 0;
-		this.vy = 0;
+		x = 512;
+		y = 512;
+		vx = 0;
+		vy = 0;
 		// state = GAME;
-		this.goal = false;
+		goal = false;
 	}
 
 	@Override
-	public void update(final long elapsed) {
-		this.x += this.vx;
-		this.y += this.vy;
+	public void update(long elapsed) {
+		x += vx;
+		y += vy;
 
 		// Ball abbremsen (Reibung)
-		this.vx *= 0.99;
-		this.vy *= 0.99;
+		vx *= 0.99;
+		vy *= 0.99;
 
 		// Ball stoppen, wenn er zu langsam ist
-		if (this.vx * this.vx + this.vy * this.vy < 0.01) {
-			this.vx = 0;
-			this.vy = 0;
+		if (vx * vx + vy * vy < 0.01) {
+			vx = 0;
+			vy = 0;
 		}
 
 		// Maximale Geschwindigkeit begrenzen
-		final double rootv = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+		double rootv = Math.sqrt(vx * vx + vy * vy);
 		if (rootv > 24) {
-			this.vx /= rootv * 24.0;
-			this.vy /= rootv * 24.0;
+			vx /= rootv * 24.0;
+			vy /= rootv * 24.0;
 		}
 
-		if (this.x < 40) {
+		if (x < 40) {
 			// Ball prallt links ab oder fliegt ins Tor
-			if (this.y < 440 || this.y > 582) {
-				this.x = 40;
-				this.vx = -this.vx;
+			if (y < 440 || y > 582) {
+				x = 40;
+				vx = -vx;
 				// sound.play();
-				this.sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
-			}
-			else
-				if (this.y < 448 || this.y > 574) {
-					this.vy = -this.vy;
-				}
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
+			} else if (y < 448 || y > 574)
+				vy = -vy;
 		}
-		if (this.y < 40) {
+		if (y < 40) {
 			// Ball prallt oben ab oder fliegt ins Tor
-			if (this.x < 440 || this.x > 582) {
-				this.y = 40;
-				this.vy = -this.vy;
+			if (x < 440 || x > 582) {
+				y = 40;
+				vy = -vy;
 				// sound.play();
-				this.sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
-			}
-			else
-				if (this.x < 448 || this.x > 574) {
-					this.vx = -this.vx;
-				}
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
+			} else if (x < 448 || x > 574)
+				vx = -vx;
 
 		}
-		if (this.x > 984) {
+		if (x > 984) {
 			// Ball prallt rechts ab oder fliegt ins Tor
-			if (this.y < 440 || this.y > 582) {
-				this.x = 984;
-				this.vx = -this.vx;
+			if (y < 440 || y > 582) {
+				x = 984;
+				vx = -vx;
 				// sound.play();
-				this.sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
-			}
-			else
-				if (this.y < 448 || this.y > 574) {
-					this.vy = -this.vy;
-				}
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
+			} else if (y < 448 || y > 574)
+				vy = -vy;
 		}
 
-		if (this.y > 984) {
+		if (y > 984) {
 			// Ball prallt unten ab oder fliegt ins Tor
-			if (this.x < 440 || this.x > 582) {
-				this.y = 984;
-				this.vy = -this.vy;
+			if (x < 440 || x > 582) {
+				y = 984;
+				vy = -vy;
 				// sound.play();
-				this.sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
+				sound.instantPlay("res/games/knutzzz/sfx/thud.wav");
+			} else if (x < 448 || x > 574) {
+				vx = -vx;
 			}
-			else
-				if (this.x < 448 || this.x > 574) {
-					this.vx = -this.vx;
-				}
 		}
 
-		if (!this.goal && (this.x < 20 || this.y < 20 || this.x > 1004 || this.y > 1004)) {
-			this.goal = true;
-			this.sound.instantPlay("res/games/knutzzz/sfx/horn.wav");
+		if (!goal && (x < 20 || y < 20 || x > 1004 || y > 1004)) {
+			goal = true;
+			sound.instantPlay("res/games/knutzzz/sfx/horn.wav");
 
 			// Punkte vergeben:
 			// - Fuer das gegenueberliegende Tor
 			// - Fuer den Spieler, der den Ball gespielt hat
 			// - Abzug fuer Eigentore
-			if (this.y < 20) {
+			if (y < 20) {
 				// Ball fliegt ins obere Tor
-				this.parent.scoreDisplays[2].score++;
-				if (this.lastTouch != 0) {
-					this.parent.scoreDisplays[this.lastTouch].score++;
-				}
-				else
-					if (this.parent.scoreDisplays[0].score > 0) {
-						this.parent.scoreDisplays[0].score--;
-					}
+				parent.scoreDisplays[2].score++;
+				if (lastTouch != 0)
+					parent.scoreDisplays[lastTouch].score++;
+				else if (parent.scoreDisplays[0].score > 0)
+					parent.scoreDisplays[0].score--;
 			}
-			if (this.y > 1004) {
+			if (y > 1004) {
 				// Ball fliegt ins untere Tor
-				this.parent.scoreDisplays[0].score++;
-				if (this.lastTouch != 2) {
-					this.parent.scoreDisplays[this.lastTouch].score++;
-				}
-				else
-					if (this.parent.scoreDisplays[1].score > 0) {
-						this.parent.scoreDisplays[1].score--;
-					}
+				parent.scoreDisplays[0].score++;
+				if (lastTouch != 2)
+					parent.scoreDisplays[lastTouch].score++;
+				else if (parent.scoreDisplays[1].score > 0)
+					parent.scoreDisplays[1].score--;
 			}
-			if (this.x < 20) {
+			if (x < 20) {
 				// Ball fliegt ins linke Tor
-				this.parent.scoreDisplays[1].score++;
-				if (this.lastTouch != 3) {
-					this.parent.scoreDisplays[this.lastTouch].score++;
-				}
-				else
-					if (this.parent.scoreDisplays[3].score > 0) {
-						this.parent.scoreDisplays[3].score--;
-					}
+				parent.scoreDisplays[1].score++;
+				if (lastTouch != 3)
+					parent.scoreDisplays[lastTouch].score++;
+				else if (parent.scoreDisplays[3].score > 0)
+					parent.scoreDisplays[3].score--;
 			}
-			if (this.x > 1004) {
+			if (x > 1004) {
 				// Ball fliegt ins rechte Tor
-				this.parent.scoreDisplays[3].score++;
-				if (this.lastTouch != 1) {
-					this.parent.scoreDisplays[this.lastTouch].score++;
-				}
-				else
-					if (this.parent.scoreDisplays[1].score > 0) {
-						this.parent.scoreDisplays[1].score--;
-					}
+				parent.scoreDisplays[3].score++;
+				if (lastTouch != 1)
+					parent.scoreDisplays[lastTouch].score++;
+				else if (parent.scoreDisplays[1].score > 0)
+					parent.scoreDisplays[1].score--;
 			}
 		}
 
-		for (final Object go : this.parent.getPROCEEDINGINPUTS()) {
+		for (Object go : parent.getPROCEEDINGINPUTS()) {
 			if (go instanceof KnutzzzGameObject_Bumper) {
-				this.collide(this, (KnutzzzGameObject_Bumper) go);
+				collide(this, (KnutzzzGameObject_Bumper) go);
 			}
 		}
 	}

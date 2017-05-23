@@ -10,30 +10,29 @@ import environment.model.gameobject.Updateable;
 
 public class ExplosionPoint implements Drawable, Updateable {
 
-	private int				x, y;
-	private Bomberman		game;
-	private Player			Dropper;
-	private boolean		gone	= false;
-	private final Image	i		= Toolkit.getDefaultToolkit().createImage("res/games/bomberman/explosion.gif");;
+	private int x, y;
+	private Bomberman game;
+	private Player Dropper;
+	private boolean gone = false;
+	private Image i = Toolkit.getDefaultToolkit().createImage("res/games/bomberman/explosion.gif");;
 
-	public ExplosionPoint(final Bomberman game, final int x, final int y, final Player Dropper, final long timeout) {
+	public ExplosionPoint(Bomberman game, int x, int y, Player Dropper, final long timeout) {
 		this.x = x;
 		this.y = y;
 		this.game = game;
 		this.Dropper = Dropper;
 
-		if (x / 32 >= 0 & x / 32 < 32 & y / 32 >= 0 & y / 32 < 32) {
+		if ((x / 32 >= 0 & x / 32 < 32) & (y / 32 >= 0 & y / 32 < 32)) {
 			if (game.getField().ground[x / 32][y / 32] == 1) {
 				game.getField().ground[x / 32][y / 32] = 0;
 				Dropper.setScore(Dropper.getScore() + Bomberman.BLOCK_DESTROY_SCORE);
 			}
-		}
-		else {
-			this.disappear();
+		} else {
+			disappear();
 			return;
 		}
 
-		for (final Bomb b : new ArrayList<>(Bomb.bombs)) {
+		for (Bomb b : new ArrayList<Bomb>(Bomb.bombs)) {
 			if (b.getX() == x & b.getY() == y) {
 				b.explode();
 			}
@@ -44,99 +43,100 @@ public class ExplosionPoint implements Drawable, Updateable {
 			public void run() {
 				try {
 					Thread.sleep(timeout);
-				}
-				catch (final InterruptedException e) {
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				ExplosionPoint.this.disappear();
+				disappear();
 			}
 		}.start();
 	}
 
 	private void disappear() {
-		if (this.gone) { return; }
-		this.game.remove(this);
-		this.gone = true;
+		if (gone) {
+			return;
+		}
+		game.remove(this);
+		gone = true;
 	}
 
 	@Override
-	public void draw(final Graphics2D g) {
-		if (this.gone) { return; }
-		g.drawImage(this.i, this.x, this.y, 32, 32, null);
+	public void draw(Graphics2D g) {
+		if (gone) {
+			return;
+		}
+		g.drawImage(i, x, y, 32, 32, null);
 	}
 
 	@Override
-	public void update(final long elapsed) {
-		if (this.gone) { return; }
-		if (this.game.Player1 != null) {
-			if (this.game.Player1.getX() == this.x && this.game.Player1.getY() == this.y & !this.game.Player1.isDead()) {
-				this.game.Player1.die();
-				final ArrayList<Sounds> s = new ArrayList<>();
-				for (final Sounds c : Sounds.class.getEnumConstants()) {
+	public void update(long elapsed) {
+		if (gone) {
+			return;
+		}
+		if (game.Player1 != null) {
+			if (game.Player1.getX() == x && game.Player1.getY() == y & !game.Player1.isDead()) {
+				game.Player1.die();
+				ArrayList<Sounds> s = new ArrayList<Sounds>();
+				for (Sounds c : Sounds.class.getEnumConstants()) {
 					if (c.name().contains("scream")) {
 						s.add(c);
 					}
 				}
 				s.get((int) (Math.random() * s.size())).play();
-				if (this.Dropper == this.game.Player1) {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
-				}
-				else {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
+				if (Dropper == game.Player1) {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
+				} else {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
 				}
 			}
 		}
-		if (this.game.Player2 != null) {
-			if (this.game.Player2.getX() == this.x && this.game.Player2.getY() == this.y & !this.game.Player2.isDead()) {
-				this.game.Player2.die();
-				final ArrayList<Sounds> s = new ArrayList<>();
-				for (final Sounds c : Sounds.class.getEnumConstants()) {
+		if (game.Player2 != null) {
+			if (game.Player2.getX() == x && game.Player2.getY() == y & !game.Player2.isDead()) {
+				game.Player2.die();
+				ArrayList<Sounds> s = new ArrayList<Sounds>();
+				for (Sounds c : Sounds.class.getEnumConstants()) {
 					if (c.name().contains("scream")) {
 						s.add(c);
 					}
 				}
 				s.get((int) (Math.random() * s.size())).play();
-				if (this.Dropper == this.game.Player2) {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
-				}
-				else {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
+				if (Dropper == game.Player2) {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
+				} else {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
 				}
 			}
 		}
-		if (this.game.Player3 != null) {
-			if (this.game.Player3.getX() == this.x && this.game.Player3.getY() == this.y & !this.game.Player3.isDead()) {
-				this.game.Player3.die();
-				final ArrayList<Sounds> s = new ArrayList<>();
-				for (final Sounds c : Sounds.class.getEnumConstants()) {
+		if (game.Player3 != null) {
+			if (game.Player3.getX() == x && game.Player3.getY() == y & !game.Player3.isDead()) {
+				game.Player3.die();
+				ArrayList<Sounds> s = new ArrayList<Sounds>();
+				for (Sounds c : Sounds.class.getEnumConstants()) {
 					if (c.name().contains("scream")) {
 						s.add(c);
 					}
 				}
 				s.get((int) (Math.random() * s.size())).play();
-				if (this.Dropper == this.game.Player3) {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
-				}
-				else {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
+				if (Dropper == game.Player3) {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
+				} else {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
 				}
 			}
 		}
-		if (this.game.Player4 != null) {
-			if (this.game.Player4.getX() == this.x && this.game.Player4.getY() == this.y & !this.game.Player4.isDead()) {
-				this.game.Player4.die();
-				final ArrayList<Sounds> s = new ArrayList<>();
-				for (final Sounds c : Sounds.class.getEnumConstants()) {
+		if (game.Player4 != null) {
+			if (game.Player4.getX() == x && game.Player4.getY() == y & !game.Player4.isDead()) {
+				game.Player4.die();
+				ArrayList<Sounds> s = new ArrayList<Sounds>();
+				for (Sounds c : Sounds.class.getEnumConstants()) {
 					if (c.name().contains("scream")) {
 						s.add(c);
 					}
 				}
 				s.get((int) (Math.random() * s.size())).play();
-				if (this.Dropper == this.game.Player4) {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
-				}
-				else {
-					this.Dropper.setScore(this.Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
+				if (Dropper == game.Player4) {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_SUICIDE_SCORE);
+				} else {
+					Dropper.setScore(Dropper.getScore() + Bomberman.PLAYER_KILL_SCORE);
 				}
 			}
 		}

@@ -9,18 +9,18 @@ import environment.model.gameobject.ProceedsInput;
 import games.utils.Seat;
 
 public class Player implements Drawable, ProceedsInput {
-	private final Seat			s;
-	private int						x, y;
-	private final KeyRequest	keys;
-	private final long			WAIT_UNTIL_NEXT_MOVE	= 100;
-	private final long			WAIT_UNTIL_NEXT_BOMB	= 1000;
-	private final long			BOMB_TIMEOUT			= 1500;
-	private boolean				canMove					= true, canDropBomb = true, dead = false;
-	private final Field			f;
-	private final Bomberman		game;
-	private int						score						= 1;
+	private Seat s;
+	private int x, y;
+	private KeyRequest keys;
+	private long WAIT_UNTIL_NEXT_MOVE = 100;
+	private long WAIT_UNTIL_NEXT_BOMB = 1000;
+	private long BOMB_TIMEOUT = 1500;
+	private boolean canMove = true, canDropBomb = true, dead = false;
+	private Field f;
+	private Bomberman game;
+	private int score = 1;
 
-	public Player(final Bomberman game, final KeyRequest keys, final Seat s, final Field f, final int x, final int y) {
+	public Player(Bomberman game, KeyRequest keys, Seat s, Field f, int x, int y) {
 		this.s = s;
 		this.x = x;
 		this.y = y;
@@ -30,114 +30,114 @@ public class Player implements Drawable, ProceedsInput {
 	}
 
 	private void bombDropped() {
-		this.canDropBomb = false;
+		canDropBomb = false;
 		new Thread() {
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(Player.this.WAIT_UNTIL_NEXT_BOMB);
-				}
-				catch (final InterruptedException e) {
+					Thread.sleep(WAIT_UNTIL_NEXT_BOMB);
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				Player.this.canDropBomb = true;
+				canDropBomb = true;
 			}
 		}.start();
 	}
 
 	public void die() {
-		this.dead = true;
+		dead = true;
 	}
 
 	@Override
-	public void draw(final Graphics2D g) {
-		if (!this.dead) {
-			g.setColor(this.s.getColor());
-			g.fillRoundRect(this.x, this.y, 32, 32, 50, 50);
+	public void draw(Graphics2D g) {
+		if (!dead) {
+			g.setColor(s.getColor());
+			g.fillRoundRect(x, y, 32, 32, 50, 50);
 		}
 	}
 
 	public Color getColor() {
-		return this.s.getColor();
+		return s.getColor();
 	}
 
 	public int getScore() {
-		return this.score;
+		return score;
 	}
 
 	public int getX() {
-		return this.x;
+		return x;
 	}
 
 	public int getY() {
-		return this.y;
+		return y;
 	}
 
 	public boolean isDead() {
-		return this.dead;
+		return dead;
 	}
 
 	private void moved() {
-		this.canMove = false;
+		canMove = false;
 		new Thread() {
 			@Override
 			public void run() {
 				try {
-					Thread.sleep(Player.this.WAIT_UNTIL_NEXT_MOVE);
-				}
-				catch (final InterruptedException e) {
+					Thread.sleep(WAIT_UNTIL_NEXT_MOVE);
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				Player.this.canMove = true;
+				canMove = true;
 			}
 		}.start();
 	}
 
 	@Override
 	public void processInput() {
-		if (this.dead) { return; }
-		if (this.canMove) {
-			if (this.y / 32 - 1 >= 0 & this.y / 32 - 1 < 32) {
-				if (this.keys.isPressed(this.s.UP) & this.f.ground[this.x / 32][this.y / 32 - 1] == 0) {
-					this.y -= 32;
-					this.moved();
+		if (dead) {
+			return;
+		}
+		if (canMove) {
+			if (y / 32 - 1 >= 0 & y / 32 - 1 < 32) {
+				if (keys.isPressed(s.UP) & f.ground[x / 32][y / 32 - 1] == 0) {
+					y -= 32;
+					moved();
 					return;
 				}
 			}
-			if (this.y / 32 + 1 >= 0 & this.y / 32 + 1 < 32) {
-				if (this.keys.isPressed(this.s.DOWN) & this.f.ground[this.x / 32][this.y / 32 + 1] == 0) {
-					this.y += 32;
-					this.moved();
+			if (y / 32 + 1 >= 0 & y / 32 + 1 < 32) {
+				if (keys.isPressed(s.DOWN) & f.ground[x / 32][y / 32 + 1] == 0) {
+					y += 32;
+					moved();
 					return;
 				}
 			}
-			if (this.x / 32 - 1 >= 0 & this.x / 32 - 1 < 32) {
-				if (this.keys.isPressed(this.s.LEFT) & this.f.ground[this.x / 32 - 1][this.y / 32] == 0) {
-					this.x -= 32;
-					this.moved();
+			if (x / 32 - 1 >= 0 & x / 32 - 1 < 32) {
+				if (keys.isPressed(s.LEFT) & f.ground[x / 32 - 1][y / 32] == 0) {
+					x -= 32;
+					moved();
 					return;
 				}
 			}
-			if (this.x / 32 + 1 >= 0 & this.x / 32 + 1 < 32) {
-				if (this.keys.isPressed(this.s.RIGHT) & this.f.ground[this.x / 32 + 1][this.y / 32] == 0) {
-					this.x += 32;
-					this.moved();
+			if (x / 32 + 1 >= 0 & x / 32 + 1 < 32) {
+				if (keys.isPressed(s.RIGHT) & f.ground[x / 32 + 1][y / 32] == 0) {
+					x += 32;
+					moved();
 					return;
 				}
 			}
 		}
-		if (this.canDropBomb) {
-			if (this.keys.isPressed(this.s.BTN1) & this.canDropBomb) {
-				// game.getDrawables().add();
-				this.game.add(new Bomb(this.game, this.s.getColor(), this, this.x, this.y, 3, this.BOMB_TIMEOUT));
-				this.bombDropped();
+		if (canDropBomb) {
+			if (keys.isPressed(s.BTN1) & canDropBomb) {
+//				game.getDrawables().add();
+				game.add(new Bomb(game, s.getColor(), this, x, y, 3, BOMB_TIMEOUT));
+				bombDropped();
 			}
 		}
 	}
 
-	public void setScore(final int score) {
+	public void setScore(int score) {
 		this.score = score;
-		this.s.setScore(score);
+		s.setScore(score);
 	}
 
 }

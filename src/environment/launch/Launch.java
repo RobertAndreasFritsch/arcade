@@ -13,10 +13,10 @@ public class Launch {
 
 	public static final boolean debugMode = true;
 
-	public static void main(final String[] args) {
+	public static void main(String[] args) {
 
 		final Window window = MyWindow.getInstance();
-		final KeyRequest keys = Launch.debugMode ? ComputerKeyRequest.getInstance() : MicroControllerKeyRequest.getInstance();
+		final KeyRequest keys = debugMode ? ComputerKeyRequest.getInstance() : MicroControllerKeyRequest.getInstance();
 
 		window.addKeyListener((KeyListener) keys);
 

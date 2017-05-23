@@ -15,20 +15,21 @@ public class Kickthemoff_Presentation implements Presentation {
 
 	private final Image img;
 
+
 	/**
 	 * @throws IOException
 	 */
 	public Kickthemoff_Presentation() {
-		this.img = Toolkit.getDefaultToolkit().getImage("res/games/kickthemoff/kickthemoff_Presentation.png");
+		img = Toolkit.getDefaultToolkit().getImage("res/games/kickthemoff/kickthemoff_Presentation.png");
 	}
 
 	@Override
-	public void draw(final Graphics2D g) {
-		g.drawImage(this.img, 0, 0, 1024, 1024, null);
+	public void draw(Graphics2D g) {
+		g.drawImage(img, 0, 0, 1024,1024, null);
 	}
 
 	@Override
-	public Game getGame(final JPanel panel, final KeyRequest KEYS) {
+	public Game getGame(JPanel panel, KeyRequest KEYS) {
 		return new Kickthemoff(panel, KEYS);
 	}
 

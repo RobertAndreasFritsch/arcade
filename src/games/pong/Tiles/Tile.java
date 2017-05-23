@@ -13,173 +13,171 @@ import games.utils.Seat;
 
 public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 
-	public static final int		SPEED	= 30;					// TODO hard coded
+	public static final int SPEED = 30; // TODO hard coded
 
-	static int						i		= 0;
-	public final Seat				player;
-	private int						Tor;
-	private int						width;
-	private int						height;
-	private int						Pkt;
+	static int i = 0;
+	public final Seat player;
+	private int Tor;
+	private int width;
+	private int height;
+	private int Pkt;
 	/**
-	 *
+	 * 
 	 */
-	Rectangle						rect;
+	Rectangle rect;
 
 	/**
-	 *
+	 * 
 	 */
-	boolean							stateLeft, stateRight;
+	boolean stateLeft, stateRight;
 
-	private final KeyRequest	KEYS;
+	private KeyRequest KEYS;
 
 	/**
 	 * @param keyCode1
 	 * @param keyCode2
 	 * @throws Exception
 	 */
-	public Tile(final Seat player, final KeyRequest KEYS) {
+	public Tile(Seat player, KeyRequest KEYS) {
 		this.player = player;
 		this.KEYS = KEYS;
-		this.init();
+		init();
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	public abstract void actionLeft();
 
 	/**
-	 *
+	 * 
 	 */
 	public abstract void actionRight();
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see gamelibrary.GameObject#paint(java.awt.Graphics2D)
 	 */
 	@Override
-	public void draw(final Graphics2D GRAPHICS) {
-		GRAPHICS.setColor(this.player.getColor());
-		GRAPHICS.fill(this.rect);
+	public void draw(Graphics2D GRAPHICS) {
+		GRAPHICS.setColor(player.getColor());
+		GRAPHICS.fill(rect);
 		GRAPHICS.setFont(new Font("Courier", Font.PLAIN, 20));
-		GRAPHICS.drawString(Integer.toString(this.getTor()), this.getX(), this.getY());
+		GRAPHICS.drawString(Integer.toString(getTor()), getX(), getY());
 		GRAPHICS.setColor(Color.BLACK);
 	}
 
 	public int getheight() {
-		return this.height;
+		return height;
 	}
 
 	public int getPkt() {
-		return this.Pkt;
+		return Pkt;
 	}
 
 	/**
 	 * @return
 	 */
 	public boolean getstateLeft() {
-		return this.stateLeft;
+		return stateLeft;
 	}
 
 	/**
 	 * @return
 	 */
 	public boolean getstateRight() {
-		return this.stateRight;
+		return stateRight;
 	}
 
 	public int getTor() {
-		return this.Tor;
+		return Tor;
 	}
 
 	public int getwidth() {
-		return this.width;
+		return width;
 	}
 
 	/**
 	 * @return
 	 */
 	public int getX() {
-		return this.rect.x;
+		return rect.x;
 	}
-
-	public void setX(final int x) {
-		this.rect.x = x;
+	public void setX(int x){
+		rect.x = x;
 	}
 
 	/**
 	 * @return
 	 */
 	public int getY() {
-		return this.rect.y;
+		return rect.y;
 	}
-
-	public void setY(final int y) {
-		this.rect.y = y;
+	public void setY(int y){
+		rect.y=y;
 	}
 
 	protected abstract void init();
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see gamelibrary.GameObject#processInput(gamelibrary.FrameBasedGame)
 	 */
 	@Override
 	public void processInput() {
-		if (this.KEYS.isPressed(this.player.LEFT)) {
+		if (KEYS.isPressed(player.LEFT)) {
 
-			this.stateLeft = true;
+			stateLeft = true;
 
 		}
-		if (this.KEYS.isPressed(this.player.RIGHT)) {
-			this.stateRight = true;
+		if (KEYS.isPressed(player.RIGHT)) {
+			stateRight = true;
 		}
 
 	}
 
-	public void setheight(final int height) {
+	public void setheight(int height) {
 		this.height = height;
 	}
 
 	public void seti() {
-		Tile.i = 0;
+		i = 0;
 	}
 
 	public void setPkt() {
-		this.Pkt = this.Pkt + 100;
+		Pkt = Pkt + 100;
 	}
 
-	public void setTor(final int Tor) {
+	public void setTor(int Tor) {
 		this.Tor = Tor;
 	}
 
-	public void setwidth(final int width) {
+	public void setwidth(int width) {
 		this.width = width;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see gamelibrary.GameObject#update(java.util.List)
 	 */
 	@Override
 
-	public void update(final long elapsed) {
+	public void update(long elapsed) {
 
-		if (Tile.i <= 3) {
-			this.init();
-			Tile.i++;
+		if (i <= 3) {
+			init();
+			i++;
 		}
-		if (this.stateLeft) {
-			this.actionLeft();
-			this.stateLeft = false;
+		if (stateLeft) {
+			actionLeft();
+			stateLeft = false;
 		}
-		if (this.stateRight) {
-			this.actionRight();
-			this.stateRight = false;
+		if (stateRight) {
+			actionRight();
+			stateRight = false;
 		}
 	}
 }

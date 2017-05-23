@@ -8,36 +8,36 @@ import games.utils.Seat;
 
 public class West extends Tile {
 
-	public West(final Seat player, final KeyRequest KEYS) {
+	public West(Seat player, KeyRequest KEYS) {
 		super(player, KEYS);
-		this.setheight(300);
-		this.setwidth(50);
-		this.init();
+		setheight(300);
+		setwidth(50);
+		init();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void actionLeft() {
-		if (this.rect.y > 100 && this.getTor() != 0) {
-			this.rect.y -= Tile.SPEED;
+		if (rect.y > 100 && getTor() != 0) {
+			rect.y -= SPEED;
 		}
 
 	}
 
 	@Override
 	public void actionRight() {
-		if (this.rect.y + 300 <= MyWindow.getInstance().getSize().height && this.getTor() != 0) {
-			this.rect.y += Tile.SPEED;
+		if (rect.y + 300 <= MyWindow.getInstance().getSize().height && getTor() != 0) {
+			rect.y += SPEED;
 		}
 
 	}
 
 	@Override
 	protected void init() {
-		final int y = (int) (MyWindow.getInstance().getSize().height * .5 - this.getheight() * .5);
-		final int x = 0;
+		int y = (int) (MyWindow.getInstance().getSize().height * .5 - getheight() * .5);
+		int x = 0;
 
-		this.rect = new Rectangle(x, y, this.getwidth(), this.getheight());
+		rect = new Rectangle(x, y, getwidth(), getheight());
 		// rect = new Rectangle(15, 350, 50, 300);
 
 	}

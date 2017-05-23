@@ -8,23 +8,22 @@ import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Updateable;
 
 public class Controll implements Updateable, ProceedsInput {
+	
+	private KeyRequest KEYS;
+	private Game game;
 
-	private final KeyRequest	KEYS;
-	private final Game			game;
-
-	public Controll(final Game game, final KeyRequest KEYS) {
+	public Controll (Game game, KeyRequest KEYS) {
 		this.game = game;
 		this.KEYS = KEYS;
 	}
 
 	@Override
 	public void processInput() {
-		if (this.KEYS.isPressed(KeyEvent.VK_ESCAPE)) {
-			this.game.setRunning(false);
-		}
+		if (KEYS.isPressed(KeyEvent.VK_ESCAPE))
+			game.setRunning(false);
 	}
 
 	@Override
-	public void update(final long elapsed) {
+	public void update(long elapsed) {
 	}
 }

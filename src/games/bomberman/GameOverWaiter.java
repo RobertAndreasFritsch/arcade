@@ -7,39 +7,44 @@ import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Updateable;
 
 public class GameOverWaiter implements Updateable, ProceedsInput {
-	private final Bomberman		game;
-	private final KeyRequest	KEYS;
+	private Bomberman game;
+	private KeyRequest KEYS;
 
-	public GameOverWaiter(final Bomberman game, final KeyRequest KEYS) {
+	public GameOverWaiter(Bomberman game, KeyRequest KEYS) {
 		this.game = game;
 		this.KEYS = KEYS;
 	}
 
 	@Override
 	public void processInput() {
-		if (this.KEYS.isPressed(KeyEvent.VK_M)) {
-			this.game.setRunning(false);
+		if (KEYS.isPressed(KeyEvent.VK_M)) {
+			game.setRunning(false);
 		}
 	}
 
 	@Override
-	public void update(final long elapsed) {
+	public void update(long elapsed) {
 		int livingPlayers = 0;
-		if (this.game.Player1 == null ? false : !this.game.Player1.isDead()) {
+		Player winner;
+		if (game.Player1 == null ? false : !game.Player1.isDead()) {
 			livingPlayers++;
+			winner = game.Player1;
 		}
-		if (this.game.Player2 == null ? false : !this.game.Player2.isDead()) {
+		if (game.Player2 == null ? false : !game.Player2.isDead()) {
 			livingPlayers++;
+			winner = game.Player2;
 		}
-		if (this.game.Player3 == null ? false : !this.game.Player3.isDead()) {
+		if (game.Player3 == null ? false : !game.Player3.isDead()) {
 			livingPlayers++;
+			winner = game.Player3;
 		}
-		if (this.game.Player4 == null ? false : !this.game.Player4.isDead()) {
+		if (game.Player4 == null ? false : !game.Player4.isDead()) {
 			livingPlayers++;
+			winner = game.Player4;
 		}
 
 		if (livingPlayers <= 1) {
-			this.game.setRunning(false);
+			game.setRunning(false);
 		}
 	}
 
