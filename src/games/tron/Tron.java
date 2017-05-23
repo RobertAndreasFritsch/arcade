@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
 import environment.model.KeyRequest;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 public final class Tron extends MyGame {
 

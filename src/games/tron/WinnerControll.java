@@ -6,8 +6,8 @@ import java.awt.Graphics2D;
 
 import environment.model.Game;
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
+import games.utils.Seat;
 
 public class WinnerControll implements Updateable, Drawable {
 	

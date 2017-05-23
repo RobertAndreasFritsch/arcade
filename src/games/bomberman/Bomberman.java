@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import environment.implementation.MyGame;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 //Alex war hier 30.02.2017
 //Luca war auch hier 1.2.2017

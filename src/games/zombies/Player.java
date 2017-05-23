@@ -6,8 +6,8 @@ import java.awt.Toolkit;
 
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.ProceedsInput;
-import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
+import games.utils.Seat;
 
 public class Player implements Drawable, Updateable {
 	private final static float ROTATION_SPEED = 250;

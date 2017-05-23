@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 public class Field implements Drawable {
 	int[][] ground = new int[32][32];

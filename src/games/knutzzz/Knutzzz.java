@@ -6,11 +6,11 @@ import javax.swing.JPanel;
 
 import environment.implementation.MyGame;
 import environment.model.KeyRequest;
-import environment.model.gameobject.Seat;
 import games.knutzzz.control.WinnerControl;
 import games.knutzzz.graphics.Dispenser;
 import games.knutzzz.graphics.Floor;
 import games.knutzzz.graphics.Goal;
+import games.utils.Seat;
 
 /**
  * 

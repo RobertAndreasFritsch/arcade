@@ -8,8 +8,8 @@ import java.awt.Rectangle;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.ProceedsInput;
-import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
+import games.utils.Seat;
 
 public abstract class Tile implements Updateable, Drawable, ProceedsInput {
 

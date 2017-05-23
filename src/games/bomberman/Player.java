@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.ProceedsInput;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 public class Player implements Drawable, ProceedsInput {
 	private Seat s;

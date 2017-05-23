@@ -13,7 +13,7 @@ import environment.implementation.MyGame;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 class Bg implements Drawable {
 

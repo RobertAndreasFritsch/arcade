@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 public class South extends Tile {
 

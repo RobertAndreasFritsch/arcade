@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import environment.implementation.MyGame;
 import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
-import environment.model.gameobject.Seat;
 import games.pong.controll.Controll;
 import games.pong.graphics.Background;
+import games.utils.Seat;
 
 /**
  * @author default

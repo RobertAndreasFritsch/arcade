@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
+import games.utils.Seat;
 
 public class Player implements Drawable, Updateable {
 	private static final float SPEED_INCREASE_PER_PRESS = 12f;

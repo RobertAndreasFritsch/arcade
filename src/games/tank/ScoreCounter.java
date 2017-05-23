@@ -5,7 +5,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 public class ScoreCounter implements Drawable {
 

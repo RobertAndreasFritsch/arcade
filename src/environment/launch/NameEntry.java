@@ -15,8 +15,8 @@ import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.ProceedsInput;
-import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
+import games.utils.Seat;
 
 class Background implements Drawable {
 	@Override

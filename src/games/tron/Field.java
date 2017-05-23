@@ -3,7 +3,7 @@ package games.tron;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
+import games.utils.Seat;
 
 public class Field implements Drawable {
 	
