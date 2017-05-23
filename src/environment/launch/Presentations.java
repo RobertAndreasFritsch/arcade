@@ -9,6 +9,7 @@ import games.knutzzz.Knutzzz_Presentation;
 import games.pong.Pong_Presentation;
 //import games.tank.TankPresentation;
 import games.tron.Tron_Presentation;
+import games.zombies.Zombies_Presentation;
 
 public abstract class Presentations {
 
@@ -22,6 +23,7 @@ public abstract class Presentations {
 		presentations.add(new Pong_Presentation());
 		presentations.add(new Tron_Presentation());
 		presentations.add(new Kickthemoff_Presentation());
+		presentations.add(new Zombies_Presentation());
 
 		return presentations;
 	}
