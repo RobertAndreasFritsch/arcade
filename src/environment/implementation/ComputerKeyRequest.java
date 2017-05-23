@@ -8,8 +8,7 @@ import environment.model.KeyRequest;
 public class ComputerKeyRequest implements KeyListener, KeyRequest {
 
 	public static final ComputerKeyRequest	INSTANCE		= new ComputerKeyRequest();
-
-	private static final int					KEYSLENGHT	= 128;
+	public static final int						KEYSLENGHT	= 524;
 
 	public static ComputerKeyRequest getInstance() {
 		return ComputerKeyRequest.INSTANCE;
@@ -22,30 +21,21 @@ public class ComputerKeyRequest implements KeyListener, KeyRequest {
 
 	@Override
 	public boolean isPressed(final int keyCode) {
-		if (keyCode < this.keys.length) { return this.keys[keyCode]; }
+		if (keyCode < this.keys.length) return this.keys[keyCode];
 		return false;
 	}
 
 	@Override
 	public void keyPressed(final KeyEvent e) {
-		final int key = e.getKeyCode();
-
-		if (key < this.keys.length) {
-			this.keys[key] = true;
-		}
+		if (e.getKeyCode() < this.keys.length) this.keys[e.getKeyCode()] = true;
 	}
 
 	@Override
 	public void keyReleased(final KeyEvent e) {
-		final int key = e.getKeyCode();
-
-		if (key < this.keys.length) {
-			this.keys[key] = false;
-		}
+		if (e.getKeyCode() < this.keys.length) this.keys[e.getKeyCode()] = false;
 	}
 
 	@Override
 	public void keyTyped(final KeyEvent e) {
-		// Empty
 	}
 }

@@ -43,7 +43,6 @@ public class MyGameLoop implements GameLoop {
 		}
 
 		this.setActiveGame(this.activeGame.getNextGame());
-		this.run();
 	}
 
 	@Override
