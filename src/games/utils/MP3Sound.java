@@ -21,23 +21,23 @@ public class MP3Sound implements Runnable, Sound {
 
 	@Override
 	public void run() {
-		 do {
-			try {
+		try {
+			
+			do {
 				FileInputStream in = new FileInputStream(file);
 				this.p1 = new javazoom.jl.player.Player(in);
 				p1.play();
-				
-			} catch (JavaLayerException jle) {
-				jle.printStackTrace();
-			} catch (FileNotFoundException fnf) {
-				fnf.printStackTrace();
-			}
-			
-		} while (loop);
-		
+			} while (loop);
+
+		} catch (JavaLayerException jle) {
+			jle.printStackTrace();
+		} catch (FileNotFoundException fnf) {
+			fnf.printStackTrace();
+		}
+
 		p1.close();
 	}
-	
+
 	public void stop() {
 		p1.close();
 		loop = false;

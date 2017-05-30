@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import environment.implementation.MyGame;
 import environment.model.Game;
 import environment.model.KeyRequest;
-import games.util.SoundFactory;
+import games.utils.SoundFactory;
 
 public class Tankies extends MyGame {
 

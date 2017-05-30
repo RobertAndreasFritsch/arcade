@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
 import environment.model.gameobject.ProceedsInput;
-import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
+import games.utils.Seat;
 
 public class Tank implements Updateable, Drawable, ProceedsInput {
 	// ------------------------------------------------------------------Decs
