@@ -11,9 +11,9 @@ import javax.sound.sampled.Clip;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
-import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
 import games.pong.Tiles.Tile;
+import games.utils.Seat;
 
 //03.02.2017
 /**

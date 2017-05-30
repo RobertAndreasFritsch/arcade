@@ -4,8 +4,8 @@ import java.awt.Rectangle;
 
 import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
-import environment.model.gameobject.Seat;
 import games.pong.PongGameObjekt_Blocker;
+import games.utils.Seat;
 
 public class West extends Tile {
 	PongGameObjekt_Blocker[] blockers;
