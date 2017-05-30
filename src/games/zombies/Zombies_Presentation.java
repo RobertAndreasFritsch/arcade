@@ -19,7 +19,7 @@ public class Zombies_Presentation implements Presentation {
 	 * @throws IOException
 	 */
 	public Zombies_Presentation() {
-		img = Toolkit.getDefaultToolkit().getImage("res/games/zombies/wallpaper.png");
+		img = Toolkit.getDefaultToolkit().getImage("res/games/zombies/zombieslogomitch.jpg");
 	}
 
 	@Override
