@@ -10,9 +10,10 @@ import environment.model.gameobject.ProceedsInput;
 import environment.model.gameobject.Updateable;
 import games.utils.Direction;
 import games.utils.Seat;
+import games.zombies.collision.Blockade;
 import games.zombies.collision.CollisionBox;
 
-public class Zombies extends MyGame implements ProceedsInput{
+public class Zombies extends MyGame implements ProceedsInput {
 
 	private Ground ground;
 	private ArrayList<CollisionBox> boxes;
@@ -23,6 +24,10 @@ public class Zombies extends MyGame implements ProceedsInput{
 
 		add(this);
 		add((ground = new Ground(0, 0, 1024, 1024)));
+		addCollisionBox(new Blockade(0, 0, 10, 1024));
+		addCollisionBox(new Blockade(0, 0, 1024, 10));
+		addCollisionBox(new Blockade(1014, 0, 10, 1024));
+		addCollisionBox(new Blockade(0, 1014, 1024, 10));
 
 		if (Seat.P1.isPlaying()) {
 			add(new Player(100, 100, Seat.P1, this));
@@ -36,39 +41,34 @@ public class Zombies extends MyGame implements ProceedsInput{
 		if (Seat.P4.isPlaying()) {
 			add(new Player(100, 100, Seat.P4, this));
 		}
+
 	}
 
 	public Ground getGround() {
 		return ground;
 	}
-	
+
 	public void addCollisionBox(CollisionBox c) {
+		if (!(c instanceof Player)) {
+			add(c);
+		}
 		boxes.add(c);
 	}
-	
+
 	public boolean removeCollisionBox(CollisionBox c) {
+		remove(c);
 		return boxes.remove(c);
 	}
 
 	@Override
 	public void processInput() {
-		for(CollisionBox c1: boxes) {
-			for(CollisionBox c2: boxes) {
-				if(c1 != c2) {
-					Direction collideOnX = CollisionBox.doCollideOnX(c1, c2);
-					Direction collideOnY = CollisionBox.doCollideOnY(c1, c2);
-					
-					if(collideOnX == null || collideOnY == null) {
-						break;
+		for (CollisionBox c1 : new ArrayList<CollisionBox>(boxes)) {
+			for (CollisionBox c2 : new ArrayList<CollisionBox>(boxes)) {
+				if (c1 != c2) {
+					if (CollisionBox.doCollide(c1, c2)) {
+						c1.onCollision(c2, CollisionBox.getCollisionDirection(c1, c2));
+						c2.onCollision(c1, CollisionBox.getCollisionDirection(c2, c1));
 					}
-					
-					boolean north = collideOnY == Direction.NORTH;
-					boolean south = collideOnY == Direction.SOUTH;
-					boolean east = collideOnX == Direction.EAST;
-					boolean west = collideOnX == Direction.WEST;
-										
-					c1.onCollision(c2, north, east, south, west);
-					c2.onCollision(c1, south, west, north, east);
 				}
 			}
 		}
