@@ -18,8 +18,8 @@ import environment.model.gameobject.Updateable;
 import games.utils.Seat;
 
 public class PlayerSelection extends MyGame {
-	private final ProgressAnimation	anim;
-	private final Presentation			presentation;
+	private final ProgressAnimation anim;
+	private final Presentation presentation;
 
 	public PlayerSelection(final JPanel PANEL, final KeyRequest KEYS, final Presentation presentation) {
 		super(PANEL, KEYS);
@@ -37,7 +37,9 @@ public class PlayerSelection extends MyGame {
 				counter++;
 			}
 		}
-		if (counter < 1) { return new Menu(this.PANEL, this.KEYS); }
+		if (counter < 1) {
+			return new Menu(this.PANEL, this.KEYS);
+		}
 		Seat.P3.setPlaying(this.anim.players[0]);
 		Seat.P4.setPlaying(this.anim.players[1]);
 		Seat.P1.setPlaying(this.anim.players[2]);
@@ -53,13 +55,13 @@ public class PlayerSelection extends MyGame {
 }
 
 class ProgressAnimation implements Drawable, ProceedsInput, Updateable {
-	boolean[]						players	= new boolean[4];
-	private long					progress	= 0;
-	private final long			timeout	= 5000;
-	private double					angle		= 0;
-	private final KeyRequest	Keys;
-	private final Game			game;
-	int								blub		= 0;
+	boolean[] players = new boolean[4];
+	private long progress = 0;
+	private final long timeout = 5000;
+	private double angle = 0;
+	private final KeyRequest Keys;
+	private final Game game;
+	int blub = 0;
 
 	public ProgressAnimation(final KeyRequest Keys, final Game game) {
 		this.Keys = Keys;
@@ -69,7 +71,7 @@ class ProgressAnimation implements Drawable, ProceedsInput, Updateable {
 	@Override
 	public void update(final long elapsed) {
 		this.progress += elapsed;
-		if (this.progress >= this.timeout) {
+		if (this.progress >= this.timeout || (players[0] & players[1] & players[2] & players[3])) {
 			this.progress = this.timeout;
 
 			this.game.setRunning(false);
@@ -84,32 +86,28 @@ class ProgressAnimation implements Drawable, ProceedsInput, Updateable {
 
 		if (this.players[0]) {
 			g.setColor(Color.GREEN);
-		}
-		else {
+		} else {
 			g.setColor(Color.RED);
 		}
 		g.fillRect(1024 / 2 - 50, 1024 - 1024 / 3 + 50, 100, 100);
 
 		if (this.players[1]) {
 			g.setColor(Color.GREEN);
-		}
-		else {
+		} else {
 			g.setColor(Color.RED);
 		}
 		g.fillRect(1024 / 3 - 150, 1024 / 2 - 50, 100, 100);
 
 		if (this.players[2]) {
 			g.setColor(Color.GREEN);
-		}
-		else {
+		} else {
 			g.setColor(Color.RED);
 		}
 		g.fillRect(1024 / 2 - 50, 1024 / 3 - 150, 100, 100);
 
 		if (this.players[3]) {
 			g.setColor(Color.GREEN);
-		}
-		else {
+		} else {
 			g.setColor(Color.RED);
 		}
 		g.fillRect(1024 - 1024 / 3 + 50, 1024 / 2 - 50, 100, 100);
@@ -119,12 +117,18 @@ class ProgressAnimation implements Drawable, ProceedsInput, Updateable {
 		final int tx1 = 0, ty1 = 100, tx2 = 100, ty2 = 0, tx3 = 0, ty3 = -100, tx4 = -100, ty4 = 0, tx5 = 0, ty5 = 100;
 		x1 = (int) (tx1 * Math.cos(Math.toRadians(this.angle * 0)) - ty1 * Math.sin(Math.toRadians(this.angle * 0)));
 		y1 = (int) (tx1 * Math.sin(Math.toRadians(this.angle * 0)) + ty1 * Math.cos(Math.toRadians(this.angle * 0)));
-		x2 = (int) (tx2 * Math.cos(Math.toRadians(this.angle * 0.25)) - ty2 * Math.sin(Math.toRadians(this.angle * 0.25)));
-		y2 = (int) (tx2 * Math.sin(Math.toRadians(this.angle * 0.25)) + ty2 * Math.cos(Math.toRadians(this.angle * 0.25)));
-		x3 = (int) (tx3 * Math.cos(Math.toRadians(this.angle * 0.5)) - ty3 * Math.sin(Math.toRadians(this.angle * 0.5)));
-		y3 = (int) (tx3 * Math.sin(Math.toRadians(this.angle * 0.5)) + ty3 * Math.cos(Math.toRadians(this.angle * 0.5)));
-		x4 = (int) (tx4 * Math.cos(Math.toRadians(this.angle * 0.75)) - ty4 * Math.sin(Math.toRadians(this.angle * 0.75)));
-		y4 = (int) (tx4 * Math.sin(Math.toRadians(this.angle * 0.75)) + ty4 * Math.cos(Math.toRadians(this.angle * 0.75)));
+		x2 = (int) (tx2 * Math.cos(Math.toRadians(this.angle * 0.25))
+				- ty2 * Math.sin(Math.toRadians(this.angle * 0.25)));
+		y2 = (int) (tx2 * Math.sin(Math.toRadians(this.angle * 0.25))
+				+ ty2 * Math.cos(Math.toRadians(this.angle * 0.25)));
+		x3 = (int) (tx3 * Math.cos(Math.toRadians(this.angle * 0.5))
+				- ty3 * Math.sin(Math.toRadians(this.angle * 0.5)));
+		y3 = (int) (tx3 * Math.sin(Math.toRadians(this.angle * 0.5))
+				+ ty3 * Math.cos(Math.toRadians(this.angle * 0.5)));
+		x4 = (int) (tx4 * Math.cos(Math.toRadians(this.angle * 0.75))
+				- ty4 * Math.sin(Math.toRadians(this.angle * 0.75)));
+		y4 = (int) (tx4 * Math.sin(Math.toRadians(this.angle * 0.75))
+				+ ty4 * Math.cos(Math.toRadians(this.angle * 0.75)));
 		x5 = (int) (tx5 * Math.cos(Math.toRadians(this.angle)) - ty5 * Math.sin(Math.toRadians(this.angle)));
 		y5 = (int) (tx5 * Math.sin(Math.toRadians(this.angle)) + ty5 * Math.cos(Math.toRadians(this.angle)));
 

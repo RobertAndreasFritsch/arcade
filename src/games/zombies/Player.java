@@ -11,7 +11,8 @@ import games.utils.Seat;
 
 public class Player implements Drawable, Updateable {
 	private final static float ROTATION_SPEED = 250;
-	private final static float WALKING_SPEED = 200;
+	private final static float WALKING_SPEED = 250;
+	private final static float WALKING_SPEED_BACK = 100;
 
 	private float x, y;
 	private float rotation = 0;
@@ -29,13 +30,15 @@ public class Player implements Drawable, Updateable {
 	@Override
 	public void draw(Graphics2D g) {
 		g.rotate(Math.toRadians(rotation), x, y);
-		g.drawImage(texture, (int)x - 95, (int)y - 120, null);
+		g.drawImage(texture, (int) x - 23, (int) y - 30, null);
 		g.rotate(-Math.toRadians(rotation), x, y);
 	}
 
 	@Override
 	public void update(long elapsed) {
 		float scalar = elapsed / 1000f;
+
+		float newX = x, newY = y;
 
 		if (game.getKEYS().isPressed(s.LEFT)) {
 			rotation -= ROTATION_SPEED * scalar;
@@ -46,9 +49,28 @@ public class Player implements Drawable, Updateable {
 		if (game.getKEYS().isPressed(s.UP)) {
 			float length = WALKING_SPEED * scalar;
 
-			x += Math.sin(Math.toRadians(rotation + 90)) * length;
-			y -= Math.cos(Math.toRadians(rotation + 90)) * length;
+			newX += Math.sin(Math.toRadians(rotation + 90)) * length;
+			newY -= Math.cos(Math.toRadians(rotation + 90)) * length;
 		}
+		if (game.getKEYS().isPressed(s.DOWN)) {
+			float length = WALKING_SPEED_BACK * scalar;
+
+			newX -= Math.sin(Math.toRadians(rotation + 90)) * length;
+			newY += Math.cos(Math.toRadians(rotation + 90)) * length;
+		}
+
+		
+		Ground g = game.getGround();
+		if(!(newX >= g.getX() && newX <= g.getX() + g.getWidth())) {
+			newX = x;
+		}
+		
+		if(!(newY >= g.getY() && newY <= g.getY() + g.getHeight())) {
+			newY = y;
+		}
+		
+		x = newX;
+		y = newY;
 	}
 
 }
