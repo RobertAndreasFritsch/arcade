@@ -11,9 +11,9 @@ import javax.sound.sampled.Clip;
 import environment.model.Game;
 import environment.model.KeyRequest;
 import environment.model.gameobject.Drawable;
+import environment.model.gameobject.Seat;
 import environment.model.gameobject.Updateable;
 import games.pong.Tiles.Tile;
-import games.utils.Seat;
 
 //03.02.2017
 /**
@@ -72,6 +72,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 	boolean state1, state2, state3, state4, state5; 
 	boolean YisDeath = false;
 	boolean XisDeath = false;
+	boolean blockerlimit = false;
 	/**
 	 * 
 	 */
@@ -88,7 +89,6 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 	 */
 	PongGameObjekt_Blocker[] blockers;
 
-	private KeyRequest KEYS;
 	private Game game;
 
 	/**
@@ -402,9 +402,34 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 		}
 		
 		// Blocker:
-		
+		//oben links Z=0
+		//oben rechts Z=1
+		//unten links Z=2
+		//unten links Z=3
 		for (int Z = 0; Z <= 3; Z++) {
-			if (x + bx >= blockers[Z].getX() && x <= blockers[Z].getX() + b && y + by >= blockers[Z].getY() && y <= blockers[Z].getY() + l){
+			//Bugfix Unbeabsichtigte Kollision bei Torsperren
+			if(playerNorth.getTor()==0||playerWest.getTor()==0){
+				if(Z==0){
+					Z++;
+				}
+			}
+			if(playerNorth.getTor()==0||playerEast.getTor()==0){
+				if(Z==1){
+					Z++;
+				}
+			}
+			if(playerWest.getTor()==0||playerSouth.getTor()==0){
+				if(Z==2){
+					Z++;
+				}
+			}
+			if(playerEast.getTor()==0||playerSouth.getTor()==0){
+				if(Z==3){
+					blockerlimit=true;
+				}
+			}
+			//Bugfix End + boolean ausserhalb
+			if (x + bx >= blockers[Z].getX() && x <= blockers[Z].getX() + b && y + by >= blockers[Z].getY() && y <= blockers[Z].getY() + l && blockerlimit == false){
 				if (pBx <= blockers[Z].getX()) {
 					dx = -Math.abs(dx);
 					//System.out.println("1");
@@ -425,12 +450,15 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 				Playsound(F);
 				Zaehler++;
 			}
-			
+			else{
+				blockerlimit=false;
+			}
 		}
 		pBx= x;
 		pBy= y;
 		if(Zaehler>5){//Ballloopbrecher
 			dx++;
+			Zaehler=0;
 			if(dy==0){
 				dy++;
 			}
@@ -479,15 +507,17 @@ public class PongGameObjekt_Ball implements Updateable, Drawable {
 //			 x = 60;
 //			 y = 470;
 			if(YisDeath==false && XisDeath==true){
-			dx = 20;
+			dx = 10;
+			dy = (Math.random()*11);	
 			}
 			if(XisDeath==false && YisDeath==true){
-			dy = 20;
+			dy = 10;
+			dx = (Math.random()*11);	
 		}
 			else if (XisDeath==false && YisDeath==false){
 				if(Ballstartrichtung==1){
-				dx = (Math.random()*11)+10;				
-				dy = (Math.random()*11)+10;
+				dx = (Math.random()*11);				
+				dy = (Math.random()*11);
 				}
 				if(Ballstartrichtung==2){
 					dx = -Math.abs((Math.random()*10)-11);				

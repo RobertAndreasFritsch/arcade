@@ -4,30 +4,29 @@ import java.awt.Rectangle;
 
 import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
-import games.utils.Seat;
+import environment.model.gameobject.Seat;
+import games.pong.PongGameObjekt_Blocker;
 
 public class North extends Tile {
-
-	public North(Seat player, KeyRequest KEYS) {
+	PongGameObjekt_Blocker[] blockers;
+	public North(Seat player, KeyRequest KEYS, PongGameObjekt_Blocker[] blockers) {
 		super(player, KEYS);
 		setheight(50);
 		setwidth(300);
 		init();
-		// TODO Auto-generated constructor stub
-	}
+		this.blockers = blockers;
+		}
 
 	@Override
 	public void actionLeft() {
-		if (rect.x + 300 <= MyWindow.getInstance().getSize().width && getTor() != 0) {// Todo
-																						// Dynamisch
-																						// verändern
+		if (rect.x + 300 <= MyWindow.getInstance().getSize().width && getTor() != 0 && rect.x+300 <= blockers[1].getX()) {
 			rect.x += SPEED;
 		}
 	}
 
 	@Override
 	public void actionRight() {
-		if (rect.x > 100 && getTor() != 0) {
+		if (rect.x > 100 && getTor() != 0 && rect.x >= blockers[0].getX()+100) {
 			rect.x -= SPEED;
 		}
 	}

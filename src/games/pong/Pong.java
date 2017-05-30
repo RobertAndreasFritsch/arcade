@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 import environment.implementation.MyGame;
 import environment.implementation.MyWindow;
 import environment.model.KeyRequest;
+import environment.model.gameobject.Seat;
 import games.pong.controll.Controll;
 import games.pong.graphics.Background;
-import games.utils.Seat;
 
 /**
  * @author default
@@ -35,15 +35,8 @@ public final class Pong extends MyGame {
 
 		ArrayList<Object> tiles = new ArrayList<Object>();
 
-		tiles.add(new games.pong.Tiles.North(Seat.P1, KEYS));
-		tiles.add(new games.pong.Tiles.East(Seat.P2, KEYS));
-		tiles.add(new games.pong.Tiles.South(Seat.P3, KEYS));
-		tiles.add(new games.pong.Tiles.West(Seat.P4, KEYS));
 
-		this.add(tiles.get(0));
-		this.add(tiles.get(1));
-		this.add(tiles.get(2));
-		this.add(tiles.get(3));
+		
 		// this.add(new PongGameObjekt_Blocker());
 
 		int b = 100, h = 100;
@@ -61,6 +54,14 @@ public final class Pong extends MyGame {
 
 		PongGameObjekt_Blocker[] blockers = { B1, B2, B3, B4 };
 
+		tiles.add(new games.pong.Tiles.North(Seat.P1, KEYS, blockers));
+		tiles.add(new games.pong.Tiles.East(Seat.P2, KEYS, blockers));
+		tiles.add(new games.pong.Tiles.South(Seat.P3, KEYS, blockers));
+		tiles.add(new games.pong.Tiles.West(Seat.P4, KEYS, blockers));
 		this.add(new PongGameObjekt_Ball(this, KEYS, tiles, blockers));
+		this.add(tiles.get(0));
+		this.add(tiles.get(1));
+		this.add(tiles.get(2));
+		this.add(tiles.get(3));
 	}
 }
