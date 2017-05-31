@@ -255,7 +255,7 @@ public class KnutzzzGameObject_Ball implements Updateable, Drawable
 			}
 		}
 
-		for (final Object go : this.parent.getPROCEEDINGINPUTS())
+		for (final Object go : this.parent)
 		{
 			if (go instanceof KnutzzzGameObject_Bumper)
 			{

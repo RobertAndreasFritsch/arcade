@@ -1,11 +1,8 @@
 package games.bomberman;
 
-import java.util.ArrayList;
-
 import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
 import com.game.MyGame;
 import com.game.ctrl.KeyRequest;
 
@@ -14,12 +11,16 @@ import com.game.ctrl.KeyRequest;
 
 public class Bomberman extends MyGame
 {
-	public static final int	BLOCK_DESTROY_SCORE	= 1;
-	public static final int	PLAYER_KILL_SCORE		= 5;
-	public static final int	PLAYER_SUICIDE_SCORE	= -1;
+	/**
+	 *
+	 */
+	private static final long	serialVersionUID		= 7854511732333935062L;
+	public static final int		BLOCK_DESTROY_SCORE	= 1;
+	public static final int		PLAYER_KILL_SCORE		= 5;
+	public static final int		PLAYER_SUICIDE_SCORE	= -1;
 
-	private final Field		f;
-	public Player				Player1, Player2, Player3, Player4;
+	private final Field			f;
+	public Player					Player1, Player2, Player3, Player4;
 
 	public Bomberman(final JPanel PANEL, final KeyRequest KEYS)
 	{
@@ -65,11 +66,6 @@ public class Bomberman extends MyGame
 
 		this.add(new GameOverWaiter(this, KEYS));
 
-	}
-
-	public ArrayList<Drawable> getDrawables()
-	{
-		return (ArrayList<Drawable>) this.DRAWABLES;
 	}
 
 	public Field getField()

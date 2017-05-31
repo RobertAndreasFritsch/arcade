@@ -15,14 +15,21 @@ import com.game.ctrl.KeyRequest;
 public final class Tron extends MyGame
 {
 
-	private final int	floor[][];							//
-	private final int	tileSize			= 2;				// Felder groesse
-	private final int	width				= 512;			// breite
-	private final int	height			= 512;			// hoehe
+	/**
+	 *
+	 */
+	private static final long	serialVersionUID	= -6343250590038457574L;
+	private final int				floor[][];											//
+	private final int				tileSize				= 2;							// Felder
+	                                                                     // groesse
+	private final int				width					= 512;						// breite
+	private final int				height				= 512;						// hoehe
 
-	Sound					sound				= new Sound();
+	Sound								sound					= new Sound();
 
-	boolean				wartenFuerEnde	= false;			// End sequfenz warteschlage
+	boolean							wartenFuerEnde		= false;						// End
+	                                                                     // sequfenz
+	                                                                     // warteschlage
 
 	// ---------------------------------------------------------------------------------------------------------------------------
 	// Main (music anfang, KEYS einfuegen, hintergung einfuegen, erstellung der

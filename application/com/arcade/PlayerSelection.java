@@ -20,6 +20,10 @@ import com.game.ctrl.KeyRequest;
 
 public class PlayerSelection extends MyGame
 {
+	/**
+	 *
+	 */
+	private static final long			serialVersionUID	= -1323708840207322476L;
 	private final ProgressAnimation	anim;
 	private final Presentation			presentation;
 

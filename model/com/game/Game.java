@@ -2,20 +2,20 @@ package com.game;
 
 import java.util.List;
 
-public interface Game
+public interface Game extends List<GameObject>
 {
 
-	public void add(Object gameObject);
+	// public void add(Object gameObject);
 
-	void addAll(List<?> gameObjects);
+	// void addAll(List<?> gameObjects);
 
 	public Game getNextGame();
 
 	public boolean isRunning();
 
-	public void remove(Object gameObject);
+	// public void remove(Object gameObject);
 
-	void removeAll(List<?> gameObjects);
+	// void removeAll(List<?> gameObjects);
 
 	public void setRunning(boolean running);
 

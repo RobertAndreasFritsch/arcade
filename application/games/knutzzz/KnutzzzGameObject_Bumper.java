@@ -257,7 +257,7 @@ public class KnutzzzGameObject_Bumper implements Drawable, Updateable, ProceedsI
 			this.sound.play();
 		}
 
-		for (final Object go : this.parent.getPROCEEDINGINPUTS())
+		for (final Object go : this.parent)
 		{
 			if (go instanceof KnutzzzGameObject_Bumper && go != this)
 			{

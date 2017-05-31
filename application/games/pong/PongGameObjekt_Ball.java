@@ -11,6 +11,7 @@ import javax.sound.sampled.Clip;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
+import com.game.GameObject;
 import com.game.Updateable;
 import com.game.ctrl.KeyRequest;
 
@@ -62,7 +63,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable
 	/**
 	 *
 	 */
-	ArrayList<Object>				tiles					= new ArrayList<>();
+	ArrayList<GameObject>		tiles					= new ArrayList<>();
 
 	// PongGameObjekt_Blocker A = new PongGameObjekt_Blocker();
 	/**
@@ -104,7 +105,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable
 	 * @param blockers
 	 * @throws Exception
 	 */
-	PongGameObjekt_Ball(final Game game, final KeyRequest KEYS, final ArrayList<Object> tiles,
+	PongGameObjekt_Ball(final Game game, final KeyRequest KEYS, final ArrayList<GameObject> tiles,
 	      final PongGameObjekt_Blocker[] blockers)
 	{
 		this.game = game;

@@ -1,26 +1,34 @@
 package com.game.ctrl;
 
-import com.game.ctrl.KeyRequest;
+import java.awt.Graphics2D;
 
 public class CtrlFactoryImpl implements CtrlFactory
 {
 	KeyRequest keyRequest;
-	
-	CtrlFactoryImpl(KeyRequestType keyRequestType) {
+
+	CtrlFactoryImpl(final KeyRequestType keyRequestType)
+	{
 		switch (keyRequestType)
 		{
 		case Microcontroller:
-			keyRequest = new MicrocontrollerKeyRequest();
+			this.keyRequest = new MicrocontrollerKeyRequest();
 			break;
 
 		default: // <- Keyboard
-			keyRequest = new KeboardKeyRequest();
+			this.keyRequest = new KeboardKeyRequest();
 			break;
 		}
 	}
-	
+
 	@Override
-	public KeyRequest keyRequestInstance() {
-		return keyRequest;
+	public KeyRequest keyRequestInstance()
+	{
+		return this.keyRequest;
+	}
+
+	@Override
+	public Graphics2D getGraphics()
+	{
+		return null;
 	}
 }

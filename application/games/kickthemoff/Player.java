@@ -186,7 +186,7 @@ public class Player implements Drawable, Updateable
 					Player.this.dead = true;
 					final waterSplash w = new waterSplash(Player.this.game, (int) Player.this.x - 25,
 					      (int) Player.this.y - 25);
-					Player.this.game.getDRAWABLES().add(1, w);
+					Player.this.game.add(1, w);
 				}
 			}.start();
 		}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
+import com.game.GameObject;
 import com.game.MyGame;
 import com.game.MyWindow;
 import com.game.ctrl.KeyRequest;
@@ -18,6 +19,11 @@ import games.pong.graphics.Background;
  */
 public final class Pong extends MyGame
 {
+
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -3610479023387369082L;
 
 	/**
 	 * <h1>Der Constroctor von Pong</h1>
@@ -36,7 +42,7 @@ public final class Pong extends MyGame
 		this.add(new Controll(this, KEYS));
 		this.add(new Background());
 
-		final ArrayList<Object> tiles = new ArrayList<>();
+		final ArrayList<GameObject> tiles = new ArrayList<>();
 
 		// this.add(new PongGameObjekt_Blocker());
 

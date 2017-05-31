@@ -10,8 +10,12 @@ import com.game.ctrl.KeyRequest;
 public class Tankies extends MyGame
 {
 
-	Player[]			player			= new Player[4];
-	SoundFactory	soundFactory	= new SoundFactory();
+	/**
+	 *
+	 */
+	private static final long	serialVersionUID	= 964584373955790071L;
+	Player[]							player				= new Player[4];
+	SoundFactory					soundFactory		= new SoundFactory();
 
 	public Tankies(final JPanel PANEL, final KeyRequest keys)
 	{

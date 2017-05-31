@@ -6,7 +6,6 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -14,14 +13,15 @@ import com.arcade.Menu;
 import com.arcade.presentation.GameConstructor;
 import com.game.ctrl.KeyRequest;
 
-public class MyGame implements Game
+public class MyGame extends ArrayList<GameObject> implements Game
 {
+	private static final long				serialVersionUID	= -564173017564334081L;
 
 	public static final GameConstructor	DefaultGame			= Menu::new;
 
-	protected final List<Drawable>		DRAWABLES			= new ArrayList<>();
-	protected final List<Updateable>		UPDATEABLES			= new ArrayList<>();
-	protected final List<ProceedsInput>	PROCEEDINGINPUTS	= new ArrayList<>();
+	// protected final List<Drawable> DRAWABLES = new ArrayList<>();
+	// protected final List<Updateable> UPDATEABLES = new ArrayList<>();
+	// protected final List<ProceedsInput> PROCEEDINGINPUTS = new ArrayList<>();
 
 	protected final JPanel					PANEL;
 	protected final KeyRequest				KEYS;
@@ -45,31 +45,31 @@ public class MyGame implements Game
 		this.offsetY = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 1024) >> 1;
 	}
 
-	@Override
-	public void add(final Object gameObject)
-	{
-		if (gameObject instanceof ProceedsInput)
-		{
-			this.PROCEEDINGINPUTS.add((ProceedsInput) gameObject);
-		}
-		if (gameObject instanceof Updateable)
-		{
-			this.UPDATEABLES.add((Updateable) gameObject);
-		}
-		if (gameObject instanceof Drawable)
-		{
-			this.DRAWABLES.add((Drawable) gameObject);
-		}
-	}
+	// @Override
+	// public void add(final Object gameObject)
+	// {
+	// if (gameObject instanceof ProceedsInput)
+	// {
+	// this.PROCEEDINGINPUTS.add((ProceedsInput) gameObject);
+	// }
+	// if (gameObject instanceof Updateable)
+	// {
+	// this.UPDATEABLES.add((Updateable) gameObject);
+	// }
+	// if (gameObject instanceof Drawable)
+	// {
+	// this.DRAWABLES.add((Drawable) gameObject);
+	// }
+	// }
 
-	@Override
-	public void addAll(final List<?> gameObjects)
-	{
-		for (final Object o : gameObjects)
-		{
-			this.add(o);
-		}
-	}
+	// @Override
+	// public void addAll(final List<?> gameObjects)
+	// {
+	// for (final Object o : gameObjects)
+	// {
+	// this.add(o);
+	// }
+	// }
 
 	public void exitGame()
 	{
@@ -77,10 +77,10 @@ public class MyGame implements Game
 		this.setRunning(false);
 	}
 
-	public List<Drawable> getDRAWABLES()
-	{
-		return this.DRAWABLES;
-	}
+	// public List<Drawable> getDRAWABLES()
+	// {
+	// return this.DRAWABLES;
+	// }
 
 	public KeyRequest getKEYS()
 	{
@@ -98,15 +98,25 @@ public class MyGame implements Game
 		return this.PANEL;
 	}
 
-	public List<ProceedsInput> getPROCEEDINGINPUTS()
-	{
-		return this.PROCEEDINGINPUTS;
-	}
+	// /**
+	// * @return
+	// * @deprecated
+	// */
+	// public List<ProceedsInput> getPROCEEDINGINPUTS()
+	// {
+	//// return this.PROCEEDINGINPUTS;
+	// return null;
+	// }
 
-	public List<Updateable> getUPDATEABLES()
-	{
-		return this.UPDATEABLES;
-	}
+	// /**
+	// * @return
+	// * @deprecated
+	// */
+	// public List<Updateable> getUPDATEABLES()
+	// {
+	// // return this.UPDATEABLES;
+	// return null;
+	// }
 
 	@Override
 	public boolean isRunning()
@@ -114,31 +124,32 @@ public class MyGame implements Game
 		return this.running;
 	}
 
-	@Override
-	public void remove(final Object gameObject)
-	{
-		if (gameObject instanceof ProceedsInput)
-		{
-			this.PROCEEDINGINPUTS.remove(gameObject);
-		}
-		if (gameObject instanceof Updateable)
-		{
-			this.UPDATEABLES.remove(gameObject);
-		}
-		if (gameObject instanceof Drawable)
-		{
-			this.DRAWABLES.remove(gameObject);
-		}
-	}
+	// @Override
+	// public boolean remove(final Object gameObject)
+	// {
+	// remove(gameObject);
+	// if (gameObject instanceof ProceedsInput)
+	// {
+	// this.PROCEEDINGINPUTS.remove(gameObject);
+	// }
+	// if (gameObject instanceof Updateable)
+	// {
+	// this.UPDATEABLES.remove(gameObject);
+	// }
+	// if (gameObject instanceof Drawable)
+	// {
+	// this.DRAWABLES.remove(gameObject);
+	// }
+	// }
 
-	@Override
-	public void removeAll(final List<?> gameObjects)
-	{
-		for (final Object o : gameObjects)
-		{
-			this.remove(o);
-		}
-	}
+	// @Override
+	// public void removeAll(final List<?> gameObjects)
+	// {
+	// for (final Object o : gameObjects)
+	// {
+	// this.remove(o);
+	// }
+	// }
 
 	private void setNextGame(final GameConstructor nextGame)
 	{
@@ -154,12 +165,13 @@ public class MyGame implements Game
 	@Override
 	public void tick(final long elapsed)
 	{
+		final ArrayList<GameObject> temp = new ArrayList<>(this);
 
-		for (final ProceedsInput i : new ArrayList<>(this.PROCEEDINGINPUTS))
+		for (final GameObject i : temp)
 		{
-			i.processInput();
+			i.input();
 		}
-		for (final Updateable u : new ArrayList<>(this.UPDATEABLES))
+		for (final GameObject u : temp)
 		{
 			u.update(elapsed);
 		}
@@ -178,9 +190,9 @@ public class MyGame implements Game
 		this.g.setColor(Color.WHITE);
 		this.g.fillRect(0, 0, 1024, 1024);
 
-		for (final Drawable d : new ArrayList<>(this.DRAWABLES))
+		for (final GameObject d : this)
 		{
-			d.draw(this.g);
+			d.output();
 		}
 
 		this.getPANEL().getGraphics().drawImage(this.img, 0, 0, null);

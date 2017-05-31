@@ -15,6 +15,10 @@ import games.zombies.collision.CollisionBox;
 public class Zombies extends MyGame implements ProceedsInput
 {
 
+	/**
+	 *
+	 */
+	private static final long					serialVersionUID	= 7982550380997988183L;
 	private Ground									ground;
 	private final ArrayList<CollisionBox>	boxes;
 	private final ArrayList<Player>			players;

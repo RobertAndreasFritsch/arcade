@@ -85,7 +85,7 @@ public class Player implements Drawable, Updateable, ProceedsInput
 		this.player.setScore(this.player.getScore() + 1); // pro zurueckgelektes
 		                                                  // feld
 		// einen punkt
- 
+
 		this.x = this.x + this.dx;
 		this.y = this.y + this.dy;
 

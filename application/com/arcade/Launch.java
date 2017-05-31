@@ -11,13 +11,15 @@ import com.game.ctrl.KeyRequestType;
 
 public class Launch
 {
-	public static final KeyRequestType KEY_REQUEST_TYPE = KeyRequestType.Keyboard;
+	public static final KeyRequestType	KEY_REQUEST_TYPE	= KeyRequestType.Keyboard;
+	public static final CtrlFactory		CTRL_FACTORY		= CtrlFactory.newCtrlFactory(KEY_REQUEST_TYPE);
 
 	public static void main(final String[] args)
 	{
 
 		final Window window = MyWindow.getInstance();
-		final KeyRequest keys = CtrlFactory.newCtrlFactory(KEY_REQUEST_TYPE).keyRequestInstance();
+
+		final KeyRequest keys = CTRL_FACTORY.keyRequestInstance();
 
 		window.addKeyListener((KeyListener) keys);
 

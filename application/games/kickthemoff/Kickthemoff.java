@@ -11,9 +11,14 @@ import com.game.ctrl.KeyRequest;
 
 public class Kickthemoff extends MyGame
 {
-	private static final int			WINS_NEEDED	= 3;
+	/**
+	 *
+	 */
+	private static final long			serialVersionUID	= -5004087972779309022L;
 
-	private final ArrayList<Player>	players		= new ArrayList<>();
+	private static final int			WINS_NEEDED			= 3;
+
+	private final ArrayList<Player>	players				= new ArrayList<>();
 
 	public Kickthemoff(final JPanel PANEL, final KeyRequest KEYS)
 	{

@@ -554,8 +554,12 @@ class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInpu
 @Deprecated
 public class NameEntry extends MyGame
 {
+	/**
+	 *
+	 */
+	private static final long	serialVersionUID	= -5382653777454931952L;
 	private final Presentation	presentation;
-	GUITextInputAdapter[]		a	= new GUITextInputAdapter[4];
+	GUITextInputAdapter[]		a						= new GUITextInputAdapter[4];
 
 	public NameEntry(final JPanel PANEL, final KeyRequest KEYS, final boolean[] players, final Presentation presentation)
 	{

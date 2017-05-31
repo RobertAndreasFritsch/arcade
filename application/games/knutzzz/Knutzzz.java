@@ -23,13 +23,17 @@ import games.knutzzz.graphics.Goal;
 public class Knutzzz extends MyGame
 {
 
-	public int								step			= 0;
+	/**
+	 *
+	 */
+	private static final long			serialVersionUID	= -8174198072253621177L;
+	public int								step					= 0;
 	KnutzzzGameObject_Dispenser		dispenser;
 	public KnutzzzGameObject_Ball		ball;
-	Sound										sound			= new Sound();
+	Sound										sound					= new Sound();
 	KnutzzzGameObject_ScoreDisplay	scoreDisplays[];
 
-	private boolean						gameRunning	= false;
+	private boolean						gameRunning			= false;
 
 	// private static Knutzzz instance;
 

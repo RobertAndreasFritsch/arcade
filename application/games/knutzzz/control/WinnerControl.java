@@ -38,7 +38,7 @@ public class WinnerControl implements Updateable, ProceedsInput
 			this.parent.step++;
 			if (this.parent.step == 100)
 			{
-				for (final Object go : this.parent.getPROCEEDINGINPUTS())
+				for (final Object go : this.parent)
 				{
 					if (go instanceof KnutzzzGameObject_Bumper)
 					{

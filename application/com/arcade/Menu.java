@@ -103,7 +103,11 @@ class GameSlider implements ProceedsInput, Updateable, Drawable
 public class Menu extends MyGame
 {
 
-	private Presentation nextGame;
+	/**
+	 *
+	 */
+	private static final long	serialVersionUID	= 72535390847737153L;
+	private Presentation			nextGame;
 
 	public Menu(final JPanel panel, final KeyRequest KEYS, final String... args)
 	{

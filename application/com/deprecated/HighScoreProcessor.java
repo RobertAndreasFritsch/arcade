@@ -36,6 +36,11 @@ public class HighScoreProcessor extends MyGame
 {
 
 	/**
+	 *
+	 */
+	private static final long serialVersionUID = -1939415195551352099L;
+
+	/**
 	 * @param map
 	 * @return
 	 * @deprecated not used anymore

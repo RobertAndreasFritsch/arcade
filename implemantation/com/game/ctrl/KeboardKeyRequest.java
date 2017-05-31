@@ -3,13 +3,11 @@ package com.game.ctrl;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import com.game.ctrl.KeyRequest;
-
 public class KeboardKeyRequest implements KeyListener, KeyRequest
 {
-	public static final int						KEYSLENGHT	= 524;
+	public static final int	KEYSLENGHT	= 524;
 
-	private final boolean[] keys = new boolean[KeboardKeyRequest.KEYSLENGHT];
+	private final boolean[]	keys			= new boolean[KeboardKeyRequest.KEYSLENGHT];
 
 	KeboardKeyRequest()
 	{
