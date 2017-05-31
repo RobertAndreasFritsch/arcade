@@ -3,8 +3,6 @@ package com.game.ctrl;
 import java.io.File;
 import java.io.FileInputStream;
 
-import com.arcade.audio.SoundCtrl;
-
 import javazoom.jl.player.Player;
 
 public class MP3SoundCtrlImpl implements Runnable, SoundCtrl

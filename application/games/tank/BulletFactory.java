@@ -2,9 +2,9 @@ package games.tank;
 
 import java.io.File;
 
-import com.arcade.audio.SoundType;
 import com.game.Game;
 import com.game.ctrl.CtrlFactory;
+import com.game.ctrl.SoundType;
 
 public class BulletFactory
 {

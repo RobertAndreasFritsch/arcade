@@ -1,4 +1,4 @@
-package com.arcade.audio;
+package com.game.ctrl;
 
 public interface SoundCtrl
 {

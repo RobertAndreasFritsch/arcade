@@ -6,9 +6,6 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-import com.arcade.audio.SoundCtrl;
-import com.arcade.audio.SoundType;
-
 public class CtrlFactoryImpl implements CtrlFactory
 {
 	private final JFrame		jFrame				= new JFrame();

@@ -6,8 +6,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import com.arcade.audio.SoundCtrl;
-
 public class WAVSoundCtrl implements Runnable, SoundCtrl
 {
 
