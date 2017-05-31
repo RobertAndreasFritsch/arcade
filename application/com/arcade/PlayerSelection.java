@@ -6,14 +6,11 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
-import javax.swing.JPanel;
-
 import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
 import com.game.MyGame;
-import com.game.MyWindow;
 import com.game.ProceedsInput;
 import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
@@ -28,12 +25,12 @@ public class PlayerSelection extends MyGame
 	private final ProgressAnimation	anim;
 	private final Presentation			presentation;
 
-	public PlayerSelection(CtrlFactory ctrlFactory, final Presentation presentation)
+	public PlayerSelection(final CtrlFactory ctrlFactory, final Presentation presentation)
 	{
 		super(ctrlFactory);
 
 		this.presentation = presentation;
-		this.anim = new ProgressAnimation(getKEYS(), this);
+		this.anim = new ProgressAnimation(this.getKEYS(), this);
 		this.add(this.anim);
 	}
 
@@ -48,7 +45,7 @@ public class PlayerSelection extends MyGame
 				counter++;
 			}
 		}
-		if (counter < 1) { return new Menu(getCtrlFactory()); }
+		if (counter < 1) { return new Menu(this.getCtrlFactory()); }
 		Seat.P3.setPlaying(this.anim.players[0]);
 		Seat.P4.setPlaying(this.anim.players[1]);
 		Seat.P1.setPlaying(this.anim.players[2]);
@@ -58,7 +55,7 @@ public class PlayerSelection extends MyGame
 		Seat.P4_PlayerView.setPlaying(this.anim.players[1]);
 		Seat.P1_PlayerView.setPlaying(this.anim.players[2]);
 		Seat.P2_PlayerView.setPlaying(this.anim.players[3]);
-		return this.presentation.getGame(getCtrlFactory());
+		return this.presentation.getGame(this.getCtrlFactory());
 	}
 
 }
@@ -96,7 +93,7 @@ class ProgressAnimation implements Drawable, ProceedsInput, Updateable
 	{
 
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, 1048,1048);
+		g.fillRect(0, 0, 1048, 1048);
 
 		if (this.players[0])
 		{

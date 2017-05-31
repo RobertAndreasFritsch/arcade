@@ -7,15 +7,12 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.TreeMap;
 
-import javax.swing.JPanel;
-
 import com.arcade.Menu;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
 import com.game.MyGame;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
 
 class Bg implements Drawable
 {
@@ -68,7 +65,7 @@ public class HighScoreProcessor extends MyGame
 	 * @deprecated not used anymore
 	 */
 	@Deprecated
-	public HighScoreProcessor(CtrlFactory ctrlFactory , final String... gameName)
+	public HighScoreProcessor(final CtrlFactory ctrlFactory, final String... gameName)
 	{
 		super(ctrlFactory);
 
@@ -135,7 +132,7 @@ public class HighScoreProcessor extends MyGame
 	@Override
 	public Game getNextGame()
 	{
-		return new Menu(getCtrlFactory());
+		return new Menu(this.getCtrlFactory());
 	}
 
 }

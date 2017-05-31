@@ -1,12 +1,9 @@
 package games.tank;
 
-import javax.swing.JPanel;
-
 import com.arcade.audio.SoundFactory;
 import com.game.Game;
 import com.game.MyGame;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
 
 public class Tankies extends MyGame
 {
@@ -18,7 +15,7 @@ public class Tankies extends MyGame
 	Player[]							player				= new Player[4];
 	SoundFactory					soundFactory		= new SoundFactory();
 
-	public Tankies(CtrlFactory ctrlFactory )
+	public Tankies(final CtrlFactory ctrlFactory)
 	{
 		super(ctrlFactory);
 
@@ -35,10 +32,10 @@ public class Tankies extends MyGame
 		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), this.soundFactory);
 		bulletFactory = new BulletFactory(this, battleground, tankArray, this.player, this.soundFactory);
 
-		tankArray[0] = new Tank(0, battleground, bulletFactory, getKEYS());
-		tankArray[1] = new Tank(1, battleground, bulletFactory, getKEYS());
-		tankArray[2] = new Tank(2, battleground, bulletFactory, getKEYS());
-		tankArray[3] = new Tank(3, battleground, bulletFactory, getKEYS());
+		tankArray[0] = new Tank(0, battleground, bulletFactory, this.getKEYS());
+		tankArray[1] = new Tank(1, battleground, bulletFactory, this.getKEYS());
+		tankArray[2] = new Tank(2, battleground, bulletFactory, this.getKEYS());
+		tankArray[3] = new Tank(3, battleground, bulletFactory, this.getKEYS());
 
 		this.add(battleground);
 
@@ -50,7 +47,7 @@ public class Tankies extends MyGame
 		this.add(new Scores(tankArray, this.player, bulletFactory, this));
 	}
 
-	public Tankies(CtrlFactory ctrlFactory , final Player[] player)
+	public Tankies(final CtrlFactory ctrlFactory, final Player[] player)
 	{
 		super(ctrlFactory);
 
@@ -64,10 +61,10 @@ public class Tankies extends MyGame
 		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), this.soundFactory);
 		bulletFactory = new BulletFactory(this, battleground, tankArray, player, this.soundFactory);
 
-		tankArray[0] = new Tank(0, battleground, bulletFactory, getKEYS());
-		tankArray[1] = new Tank(1, battleground, bulletFactory, getKEYS());
-		tankArray[2] = new Tank(2, battleground, bulletFactory, getKEYS());
-		tankArray[3] = new Tank(3, battleground, bulletFactory, getKEYS());
+		tankArray[0] = new Tank(0, battleground, bulletFactory, this.getKEYS());
+		tankArray[1] = new Tank(1, battleground, bulletFactory, this.getKEYS());
+		tankArray[2] = new Tank(2, battleground, bulletFactory, this.getKEYS());
+		tankArray[3] = new Tank(3, battleground, bulletFactory, this.getKEYS());
 
 		this.add(battleground);
 
@@ -89,6 +86,6 @@ public class Tankies extends MyGame
 		{
 			if (p.score >= 9) { return super.getNextGame(); }
 		}
-		return new Tankies(getCtrlFactory(), this.player);
+		return new Tankies(this.getCtrlFactory(), this.player);
 	}
 }

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.game.Drawable;
-import com.game.MyWindow;
 
 public class Background implements Drawable
 {

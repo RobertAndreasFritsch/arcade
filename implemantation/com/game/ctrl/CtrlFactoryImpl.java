@@ -7,10 +7,10 @@ import javax.swing.JFrame;
 
 public class CtrlFactoryImpl implements CtrlFactory
 {
-	private final JFrame jFrame = new JFrame();
-	
-	KeyRequest keyRequest;
-	GraphicsController graphicsController = new GraphicsController(jFrame);
+	private final JFrame	jFrame					= new JFrame();
+
+	KeyRequest				keyRequest;
+	GraphicsController	graphicsController	= new GraphicsController(this.jFrame);
 
 	CtrlFactoryImpl(final KeyRequestType keyRequestType)
 	{
@@ -24,8 +24,8 @@ public class CtrlFactoryImpl implements CtrlFactory
 			this.keyRequest = new KeboardKeyRequest();
 			break;
 		}
-		
-		jFrame.addKeyListener((KeyListener) this.keyRequest);
+
+		this.jFrame.addKeyListener((KeyListener) this.keyRequest);
 	}
 
 	@Override
@@ -37,11 +37,12 @@ public class CtrlFactoryImpl implements CtrlFactory
 	@Override
 	public Graphics2D getGraphics()
 	{
-		return (Graphics2D) graphicsController.getBufferGraphics();
+		return (Graphics2D) this.graphicsController.getBufferGraphics();
 	}
 
 	@Override
 	public GraphicsController graphicsControllerInstance()
-	{return graphicsController;
+	{
+		return this.graphicsController;
 	}
 }

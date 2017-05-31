@@ -108,16 +108,16 @@ public class Menu extends MyGame
 	private static final long	serialVersionUID	= 72535390847737153L;
 	private Presentation			nextGame;
 
-	public Menu(CtrlFactory ctrlFactory)
+	public Menu(final CtrlFactory ctrlFactory)
 	{
 		super(ctrlFactory);
-		this.add(new GameSlider(this, getKEYS()));
+		this.add(new GameSlider(this, this.getKEYS()));
 	}
 
 	@Override
 	public Game getNextGame()
 	{
-		return new PlayerSelection(getCtrlFactory(), this.nextGame);
+		return new PlayerSelection(this.getCtrlFactory(), this.nextGame);
 	}
 
 	public void setNextGame(final Presentation nextGame)

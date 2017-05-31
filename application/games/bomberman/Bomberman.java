@@ -1,11 +1,8 @@
 package games.bomberman;
 
-import javax.swing.JPanel;
-
 import com.arcade.utils.Seat;
 import com.game.MyGame;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
 
 //Alex war hier 30.02.2017
 //Luca war auch hier 1.2.2017
@@ -23,7 +20,7 @@ public class Bomberman extends MyGame
 	private final Field			f;
 	public Player					Player1, Player2, Player3, Player4;
 
-	public Bomberman(CtrlFactory ctrlFactory )
+	public Bomberman(final CtrlFactory ctrlFactory)
 	{
 		super(ctrlFactory);
 
@@ -31,19 +28,19 @@ public class Bomberman extends MyGame
 
 		if (Seat.P3.isPlaying())
 		{
-			this.Player3 = new Player(this, getKEYS(), Seat.P3_PlayerView, this.f, 512, 768);
+			this.Player3 = new Player(this, this.getKEYS(), Seat.P3_PlayerView, this.f, 512, 768);
 		}
 		if (Seat.P4.isPlaying())
 		{
-			this.Player4 = new Player(this, getKEYS(), Seat.P4_PlayerView, this.f, 256, 512);
+			this.Player4 = new Player(this, this.getKEYS(), Seat.P4_PlayerView, this.f, 256, 512);
 		}
 		if (Seat.P1.isPlaying())
 		{
-			this.Player1 = new Player(this, getKEYS(), Seat.P1_PlayerView, this.f, 512, 256);
+			this.Player1 = new Player(this, this.getKEYS(), Seat.P1_PlayerView, this.f, 512, 256);
 		}
 		if (Seat.P2.isPlaying())
 		{
-			this.Player2 = new Player(this, getKEYS(), Seat.P2_PlayerView, this.f, 768, 512);
+			this.Player2 = new Player(this, this.getKEYS(), Seat.P2_PlayerView, this.f, 768, 512);
 		}
 
 		this.add(new Background());
@@ -65,7 +62,7 @@ public class Bomberman extends MyGame
 			this.add(this.Player4);
 		}
 
-		this.add(new GameOverWaiter(this, getKEYS()));
+		this.add(new GameOverWaiter(this, this.getKEYS()));
 
 	}
 

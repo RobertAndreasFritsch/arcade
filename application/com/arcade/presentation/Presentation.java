@@ -6,12 +6,9 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JPanel;
-
 import com.game.Drawable;
 import com.game.Game;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
 
 public enum Presentation implements Drawable
 {
@@ -58,7 +55,7 @@ public enum Presentation implements Drawable
 		g.drawImage(this.image, 0, 0, 1048, 1048, null);
 	}
 
-	public Game getGame(CtrlFactory ctrlFactory)
+	public Game getGame(final CtrlFactory ctrlFactory)
 	{
 		return this.gameConstructor.newGame(ctrlFactory);
 	}

@@ -2,13 +2,10 @@ package games.kickthemoff;
 
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 import com.arcade.utils.Seat;
 import com.game.Game;
 import com.game.MyGame;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
 
 public class Kickthemoff extends MyGame
 {
@@ -21,7 +18,7 @@ public class Kickthemoff extends MyGame
 
 	private final ArrayList<Player>	players				= new ArrayList<>();
 
-	public Kickthemoff(CtrlFactory ctrlFactory )
+	public Kickthemoff(final CtrlFactory ctrlFactory)
 	{
 		super(ctrlFactory);
 
@@ -77,7 +74,7 @@ public class Kickthemoff extends MyGame
 			}
 		}
 
-		return new Kickthemoff(getCtrlFactory());
+		return new Kickthemoff(this.getCtrlFactory());
 	}
 
 	public ArrayList<Player> getPlayers()

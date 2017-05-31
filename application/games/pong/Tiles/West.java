@@ -3,7 +3,6 @@ package games.pong.Tiles;
 import java.awt.Rectangle;
 
 import com.arcade.utils.Seat;
-import com.game.MyWindow;
 import com.game.ctrl.KeyRequest;
 
 import games.pong.PongGameObjekt_Blocker;
@@ -34,8 +33,7 @@ public class West extends Tile
 	@Override
 	public void actionRight()
 	{
-		if (this.rect.y + 300 <= 1048 && this.getTor() != 0
-		      && this.rect.y + 300 <= this.blockers[2].getY())
+		if (this.rect.y + 300 <= 1048 && this.getTor() != 0 && this.rect.y + 300 <= this.blockers[2].getY())
 		{
 			this.rect.y += Tile.SPEED;
 		}

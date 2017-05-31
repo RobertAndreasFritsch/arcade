@@ -12,6 +12,6 @@ public interface CtrlFactory
 	KeyRequest keyRequestInstance();
 
 	Graphics2D getGraphics();
-	
+
 	GraphicsController graphicsControllerInstance();
 }

@@ -2,13 +2,10 @@ package games.zombies;
 
 import java.util.ArrayList;
 
-import javax.swing.JPanel;
-
 import com.arcade.utils.Seat;
 import com.game.MyGame;
 import com.game.ProceedsInput;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
 
 import games.zombies.collision.Blockade;
 import games.zombies.collision.CollisionBox;
@@ -24,9 +21,9 @@ public class Zombies extends MyGame implements ProceedsInput
 	private final ArrayList<CollisionBox>	boxes;
 	private final ArrayList<Player>			players;
 
-	public Zombies(CtrlFactory ctrlFactory )
+	public Zombies(final CtrlFactory ctrlFactory)
 	{
-		super(ctrlFactory );
+		super(ctrlFactory);
 		this.boxes = new ArrayList<>();
 		this.players = new ArrayList<>();
 
