@@ -10,13 +10,13 @@ import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ProceedsInput;
 import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyCtrl;
 
-public class PlayerSelection extends MyGame
+public class PlayerSelection extends SimpleGame
 {
 	/**
 	 *

@@ -1,12 +1,12 @@
 package com.game;
 
-public class MyGameLoop implements GameLoop
+public class GameLoopImpl implements GameLoop
 {
 
 	public static final long	MSPF	= 15;	// TODO hard coded
 	protected Game					activeGame;
 
-	public MyGameLoop(final Game game)
+	public GameLoopImpl(final Game game)
 	{
 		this.setActiveGame(game);
 	}
@@ -29,7 +29,7 @@ public class MyGameLoop implements GameLoop
 
 			elapsed = System.currentTimeMillis() - now;
 
-			if (elapsed >= MyGameLoop.MSPF)
+			if (elapsed >= GameLoopImpl.MSPF)
 			{
 				this.activeGame.tick(elapsed);
 				now += elapsed;
@@ -39,7 +39,7 @@ public class MyGameLoop implements GameLoop
 			{
 				try
 				{
-					Thread.sleep(MyGameLoop.MSPF - elapsed);
+					Thread.sleep(GameLoopImpl.MSPF - elapsed);
 				}
 				catch (final InterruptedException e)
 				{

@@ -9,6 +9,6 @@ public interface CtrlFactory
 
 	KeyCtrl keyRequestInstance();
 
-	GraphicsCtrlImpl graphicsControllerInstance();
+	GraphicsCtrl graphicsControllerInstance();
 
 }

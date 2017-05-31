@@ -3,15 +3,18 @@ package com.game.ctrl;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeboardKeyRequest implements KeyListener, KeyCtrl
+import javax.swing.JFrame;
+
+public class KeboardKeyCtrlImpl implements KeyListener, KeyCtrl
 {
 	public static final int	KEYSLENGHT	= 524;
 
-	private final boolean[]	keys			= new boolean[KeboardKeyRequest.KEYSLENGHT];
-	private final boolean[]	frame			= new boolean[KeboardKeyRequest.KEYSLENGHT];
+	private final boolean[]	keys			= new boolean[KeboardKeyCtrlImpl.KEYSLENGHT];
+	private final boolean[]	frame			= new boolean[KeboardKeyCtrlImpl.KEYSLENGHT];
 
-	KeboardKeyRequest()
+	KeboardKeyCtrlImpl(JFrame jFrame)
 	{
+		jFrame.addKeyListener(this);
 	}
 
 	@Override

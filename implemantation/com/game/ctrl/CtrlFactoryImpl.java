@@ -1,29 +1,26 @@
 package com.game.ctrl;
 
-import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 
 public class CtrlFactoryImpl implements CtrlFactory
 {
-	private final JFrame	jFrame					= new JFrame();
+	private final JFrame	jFrame				= new JFrame();
 
-	KeyCtrl				keyCtrl;
-	GraphicsCtrlImpl	graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
+	KeyCtrl					keyCtrl;
+	GraphicsCtrl			graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
 
 	CtrlFactoryImpl(final KeyCtrlType keyCtrlType)
 	{
 		switch (keyCtrlType)
 		{
 		case Microcontroller:
-			this.keyCtrl = new MicrocontrollerKeyRequest();
+			this.keyCtrl = new MicrocontrollerKeyCtrlImpl(jFrame);
 			break;
 
 		default: // <- Keyboard
-			this.keyCtrl = new KeboardKeyRequest();
+			this.keyCtrl = new KeboardKeyCtrlImpl(jFrame);
 			break;
 		}
-
-		this.jFrame.addKeyListener((KeyListener) this.keyCtrl);
 	}
 
 	@Override
@@ -33,7 +30,7 @@ public class CtrlFactoryImpl implements CtrlFactory
 	}
 
 	@Override
-	public GraphicsCtrlImpl graphicsControllerInstance()
+	public GraphicsCtrl graphicsControllerInstance()
 	{
 		return this.graphicsCtrlImpl;
 	}

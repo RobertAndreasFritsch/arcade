@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.arcade.utils.Seat;
 import com.game.GameObject;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
 import games.pong.controll.Controll;
@@ -14,7 +14,7 @@ import games.pong.graphics.Background;
  * @author default
  *
  */
-public final class Pong extends MyGame
+public final class Pong extends SimpleGame
 {
 
 	/**

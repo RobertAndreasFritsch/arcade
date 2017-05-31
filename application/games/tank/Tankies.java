@@ -2,10 +2,10 @@ package games.tank;
 
 import com.arcade.audio.SoundFactory;
 import com.game.Game;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
-public class Tankies extends MyGame
+public class Tankies extends SimpleGame
 {
 
 	/**

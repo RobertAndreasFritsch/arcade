@@ -3,7 +3,7 @@ package games.knutzzz;
 import java.awt.event.KeyEvent;
 
 import com.arcade.utils.Seat;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
 import games.knutzzz.control.WinnerControl;
@@ -18,7 +18,7 @@ import games.knutzzz.graphics.Goal;
  *
  */
 
-public class Knutzzz extends MyGame
+public class Knutzzz extends SimpleGame
 {
 
 	/**

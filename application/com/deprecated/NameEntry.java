@@ -11,7 +11,7 @@ import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ProceedsInput;
 import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
@@ -550,7 +550,7 @@ class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInpu
  * @deprecated not used anymore
  */
 @Deprecated
-public class NameEntry extends MyGame
+public class NameEntry extends SimpleGame
 {
 	/**
 	 *

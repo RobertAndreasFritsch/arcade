@@ -5,10 +5,10 @@
 package games.tron;
 
 import com.arcade.utils.Seat;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
-public final class Tron extends MyGame
+public final class Tron extends SimpleGame
 {
 
 	/**

@@ -11,7 +11,7 @@ import com.arcade.Menu;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
 class Bg implements Drawable
@@ -30,7 +30,7 @@ class Bg implements Drawable
  * @deprecated not used anymore
  */
 @Deprecated
-public class HighScoreProcessor extends MyGame
+public class HighScoreProcessor extends SimpleGame
 {
 
 	/**

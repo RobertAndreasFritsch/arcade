@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import com.arcade.utils.Seat;
 import com.game.Game;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
-public class Kickthemoff extends MyGame
+public class Kickthemoff extends SimpleGame
 {
 	/**
 	 *

@@ -3,14 +3,20 @@ package com.game.ctrl;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MicrocontrollerKeyRequest implements KeyListener, KeyCtrl
+import javax.swing.JFrame;
+
+public class MicrocontrollerKeyCtrlImpl implements KeyListener, KeyCtrl
 {
 	public static final int	KEYSLENGHT	= 524;
 
-	private boolean[]			keys			= new boolean[MicrocontrollerKeyRequest.KEYSLENGHT];
-	private boolean[]			keysBuffer	= new boolean[MicrocontrollerKeyRequest.KEYSLENGHT];
-	private boolean[]			frame			= new boolean[MicrocontrollerKeyRequest.KEYSLENGHT];
+	private boolean[]			keys			= new boolean[MicrocontrollerKeyCtrlImpl.KEYSLENGHT];
+	private boolean[]			keysBuffer	= new boolean[MicrocontrollerKeyCtrlImpl.KEYSLENGHT];
+	private boolean[]			frame			= new boolean[MicrocontrollerKeyCtrlImpl.KEYSLENGHT];
 
+	MicrocontrollerKeyCtrlImpl (JFrame jFrame) {
+		jFrame.addKeyListener(this);
+	}
+	
 	@Override
 	public boolean isPressed(final int keyCode)
 	{

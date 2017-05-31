@@ -1,8 +1,5 @@
 package com.game;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 import com.arcade.Menu;
@@ -10,18 +7,16 @@ import com.arcade.presentation.GameConstructor;
 import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyCtrl;
 
-public class MyGame extends ArrayList<GameObject> implements Game
+public class SimpleGame extends ArrayList<GameObject> implements Game
 {
 	private static final long				serialVersionUID	= -564173017564334081L;
 	public static final GameConstructor	DefaultGame			= Menu::new;
 
 	private boolean							running				= false;
-	Image											img;
-	Graphics2D									g;
-	private GameConstructor					nextGame				= MyGame.DefaultGame;
+	private GameConstructor					nextGame				= SimpleGame.DefaultGame;
 	private final CtrlFactory				ctrlFactory;
 
-	public MyGame(final CtrlFactory ctrlFactory)
+	public SimpleGame(final CtrlFactory ctrlFactory)
 	{
 		this.ctrlFactory = ctrlFactory;
 	}
@@ -75,13 +70,12 @@ public class MyGame extends ArrayList<GameObject> implements Game
 		{
 			u.update(elapsed);
 		}
-
-		AffineTransform affineTransform = ctrlFactory.graphicsControllerInstance().getBufferGraphics().getTransform();
+		
 		for (final GameObject d : temp)
 		{
 			d.output();
-			ctrlFactory.graphicsControllerInstance().getBufferGraphics().setTransform(affineTransform);
 		}
+		ctrlFactory.graphicsControllerInstance().dispose();
 	}
 
 	public CtrlFactory getCtrlFactory()

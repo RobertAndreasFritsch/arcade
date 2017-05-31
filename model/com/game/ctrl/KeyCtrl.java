@@ -1,6 +1,8 @@
 package com.game.ctrl;
 
-public interface KeyCtrl
+import java.awt.event.KeyListener;
+
+public interface KeyCtrl extends KeyListener
 {
 	boolean isPressed(int keyCode);
 	void takeFrame();

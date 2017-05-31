@@ -1,13 +1,13 @@
 package games.bomberman;
 
 import com.arcade.utils.Seat;
-import com.game.MyGame;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
 //Alex war hier 30.02.2017
 //Luca war auch hier 1.2.2017
 
-public class Bomberman extends MyGame
+public class Bomberman extends SimpleGame
 {
 	/**
 	 *
