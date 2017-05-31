@@ -1,6 +1,8 @@
 package com.game.ctrl;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -8,15 +10,15 @@ import javax.sound.sampled.Clip;
 
 public class WAVSoundCtrl implements Runnable, SoundCtrl
 {
-
-	private Clip							clip;
-	private boolean						loop;
-	private final AudioInputStream	audioInputStream;
+	private List<Clip>	clips	= new ArrayList<>();
+	private boolean		loop;
+	private final File	file;
 
 	public WAVSoundCtrl(final File file, final boolean loop) throws Exception
 	{
-		this.audioInputStream = AudioSystem.getAudioInputStream(file);
+		this.file = file;
 		this.loop = loop;
+
 	}
 
 	@Override
@@ -24,14 +26,22 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 	{
 		try
 		{
+			Clip clip;
+
+			AudioInputStream audioInputStream;
 			do
 			{
-				this.clip = AudioSystem.getClip();
-				this.clip.open(this.audioInputStream);
-				this.clip.start();
-				Thread.sleep(this.clip.getMicrosecondLength() / 100000);
+				audioInputStream = AudioSystem.getAudioInputStream(file);
+				clip = AudioSystem.getClip();
+				clips.add(clip);
+				clip.open(audioInputStream);
+				clip.start();
+				Thread.sleep(clip.getMicrosecondLength() / 100000);
 			}
 			while (this.loop);
+			
+			clip.close(); // TODO not sure
+			clips.remove(clip);
 		}
 		catch (final Exception e)
 		{
@@ -41,7 +51,8 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 	@Override
 	public void stop()
 	{
-		this.clip.close();
+		for (Clip clip : new ArrayList<>(clips))
+			if (clip != null) clip.close();
 		this.loop = false;
 	}
 

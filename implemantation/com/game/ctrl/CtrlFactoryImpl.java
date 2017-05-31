@@ -61,6 +61,7 @@ public class CtrlFactoryImpl implements CtrlFactory
 		}
 		catch (final Exception e)
 		{
+			e.printStackTrace();
 			return null;
 		}
 

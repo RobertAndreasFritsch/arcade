@@ -33,7 +33,6 @@ public class GameLoopImpl implements GameLoop
 			{
 				this.activeGame.tick(elapsed);
 				now += elapsed;
-
 			}
 			else
 			{

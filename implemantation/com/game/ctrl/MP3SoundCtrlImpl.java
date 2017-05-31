@@ -2,20 +2,23 @@ package com.game.ctrl;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javazoom.jl.player.Player;
 
 public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 {
 
-	private Player						player;
-	private boolean					loop;
-	private final FileInputStream	fileInputStream;
+	private List<Player>	players	= new ArrayList<>();
+	private boolean		loop;
+	private final File	file;
 
 	public MP3SoundCtrlImpl(final File file, final boolean loop) throws Exception
 	{
-		this.fileInputStream = new FileInputStream(file);
+		this.file = file;
 		this.loop = loop;
+
 	}
 
 	@Override
@@ -23,25 +26,32 @@ public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 	{
 		try
 		{
+			Player player;
+			FileInputStream fileInputStream;
 			do
 			{
-				this.player = new Player(this.fileInputStream);
-				this.player.play();
+				fileInputStream = new FileInputStream(file);
+				player = new Player(fileInputStream);
+				players.add(player);
+				player.play();
 			}
 			while (this.loop);
+
+			player.close();
+			players.remove(player);
 		}
 		catch (final Exception e)
 		{
 			e.printStackTrace();
 		}
 
-		this.player.close();
 	}
 
 	@Override
 	public void stop()
 	{
-		this.player.close();
+		for (Player player : players)
+			if (player != null) player.close();
 		this.loop = false;
 	}
 
