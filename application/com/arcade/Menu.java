@@ -12,7 +12,7 @@ import com.game.MyGame;
 import com.game.ProceedsInput;
 import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 class GameSlider implements ProceedsInput, Updateable, Drawable
 {
@@ -24,10 +24,10 @@ class GameSlider implements ProceedsInput, Updateable, Drawable
 	private final Presentation[]	presentations			= Presentation.values();
 	private final Menu				parent;
 
-	private final KeyRequest		KEYS;
+	private final KeyCtrl		KEYS;
 	private long						bufferTime				= 0l;
 
-	public GameSlider(final Menu parent, final KeyRequest KEYS)
+	public GameSlider(final Menu parent, final KeyCtrl KEYS)
 	{
 		this.parent = parent;
 		this.KEYS = KEYS;
@@ -102,9 +102,6 @@ class GameSlider implements ProceedsInput, Updateable, Drawable
 public class Menu extends MyGame
 {
 
-	/**
-	 *
-	 */
 	private static final long	serialVersionUID	= 72535390847737153L;
 	private Presentation			nextGame;
 

@@ -7,7 +7,7 @@ import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.ProceedsInput;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class Player implements Drawable, Updateable, ProceedsInput
 {
@@ -20,14 +20,14 @@ public class Player implements Drawable, Updateable, ProceedsInput
 	private final int				tileSize;
 	private final int				width;
 	private final int				height;
-	private final KeyRequest	KEYS;
+	private final KeyCtrl	KEYS;
 	public Seat						player;
 	Sound								sound			= new Sound();
 
 	private final long			timeBuffer	= 200;
 	private long					currentTime	= 0;
 
-	public Player(final KeyRequest KEYS, final int x, final int y, final int dx, final int dy, final int floor[][],
+	public Player(final KeyCtrl KEYS, final int x, final int y, final int dx, final int dy, final int floor[][],
 	      final int spielerID, final int tileSize, final int width, final int height, final Seat player)
 	{
 

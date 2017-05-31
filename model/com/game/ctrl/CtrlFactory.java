@@ -1,17 +1,14 @@
 package com.game.ctrl;
 
-import java.awt.Graphics2D;
-
 public interface CtrlFactory
 {
-	static CtrlFactory newCtrlFactory(final KeyRequestType keyRequestType)
+	static CtrlFactory newCtrlFactory(final KeyCtrlType keyCtrlType)
 	{
-		return new CtrlFactoryImpl(keyRequestType);
+		return new CtrlFactoryImpl(keyCtrlType);
 	}
 
-	KeyRequest keyRequestInstance();
+	KeyCtrl keyRequestInstance();
 
-	Graphics2D getGraphics();
+	GraphicsCtrlImpl graphicsControllerInstance();
 
-	GraphicsController graphicsControllerInstance();
 }

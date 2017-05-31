@@ -2,12 +2,13 @@ package com.game;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
 import com.arcade.Menu;
 import com.arcade.presentation.GameConstructor;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class MyGame extends ArrayList<GameObject> implements Game
 {
@@ -31,7 +32,7 @@ public class MyGame extends ArrayList<GameObject> implements Game
 		this.setRunning(false);
 	}
 
-	public KeyRequest getKEYS()
+	public KeyCtrl getKEYS()
 	{
 		return this.ctrlFactory.keyRequestInstance();
 	}
@@ -64,43 +65,23 @@ public class MyGame extends ArrayList<GameObject> implements Game
 	{
 		final ArrayList<GameObject> temp = new ArrayList<>(this);
 
+		ctrlFactory.keyRequestInstance().takeFrame();
 		for (final GameObject i : temp)
 		{
 			i.input();
 		}
+
 		for (final GameObject u : temp)
 		{
 			u.update(elapsed);
 		}
 
-		// this.img =
-		// this.getPANEL().createImage(MyWindow.getInstance().getWidth(),
-		// MyWindow.getInstance().getHeight());
-		// this.g = (Graphics2D) this.img.getGraphics();
-		//
-		// this.g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-		// RenderingHints.VALUE_ANTIALIAS_ON);
-		// this.g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-		// RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		//
-		// this.g.setColor(Color.BLACK);
-		// this.g.fillRect(0, 0, (int)
-		// Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-		// (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-		// this.g.translate(this.offsetX, this.offsetY);
-		//
-		// this.g.setColor(Color.WHITE);
-		// this.g.fillRect(0, 0, 1024, 1024);
-
+		AffineTransform affineTransform = ctrlFactory.graphicsControllerInstance().getBufferGraphics().getTransform();
 		for (final GameObject d : temp)
 		{
 			d.output();
+			ctrlFactory.graphicsControllerInstance().getBufferGraphics().setTransform(affineTransform);
 		}
-
-		this.getCtrlFactory().graphicsControllerInstance().dispose();
-
-		// this.getPANEL().getGraphics().drawImage(this.img, 0, 0, null);
-		// Toolkit.getDefaultToolkit().sync();
 	}
 
 	public CtrlFactory getCtrlFactory()

@@ -11,7 +11,7 @@ import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.ProceedsInput;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class Tank implements Updateable, Drawable, ProceedsInput
 {
@@ -32,11 +32,11 @@ public class Tank implements Updateable, Drawable, ProceedsInput
 	Image									TankObject;
 	private final Battleground		battleground;
 	private final BulletFactory	bulletFactory;
-	private final KeyRequest		keys;
+	private final KeyCtrl		keys;
 
 	// ------------------------------------------------------------------Constructor
 	public Tank(final int player, final Battleground battleground, final BulletFactory bulletFactory,
-	      final KeyRequest keys)
+	      final KeyCtrl keys)
 	{
 
 		this.keys = keys;

@@ -5,15 +5,15 @@ import java.awt.event.KeyEvent;
 import com.game.Game;
 import com.game.ProceedsInput;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class Controll implements Updateable, ProceedsInput
 {
 
-	private final KeyRequest	KEYS;
+	private final KeyCtrl	KEYS;
 	private final Game			game;
 
-	public Controll(final Game game, final KeyRequest KEYS)
+	public Controll(final Game game, final KeyCtrl KEYS)
 	{
 		this.game = game;
 		this.KEYS = KEYS;

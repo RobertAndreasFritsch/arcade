@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class Player implements Drawable, Updateable
 {
@@ -14,7 +14,7 @@ public class Player implements Drawable, Updateable
 	private final Seat			s;
 	private float					x, y;
 	private float					accelerationX, accelerationY;
-	private final KeyRequest	keys;
+	private final KeyCtrl	keys;
 	private boolean				dead								= false, dying = false;
 	private float					scale								= 1;
 	private final Ground			g;

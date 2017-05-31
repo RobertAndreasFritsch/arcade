@@ -14,7 +14,7 @@ import com.game.MyGame;
 import com.game.ProceedsInput;
 import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class PlayerSelection extends MyGame
 {
@@ -66,11 +66,11 @@ class ProgressAnimation implements Drawable, ProceedsInput, Updateable
 	private long					progress	= 0;
 	private final long			timeout	= 5000;
 	private double					angle		= 0;
-	private final KeyRequest	Keys;
+	private final KeyCtrl	Keys;
 	private final Game			game;
 	int								blub		= 0;
 
-	public ProgressAnimation(final KeyRequest Keys, final Game game)
+	public ProgressAnimation(final KeyCtrl Keys, final Game game)
 	{
 		this.Keys = Keys;
 		this.game = game;

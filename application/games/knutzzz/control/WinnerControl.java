@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 
 import com.game.ProceedsInput;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 import games.knutzzz.Knutzzz;
 import games.knutzzz.KnutzzzGameObject_Bumper;
@@ -13,9 +13,9 @@ public class WinnerControl implements Updateable, ProceedsInput
 {
 
 	Knutzzz							parent;
-	private final KeyRequest	KEYS;
+	private final KeyCtrl	KEYS;
 
-	public WinnerControl(final Knutzzz parent, final KeyRequest KEYS)
+	public WinnerControl(final Knutzzz parent, final KeyCtrl KEYS)
 	{
 		this.parent = parent;
 		this.KEYS = KEYS;

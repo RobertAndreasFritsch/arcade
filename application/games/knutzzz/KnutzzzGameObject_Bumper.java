@@ -13,7 +13,7 @@ import javax.imageio.ImageIO;
 import com.game.Drawable;
 import com.game.ProceedsInput;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class KnutzzzGameObject_Bumper implements Drawable, Updateable, ProceedsInput
 {
@@ -32,10 +32,10 @@ public class KnutzzzGameObject_Bumper implements Drawable, Updateable, ProceedsI
 	int								startx, starty, startangle;
 	int								ID			= 0;
 
-	private final KeyRequest	KEYS;
+	private final KeyCtrl	KEYS;
 
 	KnutzzzGameObject_Bumper(final Knutzzz parent, final int keyCodeLeft, final int keyCodeRight,
-	      final int keyCodeThrust, final int ID, final KeyRequest KEYS)
+	      final int keyCodeThrust, final int ID, final KeyCtrl KEYS)
 	{
 		this.parent = parent;
 		this.KEYS = KEYS;

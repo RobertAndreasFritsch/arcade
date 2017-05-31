@@ -6,13 +6,13 @@ import java.awt.Graphics2D;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.ProceedsInput;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class Player implements Drawable, ProceedsInput
 {
 	private final Seat			s;
 	private int						x, y;
-	private final KeyRequest	keys;
+	private final KeyCtrl	keys;
 	private final long			WAIT_UNTIL_NEXT_MOVE	= 100;
 	private final long			WAIT_UNTIL_NEXT_BOMB	= 1000;
 	private final long			BOMB_TIMEOUT			= 1500;
@@ -21,7 +21,7 @@ public class Player implements Drawable, ProceedsInput
 	private final Bomberman		game;
 	private int						score						= 1;
 
-	public Player(final Bomberman game, final KeyRequest keys, final Seat s, final Field f, final int x, final int y)
+	public Player(final Bomberman game, final KeyCtrl keys, final Seat s, final Field f, final int x, final int y)
 	{
 		this.s = s;
 		this.x = x;

@@ -19,7 +19,7 @@ public interface Drawable extends GOAdapter
 	@Override
 	default void output()
 	{
-		draw(Launch.CTRL_FACTORY.getGraphics());
+		draw(Launch.CTRL_FACTORY.graphicsControllerInstance().getBufferGraphics());
 	}
 
 }

@@ -15,7 +15,7 @@ import com.game.MyGame;
 import com.game.ProceedsInput;
 import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 /**
  * @deprecated not used anymore
@@ -442,7 +442,7 @@ class GUITextInput extends GUIElement
 @Deprecated
 class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInput
 {
-	private final KeyRequest	Keys;
+	private final KeyCtrl	Keys;
 	private final Seat			s;
 	private boolean				canPress	= true;
 	private final int				rot;
@@ -461,7 +461,7 @@ class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInpu
 	 * @deprecated not used anymore
 	 */
 	@Deprecated
-	public GUITextInputAdapter(final KeyRequest Keys, final Seat s, final int x, final int y, final char[][] chars,
+	public GUITextInputAdapter(final KeyCtrl Keys, final Seat s, final int x, final int y, final char[][] chars,
 	      final Color bg, final Color txt, final Font f, final int rot)
 	{
 		super(x, y, chars, bg, txt, f);

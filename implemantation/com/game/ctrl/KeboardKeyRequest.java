@@ -3,11 +3,12 @@ package com.game.ctrl;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class KeboardKeyRequest implements KeyListener, KeyRequest
+public class KeboardKeyRequest implements KeyListener, KeyCtrl
 {
 	public static final int	KEYSLENGHT	= 524;
 
 	private final boolean[]	keys			= new boolean[KeboardKeyRequest.KEYSLENGHT];
+	private final boolean[]	frame			= new boolean[KeboardKeyRequest.KEYSLENGHT];
 
 	KeboardKeyRequest()
 	{
@@ -16,7 +17,7 @@ public class KeboardKeyRequest implements KeyListener, KeyRequest
 	@Override
 	public boolean isPressed(final int keyCode)
 	{
-		if (keyCode < this.keys.length) { return this.keys[keyCode]; }
+		if (keyCode < this.frame.length) return this.frame[keyCode];
 		return false;
 	}
 
@@ -41,5 +42,12 @@ public class KeboardKeyRequest implements KeyListener, KeyRequest
 	@Override
 	public void keyTyped(final KeyEvent e)
 	{
+	}
+
+	@Override
+	public void takeFrame()
+	{
+		for (int i = 0; i < frame.length; i++)
+			frame[i] = keys[i];
 	}
 }

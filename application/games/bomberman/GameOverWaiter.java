@@ -4,14 +4,14 @@ import java.awt.event.KeyEvent;
 
 import com.game.ProceedsInput;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class GameOverWaiter implements Updateable, ProceedsInput
 {
 	private final Bomberman		game;
-	private final KeyRequest	KEYS;
+	private final KeyCtrl	KEYS;
 
-	public GameOverWaiter(final Bomberman game, final KeyRequest KEYS)
+	public GameOverWaiter(final Bomberman game, final KeyCtrl KEYS)
 	{
 		this.game = game;
 		this.KEYS = KEYS;

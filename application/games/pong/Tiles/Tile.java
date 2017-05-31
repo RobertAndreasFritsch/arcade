@@ -9,7 +9,7 @@ import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.ProceedsInput;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public abstract class Tile implements Updateable, Drawable, ProceedsInput
 {
@@ -32,14 +32,14 @@ public abstract class Tile implements Updateable, Drawable, ProceedsInput
 	 */
 	boolean							stateLeft, stateRight;
 
-	private final KeyRequest	KEYS;
+	private final KeyCtrl	KEYS;
 
 	/**
 	 * @param keyCode1
 	 * @param keyCode2
 	 * @throws Exception
 	 */
-	public Tile(final Seat player, final KeyRequest KEYS)
+	public Tile(final Seat player, final KeyCtrl KEYS)
 	{
 		this.player = player;
 		this.KEYS = KEYS;

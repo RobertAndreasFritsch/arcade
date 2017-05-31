@@ -3,7 +3,7 @@ package games.pong.Tiles;
 import java.awt.Rectangle;
 
 import com.arcade.utils.Seat;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 import games.pong.PongGameObjekt_Blocker;
 
@@ -11,7 +11,7 @@ public class West extends Tile
 {
 	PongGameObjekt_Blocker[] blockers;
 
-	public West(final Seat player, final KeyRequest KEYS, final PongGameObjekt_Blocker[] blockers)
+	public West(final Seat player, final KeyCtrl KEYS, final PongGameObjekt_Blocker[] blockers)
 	{
 		super(player, KEYS);
 		this.setheight(300);

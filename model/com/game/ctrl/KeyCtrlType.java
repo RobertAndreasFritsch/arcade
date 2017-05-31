@@ -1,6 +1,6 @@
 package com.game.ctrl;
 
-public enum KeyRequestType
+public enum KeyCtrlType
 {
 	Microcontroller, Keyboard;
 }

@@ -13,7 +13,7 @@ import com.game.Drawable;
 import com.game.Game;
 import com.game.GameObject;
 import com.game.Updateable;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 import games.pong.Tiles.Tile;
 
@@ -105,7 +105,7 @@ public class PongGameObjekt_Ball implements Updateable, Drawable
 	 * @param blockers
 	 * @throws Exception
 	 */
-	PongGameObjekt_Ball(final Game game, final KeyRequest KEYS, final ArrayList<GameObject> tiles,
+	PongGameObjekt_Ball(final Game game, final KeyCtrl KEYS, final ArrayList<GameObject> tiles,
 	      final PongGameObjekt_Blocker[] blockers)
 	{
 		this.game = game;

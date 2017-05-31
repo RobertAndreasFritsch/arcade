@@ -4,15 +4,15 @@ import java.awt.event.KeyEvent;
 
 import com.game.Game;
 import com.game.ProceedsInput;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.KeyCtrl;
 
 public class Controll implements ProceedsInput
 {
 
 	private final Game			parent;
-	private final KeyRequest	KEYS;
+	private final KeyCtrl	KEYS;
 
-	public Controll(final Game parent, final KeyRequest KEYS)
+	public Controll(final Game parent, final KeyCtrl KEYS)
 	{
 		this.parent = parent;
 		this.KEYS = KEYS;
