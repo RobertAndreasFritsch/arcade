@@ -2,7 +2,6 @@ package games.knutzzz;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -76,11 +75,11 @@ public class KnutzzzGameObject_Dispenser implements Updateable, Drawable
 		// vorhanden sind
 		try
 		{
-			shapes = (BufferedImage) Toolkit.getDefaultToolkit()
-			      .getImage(new File("res/games/knutzzz/img/dispensershapes.png").toURI().toURL());
+			shapes = (BufferedImage)ImageIO.read(new File("res/games/knutzzz/img/dispensershapes.png").toURI().toURL());
 		}
 		catch (final IOException e)
 		{
+			e.printStackTrace();
 		}
 		// L�dt die Bilder f�r die Animation in das Array
 		for (int i = 0; i < 17; i++)
