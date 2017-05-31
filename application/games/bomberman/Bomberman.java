@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
 import com.game.Drawable;
-import com.game.KeyRequest;
 import com.game.MyGame;
+import com.game.ctrl.KeyRequest;
 
 //Alex war hier 30.02.2017
 //Luca war auch hier 1.2.2017

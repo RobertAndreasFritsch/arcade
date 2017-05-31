@@ -7,9 +7,9 @@ import java.awt.Rectangle;
 
 import com.arcade.utils.Seat;
 import com.game.Drawable;
-import com.game.KeyRequest;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 public abstract class Tile implements Updateable, Drawable, ProceedsInput
 {

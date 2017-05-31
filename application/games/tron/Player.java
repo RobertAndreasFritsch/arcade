@@ -5,9 +5,9 @@ import java.awt.Graphics2D;
 
 import com.arcade.utils.Seat;
 import com.game.Drawable;
-import com.game.KeyRequest;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 public class Player implements Drawable, Updateable, ProceedsInput
 {
@@ -85,7 +85,7 @@ public class Player implements Drawable, Updateable, ProceedsInput
 		this.player.setScore(this.player.getScore() + 1); // pro zurueckgelektes
 		                                                  // feld
 		// einen punkt
-
+ 
 		this.x = this.x + this.dx;
 		this.y = this.y + this.dy;
 

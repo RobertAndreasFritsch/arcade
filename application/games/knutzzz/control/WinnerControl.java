@@ -2,9 +2,9 @@ package games.knutzzz.control;
 
 import java.awt.event.KeyEvent;
 
-import com.game.KeyRequest;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 import games.knutzzz.Knutzzz;
 import games.knutzzz.KnutzzzGameObject_Bumper;

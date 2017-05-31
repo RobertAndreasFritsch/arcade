@@ -13,6 +13,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 public class XMLGameScore
 {
 	private Document			doc;

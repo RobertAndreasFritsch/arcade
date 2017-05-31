@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
-import com.game.KeyRequest;
 import com.game.MyGame;
 import com.game.MyWindow;
+import com.game.ctrl.KeyRequest;
 
 import games.pong.controll.Controll;
 import games.pong.graphics.Background;

@@ -5,8 +5,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
-import com.game.KeyRequest;
 import com.game.MyGame;
+import com.game.ctrl.KeyRequest;
 
 import games.knutzzz.control.WinnerControl;
 import games.knutzzz.graphics.Dispenser;

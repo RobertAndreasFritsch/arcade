@@ -10,10 +10,10 @@ import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.MyGame;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 class GameSlider implements ProceedsInput, Updateable, Drawable
 {

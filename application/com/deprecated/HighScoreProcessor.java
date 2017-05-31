@@ -13,8 +13,8 @@ import com.arcade.Menu;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.MyGame;
+import com.game.ctrl.KeyRequest;
 
 class Bg implements Drawable
 {
@@ -28,9 +28,19 @@ class Bg implements Drawable
 
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 public class HighScoreProcessor extends MyGame
 {
 
+	/**
+	 * @param map
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public static TreeMap<String, Integer> sortByValue(final TreeMap<String, Integer> map)
 	{
 		final TreeMap<String, Integer> result = new TreeMap<>();
@@ -45,6 +55,13 @@ public class HighScoreProcessor extends MyGame
 		return result;
 	}
 
+	/**
+	 * @param PANEL
+	 * @param KEYS
+	 * @param gameName
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public HighScoreProcessor(final JPanel PANEL, final KeyRequest KEYS, final String... gameName)
 	{
 		super(PANEL, KEYS);
@@ -117,6 +134,10 @@ public class HighScoreProcessor extends MyGame
 
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 class Table implements Drawable
 {
 	private final String[][]	values;
@@ -124,6 +145,15 @@ class Table implements Drawable
 	private final int				x, y;
 	private final String			title;
 
+	/**
+	 * @param title
+	 * @param values
+	 * @param f
+	 * @param x
+	 * @param y
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public Table(final String title, final String[][] values, final Font f, final int x, final int y)
 	{
 		this.values = values;
@@ -171,5 +201,4 @@ class Table implements Drawable
 			yCursor = this.y + this.f.getSize() + 5;
 		}
 	}
-
 }

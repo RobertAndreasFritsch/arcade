@@ -1,9 +1,9 @@
 package com.arcade.utils;
 
+import static java.awt.Color.*;
 import static java.awt.event.KeyEvent.*;
 
 import java.awt.Color;
-import static java.awt.Color.*;
 
 public enum Seat
 {
@@ -56,10 +56,26 @@ public enum Seat
 		return this.color;
 	}
 
+	public boolean isPlaying()
+	{
+		return this.playing;
+	}
+
+	public void setPlaying(final boolean playing)
+	{
+		this.playing = playing;
+	}
+
+	public double getTransform()
+	{
+		return this.transformation;
+	}
+
 	/**
 	 * @return
 	 * @deprecated Score and NameSelection have been removed from the project
 	 */
+	@Deprecated
 	public String getName()
 	{
 		return "";
@@ -69,39 +85,30 @@ public enum Seat
 	 * @return
 	 * @deprecated Score and NameSelection have been removed from the project
 	 */
+	@Deprecated
 	public int getScore()
 	{
+		System.err.println("@deprecated function-call");
 		return -1;
-	}
-
-	public boolean isPlaying()
-	{
-		return this.playing;
 	}
 
 	/**
 	 * @param name
 	 * @deprecated Score and NameSelection have been removed from the project
 	 */
+	@Deprecated
 	public void setName(final String name)
 	{
-	}
-
-	public void setPlaying(final boolean playing)
-	{
-		this.playing = playing;
+		System.err.println("@deprecated function-call");
 	}
 
 	/**
 	 * @param score
 	 * @deprecated Score and NameSelection have been removed from the project
 	 */
+	@Deprecated
 	public void setScore(final int score)
 	{
-	}
-
-	public double getTransform()
-	{
-		return this.transformation;
+		System.err.println("@deprecated function-call");
 	}
 }

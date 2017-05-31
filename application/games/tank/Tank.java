@@ -9,9 +9,9 @@ import java.io.IOException;
 
 import com.arcade.utils.Seat;
 import com.game.Drawable;
-import com.game.KeyRequest;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 public class Tank implements Updateable, Drawable, ProceedsInput
 {

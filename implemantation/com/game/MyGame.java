@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import com.arcade.Menu;
 import com.arcade.presentation.GameConstructor;
+import com.game.ctrl.KeyRequest;
 
 public class MyGame implements Game
 {

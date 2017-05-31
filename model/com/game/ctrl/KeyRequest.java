@@ -1,4 +1,4 @@
-package com.game;
+package com.game.ctrl;
 
 /**
  * @author r.fritsch2511

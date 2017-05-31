@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 
 import com.arcade.utils.Seat;
 import com.game.Drawable;
-import com.game.KeyRequest;
 import com.game.ProceedsInput;
+import com.game.ctrl.KeyRequest;
 
 public class Player implements Drawable, ProceedsInput
 {

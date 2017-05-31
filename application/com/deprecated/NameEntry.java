@@ -13,12 +13,16 @@ import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.MyGame;
 import com.game.MyWindow;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 class Background implements Drawable
 {
 	@Override
@@ -30,12 +34,22 @@ class Background implements Drawable
 	}
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 abstract class GUIElement
 {
 	private int											x, y;
 	private boolean									isFocused	= false;
 	private final ArrayList<OnClickListener>	l;
 
+	/**
+	 * @param x
+	 * @param y
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public GUIElement(final int x, final int y)
 	{
 		this.x = x;
@@ -43,18 +57,37 @@ abstract class GUIElement
 		this.l = new ArrayList<>();
 	}
 
+	/**
+	 * @param g
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void additionalDraw(final Graphics g)
 	{
 
 	}
 
+	/**
+	 * @param l
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void addOnClickListener(final OnClickListener l)
 	{
 		this.l.add(l);
 	}
 
+	/**
+	 * @param g
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	abstract void basicDraw(Graphics2D g);
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void clicked()
 	{
 		for (final OnClickListener x : this.l)
@@ -63,6 +96,10 @@ abstract class GUIElement
 		}
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void doneFocus()
 	{
 		this.unfocus();
@@ -73,32 +110,60 @@ abstract class GUIElement
 		}
 	}
 
+	/**
+	 * @param g
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public final void draw(final Graphics g)
 	{
 		this.basicDraw((Graphics2D) g);
 		this.additionalDraw(g);
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void focus()
 	{
 		this.isFocused = true;
 	}
 
+	/**
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public int getX()
 	{
 		return this.x;
 	}
 
+	/**
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public int getY()
 	{
 		return this.y;
 	}
 
+	/**
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public boolean isFocused()
 	{
 		return this.isFocused;
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void newFocus()
 	{
 		this.focus();
@@ -108,6 +173,11 @@ abstract class GUIElement
 		}
 	}
 
+	/**
+	 * @param arg0
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void otherKeyPress(final KeyEvent arg0)
 	{
 		for (final OnClickListener x : this.l)
@@ -116,22 +186,40 @@ abstract class GUIElement
 		}
 	}
 
+	/**
+	 * @param x
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void setX(final int x)
 	{
 		this.x = x;
 	}
 
+	/**
+	 * @param y
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void setY(final int y)
 	{
 		this.y = y;
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void unfocus()
 	{
 		this.isFocused = false;
 	}
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 class GUITextInput extends GUIElement
 {
 	protected char[][]	chars;
@@ -142,6 +230,16 @@ class GUITextInput extends GUIElement
 	protected Font			f;
 	protected int			height, width;
 
+	/**
+	 * @param x
+	 * @param y
+	 * @param chars
+	 * @param bg
+	 * @param txt
+	 * @param f
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public GUITextInput(final int x, final int y, final char[][] chars, final Color bg, final Color txt, final Font f)
 	{
 		super(x + f.getSize(), y);
@@ -193,6 +291,10 @@ class GUITextInput extends GUIElement
 		}
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void down()
 	{
 		final char m = this.current[this.cursorPos];
@@ -208,6 +310,11 @@ class GUITextInput extends GUIElement
 		this.current[this.cursorPos] = this.chars[this.cursorPos][index];
 	}
 
+	/**
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public String getCurrent()
 	{
 		String res = "";
@@ -225,16 +332,33 @@ class GUITextInput extends GUIElement
 		return res;
 	}
 
+	/**
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public int getHeight()
 	{
 		return this.height;
 	}
 
+	/**
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public int getWidth()
 	{
 		return this.width;
 	}
 
+	/**
+	 * @param chars
+	 * @param chr
+	 * @return
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	private int indexOf(final char[] chars, final char chr)
 	{
 		int index = 0;
@@ -249,8 +373,9 @@ class GUITextInput extends GUIElement
 	}
 
 	/**
-	 *
+	 * @deprecated not used anymore
 	 */
+	@Deprecated
 	public void left()
 	{
 		if (this.cursorPos == 0)
@@ -263,6 +388,10 @@ class GUITextInput extends GUIElement
 		}
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void right()
 	{
 		if (this.cursorPos == this.chars.length - 1)
@@ -275,6 +404,11 @@ class GUITextInput extends GUIElement
 		}
 	}
 
+	/**
+	 * @param s
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void setCurrent(final String s)
 	{
 		for (int x = 0; x < s.length(); x++)
@@ -283,6 +417,10 @@ class GUITextInput extends GUIElement
 		}
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public void up()
 	{
 		final char m = this.current[this.cursorPos];
@@ -300,6 +438,10 @@ class GUITextInput extends GUIElement
 
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInput
 {
 	private final KeyRequest	Keys;
@@ -308,6 +450,19 @@ class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInpu
 	private final int				rot;
 	public boolean					isReady	= false;
 
+	/**
+	 * @param Keys
+	 * @param s
+	 * @param x
+	 * @param y
+	 * @param chars
+	 * @param bg
+	 * @param txt
+	 * @param f
+	 * @param rot
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public GUITextInputAdapter(final KeyRequest Keys, final Seat s, final int x, final int y, final char[][] chars,
 	      final Color bg, final Color txt, final Font f, final int rot)
 	{
@@ -337,6 +492,10 @@ class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInpu
 		g.rotate(Math.toRadians(-this.rot));
 	}
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	private void justPressed()
 	{
 		this.canPress = false;
@@ -389,6 +548,10 @@ class GUITextInputAdapter extends GUITextInput implements Drawable, ProceedsInpu
 	}
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 public class NameEntry extends MyGame
 {
 	private final Presentation	presentation;
@@ -442,24 +605,56 @@ public class NameEntry extends MyGame
 	}
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 interface OnClickListener
 {
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public abstract void clicked();
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public abstract void doneFocusing();
 
+	/**
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public abstract void nowFocused();
 
+	/**
+	 * @param arg0
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public abstract void otherKeyPress(KeyEvent arg0);
 }
 
+/**
+ * @deprecated not used anymore
+ */
+@Deprecated
 class waiter implements Updateable
 {
 	private final GUITextInputAdapter[]	a;
 	private final boolean[]					players;
 	private final NameEntry					e;
 
+	/**
+	 * @param a
+	 * @param players
+	 * @param e
+	 * @deprecated not used anymore
+	 */
+	@Deprecated
 	public waiter(final GUITextInputAdapter[] a, final boolean[] players, final NameEntry e)
 	{
 		this.players = players;

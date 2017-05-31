@@ -3,8 +3,8 @@ package games.pong.Tiles;
 import java.awt.Rectangle;
 
 import com.arcade.utils.Seat;
-import com.game.KeyRequest;
 import com.game.MyWindow;
+import com.game.ctrl.KeyRequest;
 
 import games.pong.PongGameObjekt_Blocker;
 

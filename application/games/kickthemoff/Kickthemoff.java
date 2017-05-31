@@ -6,8 +6,8 @@ import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.MyGame;
+import com.game.ctrl.KeyRequest;
 
 public class Kickthemoff extends MyGame
 {

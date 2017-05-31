@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 
 import com.arcade.audio.SoundFactory;
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.MyGame;
+import com.game.ctrl.KeyRequest;
 
 public class Tankies extends MyGame
 {

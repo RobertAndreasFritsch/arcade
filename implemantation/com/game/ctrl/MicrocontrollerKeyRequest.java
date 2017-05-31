@@ -1,21 +1,16 @@
-package com.game;
+package com.game.ctrl;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MicroControllerKeyRequest implements KeyListener, KeyRequest
-{
+import com.game.ctrl.KeyRequest;
 
-	public static final MicroControllerKeyRequest	INSTANCE		= new MicroControllerKeyRequest();
+public class MicrocontrollerKeyRequest implements KeyListener, KeyRequest
+{
 	public static final int									KEYSLENGHT	= 524;
 
-	public static MicroControllerKeyRequest getInstance()
-	{
-		return MicroControllerKeyRequest.INSTANCE;
-	}
-
-	private boolean[]	keys			= new boolean[MicroControllerKeyRequest.KEYSLENGHT];
-	private boolean[]	keysBuffer	= new boolean[MicroControllerKeyRequest.KEYSLENGHT];
+	private boolean[]	keys			= new boolean[MicrocontrollerKeyRequest.KEYSLENGHT];
+	private boolean[]	keysBuffer	= new boolean[MicrocontrollerKeyRequest.KEYSLENGHT];
 
 	@Override
 	public boolean isPressed(final int keyCode)

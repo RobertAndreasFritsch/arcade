@@ -11,8 +11,8 @@ import javax.sound.sampled.Clip;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 import games.pong.Tiles.Tile;
 

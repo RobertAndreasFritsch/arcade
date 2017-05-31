@@ -11,9 +11,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.game.Drawable;
-import com.game.KeyRequest;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 public class KnutzzzGameObject_Bumper implements Drawable, Updateable, ProceedsInput
 {

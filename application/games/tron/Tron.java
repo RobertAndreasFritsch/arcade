@@ -9,8 +9,8 @@ package games.tron;
 import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
-import com.game.KeyRequest;
 import com.game.MyGame;
+import com.game.ctrl.KeyRequest;
 
 public final class Tron extends MyGame
 {

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 
 import com.game.Drawable;
 import com.game.Game;
-import com.game.KeyRequest;
+import com.game.ctrl.KeyRequest;
 
 public enum Presentation implements Drawable
 {

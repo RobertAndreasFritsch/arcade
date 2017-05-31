@@ -5,8 +5,8 @@ import java.io.IOException;
 import javax.swing.JPanel;
 
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.Window;
+import com.game.ctrl.KeyRequest;
 
 /**
  * @author default

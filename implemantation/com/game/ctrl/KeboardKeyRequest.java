@@ -1,22 +1,17 @@
-package com.game;
+package com.game.ctrl;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class ComputerKeyRequest implements KeyListener, KeyRequest
-{
+import com.game.ctrl.KeyRequest;
 
-	public static final ComputerKeyRequest	INSTANCE		= new ComputerKeyRequest();
+public class KeboardKeyRequest implements KeyListener, KeyRequest
+{
 	public static final int						KEYSLENGHT	= 524;
 
-	public static ComputerKeyRequest getInstance()
-	{
-		return ComputerKeyRequest.INSTANCE;
-	}
+	private final boolean[] keys = new boolean[KeboardKeyRequest.KEYSLENGHT];
 
-	private final boolean[] keys = new boolean[ComputerKeyRequest.KEYSLENGHT];
-
-	private ComputerKeyRequest()
+	KeboardKeyRequest()
 	{
 	}
 

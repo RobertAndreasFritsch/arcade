@@ -2,9 +2,9 @@ package games.bomberman;
 
 import java.awt.event.KeyEvent;
 
-import com.game.KeyRequest;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 public class GameOverWaiter implements Updateable, ProceedsInput
 {

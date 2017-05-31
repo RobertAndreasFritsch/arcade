@@ -12,11 +12,11 @@ import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.KeyRequest;
 import com.game.MyGame;
 import com.game.MyWindow;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.KeyRequest;
 
 public class PlayerSelection extends MyGame
 {
