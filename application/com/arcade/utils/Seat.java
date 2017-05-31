@@ -9,25 +9,29 @@ public enum Seat
 {
 
 	/***/
-	P1(VK_8, VK_4, VK_5, VK_6, VK_7, VK_9, RED, Math.toRadians(180)),
+	P1(VK_8, VK_4, VK_5, VK_6, VK_7, VK_9, RED, 3.1415926536),
 	/***/
-	P2(VK_W, VK_A, VK_S, VK_D, VK_Q, VK_E, BLUE, Math.toRadians(270)),
+	P2(VK_W, VK_A, VK_S, VK_D, VK_Q, VK_E, BLUE, 4.7123889804),
    //
-	P4(VK_T, VK_F, VK_G, VK_H, VK_R, VK_Y, GREEN, Math.toRadians(0)),
+	P4(VK_T, VK_F, VK_G, VK_H, VK_R, VK_Y, GREEN, 0),
 	/***/
-	P3(VK_I, VK_J, VK_K, VK_L, VK_U, VK_O, YELLOW, Math.toRadians(90)),
+	P3(VK_I, VK_J, VK_K, VK_L, VK_U, VK_O, YELLOW, 1.5707963268),
 
 	/***/
-	P1_PlayerView(VK_5, VK_6, VK_8, VK_4, VK_7, VK_9, RED, Math.toRadians(180)),
+	P1_PlayerView(VK_5, VK_6, VK_8, VK_4, VK_7, VK_9, RED, 3.1415926536),
 	/***/
-	P2_PlayerView(VK_D, VK_W, VK_A, VK_S, VK_Q, VK_E, BLUE, Math.toRadians(270)),
+	P2_PlayerView(VK_D, VK_W, VK_A, VK_S, VK_Q, VK_E, BLUE, 4.7123889804),
 	/***/
-	P4_PlayerView(VK_F, VK_G, VK_H, VK_T, VK_R, VK_Y, GREEN, Math.toRadians(0)),
+	P4_PlayerView(VK_F, VK_G, VK_H, VK_T, VK_R, VK_Y, GREEN, 0),
 	/***/
-	P3_PlayerView(VK_I, VK_J, VK_K, VK_L, VK_U, VK_O, YELLOW, Math.toRadians(90));
+	P3_PlayerView(VK_I, VK_J, VK_K, VK_L, VK_U, VK_O, YELLOW, 1.5707963268);
 
-	public final int	UP, LEFT, DOWN, RIGHT;
-	public final int	BTN1, BTN2;
+	public final int	UP;
+	public final int	LEFT;
+	public final int	DOWN;
+	public final int	RIGHT;
+	public final int	BTN1;
+	public final int	BTN2;
 
 	private boolean	playing	= false;
 
