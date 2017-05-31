@@ -16,6 +16,7 @@ import com.game.MyGame;
 import com.game.MyWindow;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 public class PlayerSelection extends MyGame
@@ -27,12 +28,12 @@ public class PlayerSelection extends MyGame
 	private final ProgressAnimation	anim;
 	private final Presentation			presentation;
 
-	public PlayerSelection(final JPanel PANEL, final KeyRequest KEYS, final Presentation presentation)
+	public PlayerSelection(CtrlFactory ctrlFactory, final Presentation presentation)
 	{
-		super(PANEL, KEYS);
+		super(ctrlFactory);
 
 		this.presentation = presentation;
-		this.anim = new ProgressAnimation(KEYS, this);
+		this.anim = new ProgressAnimation(getKEYS(), this);
 		this.add(this.anim);
 	}
 
@@ -47,7 +48,7 @@ public class PlayerSelection extends MyGame
 				counter++;
 			}
 		}
-		if (counter < 1) { return new Menu(this.PANEL, this.KEYS); }
+		if (counter < 1) { return new Menu(getCtrlFactory()); }
 		Seat.P3.setPlaying(this.anim.players[0]);
 		Seat.P4.setPlaying(this.anim.players[1]);
 		Seat.P1.setPlaying(this.anim.players[2]);
@@ -57,7 +58,7 @@ public class PlayerSelection extends MyGame
 		Seat.P4_PlayerView.setPlaying(this.anim.players[1]);
 		Seat.P1_PlayerView.setPlaying(this.anim.players[2]);
 		Seat.P2_PlayerView.setPlaying(this.anim.players[3]);
-		return this.presentation.getGame(this.PANEL, this.KEYS);
+		return this.presentation.getGame(getCtrlFactory());
 	}
 
 }
@@ -95,7 +96,7 @@ class ProgressAnimation implements Drawable, ProceedsInput, Updateable
 	{
 
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
+		g.fillRect(0, 0, 1048,1048);
 
 		if (this.players[0])
 		{

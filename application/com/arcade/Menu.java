@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JPanel;
-
 import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
@@ -13,6 +11,7 @@ import com.game.Game;
 import com.game.MyGame;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 class GameSlider implements ProceedsInput, Updateable, Drawable
@@ -109,16 +108,16 @@ public class Menu extends MyGame
 	private static final long	serialVersionUID	= 72535390847737153L;
 	private Presentation			nextGame;
 
-	public Menu(final JPanel panel, final KeyRequest KEYS, final String... args)
+	public Menu(CtrlFactory ctrlFactory)
 	{
-		super(panel, KEYS, args);
-		this.add(new GameSlider(this, KEYS));
+		super(ctrlFactory);
+		this.add(new GameSlider(this, getKEYS()));
 	}
 
 	@Override
 	public Game getNextGame()
 	{
-		return new PlayerSelection(this.PANEL, this.KEYS, this.nextGame);
+		return new PlayerSelection(getCtrlFactory(), this.nextGame);
 	}
 
 	public void setNextGame(final Presentation nextGame)

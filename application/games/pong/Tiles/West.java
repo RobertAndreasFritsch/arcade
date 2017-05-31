@@ -34,7 +34,7 @@ public class West extends Tile
 	@Override
 	public void actionRight()
 	{
-		if (this.rect.y + 300 <= MyWindow.getInstance().getSize().height && this.getTor() != 0
+		if (this.rect.y + 300 <= 1048 && this.getTor() != 0
 		      && this.rect.y + 300 <= this.blockers[2].getY())
 		{
 			this.rect.y += Tile.SPEED;
@@ -45,7 +45,7 @@ public class West extends Tile
 	@Override
 	protected void init()
 	{
-		final int y = (int) (MyWindow.getInstance().getSize().height * .5 - this.getheight() * .5);
+		final int y = (int) (1048 * .5 - this.getheight() * .5);
 		final int x = 0;
 
 		this.rect = new Rectangle(x, y, this.getwidth(), this.getheight());

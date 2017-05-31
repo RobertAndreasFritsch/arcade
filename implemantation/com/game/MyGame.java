@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.arcade.Menu;
 import com.arcade.presentation.GameConstructor;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 public class MyGame extends ArrayList<GameObject> implements Game
@@ -23,9 +24,6 @@ public class MyGame extends ArrayList<GameObject> implements Game
 	// protected final List<Updateable> UPDATEABLES = new ArrayList<>();
 	// protected final List<ProceedsInput> PROCEEDINGINPUTS = new ArrayList<>();
 
-	protected final JPanel					PANEL;
-	protected final KeyRequest				KEYS;
-
 	private boolean							running				= false;
 
 	Image											img;
@@ -36,11 +34,12 @@ public class MyGame extends ArrayList<GameObject> implements Game
 	private final int							offsetX;
 	private final int							offsetY;
 
-	public MyGame(final JPanel PANEL, final KeyRequest KEYS, final String... args)
-	{
-		this.PANEL = PANEL;
-		this.KEYS = KEYS;
+	private CtrlFactory ctrlFactory;
 
+	public MyGame(CtrlFactory ctrlFactory)
+	{
+		this.ctrlFactory = ctrlFactory;
+		
 		this.offsetX = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1024) >> 1;
 		this.offsetY = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 1024) >> 1;
 	}
@@ -84,19 +83,19 @@ public class MyGame extends ArrayList<GameObject> implements Game
 
 	public KeyRequest getKEYS()
 	{
-		return this.KEYS;
+		return this.ctrlFactory.keyRequestInstance();
 	}
 
 	@Override
 	public Game getNextGame()
 	{
-		return this.nextGame.newGame(this.PANEL, this.KEYS);
+		return this.nextGame.newGame(getCtrlFactory());
 	}
 
-	public JPanel getPANEL()
-	{
-		return this.PANEL;
-	}
+//	public JPanel getPANEL()
+//	{
+//		return this.ctrlFactory.getGraphics();
+//	}
 
 	// /**
 	// * @return
@@ -176,26 +175,33 @@ public class MyGame extends ArrayList<GameObject> implements Game
 			u.update(elapsed);
 		}
 
-		this.img = this.getPANEL().createImage(MyWindow.getInstance().getWidth(), MyWindow.getInstance().getHeight());
-		this.g = (Graphics2D) this.img.getGraphics();
-
-		this.g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		this.g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
-		this.g.setColor(Color.BLACK);
-		this.g.fillRect(0, 0, (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
-		      (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
-		this.g.translate(this.offsetX, this.offsetY);
-
-		this.g.setColor(Color.WHITE);
-		this.g.fillRect(0, 0, 1024, 1024);
+//		this.img = this.getPANEL().createImage(MyWindow.getInstance().getWidth(), MyWindow.getInstance().getHeight());
+//		this.g = (Graphics2D) this.img.getGraphics();
+//
+//		this.g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//		this.g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+//
+//		this.g.setColor(Color.BLACK);
+//		this.g.fillRect(0, 0, (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+//		      (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
+//		this.g.translate(this.offsetX, this.offsetY);
+//
+//		this.g.setColor(Color.WHITE);
+//		this.g.fillRect(0, 0, 1024, 1024);
 
 		for (final GameObject d : this)
 		{
 			d.output();
 		}
+		
+		getCtrlFactory().graphicsControllerInstance().dispose();
 
-		this.getPANEL().getGraphics().drawImage(this.img, 0, 0, null);
-		Toolkit.getDefaultToolkit().sync();
+//		this.getPANEL().getGraphics().drawImage(this.img, 0, 0, null);
+//		Toolkit.getDefaultToolkit().sync();
+	}
+
+	public CtrlFactory getCtrlFactory()
+	{
+		return ctrlFactory;
 	}
 }

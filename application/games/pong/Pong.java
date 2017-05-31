@@ -8,6 +8,7 @@ import com.arcade.utils.Seat;
 import com.game.GameObject;
 import com.game.MyGame;
 import com.game.MyWindow;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 import games.pong.controll.Controll;
@@ -35,11 +36,11 @@ public final class Pong extends MyGame
 	 * @throws Exception
 	 *
 	 */
-	public Pong(final JPanel panel, final KeyRequest KEYS)
+	public Pong(CtrlFactory ctrlFactory )
 	{
-		super(panel, KEYS);
+		super(ctrlFactory );
 
-		this.add(new Controll(this, KEYS));
+		this.add(new Controll(this, getKEYS()));
 		this.add(new Background());
 
 		final ArrayList<GameObject> tiles = new ArrayList<>();
@@ -49,11 +50,11 @@ public final class Pong extends MyGame
 		final int b = 100, h = 100;
 
 		final PongGameObjekt_Blocker B1 = new PongGameObjekt_Blocker(0, 0, b, h);
-		final PongGameObjekt_Blocker B2 = new PongGameObjekt_Blocker(MyWindow.getInstance().getSize().width - b, 0, b, h);
-		final PongGameObjekt_Blocker B3 = new PongGameObjekt_Blocker(0, MyWindow.getInstance().getSize().height - h, b,
+		final PongGameObjekt_Blocker B2 = new PongGameObjekt_Blocker(1048 - b, 0, b, h);
+		final PongGameObjekt_Blocker B3 = new PongGameObjekt_Blocker(0, 1048 - h, b,
 		      h);
-		final PongGameObjekt_Blocker B4 = new PongGameObjekt_Blocker(MyWindow.getInstance().getSize().width - b,
-		      MyWindow.getInstance().getSize().height - h, b, h);
+		final PongGameObjekt_Blocker B4 = new PongGameObjekt_Blocker(1048 - b,
+				1048 - h, b, h);
 
 		this.add(B1);
 		this.add(B2);
@@ -62,11 +63,11 @@ public final class Pong extends MyGame
 
 		final PongGameObjekt_Blocker[] blockers = { B1, B2, B3, B4 };
 
-		tiles.add(new games.pong.Tiles.North(Seat.P1, KEYS, blockers));
-		tiles.add(new games.pong.Tiles.East(Seat.P2, KEYS, blockers));
-		tiles.add(new games.pong.Tiles.South(Seat.P3, KEYS, blockers));
-		tiles.add(new games.pong.Tiles.West(Seat.P4, KEYS, blockers));
-		this.add(new PongGameObjekt_Ball(this, KEYS, tiles, blockers));
+		tiles.add(new games.pong.Tiles.North(Seat.P1, getKEYS(), blockers));
+		tiles.add(new games.pong.Tiles.East(Seat.P2, getKEYS(), blockers));
+		tiles.add(new games.pong.Tiles.South(Seat.P3, getKEYS(), blockers));
+		tiles.add(new games.pong.Tiles.West(Seat.P4, getKEYS(), blockers));
+		this.add(new PongGameObjekt_Ball(this, getKEYS(), tiles, blockers));
 		this.add(tiles.get(0));
 		this.add(tiles.get(1));
 		this.add(tiles.get(2));

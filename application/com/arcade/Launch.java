@@ -17,12 +17,12 @@ public class Launch
 	public static void main(final String[] args)
 	{
 
-		final Window window = MyWindow.getInstance();
+//		final Window window = MyWindow.getInstance();
 
 		final KeyRequest keys = CTRL_FACTORY.keyRequestInstance();
 
-		window.addKeyListener((KeyListener) keys);
+//		window.addKeyListener((KeyListener) keys);
 
-		new MyGameLoop(new Menu(window.getJPanel(), keys));
+		new MyGameLoop(new Menu(CTRL_FACTORY));
 	}
 }

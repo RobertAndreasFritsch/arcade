@@ -14,6 +14,7 @@ import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
 import com.game.MyGame;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 class Bg implements Drawable
@@ -67,9 +68,9 @@ public class HighScoreProcessor extends MyGame
 	 * @deprecated not used anymore
 	 */
 	@Deprecated
-	public HighScoreProcessor(final JPanel PANEL, final KeyRequest KEYS, final String... gameName)
+	public HighScoreProcessor(CtrlFactory ctrlFactory , final String... gameName)
 	{
-		super(PANEL, KEYS);
+		super(ctrlFactory);
 
 		TreeMap<String, Integer> map = new TreeMap<>();
 
@@ -134,7 +135,7 @@ public class HighScoreProcessor extends MyGame
 	@Override
 	public Game getNextGame()
 	{
-		return new Menu(this.PANEL, this.KEYS);
+		return new Menu(getCtrlFactory());
 	}
 
 }

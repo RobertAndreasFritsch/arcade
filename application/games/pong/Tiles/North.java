@@ -24,7 +24,7 @@ public class North extends Tile
 	@Override
 	public void actionLeft()
 	{
-		if (this.rect.x + 300 <= MyWindow.getInstance().getSize().width && this.getTor() != 0
+		if (this.rect.x + 300 <= 1048 && this.getTor() != 0
 		      && this.rect.x + 300 <= this.blockers[1].getX())
 		{
 			this.rect.x += Tile.SPEED;
@@ -43,7 +43,7 @@ public class North extends Tile
 	@Override
 	protected void init()
 	{
-		final int x = (int) (MyWindow.getInstance().getSize().width * .5 - this.getwidth() * .5), y = 0;
+		final int x = (int) (1048 * .5 - this.getwidth() * .5), y = 0;
 
 		this.rect = new Rectangle(x, y, this.getwidth(), this.getheight());
 		// rect = new Rectangle(775, 15, 300, 50);

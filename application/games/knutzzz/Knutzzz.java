@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
 import com.game.MyGame;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 import games.knutzzz.control.WinnerControl;
@@ -37,9 +38,9 @@ public class Knutzzz extends MyGame
 
 	// private static Knutzzz instance;
 
-	public Knutzzz(final JPanel panel, final KeyRequest KEYS)
+	public Knutzzz(CtrlFactory ctrlFactory)
 	{
-		super(panel, KEYS);
+		super(ctrlFactory);
 
 		this.add(new Floor());
 
@@ -58,25 +59,25 @@ public class Knutzzz extends MyGame
 
 		if (Seat.P1.isPlaying())
 		{
-			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_4, KeyEvent.VK_6, KeyEvent.VK_7, 0, KEYS));
+			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_4, KeyEvent.VK_6, KeyEvent.VK_7, 0, getKEYS()));
 		}
 		if (Seat.P2.isPlaying())
 		{
-			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_Q, 1, KEYS));
+			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_Q, 1, getKEYS()));
 		}
 		if (Seat.P3.isPlaying())
 		{
-			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_J, KeyEvent.VK_L, KeyEvent.VK_U, 2, KEYS));
+			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_J, KeyEvent.VK_L, KeyEvent.VK_U, 2, getKEYS()));
 		}
 		if (Seat.P4.isPlaying())
 		{
-			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_R, 3, KEYS));
+			this.add(new KnutzzzGameObject_Bumper(this, KeyEvent.VK_F, KeyEvent.VK_H, KeyEvent.VK_R, 3, getKEYS()));
 		}
 
 		this.add(new Dispenser(this, this.dispenser));
 		this.add(new Goal());
 
-		this.add(new WinnerControl(this, KEYS));
+		this.add(new WinnerControl(this, getKEYS()));
 
 	}
 

@@ -26,7 +26,7 @@ public class East extends Tile
 	@Override
 	public void actionLeft()
 	{
-		if (this.rect.y + 300 <= MyWindow.getInstance().getSize().height && this.getTor() != 0
+		if (this.rect.y + 300 <= 1048 && this.getTor() != 0
 		      && this.rect.y + 300 <= this.blockers[3].getY())
 		{
 			this.rect.y += Tile.SPEED;
@@ -46,8 +46,8 @@ public class East extends Tile
 	@Override
 	protected void init()
 	{
-		final int y = (int) (MyWindow.getInstance().getSize().height * .5 - this.getheight() * .5);
-		final int x = MyWindow.getInstance().getSize().width - this.getwidth();
+		final int y = (int) (1048 * .5 - this.getheight() * .5);
+		final int x = 1048 - this.getwidth();
 		this.rect = new Rectangle(x, y, this.getwidth(), this.getheight());
 		// rect = new Rectangle(1850, 350, 50, 300);
 

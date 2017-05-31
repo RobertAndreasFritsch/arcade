@@ -14,7 +14,7 @@ public class Background implements Drawable
 	{
 		g.setColor(Color.GRAY);
 
-		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
+		g.fillRect(0, 0, 1048, 1048);
 
 		g.setColor(Color.BLACK);
 	}

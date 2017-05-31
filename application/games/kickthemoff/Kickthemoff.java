@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import com.arcade.utils.Seat;
 import com.game.Game;
 import com.game.MyGame;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 public class Kickthemoff extends MyGame
@@ -20,9 +21,9 @@ public class Kickthemoff extends MyGame
 
 	private final ArrayList<Player>	players				= new ArrayList<>();
 
-	public Kickthemoff(final JPanel PANEL, final KeyRequest KEYS)
+	public Kickthemoff(CtrlFactory ctrlFactory )
 	{
-		super(PANEL, KEYS);
+		super(ctrlFactory);
 
 		final Ground g = new Ground(512, 512, 425);
 
@@ -76,7 +77,7 @@ public class Kickthemoff extends MyGame
 			}
 		}
 
-		return new Kickthemoff(this.getPANEL(), this.getKEYS());
+		return new Kickthemoff(getCtrlFactory());
 	}
 
 	public ArrayList<Player> getPlayers()

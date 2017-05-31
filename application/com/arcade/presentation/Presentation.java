@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import com.game.Drawable;
 import com.game.Game;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 public enum Presentation implements Drawable
@@ -57,8 +58,8 @@ public enum Presentation implements Drawable
 		g.drawImage(this.image, 0, 0, 1048, 1048, null);
 	}
 
-	public Game getGame(final JPanel panel, final KeyRequest KEYS)
+	public Game getGame(CtrlFactory ctrlFactory)
 	{
-		return this.gameConstructor.newGame(panel, KEYS);
+		return this.gameConstructor.newGame(ctrlFactory);
 	}
 }

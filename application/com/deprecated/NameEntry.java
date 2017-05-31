@@ -17,6 +17,7 @@ import com.game.MyGame;
 import com.game.MyWindow;
 import com.game.ProceedsInput;
 import com.game.Updateable;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 /**
@@ -29,7 +30,7 @@ class Background implements Drawable
 	public void draw(final Graphics2D g)
 	{
 		g.setColor(Color.DARK_GRAY);
-		g.fillRect(0, 0, MyWindow.getInstance().getSize().width, MyWindow.getInstance().getSize().height);
+		g.fillRect(0, 0, 1048, 1048);
 		g.translate(0, 0);
 	}
 }
@@ -561,9 +562,9 @@ public class NameEntry extends MyGame
 	private final Presentation	presentation;
 	GUITextInputAdapter[]		a						= new GUITextInputAdapter[4];
 
-	public NameEntry(final JPanel PANEL, final KeyRequest KEYS, final boolean[] players, final Presentation presentation)
+	public NameEntry(CtrlFactory ctrlFactory , final boolean[] players, final Presentation presentation)
 	{
-		super(PANEL, KEYS);
+		super(ctrlFactory);
 
 		this.presentation = presentation;
 		this.add(new Background());
@@ -573,28 +574,29 @@ public class NameEntry extends MyGame
 
 		if (players[0])
 		{
-			this.a[0] = new GUITextInputAdapter(KEYS, Seat.P3, 1024 / 2, 1024 - 1024 / 3,
+			this.a[0] = new GUITextInputAdapter(getKEYS()
+					, Seat.P3, 1024 / 2, 1024 - 1024 / 3,
 			      new char[][] { letters, letters, letters }, Color.gray, Color.WHITE, new Font("Courier", Font.PLAIN, 20),
 			      0);
 			this.add(this.a[0]);
 		}
 		if (players[1])
 		{
-			this.a[1] = new GUITextInputAdapter(KEYS, Seat.P4, 1024 / 2, -1024 / 3,
+			this.a[1] = new GUITextInputAdapter(getKEYS(), Seat.P4, 1024 / 2, -1024 / 3,
 			      new char[][] { letters, letters, letters }, Color.gray, Color.WHITE, new Font("Courier", Font.PLAIN, 20),
 			      90);
 			this.add(this.a[1]);
 		}
 		if (players[2])
 		{
-			this.a[2] = new GUITextInputAdapter(KEYS, Seat.P1, -1024 / 2, -1024 / 3,
+			this.a[2] = new GUITextInputAdapter(getKEYS(), Seat.P1, -1024 / 2, -1024 / 3,
 			      new char[][] { letters, letters, letters }, Color.gray, Color.WHITE, new Font("Courier", Font.PLAIN, 20),
 			      180);
 			this.add(this.a[2]);
 		}
 		if (players[3])
 		{
-			this.a[3] = new GUITextInputAdapter(KEYS, Seat.P2, -1024 / 2, 1024 / 3 * 2,
+			this.a[3] = new GUITextInputAdapter(getKEYS(), Seat.P2, -1024 / 2, 1024 / 3 * 2,
 			      new char[][] { letters, letters, letters }, Color.gray, Color.WHITE, new Font("Courier", Font.PLAIN, 20),
 			      270);
 			this.add(this.a[3]);
@@ -605,7 +607,7 @@ public class NameEntry extends MyGame
 	@Override
 	public Game getNextGame()
 	{
-		return this.presentation.getGame(this.PANEL, this.KEYS);
+		return this.presentation.getGame(getCtrlFactory());
 	}
 }
 

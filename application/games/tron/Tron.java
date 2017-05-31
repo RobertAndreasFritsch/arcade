@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import com.arcade.utils.Seat;
 import com.game.MyGame;
+import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyRequest;
 
 public final class Tron extends MyGame
@@ -34,13 +35,13 @@ public final class Tron extends MyGame
 	// ---------------------------------------------------------------------------------------------------------------------------
 	// Main (music anfang, KEYS einfuegen, hintergung einfuegen, erstellung der
 	// spieler, feld deklarieren, winner Implimentierung)
-	public Tron(final JPanel panel, final KeyRequest KEYS)
+	public Tron(CtrlFactory ctrlFactory )
 	{
-		super(panel, KEYS);
+		super(ctrlFactory);
 
 		this.sound.play("res/games/tron/TronSong.wav");
 
-		this.add(new Controll(this, KEYS));
+		this.add(new Controll(this, getKEYS()));
 		this.add(new Background());
 
 		this.floor = new int[this.width][this.height];
@@ -49,13 +50,13 @@ public final class Tron extends MyGame
 		final int halfheight = this.height >> 1;
 
 		// Logisch Spieler
-		final Player P1 = new Player(KEYS, halfwidth, 0, 0, 1, this.floor, 1, this.tileSize, this.width, this.height,
+		final Player P1 = new Player(getKEYS(), halfwidth, 0, 0, 1, this.floor, 1, this.tileSize, this.width, this.height,
 		      Seat.P1_PlayerView); // Player1 erstellen
-		final Player P2 = new Player(KEYS, this.width, halfheight, -1, 0, this.floor, 2, this.tileSize, this.width,
+		final Player P2 = new Player(getKEYS(), this.width, halfheight, -1, 0, this.floor, 2, this.tileSize, this.width,
 		      this.height, Seat.P2_PlayerView);
-		final Player P3 = new Player(KEYS, halfwidth, this.height, 0, -1, this.floor, 3, this.tileSize, this.width,
+		final Player P3 = new Player(getKEYS(), halfwidth, this.height, 0, -1, this.floor, 3, this.tileSize, this.width,
 		      this.height, Seat.P3_PlayerView);
-		final Player P4 = new Player(KEYS, 0, halfheight, 1, 0, this.floor, 4, this.tileSize, this.width, this.height,
+		final Player P4 = new Player(getKEYS(), 0, halfheight, 1, 0, this.floor, 4, this.tileSize, this.width, this.height,
 		      Seat.P4_PlayerView);
 
 		this.add(P1);

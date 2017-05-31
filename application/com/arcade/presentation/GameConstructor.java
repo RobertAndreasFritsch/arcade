@@ -1,11 +1,9 @@
 package com.arcade.presentation;
 
-import javax.swing.JPanel;
-
 import com.game.Game;
-import com.game.ctrl.KeyRequest;
+import com.game.ctrl.CtrlFactory;
 
 public interface GameConstructor
 {
-	Game newGame(JPanel panel, KeyRequest kEYS);
+	Game newGame(CtrlFactory ctrlFactory);
 }
