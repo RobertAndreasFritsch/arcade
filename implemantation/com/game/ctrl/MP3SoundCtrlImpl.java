@@ -10,9 +10,9 @@ import javazoom.jl.player.Player;
 public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 {
 
-	private List<Player>	players	= new ArrayList<>();
-	private boolean		loop;
-	private final File	file;
+	private final List<Player>	players	= new ArrayList<>();
+	private boolean				loop;
+	private final File			file;
 
 	public MP3SoundCtrlImpl(final File file, final boolean loop) throws Exception
 	{
@@ -30,15 +30,15 @@ public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 			FileInputStream fileInputStream;
 			do
 			{
-				fileInputStream = new FileInputStream(file);
+				fileInputStream = new FileInputStream(this.file);
 				player = new Player(fileInputStream);
-				players.add(player);
+				this.players.add(player);
 				player.play();
 			}
 			while (this.loop);
 
 			player.close();
-			players.remove(player);
+			this.players.remove(player);
 		}
 		catch (final Exception e)
 		{
@@ -50,8 +50,13 @@ public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 	@Override
 	public void stop()
 	{
-		for (Player player : players)
-			if (player != null) player.close();
+		for (final Player player : this.players)
+		{
+			if (player != null)
+			{
+				player.close();
+			}
+		}
 		this.loop = false;
 	}
 

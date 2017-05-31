@@ -10,9 +10,9 @@ import javax.sound.sampled.Clip;
 
 public class WAVSoundCtrl implements Runnable, SoundCtrl
 {
-	private List<Clip>	clips	= new ArrayList<>();
-	private boolean		loop;
-	private final File	file;
+	private final List<Clip>	clips	= new ArrayList<>();
+	private boolean				loop;
+	private final File			file;
 
 	public WAVSoundCtrl(final File file, final boolean loop) throws Exception
 	{
@@ -31,17 +31,17 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 			AudioInputStream audioInputStream;
 			do
 			{
-				audioInputStream = AudioSystem.getAudioInputStream(file);
+				audioInputStream = AudioSystem.getAudioInputStream(this.file);
 				clip = AudioSystem.getClip();
-				clips.add(clip);
+				this.clips.add(clip);
 				clip.open(audioInputStream);
 				clip.start();
 				Thread.sleep(clip.getMicrosecondLength() / 100000);
 			}
 			while (this.loop);
-			
+
 			clip.close(); // TODO not sure
-			clips.remove(clip);
+			this.clips.remove(clip);
 		}
 		catch (final Exception e)
 		{
@@ -51,8 +51,13 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 	@Override
 	public void stop()
 	{
-		for (Clip clip : new ArrayList<>(clips))
-			if (clip != null) clip.close();
+		for (final Clip clip : new ArrayList<>(this.clips))
+		{
+			if (clip != null)
+			{
+				clip.close();
+			}
+		}
 		this.loop = false;
 	}
 

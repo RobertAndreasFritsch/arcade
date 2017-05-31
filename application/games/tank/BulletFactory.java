@@ -20,7 +20,7 @@ public class BulletFactory
 	private final CtrlFactory	ctrlFactoryImpl;
 
 	// sound ring
-	private SoundCtrl				soundCtrl;
+	private final SoundCtrl		soundCtrl;
 
 	public BulletFactory(final Game game, final Battleground battleground, final Tank[] tankArray, final Player[] player,
 	      final CtrlFactory ctrlFactory)
@@ -30,7 +30,7 @@ public class BulletFactory
 		this.tankArray = tankArray;
 		this.player = player;
 		this.ctrlFactoryImpl = ctrlFactory;
-		soundCtrl = this.ctrlFactoryImpl.newSound(new File("res/games/tankies/sounds/Samples/shoot.wav"), false,
+		this.soundCtrl = this.ctrlFactoryImpl.newSound(new File("res/games/tankies/sounds/Samples/shoot.wav"), false,
 		      SoundType.WAV);
 	}
 
@@ -54,7 +54,7 @@ public class BulletFactory
 
 			this.game.add(bullet);
 
-			soundCtrl.start();
+			this.soundCtrl.start();
 		}
 	}
 
