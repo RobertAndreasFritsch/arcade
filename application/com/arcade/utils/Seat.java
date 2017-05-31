@@ -1,50 +1,41 @@
 package com.arcade.utils;
 
+import static java.awt.event.KeyEvent.*;
+
 import java.awt.Color;
-import java.awt.event.KeyEvent;
+import static java.awt.Color.*;
 
 public enum Seat
 {
 
+	/***/
+	P1(VK_8, VK_4, VK_5, VK_6, VK_7, VK_9, RED, Math.toRadians(180)),
+	/***/
+	P2(VK_W, VK_A, VK_S, VK_D, VK_Q, VK_E, BLUE, Math.toRadians(270)),
    //
-	P1(KeyEvent.VK_8, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6, KeyEvent.VK_7, KeyEvent.VK_9, Color.RED, "Red",
-	      Math.toRadians(180)),
-   //
-	P2(KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D, KeyEvent.VK_Q, KeyEvent.VK_E, Color.BLUE, "Blue",
-	      Math.toRadians(270)),
-   //
-	P4(KeyEvent.VK_T, KeyEvent.VK_F, KeyEvent.VK_G, KeyEvent.VK_H, KeyEvent.VK_R, KeyEvent.VK_Y, new Color(0, 128, 0),
-	      "Green", Math.toRadians(0)),
-   //
-	P3(KeyEvent.VK_I, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, KeyEvent.VK_U, KeyEvent.VK_O, Color.YELLOW, "Yellow",
-	      Math.toRadians(90)),
+	P4(VK_T, VK_F, VK_G, VK_H, VK_R, VK_Y, GREEN, Math.toRadians(0)),
+	/***/
+	P3(VK_I, VK_J, VK_K, VK_L, VK_U, VK_O, YELLOW, Math.toRadians(90)),
 
-   //
-	P1_PlayerView(KeyEvent.VK_5, KeyEvent.VK_6, KeyEvent.VK_8, KeyEvent.VK_4, KeyEvent.VK_7, KeyEvent.VK_9, Color.RED,
-	      "Red", Math.toRadians(180)),
-   //
-	P2_PlayerView(KeyEvent.VK_D, KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_Q, KeyEvent.VK_E, Color.BLUE,
-	      "Blue", Math.toRadians(270)),
-   //
-	P4_PlayerView(KeyEvent.VK_F, KeyEvent.VK_G, KeyEvent.VK_H, KeyEvent.VK_T, KeyEvent.VK_R, KeyEvent.VK_Y,
-	      new Color(0, 128, 0), "Green", Math.toRadians(0)),
-   //
-	P3_PlayerView(KeyEvent.VK_I, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, KeyEvent.VK_U, KeyEvent.VK_O, Color.YELLOW,
-	      "YELLOW", Math.toRadians(90));
+	/***/
+	P1_PlayerView(VK_5, VK_6, VK_8, VK_4, VK_7, VK_9, RED, Math.toRadians(180)),
+	/***/
+	P2_PlayerView(VK_D, VK_W, VK_A, VK_S, VK_Q, VK_E, BLUE, Math.toRadians(270)),
+	/***/
+	P4_PlayerView(VK_F, VK_G, VK_H, VK_T, VK_R, VK_Y, GREEN, Math.toRadians(0)),
+	/***/
+	P3_PlayerView(VK_I, VK_J, VK_K, VK_L, VK_U, VK_O, YELLOW, Math.toRadians(90));
 
 	public final int	UP, LEFT, DOWN, RIGHT;
-
 	public final int	BTN1, BTN2;
 
-	private String		name		= "";
 	private boolean	playing	= false;
-	private int			score		= 0;
 
 	private Color		color;
 	private double		transformation;
 
 	private Seat(final int UP, final int LEFT, final int DOWN, final int RIGHT, final int BTN1, final int BTN2,
-	      final Color color, final String name, final double transformation)
+	      final Color color, final double transformation)
 	{
 		this.UP = UP;
 		this.LEFT = LEFT;
@@ -53,7 +44,6 @@ public enum Seat
 		this.BTN1 = BTN1;
 		this.BTN2 = BTN2;
 		this.color = color;
-		this.name = name;
 		this.transformation = transformation;
 	}
 
@@ -62,14 +52,22 @@ public enum Seat
 		return this.color;
 	}
 
+	/**
+	 * @return
+	 * @deprecated Score and NameSelection have been removed from the project
+	 */
 	public String getName()
 	{
-		return this.name;
+		return "";
 	}
 
+	/**
+	 * @return
+	 * @deprecated Score and NameSelection have been removed from the project
+	 */
 	public int getScore()
 	{
-		return this.score;
+		return -1;
 	}
 
 	public boolean isPlaying()
@@ -77,9 +75,12 @@ public enum Seat
 		return this.playing;
 	}
 
+	/**
+	 * @param name
+	 * @deprecated Score and NameSelection have been removed from the project
+	 */
 	public void setName(final String name)
 	{
-		this.name = name;
 	}
 
 	public void setPlaying(final boolean playing)
@@ -87,17 +88,15 @@ public enum Seat
 		this.playing = playing;
 	}
 
+	/**
+	 * @param score
+	 * @deprecated Score and NameSelection have been removed from the project
+	 */
 	public void setScore(final int score)
 	{
-		this.score = score;
 	}
 
-	public static Seat getSeat(final int i)
-	{
-		return Seat.values()[i];
-	}
-
-	public double getTransformation()
+	public double getTransform()
 	{
 		return this.transformation;
 	}

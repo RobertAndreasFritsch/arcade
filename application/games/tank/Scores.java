@@ -91,10 +91,10 @@ public class Scores implements Updateable, Drawable
 		for (int i = 0; i < 4; i++)
 		{
 
-			final Seat seat = Seat.getSeat(i);
+			final Seat seat = Seat.values()[i];
 			final int playerScore = this.PlayerArray[i].score % 10;
 
-			g.rotate(seat.getTransformation(), 516, 516);
+			g.rotate(seat.getTransform(), 516, 516);
 			g.drawImage(Scores.scoreImages[i][playerScore], 0, 1048 - 64, null);
 			g.setTransform(originalTransform);
 		}
