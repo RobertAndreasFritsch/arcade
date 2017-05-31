@@ -16,7 +16,7 @@ public class Player extends CollisionBox implements Drawable, Updateable {
 	private final static float ROTATION_SPEED = 200;
 	private final static float WALKING_SPEED = 200;
 	private final static float WALKING_SPEED_BACK = 100;
-	private final static long WAIT_PER_SHOT = 100;
+	private final static long WAIT_PER_SHOT = 10;
 
 	private boolean collNorth = false;
 	private boolean collEast = false;

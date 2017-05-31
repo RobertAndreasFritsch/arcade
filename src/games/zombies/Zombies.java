@@ -17,10 +17,12 @@ public class Zombies extends MyGame implements ProceedsInput {
 
 	private Ground ground;
 	private ArrayList<CollisionBox> boxes;
+	private ArrayList<Player> players;
 
 	public Zombies(JPanel PANEL, KeyRequest KEYS, String... args) {
 		super(PANEL, KEYS, args);
 		boxes = new ArrayList<CollisionBox>();
+		players = new ArrayList<Player>();
 
 		add(this);
 		add((ground = new Ground(0, 0, 1024, 1024)));
@@ -30,17 +32,26 @@ public class Zombies extends MyGame implements ProceedsInput {
 		addCollisionBox(new Blockade(0, 1014, 1024, 10));
 
 		if (Seat.P1.isPlaying()) {
-			add(new Player(100, 100, Seat.P1, this));
+			Player p = new Player(100, 100, Seat.P1, this);
+			add(p);
+			players.add(p);
 		}
 		if (Seat.P2.isPlaying()) {
-			add(new Player(100, 100, Seat.P2, this));
+			Player p = new Player(100, 100, Seat.P2, this);
+			add(p);
+			players.add(p);
 		}
 		if (Seat.P3.isPlaying()) {
-			add(new Player(100, 100, Seat.P3, this));
+			Player p = new Player(100, 100, Seat.P3, this);
+			add(p);
+			players.add(p);
 		}
 		if (Seat.P4.isPlaying()) {
-			add(new Player(100, 100, Seat.P4, this));
+			Player p = new Player(100, 100, Seat.P4, this);
+			add(p);
+			players.add(p);
 		}
+		add(new Zombie(500, 500, this));
 
 	}
 
@@ -58,6 +69,10 @@ public class Zombies extends MyGame implements ProceedsInput {
 	public boolean removeCollisionBox(CollisionBox c) {
 		remove(c);
 		return boxes.remove(c);
+	}
+
+	public ArrayList<Player> getPlayers() {
+		return players;
 	}
 
 	@Override

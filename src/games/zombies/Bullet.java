@@ -23,7 +23,7 @@ public class Bullet extends CollisionBox implements Drawable, Updateable {
 	private boolean collWest = false;
 
 	public Bullet(float x, float y, float rotation, float speed, Zombies game) {
-		super((int) (x - 2), (int) (y - 2), 4, 4);
+		super((int) (x - 4), (int) (y - 4), 8, 8);
 		this.x = x;
 		this.y = y;
 		this.game = game;
@@ -76,8 +76,8 @@ public class Bullet extends CollisionBox implements Drawable, Updateable {
 
 		x += dX;
 		y -= dY;
-		setX((int) x - 2);
-		setY((int) y - 2);
+		setX((int) x - 4);
+		setY((int) y - 4);
 
 		collNorth = false;
 		collEast = false;
