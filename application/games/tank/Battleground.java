@@ -36,7 +36,7 @@ public class Battleground implements Drawable
 		this.setting = Battleground.settings[scrollpy];
 
 		ctrlFactory.newSound(new File("res/games/tank/music/" + Battleground.settings[scrollpy] + "/Soundtrack.mp3"),
-		      true, SoundType.MP3);
+		      true, SoundType.MP3).start();
 
 		// Spielfeld genereieren
 		this.generate();

@@ -48,7 +48,7 @@ public class BulletFactory
 
 			this.game.add(bullet);
 
-			this.ctrlFactoryImpl.newSound(new File("res/games/tankies/sounds/Samples/shoot.wav"), false, SoundType.WAV);
+			this.ctrlFactoryImpl.newSound(new File("res/games/tankies/sounds/Samples/shoot.wav"), false, SoundType.WAV).start();
 		}
 	}
 
