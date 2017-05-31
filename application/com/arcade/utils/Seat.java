@@ -104,6 +104,7 @@ public enum Seat
 	@Deprecated
 	public String getName()
 	{
+		System.err.println("@deprecated function-call");
 		return "";
 	}
 

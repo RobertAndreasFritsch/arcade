@@ -12,7 +12,7 @@ public class KeboardKeyCtrlImpl implements KeyListener, KeyCtrl
 	private final boolean[]	keys			= new boolean[KeboardKeyCtrlImpl.KEYSLENGHT];
 	private final boolean[]	frame			= new boolean[KeboardKeyCtrlImpl.KEYSLENGHT];
 
-	KeboardKeyCtrlImpl(JFrame jFrame)
+	KeboardKeyCtrlImpl(final JFrame jFrame)
 	{
 		jFrame.addKeyListener(this);
 	}
@@ -20,7 +20,7 @@ public class KeboardKeyCtrlImpl implements KeyListener, KeyCtrl
 	@Override
 	public boolean isPressed(final int keyCode)
 	{
-		if (keyCode < this.frame.length) return this.frame[keyCode];
+		if (keyCode < this.frame.length) { return this.frame[keyCode]; }
 		return false;
 	}
 
@@ -50,7 +50,9 @@ public class KeboardKeyCtrlImpl implements KeyListener, KeyCtrl
 	@Override
 	public void takeFrame()
 	{
-		for (int i = 0; i < frame.length; i++)
-			frame[i] = keys[i];
+		for (int i = 0; i < this.frame.length; i++)
+		{
+			this.frame[i] = this.keys[i];
+		}
 	}
 }

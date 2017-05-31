@@ -2,9 +2,9 @@ package games.tank;
 
 import java.io.File;
 
-import com.arcade.audio.SoundFactory;
 import com.arcade.audio.SoundType;
 import com.game.Game;
+import com.game.ctrl.CtrlFactory;
 
 public class BulletFactory
 {
@@ -16,16 +16,16 @@ public class BulletFactory
 	// KugelArray
 	int[]								bulletcounter	= { 0, 0, 0, 0 };
 	private final Player[]		player;
-	private final SoundFactory	soundFactory;
+	private final CtrlFactory	ctrlFactoryImpl;
 
 	public BulletFactory(final Game game, final Battleground battleground, final Tank[] tankArray, final Player[] player,
-	      final SoundFactory soundFactory)
+	      final CtrlFactory ctrlFactory)
 	{
 		this.game = game;
 		this.battleground = battleground;
 		this.tankArray = tankArray;
 		this.player = player;
-		this.soundFactory = soundFactory;
+		this.ctrlFactoryImpl = ctrlFactory;
 	}
 
 	public void newBullet(final Tank tank)
@@ -48,7 +48,7 @@ public class BulletFactory
 
 			this.game.add(bullet);
 
-			this.soundFactory.newSound(new File("res/games/tankies/sounds/Samples/shoot.wav"), false, SoundType.WAV);
+			this.ctrlFactoryImpl.newSound(new File("res/games/tankies/sounds/Samples/shoot.wav"), false, SoundType.WAV);
 		}
 	}
 

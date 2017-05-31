@@ -9,7 +9,7 @@ import com.game.ctrl.KeyCtrl;
 public class Controll implements ProceedsInput
 {
 
-	private final Game			parent;
+	private final Game		parent;
 	private final KeyCtrl	KEYS;
 
 	public Controll(final Game parent, final KeyCtrl KEYS)

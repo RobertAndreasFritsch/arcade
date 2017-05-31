@@ -11,21 +11,21 @@ import com.game.ctrl.KeyCtrl;
 
 public class Player implements Drawable, Updateable, ProceedsInput
 {
-	int								x, y;								// Aktuelle Position
-	int								dx, dy;							// Gewuenschte Richtung
-	int								floor[][];						// Aktuelle position P
-	int								spielerID	= 0;
+	int							x, y;								// Aktuelle Position
+	int							dx, dy;							// Gewuenschte Richtung
+	int							floor[][];						// Aktuelle position P
+	int							spielerID	= 0;
 
-	boolean							dead			= false;
-	private final int				tileSize;
-	private final int				width;
-	private final int				height;
+	boolean						dead			= false;
+	private final int			tileSize;
+	private final int			width;
+	private final int			height;
 	private final KeyCtrl	KEYS;
-	public Seat						player;
-	Sound								sound			= new Sound();
+	public Seat					player;
+	Sound							sound			= new Sound();
 
-	private final long			timeBuffer	= 200;
-	private long					currentTime	= 0;
+	private final long		timeBuffer	= 200;
+	private long				currentTime	= 0;
 
 	public Player(final KeyCtrl KEYS, final int x, final int y, final int dx, final int dy, final int floor[][],
 	      final int spielerID, final int tileSize, final int width, final int height, final Seat player)

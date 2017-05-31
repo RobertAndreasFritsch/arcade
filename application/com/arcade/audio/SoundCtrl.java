@@ -1,6 +1,6 @@
 package com.arcade.audio;
 
-public interface Sound
+public interface SoundCtrl
 {
 	void start();
 

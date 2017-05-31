@@ -1,4 +1,4 @@
-package com.arcade.audio;
+package com.game.ctrl;
 
 import java.io.File;
 
@@ -6,14 +6,16 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class WAVSound implements Runnable, Sound
+import com.arcade.audio.SoundCtrl;
+
+public class WAVSoundCtrl implements Runnable, SoundCtrl
 {
 
 	private Clip							clip;
 	private boolean						loop;
 	private final AudioInputStream	audioInputStream;
 
-	public WAVSound(final File file, final boolean loop) throws Exception
+	public WAVSoundCtrl(final File file, final boolean loop) throws Exception
 	{
 		this.audioInputStream = AudioSystem.getAudioInputStream(file);
 		this.loop = loop;

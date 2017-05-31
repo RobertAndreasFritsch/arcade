@@ -3,8 +3,8 @@ package games.zombies;
 import java.util.ArrayList;
 
 import com.arcade.utils.Seat;
-import com.game.SimpleGame;
 import com.game.ProceedsInput;
+import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
 
 import games.zombies.collision.Blockade;

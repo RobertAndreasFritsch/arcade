@@ -1,18 +1,20 @@
-package com.arcade.audio;
+package com.game.ctrl;
 
 import java.io.File;
 import java.io.FileInputStream;
 
+import com.arcade.audio.SoundCtrl;
+
 import javazoom.jl.player.Player;
 
-public class MP3Sound implements Runnable, Sound
+public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 {
 
 	private Player						player;
 	private boolean					loop;
 	private final FileInputStream	fileInputStream;
 
-	public MP3Sound(final File file, final boolean loop) throws Exception
+	public MP3SoundCtrlImpl(final File file, final boolean loop) throws Exception
 	{
 		this.fileInputStream = new FileInputStream(file);
 		this.loop = loop;

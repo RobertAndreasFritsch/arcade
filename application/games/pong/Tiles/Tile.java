@@ -14,23 +14,23 @@ import com.game.ctrl.KeyCtrl;
 public abstract class Tile implements Updateable, Drawable, ProceedsInput
 {
 
-	public static final int		SPEED	= 30;					// TODO hard coded
+	public static final int	SPEED	= 30;					// TODO hard coded
 
-	static int						i		= 0;
-	public final Seat				player;
-	private int						Tor;
-	private int						width;
-	private int						height;
-	private int						Pkt;
+	static int					i		= 0;
+	public final Seat			player;
+	private int					Tor;
+	private int					width;
+	private int					height;
+	private int					Pkt;
 	/**
 	 *
 	 */
-	Rectangle						rect;
+	Rectangle					rect;
 
 	/**
 	 *
 	 */
-	boolean							stateLeft, stateRight;
+	boolean						stateLeft, stateRight;
 
 	private final KeyCtrl	KEYS;
 

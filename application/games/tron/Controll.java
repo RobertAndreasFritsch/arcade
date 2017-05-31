@@ -11,7 +11,7 @@ public class Controll implements Updateable, ProceedsInput
 {
 
 	private final KeyCtrl	KEYS;
-	private final Game			game;
+	private final Game		game;
 
 	public Controll(final Game game, final KeyCtrl KEYS)
 	{

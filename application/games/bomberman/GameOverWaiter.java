@@ -8,7 +8,7 @@ import com.game.ctrl.KeyCtrl;
 
 public class GameOverWaiter implements Updateable, ProceedsInput
 {
-	private final Bomberman		game;
+	private final Bomberman	game;
 	private final KeyCtrl	KEYS;
 
 	public GameOverWaiter(final Bomberman game, final KeyCtrl KEYS)

@@ -11,16 +11,17 @@ public class MicrocontrollerKeyCtrlImpl implements KeyListener, KeyCtrl
 
 	private boolean[]			keys			= new boolean[MicrocontrollerKeyCtrlImpl.KEYSLENGHT];
 	private boolean[]			keysBuffer	= new boolean[MicrocontrollerKeyCtrlImpl.KEYSLENGHT];
-	private boolean[]			frame			= new boolean[MicrocontrollerKeyCtrlImpl.KEYSLENGHT];
+	private final boolean[]	frame			= new boolean[MicrocontrollerKeyCtrlImpl.KEYSLENGHT];
 
-	MicrocontrollerKeyCtrlImpl (JFrame jFrame) {
+	MicrocontrollerKeyCtrlImpl(final JFrame jFrame)
+	{
 		jFrame.addKeyListener(this);
 	}
-	
+
 	@Override
 	public boolean isPressed(final int keyCode)
 	{
-		if (keyCode < this.frame.length) return this.frame[keyCode];
+		if (keyCode < this.frame.length) { return this.frame[keyCode]; }
 		return false;
 	}
 
@@ -62,7 +63,9 @@ public class MicrocontrollerKeyCtrlImpl implements KeyListener, KeyCtrl
 	@Override
 	public void takeFrame()
 	{
-		for (int i = 0; i < frame.length; i++)
-			frame[i] = keys[i];
+		for (int i = 0; i < this.frame.length; i++)
+		{
+			this.frame[i] = this.keys[i];
+		}
 	}
 }

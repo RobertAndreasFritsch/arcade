@@ -10,8 +10,8 @@ import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
 import com.game.Drawable;
 import com.game.Game;
-import com.game.SimpleGame;
 import com.game.ProceedsInput;
+import com.game.SimpleGame;
 import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyCtrl;
@@ -62,13 +62,13 @@ public class PlayerSelection extends SimpleGame
 
 class ProgressAnimation implements Drawable, ProceedsInput, Updateable
 {
-	boolean[]						players	= new boolean[4];
-	private long					progress	= 0;
-	private final long			timeout	= 5000;
-	private double					angle		= 0;
+	boolean[]					players	= new boolean[4];
+	private long				progress	= 0;
+	private final long		timeout	= 5000;
+	private double				angle		= 0;
 	private final KeyCtrl	Keys;
-	private final Game			game;
-	int								blub		= 0;
+	private final Game		game;
+	int							blub		= 0;
 
 	public ProgressAnimation(final KeyCtrl Keys, final Game game)
 	{

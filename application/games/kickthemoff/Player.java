@@ -14,7 +14,7 @@ public class Player implements Drawable, Updateable
 	private final Seat			s;
 	private float					x, y;
 	private float					accelerationX, accelerationY;
-	private final KeyCtrl	keys;
+	private final KeyCtrl		keys;
 	private boolean				dead								= false, dying = false;
 	private float					scale								= 1;
 	private final Ground			g;

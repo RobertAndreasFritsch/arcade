@@ -1,6 +1,5 @@
 package games.tank;
 
-import com.arcade.audio.SoundFactory;
 import com.game.Game;
 import com.game.SimpleGame;
 import com.game.ctrl.CtrlFactory;
@@ -13,7 +12,6 @@ public class Tankies extends SimpleGame
 	 */
 	private static final long	serialVersionUID	= 964584373955790071L;
 	Player[]							player				= new Player[4];
-	SoundFactory					soundFactory		= new SoundFactory();
 
 	public Tankies(final CtrlFactory ctrlFactory)
 	{
@@ -29,8 +27,8 @@ public class Tankies extends SimpleGame
 		this.player[2] = new Player();
 		this.player[3] = new Player();
 
-		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), this.soundFactory);
-		bulletFactory = new BulletFactory(this, battleground, tankArray, this.player, this.soundFactory);
+		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), this.getCtrlFactory());
+		bulletFactory = new BulletFactory(this, battleground, tankArray, this.player, this.getCtrlFactory());
 
 		tankArray[0] = new Tank(0, battleground, bulletFactory, this.getKEYS());
 		tankArray[1] = new Tank(1, battleground, bulletFactory, this.getKEYS());
@@ -58,8 +56,8 @@ public class Tankies extends SimpleGame
 
 		this.player = player;
 
-		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), this.soundFactory);
-		bulletFactory = new BulletFactory(this, battleground, tankArray, player, this.soundFactory);
+		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), this.getCtrlFactory());
+		bulletFactory = new BulletFactory(this, battleground, tankArray, player, this.getCtrlFactory());
 
 		tankArray[0] = new Tank(0, battleground, bulletFactory, this.getKEYS());
 		tankArray[1] = new Tank(1, battleground, bulletFactory, this.getKEYS());
@@ -80,7 +78,7 @@ public class Tankies extends SimpleGame
 	public Game getNextGame()
 	{
 
-		this.soundFactory.stop();
+		this.getCtrlFactory().closeSounds();
 
 		for (final Player p : this.player)
 		{

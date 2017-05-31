@@ -60,7 +60,7 @@ public class SimpleGame extends ArrayList<GameObject> implements Game
 	{
 		final ArrayList<GameObject> temp = new ArrayList<>(this);
 
-		ctrlFactory.keyRequestInstance().takeFrame();
+		this.ctrlFactory.keyRequestInstance().takeFrame();
 		for (final GameObject i : temp)
 		{
 			i.input();
@@ -70,12 +70,12 @@ public class SimpleGame extends ArrayList<GameObject> implements Game
 		{
 			u.update(elapsed);
 		}
-		
+
 		for (final GameObject d : temp)
 		{
 			d.output();
 		}
-		ctrlFactory.graphicsControllerInstance().dispose();
+		this.ctrlFactory.graphicsControllerInstance().dispose();
 	}
 
 	public CtrlFactory getCtrlFactory()

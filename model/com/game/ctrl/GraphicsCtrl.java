@@ -8,7 +8,7 @@ public interface GraphicsCtrl
 	Graphics2D getBufferGraphics();
 
 	void dispose();
-	
+
 	void normalize();
 
 }

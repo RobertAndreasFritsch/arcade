@@ -7,9 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-import com.arcade.audio.SoundFactory;
 import com.arcade.audio.SoundType;
 import com.game.Drawable;
+import com.game.ctrl.CtrlFactory;
 
 public class Battleground implements Drawable
 {
@@ -30,12 +30,12 @@ public class Battleground implements Drawable
 	      "Lava" };
 	String								setting;
 
-	public Battleground(final int scrollpy, final SoundFactory soundFactory)
+	public Battleground(final int scrollpy, final CtrlFactory ctrlFactory)
 	{
 		// setting aus array
 		this.setting = Battleground.settings[scrollpy];
 
-		soundFactory.newSound(new File("res/games/tank/music/" + Battleground.settings[scrollpy] + "/Soundtrack.mp3"),
+		ctrlFactory.newSound(new File("res/games/tank/music/" + Battleground.settings[scrollpy] + "/Soundtrack.mp3"),
 		      true, SoundType.MP3);
 
 		// Spielfeld genereieren

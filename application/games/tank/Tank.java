@@ -32,11 +32,10 @@ public class Tank implements Updateable, Drawable, ProceedsInput
 	Image									TankObject;
 	private final Battleground		battleground;
 	private final BulletFactory	bulletFactory;
-	private final KeyCtrl		keys;
+	private final KeyCtrl			keys;
 
 	// ------------------------------------------------------------------Constructor
-	public Tank(final int player, final Battleground battleground, final BulletFactory bulletFactory,
-	      final KeyCtrl keys)
+	public Tank(final int player, final Battleground battleground, final BulletFactory bulletFactory, final KeyCtrl keys)
 	{
 
 		this.keys = keys;

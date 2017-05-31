@@ -75,7 +75,7 @@ public class KnutzzzGameObject_Dispenser implements Updateable, Drawable
 		// vorhanden sind
 		try
 		{
-			shapes = (BufferedImage)ImageIO.read(new File("res/games/knutzzz/img/dispensershapes.png").toURI().toURL());
+			shapes = ImageIO.read(new File("res/games/knutzzz/img/dispensershapes.png").toURI().toURL());
 		}
 		catch (final IOException e)
 		{

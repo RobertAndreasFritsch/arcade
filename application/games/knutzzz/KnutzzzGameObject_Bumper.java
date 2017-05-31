@@ -17,20 +17,20 @@ import com.game.ctrl.KeyCtrl;
 
 public class KnutzzzGameObject_Bumper implements Drawable, Updateable, ProceedsInput
 {
-	final int						VK_ButtonLeft, VK_ButtonRight, VK_ButtonThrust;
+	final int					VK_ButtonLeft, VK_ButtonRight, VK_ButtonThrust;
 
-	double							x, y;
-	double							vx, vy;
-	double							ax, ay;
-	int								angle;
-	Image								image;
-	Image								carImage, driverImage, spotlightImage;
-	boolean							throttle	= false;
-	int								turn		= 0;
-	Knutzzz							parent;
-	Sound								sound;
-	int								startx, starty, startangle;
-	int								ID			= 0;
+	double						x, y;
+	double						vx, vy;
+	double						ax, ay;
+	int							angle;
+	Image							image;
+	Image							carImage, driverImage, spotlightImage;
+	boolean						throttle	= false;
+	int							turn		= 0;
+	Knutzzz						parent;
+	Sound							sound;
+	int							startx, starty, startangle;
+	int							ID			= 0;
 
 	private final KeyCtrl	KEYS;
 

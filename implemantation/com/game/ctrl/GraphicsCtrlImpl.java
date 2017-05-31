@@ -1,19 +1,21 @@
 package com.game.ctrl;
 
+import static java.awt.RenderingHints.KEY_ANTIALIASING;
+import static java.awt.RenderingHints.KEY_TEXT_ANTIALIASING;
+import static java.awt.RenderingHints.VALUE_ANTIALIAS_ON;
+import static java.awt.RenderingHints.VALUE_TEXT_ANTIALIAS_ON;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import static java.awt.RenderingHints.*;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import com.arcade.Launch;
 
 public class GraphicsCtrlImpl implements GraphicsCtrl
 {
@@ -49,9 +51,9 @@ public class GraphicsCtrlImpl implements GraphicsCtrl
 		this.bufferGraphics.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
 		this.bufferGraphics.setRenderingHint(KEY_TEXT_ANTIALIASING, VALUE_TEXT_ANTIALIAS_ON);
 
-		defaultAffineTransform = bufferGraphics.getTransform();
-		defaultBackgrounfColor = Color.WHITE;
-		defaultColor = Color.BLACK;
+		this.defaultAffineTransform = this.bufferGraphics.getTransform();
+		this.defaultBackgrounfColor = Color.WHITE;
+		this.defaultColor = Color.BLACK;
 	}
 
 	@Override
@@ -67,14 +69,14 @@ public class GraphicsCtrlImpl implements GraphicsCtrl
 		      (this.jPanel.getHeight() >> 1) - 512, 1024, 1024, this.jPanel);
 
 		Toolkit.getDefaultToolkit().sync();
-		bufferGraphics.clearRect(0, 0, 1024, 1024);
+		this.bufferGraphics.clearRect(0, 0, 1024, 1024);
 	}
 
 	@Override
 	public void normalize()
 	{
-		this.bufferGraphics.setTransform(defaultAffineTransform);
-		this.bufferGraphics.setBackground(defaultBackgrounfColor);
-		this.bufferGraphics.setColor(defaultColor);
+		this.bufferGraphics.setTransform(this.defaultAffineTransform);
+		this.bufferGraphics.setBackground(this.defaultBackgrounfColor);
+		this.bufferGraphics.setColor(this.defaultColor);
 	}
 }

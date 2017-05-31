@@ -12,7 +12,7 @@ import games.knutzzz.KnutzzzGameObject_Bumper;
 public class WinnerControl implements Updateable, ProceedsInput
 {
 
-	Knutzzz							parent;
+	Knutzzz						parent;
 	private final KeyCtrl	KEYS;
 
 	public WinnerControl(final Knutzzz parent, final KeyCtrl KEYS)
