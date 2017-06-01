@@ -31,6 +31,7 @@ public class CollisionBoxFactory extends SimpleGameObject
 	@Override
 	public void update(final long elapsed)
 	{
-
+		// TODO find all collisionpair
+		// process all collisionpairs that collide
 	}
 }
