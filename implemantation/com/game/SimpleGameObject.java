@@ -53,17 +53,17 @@ public abstract class SimpleGameObject implements GameObject
 		this.ctrlFactory.graphicsControllerInstance().normalize();
 	}
 
-	public boolean limit()
+	public boolean soundLimit()
 	{
 		return this.ctrlFactory.soundCtrlInstance().limit();
 	}
 
-	public Image load(final String path, final ImageType imageType)
+	public Image loadImage(final String path, final ImageType imageType)
 	{
 		return this.ctrlFactory.imageCtrlInstance().load(path, imageType);
 	}
 
-	public BufferedImage loadBuffered(final String path, final ImageType imageType)
+	public BufferedImage loadBufferedImage(final String path, final ImageType imageType)
 	{
 		return this.ctrlFactory.imageCtrlInstance().loadBuffered(path, imageType);
 	}
@@ -136,11 +136,6 @@ public abstract class SimpleGameObject implements GameObject
 	public Graphics create(final int arg0, final int arg1, final int arg2, final int arg3)
 	{
 		return this.ctrlFactory.graphicsControllerInstance().getBufferGraphics().create(arg0, arg1, arg2, arg3);
-	}
-
-	public void dispose()
-	{
-		this.ctrlFactory.graphicsControllerInstance().getBufferGraphics().dispose();
 	}
 
 	public void draw(final Shape arg0)

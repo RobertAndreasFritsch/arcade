@@ -48,7 +48,7 @@ public class Battleground extends SimpleGameObject
 
 		try
 		{
-			this.floor1Image = this.load("res/games/tankies/img/" + this.setting + "/floor1.gif", ImageType.GIF);
+			this.floor1Image = this.loadImage("res/games/tankies/img/" + this.setting + "/floor1.gif", ImageType.GIF);
 
 			this.floor2Image = Toolkit.getDefaultToolkit()
 			      .getImage(new File("res/games/tankies/img/" + this.setting + "/floor2.gif").toURI().toURL());
