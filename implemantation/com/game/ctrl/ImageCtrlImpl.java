@@ -11,28 +11,29 @@ import javax.imageio.ImageIO;
 
 public class ImageCtrlImpl implements ImageCtrl
 {
-	Map<String, Image> images = new HashMap<>();
-	Map<String, BufferedImage> bufferedImages = new HashMap<>();
-	
+	Map<String, Image>			images			= new HashMap<>();
+	Map<String, BufferedImage>	bufferedImages	= new HashMap<>();
+
 	@Override
-	public Image load(String path, ImageType imageType)
+	public Image load(final String path, final ImageType imageType)
 	{
 		Image img;
-		
-		if ((img = images.get(path)) != null)
-			return img;
-		
+
+		if ((img = this.images.get(path)) != null) { return img; }
+
 		switch (imageType)
 		{
 		case GIF:
 		case JPEG:
 		case PNG:
-			
+
 			img = Toolkit.getDefaultToolkit().getImage(path);
-			
+
 			if (img != null)
-				images.put(path, img);
-			
+			{
+				this.images.put(path, img);
+			}
+
 			return img;
 
 		default:
@@ -41,32 +42,33 @@ public class ImageCtrlImpl implements ImageCtrl
 	}
 
 	@Override
-	public BufferedImage loadBuffered(String path, ImageType imageType)
+	public BufferedImage loadBuffered(final String path, final ImageType imageType)
 	{
 		BufferedImage img;
-		
-		if ((img = bufferedImages.get(path)) != null)
-			return img;
-		
+
+		if ((img = this.bufferedImages.get(path)) != null) { return img; }
+
 		switch (imageType)
 		{
 		case GIF:
 		case JPEG:
 		case PNG:
-			
+
 			try
 			{
 				img = ImageIO.read(new File(path));
 			}
-			catch (Exception e)
+			catch (final Exception e)
 			{
 				e.printStackTrace();
 				return null;
 			}
-			
+
 			if (img != null)
-				bufferedImages.put(path, img);
-			
+			{
+				this.bufferedImages.put(path, img);
+			}
+
 			return img;
 
 		default:

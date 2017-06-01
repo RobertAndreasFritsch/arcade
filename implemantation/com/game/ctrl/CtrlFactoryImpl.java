@@ -8,8 +8,8 @@ public class CtrlFactoryImpl implements CtrlFactory
 
 	private KeyCtrl				keyCtrl;
 	private final GraphicsCtrl	graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
-	private ImageCtrl				imageCtrl			= new ImageCtrlImpl();
-	private SoundCtrl				soundCtrl			= new SoundCtrlImpl();
+	private final ImageCtrl		imageCtrl			= new ImageCtrlImpl();
+	private final SoundCtrl		soundCtrl			= new SoundCtrlImpl();
 
 	CtrlFactoryImpl(final KeyCtrlType keyCtrlType)
 	{

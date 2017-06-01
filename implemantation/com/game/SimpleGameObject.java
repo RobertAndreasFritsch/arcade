@@ -50,22 +50,22 @@ public abstract class SimpleGameObject implements GameObject
 
 	public void normalize()
 	{
-		ctrlFactory.graphicsControllerInstance().normalize();
+		this.ctrlFactory.graphicsControllerInstance().normalize();
 	}
 
 	public boolean limit()
 	{
-		return ctrlFactory.soundCtrlInstance().limit();
+		return this.ctrlFactory.soundCtrlInstance().limit();
 	}
 
-	public Image load(String path, ImageType imageType)
+	public Image load(final String path, final ImageType imageType)
 	{
-		return ctrlFactory.imageCtrlInstance().load(path, imageType);
+		return this.ctrlFactory.imageCtrlInstance().load(path, imageType);
 	}
 
-	public BufferedImage loadBuffered(String path, ImageType imageType)
+	public BufferedImage loadBuffered(final String path, final ImageType imageType)
 	{
-		return ctrlFactory.imageCtrlInstance().loadBuffered(path, imageType);
+		return this.ctrlFactory.imageCtrlInstance().loadBuffered(path, imageType);
 	}
 
 	public Sound newSound(final String path, final boolean loop, final SoundType soundType)

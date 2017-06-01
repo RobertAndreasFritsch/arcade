@@ -8,6 +8,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
+/**
+ * @deprecated
+ */
 public enum Sounds
 {
 	water_splash0("res/games/kickthemoff/water_splash.wav"), pling("res/games/kickthemoff/pling.wav"), falling(
@@ -15,11 +18,19 @@ public enum Sounds
 
 	private String filename;
 
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	Sounds(final String f)
 	{
 		this.filename = f;
 	}
 
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	void play()
 	{
 		Clip sfx = null;

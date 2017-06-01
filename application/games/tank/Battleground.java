@@ -1,6 +1,5 @@
 package games.tank;
 
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
@@ -11,7 +10,6 @@ import com.game.SimpleGameObject;
 import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.ImageType;
 import com.game.ctrl.SoundType;
-import com.game.deprecated.Drawable;
 
 public class Battleground extends SimpleGameObject
 {
@@ -35,7 +33,7 @@ public class Battleground extends SimpleGameObject
 	public Battleground(final int scrollpy, final CtrlFactory ctrlFactory)
 	{
 		super(ctrlFactory);
-		
+
 		// setting aus array
 		this.setting = Battleground.settings[scrollpy];
 
@@ -50,9 +48,8 @@ public class Battleground extends SimpleGameObject
 
 		try
 		{
-			this.floor1Image = load("res/games/tankies/img/" + this.setting + "/floor1.gif", ImageType.GIF);
-			
-			
+			this.floor1Image = this.load("res/games/tankies/img/" + this.setting + "/floor1.gif", ImageType.GIF);
+
 			this.floor2Image = Toolkit.getDefaultToolkit()
 			      .getImage(new File("res/games/tankies/img/" + this.setting + "/floor2.gif").toURI().toURL());
 			this.floor3Image = Toolkit.getDefaultToolkit()
@@ -245,14 +242,14 @@ public class Battleground extends SimpleGameObject
 	public void input()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void update(long elapsed)
+	public void update(final long elapsed)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -266,17 +263,17 @@ public class Battleground extends SimpleGameObject
 				{
 					if (this.spielfeld[x][y].textur == 0)
 					{
-						drawImage(this.floor1Image, 32 * x, 32 * y, null);
+						this.drawImage(this.floor1Image, 32 * x, 32 * y, null);
 					}
 					else
 					{
 						if (this.spielfeld[x][y].textur == 1)
 						{
-							drawImage(this.floor2Image, 32 * x, 32 * y, null);
+							this.drawImage(this.floor2Image, 32 * x, 32 * y, null);
 						}
 						else
 						{
-							drawImage(this.floor3Image, 32 * x, 32 * y, null);
+							this.drawImage(this.floor3Image, 32 * x, 32 * y, null);
 						}
 					}
 
@@ -285,11 +282,11 @@ public class Battleground extends SimpleGameObject
 				{
 					if (this.spielfeld[x][y].textur == 0)
 					{
-						drawImage(this.wall1Image, 32 * x, 32 * y, null);
+						this.drawImage(this.wall1Image, 32 * x, 32 * y, null);
 					}
 					else
 					{
-						drawImage(this.wall2Image, 32 * x, 32 * y, null);
+						this.drawImage(this.wall2Image, 32 * x, 32 * y, null);
 					}
 				}
 			}

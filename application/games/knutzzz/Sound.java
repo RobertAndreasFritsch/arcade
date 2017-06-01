@@ -8,10 +8,22 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 public class Sound
 {
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	Clip sfx = null;
 
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	public void instantPlay(final String filename)
 	{
 		// Soundeffekt laden und abspielen
@@ -39,6 +51,10 @@ public class Sound
 		}
 	}
 
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	public void load(final String filename)
 	{
 		// Soundeffekt laden
@@ -61,6 +77,10 @@ public class Sound
 		}
 	}
 
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	public void play()
 	{
 		if (this.sfx != null)

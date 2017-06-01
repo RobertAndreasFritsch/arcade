@@ -8,6 +8,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 
+/**
+ * @deprecated
+ */
 public enum Sounds
 {
 	explosion0("res/games/bomberman/explosion0.wav"), explosion1("res/games/bomberman/explosion1.wav"), explosion2(
@@ -16,11 +19,19 @@ public enum Sounds
 	private String	filename;
 	private Clip	sfx;
 
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	Sounds(final String f)
 	{
 		this.filename = f;
 	}
 
+	/**
+	 * @deprecated
+	 */
+	@Deprecated
 	void play()
 	{
 		this.sfx = null;
