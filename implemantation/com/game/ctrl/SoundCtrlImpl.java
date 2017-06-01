@@ -20,10 +20,10 @@ public class SoundCtrlImpl implements SoundCtrl
 			switch (soundType)
 			{
 			case MP3:
-				sound = new MP3SoundCtrlImpl(this, file, loop);
+				sound = new MP3SoundImpl(this, file, loop);
 				break;
 			case WAV:
-				sound = new WAVSoundCtrl(this, file, loop);
+				sound = new WAVSoundImpl(this, file, loop);
 				break;
 			default:
 				throw new Exception("unknown Type : " + soundType);

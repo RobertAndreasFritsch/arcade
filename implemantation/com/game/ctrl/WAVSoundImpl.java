@@ -1,25 +1,27 @@
 package com.game.ctrl;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import javazoom.jl.player.Player;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
-public class MP3SoundCtrlImpl implements Runnable, Sound
+public class WAVSoundImpl implements Runnable, Sound
 {
-
-	private final List<Player>	players	= new ArrayList<>();
+	private final List<Clip>	clips	= new ArrayList<>();
 	private boolean				loop;
 	private final File			file;
+
 	private final SoundCtrl		soundCtrl;
 
-	public MP3SoundCtrlImpl(final SoundCtrlImpl soundCtrlImpl, final File file, final boolean loop) throws Exception
+	public WAVSoundImpl(final SoundCtrl soundCtrl, final File file, final boolean loop) throws Exception
 	{
-		this.soundCtrl = soundCtrlImpl;
+		this.soundCtrl = soundCtrl;
 		this.file = file;
 		this.loop = loop;
+
 	}
 
 	@Override
@@ -30,24 +32,26 @@ public class MP3SoundCtrlImpl implements Runnable, Sound
 		boolean incremented = false;
 		try
 		{
-			Player player;
-			FileInputStream fileInputStream;
+			Clip clip;
+			AudioInputStream audioInputStream;
 
 			this.soundCtrl.incrementSoundCounter();
 			incremented = true;
 			do
 			{
-				fileInputStream = new FileInputStream(this.file);
-				player = new Player(fileInputStream);
-				this.players.add(player);
-				player.play();
+				audioInputStream = AudioSystem.getAudioInputStream(this.file);
+				clip = AudioSystem.getClip();
+				this.clips.add(clip);
+				clip.open(audioInputStream);
+				clip.start();
+				Thread.sleep(clip.getMicrosecondLength() / 100000);
 			}
 			while (this.loop);
 			this.soundCtrl.decrementSoundCounter();
 			incremented = false;
 
-			player.close();
-			this.players.remove(player);
+			clip.close(); // TODO not sure
+			this.clips.remove(clip);
 		}
 		catch (final Exception e)
 		{
@@ -57,17 +61,16 @@ public class MP3SoundCtrlImpl implements Runnable, Sound
 			}
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
 	public void stop()
 	{
-		for (final Player player : this.players)
+		for (final Clip clip : new ArrayList<>(this.clips))
 		{
-			if (player != null)
+			if (clip != null)
 			{
-				player.close();
+				clip.close();
 			}
 		}
 		this.loop = false;
