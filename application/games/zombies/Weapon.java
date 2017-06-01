@@ -14,7 +14,13 @@ public class Weapon implements Updateable {
 			"res/games/zombies/textures/citizenplayer_handgun.png", null, new FireMethod() {
 				@Override
 				public void fire(float x, float y, float rotation, int dmg, float speed, Zombies game) {
-					game.add(new Bullet(x, y, dmg, rotation, speed, game));
+					float newX = x, newY = y;
+
+					final float length = 50;
+					newX += Math.sin(Math.toRadians(95 + rotation)) * length;
+					newY -= Math.cos(Math.toRadians(95 + rotation)) * length;
+
+					game.add(new Bullet(newX, newY, dmg, rotation, speed, game));
 				}
 			});
 
@@ -22,15 +28,27 @@ public class Weapon implements Updateable {
 			"res/games/zombies/textures/citizenplayermachinegun.png", null, new FireMethod() {
 				@Override
 				public void fire(float x, float y, float rotation, int dmg, float speed, Zombies game) {
-					game.add(new Bullet(x, y, dmg, rotation, speed, game));
+					float newX = x, newY = y;
+
+					final float length = 60;
+					newX += Math.sin(Math.toRadians(105 + rotation)) * length;
+					newY -= Math.cos(Math.toRadians(105 + rotation)) * length;
+
+					game.add(new Bullet(newX, newY, dmg, rotation, speed, game));
 				}
 			});
 
-	private static final Weapon UZI = new Weapon(5, 600f, 75, "res/games/zombies/textures/citizenplayer_uzi.png",
-			null, new FireMethod() {
+	private static final Weapon UZI = new Weapon(5, 600f, 75, "res/games/zombies/textures/citizenplayer_uzi.png", null,
+			new FireMethod() {
 				@Override
 				public void fire(float x, float y, float rotation, int dmg, float speed, Zombies game) {
-					game.add(new Bullet(x, y, dmg, rotation, speed, game));
+					float newX = x, newY = y;
+
+					final float length = 45;
+					newX += Math.sin(Math.toRadians(98 + rotation)) * length;
+					newY -= Math.cos(Math.toRadians(98 + rotation)) * length;
+
+					game.add(new Bullet(newX, newY, dmg, rotation, speed, game));
 				}
 			});
 
@@ -38,11 +56,17 @@ public class Weapon implements Updateable {
 			"res/games/zombies/textures/citizenplayershotgun.png", null, new FireMethod() {
 				@Override
 				public void fire(float x, float y, float rotation, int dmg, float speed, Zombies game) {
-					game.add(new Bullet(x, y, dmg, rotation + 20, speed, game));
-					game.add(new Bullet(x, y, dmg, rotation + 10, speed, game));
-					game.add(new Bullet(x, y, dmg, rotation, speed, game));
-					game.add(new Bullet(x, y, dmg, rotation - 10, speed, game));
-					game.add(new Bullet(x, y, dmg, rotation - 20, speed, game));
+					float newX = x, newY = y;
+
+					final float length = 66;
+					newX += Math.sin(Math.toRadians(102 + rotation)) * length;
+					newY -= Math.cos(Math.toRadians(102 + rotation)) * length;
+					
+					game.add(new Bullet(newX, newY, dmg, rotation + 20, speed, game));
+					game.add(new Bullet(newX, newY, dmg, rotation + 10, speed, game));
+					game.add(new Bullet(newX, newY, dmg, rotation, speed, game));
+					game.add(new Bullet(newX, newY, dmg, rotation - 10, speed, game));
+					game.add(new Bullet(newX, newY, dmg, rotation - 20, speed, game));
 				}
 			});
 
@@ -74,7 +98,7 @@ public class Weapon implements Updateable {
 		this.image = w.getImage();
 		this.method = w.getMethod();
 		this.game = game;
-		
+
 		game.add(this);
 	}
 

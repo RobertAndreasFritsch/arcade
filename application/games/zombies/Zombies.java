@@ -68,18 +68,25 @@ public class Zombies extends SimpleGame implements ProceedsInput {
 			this.add(p);
 			this.players.add(p);
 		}
-		// this.add(new Zombie(300, 500, 10, 100, this));
-		// this.add(new Zombie(400, 500, 20, 200, this));
-		// this.add(new Zombie(600, 500, 40, 300, this));
+
 		this.add(new Zombie(900, 100, 60, 500, this));
+		this.add(new Zombie(900, 150, 60, 500, this));
 		this.add(new Zombie(900, 200, 60, 500, this));
+		this.add(new Zombie(900, 250, 60, 500, this));
 		this.add(new Zombie(900, 300, 60, 500, this));
+		this.add(new Zombie(900, 350, 60, 500, this));
 		this.add(new Zombie(900, 400, 60, 500, this));
+		this.add(new Zombie(900, 450, 60, 500, this));
 		this.add(new Zombie(900, 500, 60, 500, this));
+		this.add(new Zombie(900, 550, 60, 500, this));
 		this.add(new Zombie(900, 600, 60, 500, this));
+		this.add(new Zombie(900, 650, 60, 500, this));
 		this.add(new Zombie(900, 700, 60, 500, this));
+		this.add(new Zombie(900, 750, 60, 500, this));
 		this.add(new Zombie(900, 800, 60, 500, this));
+		this.add(new Zombie(900, 850, 60, 500, this));
 		this.add(new Zombie(900, 900, 60, 500, this));
+		this.add(new Zombie(900, 950, 60, 500, this));
 
 		
 		add(new WeaponPickup(400, 400, Weapon.getMachinegun(this), this));
