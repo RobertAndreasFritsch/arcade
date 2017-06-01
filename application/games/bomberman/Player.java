@@ -4,9 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
-import com.game.ProceedsInput;
 import com.game.ctrl.KeyCtrl;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.ProceedsInput;
 
 public class Player implements Drawable, ProceedsInput
 {

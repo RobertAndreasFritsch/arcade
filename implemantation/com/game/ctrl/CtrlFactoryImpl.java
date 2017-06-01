@@ -8,11 +8,14 @@ import javax.swing.JFrame;
 
 public class CtrlFactoryImpl implements CtrlFactory
 {
-	private final JFrame		jFrame				= new JFrame();
-	public List<SoundCtrl>	soundCtrls			= new ArrayList<>();
+	private static final int	SOUNDLIMIT			= 100;
+	private final JFrame			jFrame				= new JFrame();
+	private List<SoundCtrl>		soundCtrls			= new ArrayList<>();
 
-	KeyCtrl						keyCtrl;
-	GraphicsCtrl				graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
+	private KeyCtrl				keyCtrl;
+	private GraphicsCtrl			graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
+
+	private int						soundCounter		= 0;
 
 	CtrlFactoryImpl(final KeyCtrlType keyCtrlType)
 	{
@@ -50,10 +53,10 @@ public class CtrlFactoryImpl implements CtrlFactory
 			switch (soundType)
 			{
 			case MP3:
-				soundCtrl = new MP3SoundCtrlImpl(file, loop);
+				soundCtrl = new MP3SoundCtrlImpl(this, file, loop);
 				break;
 			case WAV:
-				soundCtrl = new WAVSoundCtrl(file, loop);
+				soundCtrl = new WAVSoundCtrl(this, file, loop);
 				break;
 			default:
 				throw new Exception("unknown Type : " + soundType);
@@ -76,5 +79,20 @@ public class CtrlFactoryImpl implements CtrlFactory
 		{
 			soundCtrl.stop();
 		}
+	}
+
+	void decrementSoundCounter()
+	{
+		soundCounter--;
+	}
+
+	void incrementSoundCounter()
+	{
+		soundCounter++;
+	}
+
+	boolean limit()
+	{
+		return soundCounter >= SOUNDLIMIT;
 	}
 }

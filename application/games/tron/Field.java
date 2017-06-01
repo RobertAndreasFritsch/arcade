@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 public class Field implements Drawable
 {

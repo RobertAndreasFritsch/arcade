@@ -9,8 +9,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.game.Drawable;
-import com.game.Updateable;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 public class KnutzzzGameObject_Dispenser implements Updateable, Drawable
 {

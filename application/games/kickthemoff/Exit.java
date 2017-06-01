@@ -2,7 +2,7 @@ package games.kickthemoff;
 
 import java.awt.event.KeyEvent;
 
-import com.game.ProceedsInput;
+import com.game.deprecated.ProceedsInput;
 
 public class Exit implements ProceedsInput
 {

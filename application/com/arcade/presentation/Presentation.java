@@ -6,9 +6,9 @@ import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
-import com.game.Drawable;
 import com.game.Game;
 import com.game.ctrl.CtrlFactory;
+import com.game.deprecated.Drawable;
 
 public enum Presentation implements Drawable
 {

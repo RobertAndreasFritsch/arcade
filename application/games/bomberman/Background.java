@@ -3,7 +3,7 @@ package games.bomberman;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 public class Background implements Drawable
 {

@@ -3,9 +3,9 @@ package games.kickthemoff;
 import java.awt.Graphics2D;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
-import com.game.Updateable;
 import com.game.ctrl.KeyCtrl;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 public class Player implements Drawable, Updateable
 {

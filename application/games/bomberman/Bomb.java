@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import com.game.Drawable;
-import com.game.Updateable;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 public class Bomb implements Drawable, Updateable
 {

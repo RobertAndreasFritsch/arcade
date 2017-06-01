@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 /**
  * @author default

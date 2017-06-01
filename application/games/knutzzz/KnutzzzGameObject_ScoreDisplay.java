@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.AffineTransform;
 
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 public class KnutzzzGameObject_ScoreDisplay implements Drawable
 {

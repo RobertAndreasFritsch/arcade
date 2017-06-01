@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 public class Field implements Drawable
 {

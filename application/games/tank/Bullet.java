@@ -3,8 +3,8 @@ package games.tank;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
-import com.game.Drawable;
-import com.game.Updateable;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 public class Bullet implements Drawable, Updateable
 {

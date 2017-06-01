@@ -10,12 +10,15 @@ import javax.sound.sampled.Clip;
 
 public class WAVSoundCtrl implements Runnable, SoundCtrl
 {
-	private final List<Clip>	clips	= new ArrayList<>();
-	private boolean				loop;
-	private final File			file;
+	private final List<Clip>		clips	= new ArrayList<>();
+	private boolean					loop;
+	private final File				file;
 
-	public WAVSoundCtrl(final File file, final boolean loop) throws Exception
+	private final CtrlFactoryImpl	ctrlFactory;
+
+	public WAVSoundCtrl(CtrlFactoryImpl ctrlFactory, final File file, final boolean loop) throws Exception
 	{
+		this.ctrlFactory = ctrlFactory;
 		this.file = file;
 		this.loop = loop;
 
@@ -24,11 +27,17 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 	@Override
 	public void run()
 	{
+		if (ctrlFactory.limit())
+			return;
+		
+		boolean incremented = false;
 		try
 		{
 			Clip clip;
-
 			AudioInputStream audioInputStream;
+
+			ctrlFactory.incrementSoundCounter();
+			incremented = true;
 			do
 			{
 				audioInputStream = AudioSystem.getAudioInputStream(this.file);
@@ -39,12 +48,17 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 				Thread.sleep(clip.getMicrosecondLength() / 100000);
 			}
 			while (this.loop);
+			ctrlFactory.decrementSoundCounter();
+			incremented = false;
 
 			clip.close(); // TODO not sure
 			this.clips.remove(clip);
 		}
 		catch (final Exception e)
 		{
+			if(incremented) 
+				ctrlFactory.decrementSoundCounter();
+			e.printStackTrace();
 		}
 	}
 
@@ -62,7 +76,7 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 	}
 
 	@Override
-	public void start()
+	public void play()
 	{
 		new Thread(this).start();
 	}

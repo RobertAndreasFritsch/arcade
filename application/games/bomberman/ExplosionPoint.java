@@ -5,8 +5,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
-import com.game.Drawable;
-import com.game.Updateable;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 public class ExplosionPoint implements Drawable, Updateable
 {

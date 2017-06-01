@@ -3,8 +3,8 @@ package games.pong.controll;
 import java.awt.event.KeyEvent;
 
 import com.game.Game;
-import com.game.ProceedsInput;
 import com.game.ctrl.KeyCtrl;
+import com.game.deprecated.ProceedsInput;
 
 public class Controll implements ProceedsInput
 {

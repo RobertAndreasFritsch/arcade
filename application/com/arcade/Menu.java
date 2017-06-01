@@ -6,13 +6,13 @@ import java.awt.event.KeyEvent;
 
 import com.arcade.presentation.Presentation;
 import com.arcade.utils.Seat;
-import com.game.Drawable;
 import com.game.Game;
-import com.game.ProceedsInput;
 import com.game.SimpleGame;
-import com.game.Updateable;
 import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.KeyCtrl;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.ProceedsInput;
+import com.game.deprecated.Updateable;
 
 class GameSlider implements ProceedsInput, Updateable, Drawable
 {

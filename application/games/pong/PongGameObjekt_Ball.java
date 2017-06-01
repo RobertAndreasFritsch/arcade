@@ -9,11 +9,11 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
 import com.game.Game;
 import com.game.GameObject;
-import com.game.Updateable;
 import com.game.ctrl.KeyCtrl;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 import games.pong.Tiles.Tile;
 

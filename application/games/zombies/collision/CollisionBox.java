@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import com.arcade.utils.Direction;
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 public class CollisionBox extends Rectangle implements Drawable
 {

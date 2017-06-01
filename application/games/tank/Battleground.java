@@ -7,9 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-import com.game.Drawable;
 import com.game.ctrl.CtrlFactory;
 import com.game.ctrl.SoundType;
+import com.game.deprecated.Drawable;
 
 public class Battleground implements Drawable
 {
@@ -36,7 +36,7 @@ public class Battleground implements Drawable
 		this.setting = Battleground.settings[scrollpy];
 
 		ctrlFactory.newSound(new File("res/games/tankies/music/" + Battleground.settings[scrollpy] + "/Soundtrack.mp3"),
-		      true, SoundType.MP3).start();
+		      true, SoundType.MP3).play();
 
 		// Spielfeld genereieren
 		this.generate();

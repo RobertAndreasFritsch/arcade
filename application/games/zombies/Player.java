@@ -6,8 +6,8 @@ import java.awt.Toolkit;
 
 import com.arcade.utils.Direction;
 import com.arcade.utils.Seat;
-import com.game.Drawable;
-import com.game.Updateable;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 import games.zombies.collision.Blockade;
 import games.zombies.collision.CollisionBox;

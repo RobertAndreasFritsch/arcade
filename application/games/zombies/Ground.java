@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 public class Ground implements Drawable
 {

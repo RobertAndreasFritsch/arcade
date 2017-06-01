@@ -4,10 +4,10 @@ package games.tron;
 import java.awt.Graphics2D;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
-import com.game.ProceedsInput;
-import com.game.Updateable;
 import com.game.ctrl.KeyCtrl;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.ProceedsInput;
+import com.game.deprecated.Updateable;
 
 public class Player implements Drawable, Updateable, ProceedsInput
 {

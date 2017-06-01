@@ -3,7 +3,7 @@ package games.tron;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import com.game.Drawable;
+import com.game.deprecated.Drawable;
 
 //---------------------------------------------------------------------------------------------------------------------------
 // Floor hintergrung einfuegen und setzten

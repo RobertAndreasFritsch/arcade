@@ -54,7 +54,7 @@ public class BulletFactory
 
 			this.game.add(bullet);
 
-			this.soundCtrl.start();
+			this.soundCtrl.play();
 		}
 	}
 

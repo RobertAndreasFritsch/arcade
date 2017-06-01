@@ -3,9 +3,9 @@ package games.tron;
 import java.awt.event.KeyEvent;
 
 import com.game.Game;
-import com.game.ProceedsInput;
-import com.game.Updateable;
 import com.game.ctrl.KeyCtrl;
+import com.game.deprecated.ProceedsInput;
+import com.game.deprecated.Updateable;
 
 public class Controll implements Updateable, ProceedsInput
 {

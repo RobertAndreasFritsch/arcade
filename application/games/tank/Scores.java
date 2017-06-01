@@ -8,9 +8,9 @@ import java.io.File;
 import java.io.IOException;
 
 import com.arcade.utils.Seat;
-import com.game.Drawable;
 import com.game.Game;
-import com.game.Updateable;
+import com.game.deprecated.Drawable;
+import com.game.deprecated.Updateable;
 
 public class Scores implements Updateable, Drawable
 {

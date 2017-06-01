@@ -1,6 +1,6 @@
 package games.kickthemoff;
 
-import com.game.Updateable;
+import com.game.deprecated.Updateable;
 
 public class GameOverWaiter implements Updateable
 {
