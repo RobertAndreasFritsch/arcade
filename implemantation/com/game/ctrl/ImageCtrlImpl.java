@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 
 public class ImageCtrlImpl implements ImageCtrl
 {
-	Map<String, Image>			images			= new HashMap<>();
-	Map<String, BufferedImage>	bufferedImages	= new HashMap<>();
+	public Map<String, Image>			images			= new HashMap<>();
+	public Map<String, BufferedImage>	bufferedImages	= new HashMap<>();
 
 	@Override
 	public Image load(final String path, final ImageType imageType)

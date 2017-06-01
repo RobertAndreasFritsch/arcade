@@ -12,30 +12,28 @@ import com.game.deprecated.Updateable;
 import games.zombies.collision.Blockade;
 import games.zombies.collision.CollisionBox;
 
-public class Player extends CollisionBox implements Drawable, Updateable
-{
+public class Player extends CollisionBox implements Drawable, Updateable {
 
-	private static final long	serialVersionUID		= 7151425924474408977L;
-	private final static float	ROTATION_SPEED			= 200;
-	private final static float	WALKING_SPEED			= 200;
-	private final static float	WALKING_SPEED_BACK	= 100;
-	private final static long	WAIT_PER_SHOT			= 10;
+	private static final long serialVersionUID = 7151425924474408977L;
+	private final static float ROTATION_SPEED = 200;
+	private final static float WALKING_SPEED = 200;
+	private final static float WALKING_SPEED_BACK = 100;
+	private final static long WAIT_PER_SHOT = 10;
 
-	private boolean				collNorth				= false;
-	private boolean				collEast					= false;
-	private boolean				collSouth				= false;
-	private boolean				collWest					= false;
+	private boolean collNorth = false;
+	private boolean collEast = false;
+	private boolean collSouth = false;
+	private boolean collWest = false;
 
-	private long					shotTimer				= 0;
-	private float					x, y;
-	private float					rotation					= 0;
-	private final Zombies		game;
-	private final Seat			s;
-	private final Image			texture					= Toolkit.getDefaultToolkit()
-	      .createImage("res/games/zombies/player_top.png");
+	private long shotTimer = 0;
+	private float x, y;
+	private float rotation = 0;
+	private final Zombies game;
+	private final Seat s;
+	private final Image texture = Toolkit.getDefaultToolkit()
+			.createImage("res/games/zombies/textures/citizenplayer_handgun.png");
 
-	public Player(final int x, final int y, final Seat s, final Zombies game)
-	{
+	public Player(final int x, final int y, final Seat s, final Zombies game) {
 		super(x - 10, y - 10, 20, 20);
 		this.x = x;
 		this.y = y;
@@ -45,69 +43,57 @@ public class Player extends CollisionBox implements Drawable, Updateable
 	}
 
 	@Override
-	public void draw(final Graphics2D g)
-	{
-		g.rotate(Math.toRadians(this.rotation), this.x, this.y);
-		g.drawImage(this.texture, (int) this.x - 23, (int) this.y - 30, null);
-		g.rotate(-Math.toRadians(this.rotation), this.x, this.y);
+	public void draw(final Graphics2D g) {
+		g.rotate(Math.toRadians(this.rotation + 90), this.x, this.y);
+		g.drawImage(this.texture, (int) this.x - 32, (int) this.y - 54, null);
+		g.rotate(-Math.toRadians(this.rotation + 90), this.x, this.y);
 
 		super.draw(g);
 	}
 
 	@Override
-	public void update(final long elapsed)
-	{
+	public void update(final long elapsed) {
 		this.shotTimer -= elapsed;
 
 		final float scalar = elapsed / 1000f;
 
 		float newX = this.x, newY = this.y;
 
-		if (this.game.getKEYS().isPressed(this.s.LEFT))
-		{
+		if (this.game.getKEYS().isPressed(this.s.LEFT)) {
 			this.rotation -= Player.ROTATION_SPEED * scalar;
 		}
-		if (this.game.getKEYS().isPressed(this.s.RIGHT))
-		{
+		if (this.game.getKEYS().isPressed(this.s.RIGHT)) {
 			this.rotation += Player.ROTATION_SPEED * scalar;
 		}
-		if (this.game.getKEYS().isPressed(this.s.UP))
-		{
+		if (this.game.getKEYS().isPressed(this.s.UP)) {
 			final float length = Player.WALKING_SPEED * scalar;
 
 			newX += Math.sin(Math.toRadians(this.rotation + 90)) * length;
 			newY -= Math.cos(Math.toRadians(this.rotation + 90)) * length;
 		}
-		if (this.game.getKEYS().isPressed(this.s.DOWN))
-		{
+		if (this.game.getKEYS().isPressed(this.s.DOWN)) {
 			final float length = Player.WALKING_SPEED_BACK * scalar;
 
 			newX -= Math.sin(Math.toRadians(this.rotation + 90)) * length;
 			newY += Math.cos(Math.toRadians(this.rotation + 90)) * length;
 		}
-		if (this.game.getKEYS().isPressed(this.s.BTN1))
-		{
-			if (this.shotTimer <= 0)
-			{
+		if (this.game.getKEYS().isPressed(this.s.BTN1)) {
+			if (this.shotTimer <= 0) {
 				this.game.add(new Bullet(this.x, this.y, this.rotation, 150f, this.game));
 				this.shotTimer = Player.WAIT_PER_SHOT;
 			}
 		}
 
-		if (newY < this.y && this.collNorth)
-		{
+		if (newY < this.y && this.collNorth) {
 			newY = this.y;
 		}
-		if (newY > this.y && this.collSouth)
-		{
+		if (newY > this.y && this.collSouth) {
 			newY = this.y;
 		}
-		if (newX > this.x && this.collEast)
-		{
+		if (newX > this.x && this.collEast) {
 			newX = this.x;
 		}
-		if (newX < this.x && this.collWest)
-		{
+		if (newX < this.x && this.collWest) {
 			newX = this.x;
 		}
 
@@ -123,12 +109,12 @@ public class Player extends CollisionBox implements Drawable, Updateable
 	}
 
 	@Override
-	public void onCollision(final CollisionBox with, final Direction dir)
-	{
-		if (!(with instanceof Blockade)) { return; }
+	public void onCollision(final CollisionBox with, final Direction dir) {
+		if (!(with instanceof Blockade)) {
+			return;
+		}
 
-		switch (dir)
-		{
+		switch (dir) {
 		case NORTH:
 			this.collNorth = true;
 			break;
@@ -145,8 +131,7 @@ public class Player extends CollisionBox implements Drawable, Updateable
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return "PLAYER";
 	}
 
