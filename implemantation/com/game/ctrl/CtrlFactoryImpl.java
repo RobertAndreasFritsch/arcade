@@ -8,6 +8,8 @@ public class CtrlFactoryImpl implements CtrlFactory
 
 	private KeyCtrl				keyCtrl;
 	private final GraphicsCtrl	graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
+	private ImageCtrl				imageCtrl			= new ImageCtrlImpl();
+	private SoundCtrl				soundCtrl			= new SoundCtrlImpl();
 
 	CtrlFactoryImpl(final KeyCtrlType keyCtrlType)
 	{
@@ -38,14 +40,12 @@ public class CtrlFactoryImpl implements CtrlFactory
 	@Override
 	public SoundCtrl soundCtrlInstance()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return this.soundCtrl;
 	}
 
 	@Override
 	public ImageCtrl imageCtrlInstance()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return this.imageCtrl;
 	}
 }

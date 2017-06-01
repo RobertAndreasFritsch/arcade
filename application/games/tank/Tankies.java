@@ -27,7 +27,7 @@ public class Tankies extends SimpleGame
 		this.player[2] = new Player();
 		this.player[3] = new Player();
 
-		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), this.getCtrlFactory());
+		battleground = new Battleground((int) (Math.random() * Battleground.settings.length), ctrlFactory);
 		bulletFactory = new BulletFactory(this, battleground, tankArray, this.player, this.getCtrlFactory());
 
 		tankArray[0] = new Tank(0, battleground, bulletFactory, this.getKEYS());

@@ -27,6 +27,7 @@ import java.text.AttributedCharacterIterator;
 import java.util.Map;
 
 import com.game.ctrl.CtrlFactory;
+import com.game.ctrl.ImageType;
 import com.game.ctrl.Sound;
 import com.game.ctrl.SoundType;
 
@@ -34,9 +35,37 @@ public abstract class SimpleGameObject implements GameObject
 {
 	private final CtrlFactory ctrlFactory;
 
+	// supported delegations:
+
+	// private ImageCtrl imageCtrl;
+	// private GraphicsCtrl graphicsCtrl;
+	// private Graphics graphics;
+	// private KeyCtrl keyCtrl;
+	// private SoundCtrl soundCtrl;
+
 	public SimpleGameObject(final CtrlFactory ctrlFactory)
 	{
 		this.ctrlFactory = ctrlFactory;
+	}
+
+	public void normalize()
+	{
+		ctrlFactory.graphicsControllerInstance().normalize();
+	}
+
+	public boolean limit()
+	{
+		return ctrlFactory.soundCtrlInstance().limit();
+	}
+
+	public Image load(String path, ImageType imageType)
+	{
+		return ctrlFactory.imageCtrlInstance().load(path, imageType);
+	}
+
+	public BufferedImage loadBuffered(String path, ImageType imageType)
+	{
+		return ctrlFactory.imageCtrlInstance().loadBuffered(path, imageType);
 	}
 
 	public Sound newSound(final String path, final boolean loop, final SoundType soundType)

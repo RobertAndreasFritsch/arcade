@@ -7,11 +7,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
+import com.game.SimpleGameObject;
 import com.game.ctrl.CtrlFactory;
+import com.game.ctrl.ImageType;
 import com.game.ctrl.SoundType;
 import com.game.deprecated.Drawable;
 
-public class Battleground implements Drawable
+public class Battleground extends SimpleGameObject
 {
 
 	// Spielfeld
@@ -32,6 +34,8 @@ public class Battleground implements Drawable
 
 	public Battleground(final int scrollpy, final CtrlFactory ctrlFactory)
 	{
+		super(ctrlFactory);
+		
 		// setting aus array
 		this.setting = Battleground.settings[scrollpy];
 
@@ -46,8 +50,9 @@ public class Battleground implements Drawable
 
 		try
 		{
-			this.floor1Image = Toolkit.getDefaultToolkit()
-			      .getImage(new File("res/games/tankies/img/" + this.setting + "/floor1.gif").toURI().toURL());
+			this.floor1Image = load("res/games/tankies/img/" + this.setting + "/floor1.gif", ImageType.GIF);
+			
+			
 			this.floor2Image = Toolkit.getDefaultToolkit()
 			      .getImage(new File("res/games/tankies/img/" + this.setting + "/floor2.gif").toURI().toURL());
 			this.floor3Image = Toolkit.getDefaultToolkit()
@@ -62,47 +67,6 @@ public class Battleground implements Drawable
 		catch (final IOException e)
 		{
 			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void draw(final Graphics2D g)
-	{
-		for (int y = 0; y < 32; y++)
-		{
-			for (int x = 0; x < 32; x++)
-			{
-				if (this.spielfeld[x][y].typ == 0)
-				{
-					if (this.spielfeld[x][y].textur == 0)
-					{
-						g.drawImage(this.floor1Image, 32 * x, 32 * y, null);
-					}
-					else
-					{
-						if (this.spielfeld[x][y].textur == 1)
-						{
-							g.drawImage(this.floor2Image, 32 * x, 32 * y, null);
-						}
-						else
-						{
-							g.drawImage(this.floor3Image, 32 * x, 32 * y, null);
-						}
-					}
-
-				}
-				else
-				{
-					if (this.spielfeld[x][y].textur == 0)
-					{
-						g.drawImage(this.wall1Image, 32 * x, 32 * y, null);
-					}
-					else
-					{
-						g.drawImage(this.wall2Image, 32 * x, 32 * y, null);
-					}
-				}
-			}
 		}
 	}
 
@@ -274,6 +238,61 @@ public class Battleground implements Drawable
 		for (y = 1; y < 31; y++)
 		{
 			this.spielfeld[30][y].typ = 0;
+		}
+	}
+
+	@Override
+	public void input()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(long elapsed)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void output()
+	{
+		for (int y = 0; y < 32; y++)
+		{
+			for (int x = 0; x < 32; x++)
+			{
+				if (this.spielfeld[x][y].typ == 0)
+				{
+					if (this.spielfeld[x][y].textur == 0)
+					{
+						drawImage(this.floor1Image, 32 * x, 32 * y, null);
+					}
+					else
+					{
+						if (this.spielfeld[x][y].textur == 1)
+						{
+							drawImage(this.floor2Image, 32 * x, 32 * y, null);
+						}
+						else
+						{
+							drawImage(this.floor3Image, 32 * x, 32 * y, null);
+						}
+					}
+
+				}
+				else
+				{
+					if (this.spielfeld[x][y].textur == 0)
+					{
+						drawImage(this.wall1Image, 32 * x, 32 * y, null);
+					}
+					else
+					{
+						drawImage(this.wall2Image, 32 * x, 32 * y, null);
+					}
+				}
+			}
 		}
 	}
 }
