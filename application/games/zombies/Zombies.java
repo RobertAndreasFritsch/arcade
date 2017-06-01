@@ -11,23 +11,21 @@ import com.game.deprecated.ProceedsInput;
 import games.zombies.collision.Blockade;
 import games.zombies.collision.CollisionBox;
 
-public class Zombies extends SimpleGame implements ProceedsInput
-{
+public class Zombies extends SimpleGame implements ProceedsInput {
 
 	/**
 	 *
 	 */
-	private static final long					serialVersionUID	= 7982550380997988183L;
-	private Ground									ground;
-	private final ArrayList<CollisionBox>	boxes;
-	private final ArrayList<Player>			players;
+	private static final long serialVersionUID = 7982550380997988183L;
+	private Ground ground;
+	private final ArrayList<CollisionBox> boxes;
+	private final ArrayList<Player> players;
 
-	public Zombies(final CtrlFactory ctrlFactory)
-	{
+	public Zombies(final CtrlFactory ctrlFactory) {
 		super(ctrlFactory);
 		this.boxes = new ArrayList<>();
 		this.players = new ArrayList<>();
-		
+
 		Zombie.textures.load("res/games/zombies/textures/citizenzombie1.png", ImageType.PNG);
 		Zombie.textures.load("res/games/zombies/textures/citizenzombie2.png", ImageType.PNG);
 		Zombie.textures.load("res/games/zombies/textures/citizenzombie3.png", ImageType.PNG);
@@ -46,70 +44,59 @@ public class Zombies extends SimpleGame implements ProceedsInput
 		this.addCollisionBox(new Blockade(1014, 0, 10, 1024));
 		this.addCollisionBox(new Blockade(0, 1014, 1024, 10));
 
-		if (Seat.P1.isPlaying())
-		{
+		if (Seat.P1.isPlaying()) {
 			final Player p = new Player(100, 100, Seat.P1, this);
 			this.add(p);
 			this.players.add(p);
 		}
-		if (Seat.P2.isPlaying())
-		{
+		if (Seat.P2.isPlaying()) {
 			final Player p = new Player(100, 100, Seat.P2, this);
 			this.add(p);
 			this.players.add(p);
 		}
-		if (Seat.P3.isPlaying())
-		{
+		if (Seat.P3.isPlaying()) {
 			final Player p = new Player(100, 100, Seat.P3, this);
 			this.add(p);
 			this.players.add(p);
 		}
-		if (Seat.P4.isPlaying())
-		{
+		if (Seat.P4.isPlaying()) {
 			final Player p = new Player(100, 100, Seat.P4, this);
 			this.add(p);
 			this.players.add(p);
 		}
-		this.add(new Zombie(500, 500, this));
+		this.add(new Zombie(300, 500, 10, 100, this));
+		this.add(new Zombie(400, 500, 20, 200, this));
+		this.add(new Zombie(600, 500, 40, 300, this));
+		this.add(new Zombie(500, 500, 60, 50, this));
 
 	}
 
-	public Ground getGround()
-	{
+	public Ground getGround() {
 		return this.ground;
 	}
 
-	public void addCollisionBox(final CollisionBox c)
-	{
-		if (!(c instanceof Player))
-		{
-			this.add(c);
+	public void addCollisionBox(final CollisionBox c) {
+		if (c instanceof Blockade) {
+			add(c);
 		}
 		this.boxes.add(c);
 	}
 
-	public boolean removeCollisionBox(final CollisionBox c)
-	{
-		this.remove(c);
+	public boolean removeCollisionBox(final CollisionBox c) {
+		remove(c);
 		return this.boxes.remove(c);
 	}
 
-	public ArrayList<Player> getPlayers()
-	{
+	public ArrayList<Player> getPlayers() {
 		return this.players;
 	}
 
 	@Override
-	public void processInput()
-	{
-		for (final CollisionBox c1 : new ArrayList<>(this.boxes))
-		{
-			for (final CollisionBox c2 : new ArrayList<>(this.boxes))
-			{
-				if (c1 != c2)
-				{
-					if (CollisionBox.doCollide(c1, c2))
-					{
+	public void processInput() {
+		for (final CollisionBox c1 : new ArrayList<>(this.boxes)) {
+			for (final CollisionBox c2 : new ArrayList<>(this.boxes)) {
+				if (c1 != c2) {
+					if (CollisionBox.doCollide(c1, c2)) {
 						c1.onCollision(c2, CollisionBox.getCollisionDirection(c1, c2));
 						c2.onCollision(c1, CollisionBox.getCollisionDirection(c2, c1));
 					}

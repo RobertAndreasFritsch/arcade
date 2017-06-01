@@ -10,31 +10,31 @@ import com.game.deprecated.Updateable;
 import games.zombies.collision.Blockade;
 import games.zombies.collision.CollisionBox;
 
-public class Bullet extends CollisionBox implements Drawable, Updateable
-{
+public class Bullet extends CollisionBox implements Drawable, Updateable {
 	/**
 	 *
 	 */
-	private static final long	serialVersionUID	= -4345454809916370881L;
+	private static final long serialVersionUID = -4345454809916370881L;
 
-	private static final int	MAX_BOUNCES			= 5;
+	private static final int MAX_BOUNCES = 5;
 
-	private float					x, y;
-	private double					dXPerSec, dYPerSec;
-	private final Zombies		game;
-	private int						bounces				= 0;
+	private float x, y;
+	private double dXPerSec, dYPerSec;
+	private final Zombies game;
+	private int bounces = 0;
 
-	private boolean				collNorth			= false;
-	private boolean				collEast				= false;
-	private boolean				collSouth			= false;
-	private boolean				collWest				= false;
+	private boolean collNorth = false;
+	private boolean collEast = false;
+	private boolean collSouth = false;
+	private boolean collWest = false;
+	private int dmg;
 
-	public Bullet(final float x, final float y, final float rotation, final float speed, final Zombies game)
-	{
+	public Bullet(final float x, final float y, int dmg, final float rotation, final float speed, final Zombies game) {
 		super((int) (x - 4), (int) (y - 4), 8, 8);
 		this.x = x;
 		this.y = y;
 		this.game = game;
+		this.dmg = dmg;
 
 		this.dXPerSec = Math.sin(Math.toRadians(rotation + 90)) * speed;
 		this.dYPerSec = Math.cos(Math.toRadians(rotation + 90)) * speed;
@@ -43,8 +43,7 @@ public class Bullet extends CollisionBox implements Drawable, Updateable
 	}
 
 	@Override
-	public void draw(final Graphics2D g)
-	{
+	public void draw(final Graphics2D g) {
 		g.setColor(Color.BLACK);
 		g.fillOval((int) (this.x - 2), (int) (this.y - 2), 4, 4);
 
@@ -52,41 +51,34 @@ public class Bullet extends CollisionBox implements Drawable, Updateable
 	}
 
 	@Override
-	public void update(final long elapsed)
-	{
+	public void update(final long elapsed) {
 		final double scalar = elapsed / 1000f;
 
 		double dX = this.dXPerSec * scalar;
 		double dY = this.dYPerSec * scalar;
 
-		if (this.collNorth)
-		{
+		if (this.collNorth) {
 			this.dYPerSec *= -1d;
 			dY *= -1;
 		}
-		if (this.collEast)
-		{
+		if (this.collEast) {
 			this.dXPerSec *= -1d;
 			dX *= -1;
 		}
-		if (this.collSouth)
-		{
+		if (this.collSouth) {
 			this.dYPerSec *= -1d;
 			dY *= -1;
 		}
-		if (this.collWest)
-		{
+		if (this.collWest) {
 			this.dXPerSec *= -1d;
 			dX *= -1;
 		}
 
-		if (this.bounces >= Bullet.MAX_BOUNCES)
-		{
+		if (this.bounces >= Bullet.MAX_BOUNCES) {
 			this.game.remove(this);
 			this.game.removeCollisionBox(this);
 		}
-		if (this.collNorth | this.collSouth | this.collWest | this.collEast)
-		{
+		if (this.collNorth | this.collSouth | this.collWest | this.collEast) {
 			this.bounces++;
 		}
 
@@ -102,12 +94,16 @@ public class Bullet extends CollisionBox implements Drawable, Updateable
 	}
 
 	@Override
-	public void onCollision(final CollisionBox with, final Direction dir)
-	{
-		if (with instanceof Blockade)
-		{
-			switch (dir)
-			{
+	public void onCollision(final CollisionBox with, final Direction dir) {
+
+		if (with instanceof Zombie) {
+			Zombie z = (Zombie) with;
+			z.setHp(z.getHp() - dmg);
+			bounces = MAX_BOUNCES;
+			return;
+		}
+		if (with instanceof Blockade) {
+			switch (dir) {
 			case NORTH:
 				this.collNorth = true;
 				break;

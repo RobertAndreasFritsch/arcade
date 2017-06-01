@@ -18,12 +18,15 @@ public class Player extends CollisionBox implements Drawable, Updateable {
 	private final static float ROTATION_SPEED = 200;
 	private final static float WALKING_SPEED = 200;
 	private final static float WALKING_SPEED_BACK = 100;
-	private final static long WAIT_PER_SHOT = 10;
 
 	private boolean collNorth = false;
 	private boolean collEast = false;
 	private boolean collSouth = false;
 	private boolean collWest = false;
+	
+	private long waitPerShot = 500;
+	private int dmgPerShot = 5;
+	private float bulletSpeed = 500f;
 
 	private long shotTimer = 0;
 	private float x, y;
@@ -40,6 +43,30 @@ public class Player extends CollisionBox implements Drawable, Updateable {
 		this.game = game;
 		this.s = s;
 		game.addCollisionBox(this);
+	}
+	
+	public long getWaitPerShot() {
+		return waitPerShot;
+	}
+
+	public void setWaitPerShot(long waitPerShot) {
+		this.waitPerShot = waitPerShot;
+	}
+
+	public int getDmgPerShot() {
+		return dmgPerShot;
+	}
+
+	public void setDmgPerShot(int dmgPerShot) {
+		this.dmgPerShot = dmgPerShot;
+	}
+
+	public float getBulletSpeed() {
+		return bulletSpeed;
+	}
+
+	public void setBulletSpeed(float bulletSpeed) {
+		this.bulletSpeed = bulletSpeed;
 	}
 
 	@Override
@@ -79,8 +106,8 @@ public class Player extends CollisionBox implements Drawable, Updateable {
 		}
 		if (this.game.getKEYS().isPressed(this.s.BTN1)) {
 			if (this.shotTimer <= 0) {
-				this.game.add(new Bullet(this.x, this.y, this.rotation, 150f, this.game));
-				this.shotTimer = Player.WAIT_PER_SHOT;
+				this.game.add(new Bullet(this.x, this.y, dmgPerShot, this.rotation, 500f, this.game));
+				this.shotTimer = waitPerShot;
 			}
 		}
 
