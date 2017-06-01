@@ -24,56 +24,40 @@ public class Player extends CollisionBox implements Drawable, Updateable {
 	private boolean collSouth = false;
 	private boolean collWest = false;
 	
-	private long waitPerShot = 500;
-	private int dmgPerShot = 5;
-	private float bulletSpeed = 500f;
-
+	private Weapon weapon;
 	private long shotTimer = 0;
-	private float x, y;
+	private float realX, realY;
 	private float rotation = 0;
 	private final Zombies game;
 	private final Seat s;
-	private final Image texture = Toolkit.getDefaultToolkit()
-			.createImage("res/games/zombies/textures/citizenplayer_handgun.png");
 
 	public Player(final int x, final int y, final Seat s, final Zombies game) {
 		super(x - 10, y - 10, 20, 20);
-		this.x = x;
-		this.y = y;
+		this.realX = x;
+		this.realY = y;
 		this.game = game;
 		this.s = s;
+		weapon = Weapon.getPistol(game);
 		game.addCollisionBox(this);
 	}
 	
-	public long getWaitPerShot() {
-		return waitPerShot;
+	public void setWeapon(Weapon weapon){
+		this.weapon = weapon;
 	}
 
-	public void setWaitPerShot(long waitPerShot) {
-		this.waitPerShot = waitPerShot;
+	public float getRealX() {
+		return realX;
 	}
 
-	public int getDmgPerShot() {
-		return dmgPerShot;
-	}
-
-	public void setDmgPerShot(int dmgPerShot) {
-		this.dmgPerShot = dmgPerShot;
-	}
-
-	public float getBulletSpeed() {
-		return bulletSpeed;
-	}
-
-	public void setBulletSpeed(float bulletSpeed) {
-		this.bulletSpeed = bulletSpeed;
+	public float getRealY() {
+		return realY;
 	}
 
 	@Override
 	public void draw(final Graphics2D g) {
-		g.rotate(Math.toRadians(this.rotation + 90), this.x, this.y);
-		g.drawImage(this.texture, (int) this.x - 32, (int) this.y - 54, null);
-		g.rotate(-Math.toRadians(this.rotation + 90), this.x, this.y);
+		g.rotate(Math.toRadians(this.rotation - 90), this.realX, this.realY);
+		g.drawImage(weapon.getImage(), (int) this.realX - 36, (int) this.realY - 23, null);
+		g.rotate(-Math.toRadians(this.rotation - 90), this.realX, this.realY);
 
 		super.draw(g);
 	}
@@ -84,7 +68,7 @@ public class Player extends CollisionBox implements Drawable, Updateable {
 
 		final float scalar = elapsed / 1000f;
 
-		float newX = this.x, newY = this.y;
+		float newX = this.realX, newY = this.realY;
 
 		if (this.game.getKEYS().isPressed(this.s.LEFT)) {
 			this.rotation -= Player.ROTATION_SPEED * scalar;
@@ -106,28 +90,27 @@ public class Player extends CollisionBox implements Drawable, Updateable {
 		}
 		if (this.game.getKEYS().isPressed(this.s.BTN1)) {
 			if (this.shotTimer <= 0) {
-				this.game.add(new Bullet(this.x, this.y, dmgPerShot, this.rotation, 500f, this.game));
-				this.shotTimer = waitPerShot;
+				weapon.fire(this.realX, this.realY, this.rotation);
 			}
 		}
 
-		if (newY < this.y && this.collNorth) {
-			newY = this.y;
+		if (newY < this.realY && this.collNorth) {
+			newY = this.realY;
 		}
-		if (newY > this.y && this.collSouth) {
-			newY = this.y;
+		if (newY > this.realY && this.collSouth) {
+			newY = this.realY;
 		}
-		if (newX > this.x && this.collEast) {
-			newX = this.x;
+		if (newX > this.realX && this.collEast) {
+			newX = this.realX;
 		}
-		if (newX < this.x && this.collWest) {
-			newX = this.x;
+		if (newX < this.realX && this.collWest) {
+			newX = this.realX;
 		}
 
-		this.x = newX;
-		this.y = newY;
-		this.setX((int) this.x - 10);
-		this.setY((int) this.y - 10);
+		this.realX = newX;
+		this.realY = newY;
+		this.setX((int) this.realX - 10);
+		this.setY((int) this.realY - 10);
 
 		this.collNorth = false;
 		this.collEast = false;

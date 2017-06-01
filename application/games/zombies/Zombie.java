@@ -22,7 +22,7 @@ public class Zombie extends CollisionBox implements Drawable, Updateable {
 	 */
 	private static final long serialVersionUID = 1683331211559374151L;
 
-	private static final float WALKING_SPEED = 100;
+	private static final float WALKING_SPEED = 0;
 	public static final ImageCtrlImpl textures = new ImageCtrlImpl();
 
 	private float rotation = 0;
@@ -81,8 +81,8 @@ public class Zombie extends CollisionBox implements Drawable, Updateable {
 		double dify;
 
 		for (final Player p : this.game.getPlayers()) {
-			difx = this.getX() - p.getX();
-			dify = this.getY() - p.getY();
+			difx = realX - p.getRealX();
+			dify = realY - p.getRealY();
 			final double ddistance = Math.sqrt(difx * difx + dify * dify);
 			if (ddistance < distance) {
 				distance = ddistance;
