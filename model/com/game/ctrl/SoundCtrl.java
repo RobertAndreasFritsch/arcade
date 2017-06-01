@@ -2,6 +2,15 @@ package com.game.ctrl;
 
 public interface SoundCtrl
 {
-	void play();
-	void stop();
+	static final int SOUNDLIMIT = 16;
+
+	Sound newSound(String path, boolean loop, SoundType soundType);
+
+	void closeSounds();
+
+	boolean limit();
+
+	void incrementSoundCounter();
+
+	void decrementSoundCounter();
 }

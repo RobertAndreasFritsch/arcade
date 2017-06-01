@@ -1,7 +1,5 @@
 package com.game.ctrl;
 
-import java.io.File;
-
 public interface CtrlFactory
 {
 	static CtrlFactory newCtrlFactory(final KeyCtrlType keyCtrlType)
@@ -13,8 +11,7 @@ public interface CtrlFactory
 
 	GraphicsCtrl graphicsControllerInstance();
 
-	SoundCtrl newSound(final File file, final boolean loop, final SoundType soundType);
+	SoundCtrl soundCtrlInstance();
 
-	void closeSounds();
-
+	ImageCtrl imageCtrlInstance();
 }

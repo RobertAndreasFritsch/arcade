@@ -8,17 +8,17 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-public class WAVSoundCtrl implements Runnable, SoundCtrl
+public class WAVSoundCtrl implements Runnable, Sound
 {
-	private final List<Clip>		clips	= new ArrayList<>();
-	private boolean					loop;
-	private final File				file;
+	private final List<Clip>	clips	= new ArrayList<>();
+	private boolean				loop;
+	private final File			file;
 
-	private final CtrlFactoryImpl	ctrlFactory;
+	private final SoundCtrl		soundCtrl;
 
-	public WAVSoundCtrl(CtrlFactoryImpl ctrlFactory, final File file, final boolean loop) throws Exception
+	public WAVSoundCtrl(final SoundCtrl soundCtrl, final File file, final boolean loop) throws Exception
 	{
-		this.ctrlFactory = ctrlFactory;
+		this.soundCtrl = soundCtrl;
 		this.file = file;
 		this.loop = loop;
 
@@ -27,16 +27,15 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 	@Override
 	public void run()
 	{
-		if (ctrlFactory.limit())
-			return;
-		
+		if (this.soundCtrl.limit()) { return; }
+
 		boolean incremented = false;
 		try
 		{
 			Clip clip;
 			AudioInputStream audioInputStream;
 
-			ctrlFactory.incrementSoundCounter();
+			this.soundCtrl.incrementSoundCounter();
 			incremented = true;
 			do
 			{
@@ -48,7 +47,7 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 				Thread.sleep(clip.getMicrosecondLength() / 100000);
 			}
 			while (this.loop);
-			ctrlFactory.decrementSoundCounter();
+			this.soundCtrl.decrementSoundCounter();
 			incremented = false;
 
 			clip.close(); // TODO not sure
@@ -56,8 +55,10 @@ public class WAVSoundCtrl implements Runnable, SoundCtrl
 		}
 		catch (final Exception e)
 		{
-			if(incremented) 
-				ctrlFactory.decrementSoundCounter();
+			if (incremented)
+			{
+				this.soundCtrl.decrementSoundCounter();
+			}
 			e.printStackTrace();
 		}
 	}

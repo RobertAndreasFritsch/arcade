@@ -76,6 +76,7 @@ public class SimpleGame extends ArrayList<GameObject> implements Game
 			d.output();
 		}
 		this.ctrlFactory.graphicsControllerInstance().dispose();
+		this.ctrlFactory.graphicsControllerInstance().normalize();
 	}
 
 	public CtrlFactory getCtrlFactory()

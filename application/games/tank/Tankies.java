@@ -78,7 +78,7 @@ public class Tankies extends SimpleGame
 	public Game getNextGame()
 	{
 
-		this.getCtrlFactory().closeSounds();
+		this.getCtrlFactory().soundCtrlInstance().closeSounds();
 
 		for (final Player p : this.player)
 		{

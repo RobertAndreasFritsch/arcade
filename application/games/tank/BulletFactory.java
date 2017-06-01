@@ -1,10 +1,8 @@
 package games.tank;
 
-import java.io.File;
-
 import com.game.Game;
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.SoundCtrl;
+import com.game.ctrl.Sound;
 import com.game.ctrl.SoundType;
 
 public class BulletFactory
@@ -20,7 +18,7 @@ public class BulletFactory
 	private final CtrlFactory	ctrlFactoryImpl;
 
 	// sound ring
-	private final SoundCtrl		soundCtrl;
+	private final Sound			sound;
 
 	public BulletFactory(final Game game, final Battleground battleground, final Tank[] tankArray, final Player[] player,
 	      final CtrlFactory ctrlFactory)
@@ -30,8 +28,8 @@ public class BulletFactory
 		this.tankArray = tankArray;
 		this.player = player;
 		this.ctrlFactoryImpl = ctrlFactory;
-		this.soundCtrl = this.ctrlFactoryImpl.newSound(new File("res/games/tankies/sounds/Samples/shoot.wav"), false,
-		      SoundType.WAV);
+		this.sound = this.ctrlFactoryImpl.soundCtrlInstance().newSound("res/games/tankies/sounds/Samples/shoot.wav",
+		      false, SoundType.WAV);
 	}
 
 	public void newBullet(final Tank tank)
@@ -54,7 +52,7 @@ public class BulletFactory
 
 			this.game.add(bullet);
 
-			this.soundCtrl.play();
+			this.sound.play();
 		}
 	}
 

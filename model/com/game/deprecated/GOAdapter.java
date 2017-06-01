@@ -5,9 +5,9 @@ import com.game.GameObject;
 /**
  * @author user
  * @deprecated
- * 
+ *
  *             implement GameObject or extends SimpleGameObject
- * 
+ *
  * @see com.game.GameObject
  * @see com.game.SimpleGameObject
  */

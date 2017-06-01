@@ -7,17 +7,17 @@ import java.util.List;
 
 import javazoom.jl.player.Player;
 
-public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
+public class MP3SoundCtrlImpl implements Runnable, Sound
 {
 
 	private final List<Player>	players	= new ArrayList<>();
 	private boolean				loop;
 	private final File			file;
-	private CtrlFactoryImpl		ctrlFactory;
+	private final SoundCtrl		soundCtrl;
 
-	public MP3SoundCtrlImpl(CtrlFactoryImpl ctrlFactory, final File file, final boolean loop) throws Exception
+	public MP3SoundCtrlImpl(final SoundCtrlImpl soundCtrlImpl, final File file, final boolean loop) throws Exception
 	{
-		this.ctrlFactory = ctrlFactory;
+		this.soundCtrl = soundCtrlImpl;
 		this.file = file;
 		this.loop = loop;
 	}
@@ -25,16 +25,15 @@ public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 	@Override
 	public void run()
 	{
-		if (ctrlFactory.limit())
-			return;
-		
+		if (this.soundCtrl.limit()) { return; }
+
 		boolean incremented = false;
 		try
 		{
 			Player player;
 			FileInputStream fileInputStream;
-			
-			ctrlFactory.incrementSoundCounter();
+
+			this.soundCtrl.incrementSoundCounter();
 			incremented = true;
 			do
 			{
@@ -44,7 +43,7 @@ public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 				player.play();
 			}
 			while (this.loop);
-			ctrlFactory.incrementSoundCounter();
+			this.soundCtrl.decrementSoundCounter();
 			incremented = false;
 
 			player.close();
@@ -52,8 +51,10 @@ public class MP3SoundCtrlImpl implements Runnable, SoundCtrl
 		}
 		catch (final Exception e)
 		{
-			if(incremented) 
-				ctrlFactory.decrementSoundCounter();
+			if (incremented)
+			{
+				this.soundCtrl.decrementSoundCounter();
+			}
 			e.printStackTrace();
 		}
 

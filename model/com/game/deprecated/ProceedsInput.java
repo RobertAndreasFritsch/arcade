@@ -3,9 +3,9 @@ package com.game.deprecated;
 /**
  * @author r.fritsch2511
  * @deprecated
- * 
+ *
  *             implement GameObject or extends SimpleGameObject
- * 
+ *
  * @see com.game.GameObject
  * @see com.game.SimpleGameObject
  */

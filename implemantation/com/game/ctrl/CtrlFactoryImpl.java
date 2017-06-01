@@ -1,21 +1,13 @@
 package com.game.ctrl;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JFrame;
 
 public class CtrlFactoryImpl implements CtrlFactory
 {
-	private static final int	SOUNDLIMIT			= 100;
 	private final JFrame			jFrame				= new JFrame();
-	private List<SoundCtrl>		soundCtrls			= new ArrayList<>();
 
 	private KeyCtrl				keyCtrl;
-	private GraphicsCtrl			graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
-
-	private int						soundCounter		= 0;
+	private final GraphicsCtrl	graphicsCtrlImpl	= new GraphicsCtrlImpl(this.jFrame);
 
 	CtrlFactoryImpl(final KeyCtrlType keyCtrlType)
 	{
@@ -44,55 +36,16 @@ public class CtrlFactoryImpl implements CtrlFactory
 	}
 
 	@Override
-	public SoundCtrl newSound(final File file, final boolean loop, final SoundType soundType)
+	public SoundCtrl soundCtrlInstance()
 	{
-		SoundCtrl soundCtrl;
-
-		try
-		{
-			switch (soundType)
-			{
-			case MP3:
-				soundCtrl = new MP3SoundCtrlImpl(this, file, loop);
-				break;
-			case WAV:
-				soundCtrl = new WAVSoundCtrl(this, file, loop);
-				break;
-			default:
-				throw new Exception("unknown Type : " + soundType);
-			}
-		}
-		catch (final Exception e)
-		{
-			e.printStackTrace();
-			return null;
-		}
-
-		this.soundCtrls.add(soundCtrl);
-		return soundCtrl;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public void closeSounds()
+	public ImageCtrl imageCtrlInstance()
 	{
-		for (final SoundCtrl soundCtrl : this.soundCtrls)
-		{
-			soundCtrl.stop();
-		}
-	}
-
-	void decrementSoundCounter()
-	{
-		soundCounter--;
-	}
-
-	void incrementSoundCounter()
-	{
-		soundCounter++;
-	}
-
-	boolean limit()
-	{
-		return soundCounter >= SOUNDLIMIT;
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

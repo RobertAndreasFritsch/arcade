@@ -77,11 +77,11 @@ public class WinnerControll implements Updateable, Drawable
 	// Rotator fuer die end sequenfz "GAME OVER"
 	private int				Grad				= 0, fontSize = 10;;
 	private final Thread	rotator			= new Thread()
-													{																																							// zaehler
-													                                                                                                                     // fuer
-													                                                                                                                     // rotation
-													                                                                                                                     // der
-													                                                                                                                     // end
+													{																																									// zaehler
+													                                                                                                                           // fuer
+													                                                                                                                           // rotation
+													                                                                                                                           // der
+													                                                                                                                           // end
 														// sequefnz
 														@Override
 														public void run()
@@ -90,11 +90,11 @@ public class WinnerControll implements Updateable, Drawable
 															{
 																try
 																{
-																	Thread.sleep(8);																														// warte
-																	                                                                                                         // zeit
-																	                                                                                                         // |
-																	                                                                                                         // schnellichkeit
-																	                                                                                                         // der
+																	Thread.sleep(8);																																// warte
+																	                                                                                                               // zeit
+																	                                                                                                               // |
+																	                                                                                                               // schnellichkeit
+																	                                                                                                               // der
 																	// rutation
 																}
 																catch (final InterruptedException e)
@@ -109,7 +109,7 @@ public class WinnerControll implements Updateable, Drawable
 
 	// ---------------------------------------------------------------------------------------------------------------------------
 	// Gewinner ausgebae in Schwarz und weiss abwaechselnt
-	private int				ColorCounter	= 0;																																						// Zaehler
+	private int				ColorCounter	= 0;																																								// Zaehler
 
 	private Color WhiteBlack()
 	{

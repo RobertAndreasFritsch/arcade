@@ -23,12 +23,11 @@ import java.awt.image.BufferedImageOp;
 import java.awt.image.ImageObserver;
 import java.awt.image.RenderedImage;
 import java.awt.image.renderable.RenderableImage;
-import java.io.File;
 import java.text.AttributedCharacterIterator;
 import java.util.Map;
 
 import com.game.ctrl.CtrlFactory;
-import com.game.ctrl.SoundCtrl;
+import com.game.ctrl.Sound;
 import com.game.ctrl.SoundType;
 
 public abstract class SimpleGameObject implements GameObject
@@ -40,14 +39,14 @@ public abstract class SimpleGameObject implements GameObject
 		this.ctrlFactory = ctrlFactory;
 	}
 
-	public SoundCtrl newSound(final File file, final boolean loop, final SoundType soundType)
+	public Sound newSound(final String path, final boolean loop, final SoundType soundType)
 	{
-		return this.ctrlFactory.newSound(file, loop, soundType);
+		return this.ctrlFactory.soundCtrlInstance().newSound(path, loop, soundType);
 	}
 
 	public void closeSounds()
 	{
-		this.ctrlFactory.closeSounds();
+		this.ctrlFactory.soundCtrlInstance().closeSounds();
 	}
 
 	public boolean isPressed(final int keyCode)
