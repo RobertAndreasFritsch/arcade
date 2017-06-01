@@ -11,23 +11,26 @@ import com.game.ctrl.CtrlFactory;
 public class CollisionBoxFactory extends SimpleGameObject
 {
 	private final List<CollisionBox> collisionBoxes = new ArrayList<>();
-	
-	public CollisionBoxFactory(CtrlFactory ctrlFactory)
+
+	public CollisionBoxFactory(final CtrlFactory ctrlFactory)
 	{
 		super(ctrlFactory);
 	}
-	
-	void bindBox(Collideable collideable, Vector2<Double> offset, Dimension2<Double> dimension2, CollisionBoxType collisionBoxType) {
-		collisionBoxes.add(new CollisionBoxImpl(collideable, offset, dimension2, collisionBoxType));
+
+	void bindBox(final Collideable collideable, final Vector2<Double> offset, final Dimension2<Double> dimension2,
+	      final CollisionBoxType collisionBoxType)
+	{
+		this.collisionBoxes.add(new CollisionBoxImpl(collideable, offset, dimension2, collisionBoxType));
 	}
-	
-	void unbindBox(CollisionBox collisionBox) {
-		collisionBoxes.remove(collisionBox);
+
+	void unbindBox(final CollisionBox collisionBox)
+	{
+		this.collisionBoxes.remove(collisionBox);
 	}
 
 	@Override
-	public void update(long elapsed)
+	public void update(final long elapsed)
 	{
-		
+
 	}
 }
