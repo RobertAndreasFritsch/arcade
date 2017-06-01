@@ -11,14 +11,66 @@
 		</header>
 		<nav>
 			<ul>
-				<li>Game</li>
-				<li>GameObject and Controller</li>
+				<li><a href="#fgd_game">Game</a></li>
+				<li><a href="#fgd_go-and-contr">GameObject and Controller</a></li>
 				<li>SimpleGameObject</li>
 			</ul>
 		</nav>
 		<main>
-			<article id="">
+			<article id="fgd_game">
+				<h3>Game</h3>
+				<p>
+					Game ist die Hauptklasse die Implementiet weden sollte.<br />
+					Sie stellt eine Sammlung von GameObjecten dar und verwaltet diese innerhalb ihrer Tick Methode.<br />
 
+					Wenn man also ein Game erstellt, werden im Konstruktor alle GameObjecte geaddet, welche essentiell für das spiel sind.<br />
+					Abgesehen davon ist das Game nicht dafür gedacht, Logiken zu implementieren.<br />
+
+					Es macht sinn, das SimpleGame zu extenden, wenn man eine GameKlasse erstellt.<br />
+					Damit wird einem die gesammte Arbeit der Verwaltung abgenommen und Fehler sind unwahrscheinlicher.<br />
+
+					Beispiel einer kompletten GameKlasse die SimpleGame extended anhand von Tankies:<br />
+
+					<code><br /><br />
+						public Tankies(final CtrlFactory ctrlFactory)<br />
+						{<br />
+							super(ctrlFactory);<br />
+							<br />
+							Battleground battleground = null;<br />
+							BulletFactory bulletFactory = null;<br />
+							<br />
+							final Tank[] tankArray = new Tank[4];<br />
+							<br />
+							this.player[0] = new Player();<br />
+							this.player[1] = new Player();<br />
+							this.player[2] = new Player();<br />
+							this.player[3] = new Player();<br />
+							<br />
+							battleground = new Battleground(1, ctrlFactory);<br />
+							bulletFactory = new BulletFactory(this, battleground, tankArray, this.player, this.getCtrlFactory());<br />
+							<br />
+							tankArray[0] = new Tank(0, battleground, bulletFactory, this.getKEYS());<br />
+							tankArray[1] = new Tank(1, battleground, bulletFactory, this.getKEYS());<br />
+							tankArray[2] = new Tank(2, battleground, bulletFactory, this.getKEYS());<br />
+							tankArray[3] = new Tank(3, battleground, bulletFactory, this.getKEYS());<br />
+							<br />
+							this.add(battleground);<br />
+							<br />
+							this.add(tankArray[0]);<br />
+							this.add(tankArray[1]);<br />
+							this.add(tankArray[2]);<br />
+							this.add(tankArray[3]);<br />
+							<br />
+							this.add(new Scores(tankArray, this.player, bulletFactory, this));<br />
+						}<br /><br />
+					</code>
+				</p>
+			</article>
+			<article id="fgd_go-and-contr">
+				<h3>GameObject and Controller</h3>
+				<p>
+					
+				</p>
 			</article>
 		</main>
 	</section>

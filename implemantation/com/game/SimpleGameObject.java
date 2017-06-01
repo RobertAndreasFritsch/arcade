@@ -539,4 +539,19 @@ public abstract class SimpleGameObject implements GameObject
 	{
 		this.ctrlFactory.graphicsControllerInstance().getBufferGraphics().translate(arg0, arg1);
 	}
+	
+	@Override
+	public void input()
+	{
+	}
+	
+	@Override
+	public void update(long elapsed)
+	{
+	}
+	
+	@Override
+	public void output()
+	{
+	}
 }
