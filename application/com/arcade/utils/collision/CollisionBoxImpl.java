@@ -1,39 +1,63 @@
 package com.arcade.utils.collision;
 
-import com.arcade.utils.geom.Dimension2;
-import com.arcade.utils.geom.Vector2;
+import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D;
 
-public class CollisionBoxImpl implements CollisionBox
+import com.arcade.utils.Direction;
+import com.arcade.utils.geom.Dimension2d;
+import com.arcade.utils.geom.Rectangle2d;
+import com.arcade.utils.geom.Vector2d;
+
+public class CollisionBoxImpl extends Rectangle2d implements CollisionBox
 {
-	private Vector2<Double>				collisionVector2			= new Vector2<>(.0, .0);
-	private final Vector2<Double>		collisionVector2Buffer	= new Vector2<>(.0, .0);
+	private Collideable	parent;
+	private Vector2d		cVevtor2d;
+	private Vector2d		offset;
+	private Dimension2d	dimension2d;
 
-	private final Collideable			collideable;
-	private final Vector2<Double>		offset;
-	private final Dimension2<Double>	dimension2;
-	private final CollisionBoxType	collisionBoxType;
-
-	public CollisionBoxImpl(final Collideable collideable, final Vector2<Double> offset,
-	      final Dimension2<Double> dimension2, final CollisionBoxType collisionBoxType)
+	public CollisionBoxImpl(Collideable parent, Dimension2d dimension2d, Vector2d offset)
 	{
-		this.collideable = collideable;
+		super(parent.getRectangle2d().asPoint2d().add(offset), dimension2d);
+
+		this.parent = parent;
+		this.dimension2d = dimension2d;
 		this.offset = offset;
-		this.dimension2 = dimension2;
-		this.collisionBoxType = collisionBoxType;
 	}
 
 	@Override
-	public Vector2<Double> getCollisionVector2()
+	public Vector2d getCollisionVector2d()
 	{
-		return this.collisionVector2;
+		return this.cVevtor2d;
 	}
 
-	void prozess(final Collideable collideable)
+	public void preprozess()
 	{
+		set(parent.getRectangle2d().asPoint2d().add(offset), dimension2d);
+		cVevtor2d.set(.0, .0);
 	}
 
-	void update()
+	@Override
+	public void prozess(Collideable collideable)
 	{
-		this.collisionVector2 = this.collisionVector2Buffer;
+		this.cVevtor2d.set(this.cVevtor2d.add(collideable.getVector2d()));
+	}
+
+	@Override
+	public Collideable getParent()
+	{
+		return this.parent;
+	}
+
+	@Override
+	public Rectangle2d getRectangle2d()
+	{
+		return this;
+	}
+
+	@Override
+	public Direction collissionDirection(Rectangle2d rectangle2d)
+	{
+		
+		return null;
 	}
 }

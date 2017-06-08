@@ -9,4 +9,16 @@ public class Vector2<N extends Number>
 	}
 
 	public N x, y;
+	
+	public void set(N x, N y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	
+	public void set(Vector2<N> v)
+	{
+		this.x = v.x;
+		this.y = v.y;
+	}
 }

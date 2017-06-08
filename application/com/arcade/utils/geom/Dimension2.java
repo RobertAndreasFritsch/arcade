@@ -9,4 +9,10 @@ public class Dimension2<N extends Number>
 	}
 	
 	public N w, h;
+	
+	public void set(N w, N h)
+	{
+		this.w = w;
+		this.h = h;
+	}
 }
